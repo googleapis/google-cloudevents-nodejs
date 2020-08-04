@@ -1,0 +1,27 @@
+{
+  "name": "@google/events",
+  "version": "1.0.0",
+  "description": "Client library for CloudEvents issued by Google.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "echo 'no tests'"
+  },
+  "repository": "googleapis/google-cloudevents-nodejs",
+  "author": "Google Inc.",
+  "keywords": [
+    "google",
+    "events",
+    "cloudevents"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/googleapis/google-cloudevents-nodejs/issues"
+  },
+  "homepage": "https://github.com/googleapis/google-cloudevents-nodejs#readme",
+  "dependencies": {
+    "ts-protoc-gen": "^0.12.0"
+  }
+}
