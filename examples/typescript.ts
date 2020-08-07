@@ -8,7 +8,7 @@ const pubsubData: MessagePublishedData.AsObject = {
         attributesMap: undefined,
         messageId: 'my-message-id'
     },
-    subscription: 'foo'
+    subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'
 }
 
 console.log(pubsubData.message.data);
