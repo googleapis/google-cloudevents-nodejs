@@ -6,6 +6,16 @@ This repository contains types for CloudEvents issued by Google.
 
 - Node 10 (or higher)
 
+## Install
+
+```sh
+npm i @google/events
+```
+
+## Examples
+
+- [TypeScript examples](./examples/typescript.ts)
+
 ## Generate
 
 Generate libraries:
