@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.0.0...v1.1.0) (2020-08-13)
+
+
+### Features
+
+* init typescript example ([#8](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/8)) ([b6280b1](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/b6280b17234aa5e60959089f3ec35ab02b3e1dec))
+
 ## 1.0.0 (2020-08-04)
 
 
