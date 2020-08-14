@@ -21,7 +21,7 @@ npm i @google/events
 Generate libraries:
 
 ```sh
-./gen.sh
+npm start
 ```
 
 Observe the new files in `src/`.

@@ -1,0 +1,12 @@
+{
+    "message": {
+        "attributes": {
+            "KEY1": "VAL1",
+            "KEY2": "VAL2"
+        },
+        "data": "SGVsbG8gdGhlcmU=",
+        "messageId": "1439412690399363",
+        "publishTime": "2020-08-14T20:50:04.994Z"
+    },
+    "subscription": "projects/project/subscriptions/cre-us-central1-pubsub-trigger2-sub-000"
+}
