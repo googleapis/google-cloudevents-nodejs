@@ -18,10 +18,6 @@ npm i @google/events
 
 ## Generate
 
-Generate libraries:
+Generate libraries from quicktype (currently manual).
 
-```sh
-npm start
-```
-
-Observe the new files in `src/`.
+https://app.quicktype.io/
