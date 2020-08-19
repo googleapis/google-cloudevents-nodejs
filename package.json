@@ -7,7 +7,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "test": "echo 'no tests'"
+    "test": "echo 'no tests'",
+    "compile": "tsc",
+    "pretest": "npm run compile"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
   "author": "Google Inc.",
@@ -23,6 +25,8 @@
   "homepage": "https://github.com/googleapis/google-cloudevents-nodejs#readme",
   "dependencies": {},
   "devDependencies": {
-    "quicktype-core": "^6.0.68"
+    "gts": "^2.0.2",
+    "quicktype-core": "^6.0.68",
+    "typescript": "^3.9.7"
   }
 }
