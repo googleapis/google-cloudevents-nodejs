@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.1.0...v1.2.0) (2020-08-26)
+
+
+### Features
+
+* add better typescript types for pubsub ([#18](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/18)) ([fbde74c](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/fbde74cf21111ad13500c01f2f1da76d999ad046))
+
 ## [1.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.0.0...v1.1.0) (2020-08-13)
 
 
