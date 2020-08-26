@@ -1,0 +1,2 @@
+# Ignore example data files when publishing
+data*.json

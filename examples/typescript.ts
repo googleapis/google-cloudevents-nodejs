@@ -1,14 +1,19 @@
 // Import types
-import {MessagePublishedData} from '../src/google/events/cloud/pubsub/v1/data_pb';
+import {MessagePublishedData, toMessagePublishedData} from '../src/google/events/cloud/pubsub/v1';
 
-// Annotate objects with types
-const pubsubData: MessagePublishedData.AsObject = {
+const obj = {
     message: {
         data: atob('Pub/Sub data'),
-        attributesMap: undefined,
-        messageId: 'my-message-id'
+        messageId: 'my-message-id',
+        publishTime: "2020-08-14T20:50:04.994Z",
     },
     subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'
-}
+};
 
-console.log(pubsubData.message.data);
+// TypeScript example
+const tsExample: MessagePublishedData = obj;
+console.log(tsExample.message.messageId);
+
+// JavaScript example (cast to type)
+const jsExample = toMessagePublishedData(obj)
+console.log(jsExample.message.messageId);
