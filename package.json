@@ -9,6 +9,7 @@
   "scripts": {
     "test": "echo 'no tests'",
     "compile": "tsc",
+    "prepare": "npm run compile",
     "pretest": "npm run compile"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
