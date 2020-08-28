@@ -37,7 +37,7 @@ This issue tracks automating this process: https://github.com/googleapis/google-
 
 ## Publish
 
-This module is automatically published by Release Please when merging a generated release PR.
+This module is automatically published by [Release Please](https://github.com/googleapis/release-please) when merging a generated release PR.
 This PR is created from a GitHub Action that detects changes to the `master` branch.
 
 Sometimes publishing does not work. To publish manually, Googlers can run the following commands:
