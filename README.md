@@ -34,3 +34,15 @@ The manual process is:
     ```
 
 This issue tracks automating this process: https://github.com/googleapis/google-cloudevents-nodejs/issues/20
+
+## Publish
+
+This module is automatically published by Release Please when merging a generated release PR.
+This PR is created from a GitHub Action that detects changes to the `master` branch.
+
+Sometimes publishing does not work. To publish manually, Googlers can run the following commands:
+
+```sh
+npm login --registry https://wombat-dressing-room.appspot.com
+npm publish --registry https://wombat-dressing-room.appspot.com
+```
