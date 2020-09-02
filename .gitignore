@@ -8,5 +8,8 @@ coverage/
 .nyc_output
 yarn.lock
 package-lock.json
-*.js
 *.d.ts
+
+# Ignore JS besides examples
+**/*.js
+!examples/**/*.js
