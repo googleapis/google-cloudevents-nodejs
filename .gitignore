@@ -6,8 +6,6 @@ coverage/
 *.pb
 .idea/
 .nyc_output
-yarn.lock
-package-lock.json
 *.d.ts
 
 .DS_STORE
