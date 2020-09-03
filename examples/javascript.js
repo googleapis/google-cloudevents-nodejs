@@ -1,4 +1,4 @@
-const {toMessagePublishedData} = require('@google/events/src/google/events/cloud/pubsub/v1');
+const {toMessagePublishedData} = require('@google/events/cloud/pubsub/v1');
 
 const obj = {
     message: {

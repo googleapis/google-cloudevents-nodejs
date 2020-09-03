@@ -1,4 +1,4 @@
-import {MessagePublishedData} from '@google/events/src/google/events/cloud/pubsub/v1';
+import {MessagePublishedData} from '@google/events/cloud/pubsub/v1';
 
 const obj = {
     message: {
