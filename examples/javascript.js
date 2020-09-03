@@ -1,5 +1,8 @@
 const {toMessagePublishedData} = require('@google/events/src/google/events/cloud/pubsub/v1');
 
+/**
+ * A Pub/Sub message as an object, for example what you'd see from a POST request.
+ */
 const obj = {
     message: {
         data: Buffer.from('Pub/Sub data').toString('base64'),
