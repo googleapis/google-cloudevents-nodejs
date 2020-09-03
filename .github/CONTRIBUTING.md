@@ -33,6 +33,8 @@ npm login --registry https://wombat-dressing-room.appspot.com
 npm publish --registry https://wombat-dressing-room.appspot.com
 ```
 
+> Note: Only `feat` and `fix` or any commit that's breaking, as indicated by a `!`: `refactor!: foo` will trigger a release.
+
 ## How to Contribute
 
 We'd love to accept your patches and contributions to this project. There are
