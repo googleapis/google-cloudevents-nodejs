@@ -33,7 +33,11 @@ npm login --registry https://wombat-dressing-room.appspot.com
 npm publish --registry https://wombat-dressing-room.appspot.com
 ```
 
-> Note: Only `feat` and `fix` or any commit that's breaking, as indicated by a `!`: `refactor!: foo` will trigger a release.
+### Conventional Commit Requirement
+
+Only `feat` and `fix` or any commit that's breaking, as indicated by a `!`: `refactor!: foo` will trigger a release. Other commits will not trigger a PR from the bot.
+
+See: https://www.conventionalcommits.org/en/v1.0.0/#summary
 
 ## How to Contribute
 
