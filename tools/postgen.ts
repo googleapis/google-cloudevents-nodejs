@@ -45,7 +45,6 @@ const recursive = require("recursive-readdir");
         .filter((token) => token.endsWith('Event'))[0];
 
     const newTypeFileContent = typeFileContent + `
-
 /**
  * Cast a raw JSON object to a typed event (useful for IDE autocompletion).
  * @param {object} json The JSON object
