@@ -4,6 +4,9 @@ const recursive = require("recursive-readdir");
 /**
  * This tool makes the generated code from the quicktype wrapper usable to TypeScript clients.
  * 
+ * Prerequisites:
+ * - A `cloud/` folder with `*Data.ts` files within subfolders.
+ * 
  * TypeScript "toTYPE" function:
  * - Loop through every type (ts file)
  *   - 1st interface: wrapper type (ignore)
@@ -16,7 +19,7 @@ const recursive = require("recursive-readdir");
 
 // Wrap in IIFE for top-level await
 (async () => {
-  const filePaths: string[] = await recursive("src");
+  const filePaths: string[] = await recursive("cloud");
 
   // Get every data type file path
   const dataTsFilePaths = filePaths.filter((path) => {

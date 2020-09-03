@@ -397,6 +397,7 @@ const typeMap: any = {
     ], "any"),
 };
 
+
 /**
  * Cast a raw JSON object to a typed event (useful for IDE autocompletion).
  * @param {object} json The JSON object

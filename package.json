@@ -7,13 +7,12 @@
     "node": ">=10"
   },
   "scripts": {
+    "pretest": "npm run build",
     "test": "echo 'no tests'",
     "check": "gts check",
     "clean": "gts clean",
     "build": "tsc --skipLibCheck",
     "watch": "tsc --watch --skipLibCheck",
-    "prepare": "npm run build",
-    "pretest": "npm run build",
     "postgen": "node tools/postgen.js"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
