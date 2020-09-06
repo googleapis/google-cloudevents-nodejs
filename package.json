@@ -26,7 +26,7 @@
   "homepage": "https://github.com/googleapis/google-cloudevents-nodejs#readme",
   "dependencies": {},
   "devDependencies": {
-    "gts": "^2.0.2",
+    "gts": "^3.0.0-alpha.1",
     "quicktype-core": "^6.0.68",
     "typescript": "^3.9.7"
   }
