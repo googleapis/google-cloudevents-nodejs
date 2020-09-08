@@ -28,7 +28,7 @@ const recursive = require("recursive-readdir");
   });
   
   // Read type file
-  dataTsFilePaths.map(filename => {
+  dataTsFilePaths.forEach(filename => {
     // For a single type file
     console.log(`- Fixing: ${filename}`);
     const typeFileContent = fs.readFileSync(filename).toString();

@@ -4,7 +4,7 @@ This doc has some guidelines on how to generate and contribute to this library.
 
 ## Generate
 
-The contents of this module is generated from the JSON Schemas defined in the source of truth repo:
+The contents of this module are generated from the JSON Schemas defined in the source of truth repo:
 
 https://github.com/googleapis/google-cloudevents
 
@@ -12,12 +12,12 @@ To generate this library, follow these steps:
 
 - Install `qt` globally from https://github.com/googleapis/google-cloudevents/tree/master/tools/quicktype-wrapper
 - Clone the source repo: `git clone git@github.com:googleapis/google-cloudevents.git`
-- Clone this language repo: `git clone git@github.com:googleapis/google-cloudevents-nodejs.git`
-- In the root of this Node repo, run the following, replacing your repo paths:
+- Clone this language repo: `git clone git@github.com:googleapis/google-cloudevents-nodejs.git --depth 1`
+- In the root of this Node repo, run the following:
   - ```sh
     qt \
-    --in=$(eval echo ~$USER)/Documents/github/googleapis/google-cloudevents/proto \
-    --out=$(eval echo ~$USER)/Documents/github/googleapis/google-cloudevents-nodejs \
+    --in=$PWD/../google-cloudevents/proto \
+    --out=$PWD \
     --l=typescript
     ```
   - This generates a `google/` folder.
