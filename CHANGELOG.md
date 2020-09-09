@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.3.1...v1.4.0) (2020-09-09)
+
+
+### Features
+
+* trigger feat ([#39](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/39)) ([236999b](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/236999bef12c696b40f2d626b96629fed2a4e120))
+
 ### [1.3.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.3.0...v1.3.1) (2020-09-03)
 
 
