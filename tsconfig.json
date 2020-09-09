@@ -9,6 +9,8 @@
     "target": "es2017"
   },
   "include": [
-    "src/**/*.ts"
+    "cloud/**/*.ts",
+    "src/**/*.ts",
+    "tools/**/*.ts"
   ]
 }
