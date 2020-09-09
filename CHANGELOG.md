@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.4.2](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.4.1...v1.4.2) (2020-09-09)
+
+
+### Bug Fixes
+
+* fix pub/sub message type ([#45](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/45)) ([bdbdd2a](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/bdbdd2a949e5003f0a439c164ca789fef9a7f1fe))
+
 ### [1.4.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.4.0...v1.4.1) (2020-09-09)
 
 
