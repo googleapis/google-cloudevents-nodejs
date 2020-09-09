@@ -6,9 +6,11 @@ coverage/
 *.pb
 .idea/
 .nyc_output
+*.d.ts
 yarn.lock
 package-lock.json
-*.d.ts
+
+.DS_STORE
 
 # Ignore JS besides examples
 **/*.js

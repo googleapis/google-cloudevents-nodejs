@@ -31,7 +31,7 @@ The steps are:
 From [JavaScript example](./examples/javascript.js).
 
 ```js
-const {toMessagePublishedData} = require('@google/events/src/google/events/cloud/pubsub/v1');
+const {toMessagePublishedData} = require('@google/events/cloud/pubsub/v1');
 
 const obj = {
     message: {
@@ -63,7 +63,7 @@ The steps are:
 From [TypeScript example](./examples/typescript.ts)
 
 ```ts
-import {MessagePublishedData} from '@google/events/src/google/events/cloud/pubsub/v1';
+import {MessagePublishedData} from '@google/events/cloud/pubsub/v1';
 
 const obj = {
     message: {
