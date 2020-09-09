@@ -60,7 +60,7 @@ The steps are:
 
 ### Code
 
-From [TypeScript example](./examples/typescript.ts)
+From [TypeScript example](./examples/typescript.ts):
 
 ```ts
 import {MessagePublishedData} from '@google/events/cloud/pubsub/v1';
