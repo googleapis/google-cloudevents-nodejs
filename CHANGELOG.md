@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.2.1...v1.3.0) (2020-09-03)
+
+
+### Features
+
+* **docs:** add note about feat in contributing guide ([#32](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/32)) ([9df8ed1](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/9df8ed1a3610d8c093b7cda186741979e2561b2a))
+
 ### [1.2.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.2.0...v1.2.1) (2020-08-27)
 
 
