@@ -25,7 +25,7 @@ export interface MessagePublishedEvent {
 export interface PubsubMessage {
     attributes?: { [key: string]: any };
     data?:       string;
-    message_id?: string;
+    messageId?:  string;
 }
 
 // Converts JSON strings to/from your types
@@ -183,7 +183,7 @@ const typeMap: any = {
     "PubsubMessage": o([
         { json: "attributes", js: "attributes", typ: u(undefined, m("any")) },
         { json: "data", js: "data", typ: u(undefined, "") },
-        { json: "message_id", js: "message_id", typ: u(undefined, "") },
+        { json: "messageId", js: "messageId", typ: u(undefined, "") },
     ], "any"),
 };
 
