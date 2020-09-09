@@ -2,7 +2,7 @@
 
 This doc has some guidelines on how to generate and contribute to this library.
 
-## Generate
+## Generate the Library
 
 The contents of this module are generated from the JSON Schemas defined in the source of truth repo:
 
@@ -33,7 +33,7 @@ To generate this library, follow these steps:
 
 If at any point you want to restart the generation process, just delete `google/` and `cloud/` folders.
 
-## Publish
+## Publish to npm
 
 This module is automatically published by [Release Please](https://github.com/googleapis/release-please) when merging a generated release PR.
 This PR is created from a GitHub Action that detects changes to the `master` branch.
@@ -41,6 +41,7 @@ This PR is created from a GitHub Action that detects changes to the `master` bra
 Sometimes publishing does not work. To publish manually, Googlers can run the following commands:
 
 ```sh
+npm run build
 npm login --registry https://wombat-dressing-room.appspot.com
 npm publish --registry https://wombat-dressing-room.appspot.com
 ```
