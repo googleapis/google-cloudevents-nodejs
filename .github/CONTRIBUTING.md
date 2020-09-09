@@ -16,7 +16,7 @@ To generate this library, follow these steps:
 - In the root of this Node repo, run the following:
   - ```sh
     qt \
-    --in=$PWD/../google-cloudevents/proto \
+    --in=$(dirname $PWD)/google-cloudevents/proto \
     --out=$PWD \
     --l=typescript
     ```
