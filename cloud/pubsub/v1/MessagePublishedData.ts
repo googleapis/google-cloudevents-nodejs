@@ -7,36 +7,55 @@
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
-export interface MessagePublishedDataObject {
-    /**
-     * This event is triggered when a Pub/Sub message is published.
-     */
-    MessagePublishedEvent?: MessagePublishedEvent;
-}
-
 /**
- * This event is triggered when a Pub/Sub message is published.
+ * A message that is published by publishers and consumed by subscribers.
  */
-export interface MessagePublishedEvent {
-    message?:      PubsubMessage;
+export interface MessagePublishedData {
+    /**
+     * The message that was published.
+     */
+    message?: PubsubMessage;
+    /**
+     * The resource name of the subscription for which this event was generated. The format of
+     * the value is `projects/{project-id}/subscriptions/{subscription-id}`.
+     */
     subscription?: string;
 }
 
+/**
+ * The message that was published.
+ *
+ * A message published to a topic.
+ */
 export interface PubsubMessage {
+    /**
+     * Attributes for this message. If this field is empty, the message must contain non-empty
+     * data. This can be used to filter messages on the subscription.
+     */
     attributes?: { [key: string]: any };
-    data?:       string;
-    messageId?:  string;
+    /**
+     * The message data field. If this field is empty, the message must contain at least one
+     * attribute. A base64-encoded string.
+     */
+    data?: string;
+    /**
+     * ID of this message, assigned by the server when the message is published. Guaranteed to
+     * be unique within the topic. This value may be read by a subscriber that receives a
+     * PubsubMessage via a subscriptions.pull call or a push delivery. It must not be populated
+     * by the publisher in a topics.publish call.
+     */
+    messageId?: string;
 }
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-    public static toMessagePublishedData(json: string): any[] | boolean | number | number | null | MessagePublishedDataObject | string {
-        return cast(JSON.parse(json), u(a("any"), true, 3.14, 0, null, r("MessagePublishedDataObject"), ""));
+    public static toMessagePublishedData(json: string): MessagePublishedData {
+        return cast(JSON.parse(json), r("MessagePublishedData"));
     }
 
-    public static messagePublishedDataToJson(value: any[] | boolean | number | number | null | MessagePublishedDataObject | string): string {
-        return JSON.stringify(uncast(value, u(a("any"), true, 3.14, 0, null, r("MessagePublishedDataObject"), "")), null, 2);
+    public static messagePublishedDataToJson(value: MessagePublishedData): string {
+        return JSON.stringify(uncast(value, r("MessagePublishedData")), null, 2);
     }
 }
 
@@ -173,10 +192,7 @@ function r(name: string) {
 }
 
 const typeMap: any = {
-    "MessagePublishedDataObject": o([
-        { json: "MessagePublishedEvent", js: "MessagePublishedEvent", typ: u(undefined, r("MessagePublishedEvent")) },
-    ], "any"),
-    "MessagePublishedEvent": o([
+    "MessagePublishedData": o([
         { json: "message", js: "message", typ: u(undefined, r("PubsubMessage")) },
         { json: "subscription", js: "subscription", typ: u(undefined, "") },
     ], "any"),
@@ -190,8 +206,8 @@ const typeMap: any = {
 /**
  * Cast a raw JSON object to a typed event (useful for IDE autocompletion).
  * @param {object} json The JSON object
- * @return {MessagePublishedEvent} The object with type annotations
+ * @return {MessagePublishedData} The object with type annotations
  */
-export const toMessagePublishedEvent = (json: object) => {
-  return json as MessagePublishedEvent;
+export const toMessagePublishedData = (json: object) => {
+  return json as MessagePublishedData;
 };

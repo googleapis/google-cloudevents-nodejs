@@ -10,28 +10,17 @@ https://github.com/googleapis/google-cloudevents
 
 To generate this library, follow these steps:
 
-- Install `qt` globally from https://github.com/googleapis/google-cloudevents/tree/master/tools/quicktype-wrapper
-- Clone the source repo: `git clone git@github.com:googleapis/google-cloudevents.git`
+### Setup
+
+- Install the `qt` CLI globally from https://github.com/googleapis/google-cloudevents/tree/master/tools/quicktype-wrapper
+- Clone the types source repo: `git clone git@github.com:googleapis/google-cloudevents.git`
 - Clone this language repo: `git clone git@github.com:googleapis/google-cloudevents-nodejs.git --depth 1`
-- In the root of this Node repo, run the following:
-  - ```sh
-    qt \
-    --in=$(dirname $PWD)/google-cloudevents/proto \
-    --out=$PWD \
-    --l=typescript
-    ```
-  - This generates a `google/` folder.
-- Run: `cp -r google/events/cloud . && rm -rf google/`
-  - This simplifies the output directory structure of our Google Event schemas.
-- Run: `npm run postgen`
-  - This polishes the generated Quicktype output in TypeScript.
-- Run: `npm run build`
-  - This compiles the TypeScript source.
+
+### Generate and Build
+
+- Generate: In the root of this Node repo, run the script: `npm run gen`. This generates this library from JSON schemas.
+- Build: In the root of this repo, run the script: `npm run build`. This compiles the TypeScript source.
 - Your package should be ready to publish.
-
----
-
-If at any point you want to restart the generation process, just delete `google/` and `cloud/` folders.
 
 ## Publish to npm
 

@@ -33,25 +33,25 @@ const recursive = require("recursive-readdir");
     console.log(`- Fixing: ${filename}`);
     const typeFileContent = fs.readFileSync(filename).toString();
 
-    // Get 2nd interface
+    // Get TS interfaces
     const lines = typeFileContent.split('\n');
     const interfaceLines = lines.filter((line) => {
       return line.startsWith('export interface');
     });
 
-    // The data name, e.g. 'export interface AuditLogWrittenEvent {'
-    const dataEventName = interfaceLines[1]
+    // The data name, e.g. 'export interface MessagePublishedData {'
+    const dataName = interfaceLines[0]
         .split(' ')
-        .filter((token) => token.endsWith('Event'))[0];
+        .filter((token) => token.endsWith('Data'))[0];
 
     const newTypeFileContent = typeFileContent + `
 /**
  * Cast a raw JSON object to a typed event (useful for IDE autocompletion).
  * @param {object} json The JSON object
- * @return {${dataEventName}} The object with type annotations
+ * @return {${dataName}} The object with type annotations
  */
-export const to${dataEventName} = (json: object) => {
-  return json as ${dataEventName};
+export const to${dataName} = (json: object) => {
+  return json as ${dataName};
 };`;
     // Write the updated file back
     fs.writeFileSync(filename, newTypeFileContent);
