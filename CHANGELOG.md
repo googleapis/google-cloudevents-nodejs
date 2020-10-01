@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.4.2...v1.5.0) (2020-10-01)
+
+
+### Features
+
+* rework the gen and postgen setup with separate jsonschema dir ([#50](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/50)) ([3f7f70b](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/3f7f70bceff8cec04c5afb97da07863b1f66c4c5))
+
 ### [1.4.2](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.4.1...v1.4.2) (2020-09-09)
 
 
