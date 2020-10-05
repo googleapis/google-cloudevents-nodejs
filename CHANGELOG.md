@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.5.0...v2.0.0) (2020-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* update cal types to use camelCase (#54)
+
+### Bug Fixes
+
+* update cal types to use camelCase ([#54](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/54)) ([2c60859](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/2c6085947d22992d4d260d21b8d717e1fd1ad2e1))
+
 ## [1.5.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.4.2...v1.5.0) (2020-10-01)
 
 
