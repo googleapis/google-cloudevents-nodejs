@@ -14,7 +14,7 @@ export interface LogEntryData {
     /**
      * A unique identifier for the log entry.
      */
-    insert_id?: string;
+    insertId?: string;
     /**
      * A set of user-defined (key, value) data that provides additional information about the
      * log entry.
@@ -23,7 +23,7 @@ export interface LogEntryData {
     /**
      * The resource name of the log to which this log entry belongs.
      */
-    log_name?: string;
+    logName?: string;
     /**
      * Information about an operation associated with the log entry, if applicable.
      */
@@ -31,11 +31,11 @@ export interface LogEntryData {
     /**
      * The log entry payload, which is always an AuditLog for Cloud Audit Log events.
      */
-    proto_payload?: AuditLog;
+    protoPayload?: AuditLog;
     /**
      * The time the log entry was received by Logging.
      */
-    receive_timestamp?: string;
+    receiveTimestamp?: string;
     /**
      * The monitored resource that produced this log entry. Example: a log entry that reports a
      * database error would be associated with the monitored resource designating the particular
@@ -51,7 +51,7 @@ export interface LogEntryData {
      * is the same format that the Trace API v2 uses: a 16-character hexadecimal encoding of an
      * 8-byte array, such as `000000000000004a`.
      */
-    span_id?: string;
+    spanId?: string;
     /**
      * The time the event described by the log entry occurred.
      */
@@ -99,12 +99,12 @@ export interface AuditLog {
     /**
      * Authentication information.
      */
-    authentication_info?: AuthenticationInfo;
+    authenticationInfo?: AuthenticationInfo;
     /**
      * Authorization information. If there are multiple resources or permissions involved, then
      * there is one AuthorizationInfo element for each {resource, permission} tuple.
      */
-    authorization_info?: AuthorizationInfo[];
+    authorizationInfo?: AuthorizationInfo[];
     /**
      * Other service-specific data about the request, response, and other information associated
      * with the current audited event.
@@ -114,11 +114,11 @@ export interface AuditLog {
      * The name of the service method or operation. For example
      * "google.datastore.v1.Datastore.RunQuery"
      */
-    method_name?: string;
+    methodName?: string;
     /**
      * The number of items returned from a List or Query API method, if applicable.
      */
-    num_response_items?: number;
+    numResponseItems?: number;
     /**
      * The operation request. This may not include all request parameters, such as those that
      * are too large, privacy-sensitive, or duplicated elsewhere in the log record. It should
@@ -130,20 +130,20 @@ export interface AuditLog {
     /**
      * Metadata about the operation.
      */
-    request_metadata?: RequestMetadata;
+    requestMetadata?: RequestMetadata;
     /**
      * The resource location information.
      */
-    resource_location?: ResourceLocation;
+    resourceLocation?: ResourceLocation;
     /**
      * The resource or collection that is the target of the operation. For example
      * "shelves/SHELF_ID/books"
      */
-    resource_name?: string;
+    resourceName?: string;
     /**
      * The resource's original state before mutation.
      */
-    resource_original_state?: { [key: string]: any };
+    resourceOriginalState?: { [key: string]: any };
     /**
      * The operation response. This may not include all response elements, such as those that
      * are too large, privacy-sensitive, or duplicated elsewhere in the log record. It should
@@ -157,12 +157,12 @@ export interface AuditLog {
      * response, and other activities. When the JSON object represented here has a proto
      * equivalent, the proto name will be indicated in the `@type` property.
      */
-    service_data?: { [key: string]: any };
+    serviceData?: { [key: string]: any };
     /**
      * The name of the API service performing the operation. For example,
      * `"datastore.googleapis.com"`.
      */
-    service_name?: string;
+    serviceName?: string;
     /**
      * The status of the overall operation.
      */
@@ -179,37 +179,37 @@ export interface AuthenticationInfo {
      * The authority selector specified by the requestor, if any. It is not guaranteed that the
      * principal was allowed to use this authority.
      */
-    authority_selector?: string;
+    authoritySelector?: string;
     /**
      * The email address of the authenticated user (or service account on behalf of third party
      * principal) making the request. For privacy reasons, the principal email address is
      * redacted for all read-only operations that fail with a "permission denied" error.
      */
-    principal_email?: string;
+    principalEmail?: string;
     /**
      * String representation of identity of requesting party. Populated for both first and third
      * party identities.
      */
-    principal_subject?: string;
+    principalSubject?: string;
     /**
      * Identity delegation history of an authenticated service account that makes the request.
      * It contains information on the real authorities that try to access GCP resources by
      * delegating on a service account. When multiple authorities present, they are guaranteed
      * to be sorted based on the original ordering of the identity delegation events.
      */
-    service_account_delegation_info?: ServiceAccountDelegationInfo[];
+    serviceAccountDelegationInfo?: ServiceAccountDelegationInfo[];
     /**
      * The name of the service account key used to create or exchange credentials for
      * authenticating the service account making the request. This is a scheme-less URI full
      * resource name.
      */
-    service_account_key_name?: string;
+    serviceAccountKeyName?: string;
     /**
      * The third party identification (if any) of the authenticated user making the request.
      * When the JSON object represented here has a proto equivalent, the proto name will be
      * indicated in the @type property.
      */
-    third_party_principal?: { [key: string]: any };
+    thirdPartyPrincipal?: { [key: string]: any };
 }
 
 /**
@@ -219,15 +219,15 @@ export interface ServiceAccountDelegationInfo {
     /**
      * The email address of a Google account.
      */
-    principal_email?: string;
+    principalEmail?: string;
     /**
      * Metadata about the service that uses the service account.
      */
-    service_metadata?: { [key: string]: any };
+    serviceMetadata?: { [key: string]: any };
     /**
      * Metadata about third party identity.
      */
-    third_party_claims?: { [key: string]: any };
+    thirdPartyClaims?: { [key: string]: any };
 }
 
 /**
@@ -251,16 +251,16 @@ export interface AuthorizationInfo {
      * Resource attributes used in IAM condition evaluation. This field contains resource
      * attributes like resource type and resource name. To get the whole view of the attributes
      * used in IAM condition evaluation, the user must also look into
-     * AuditLog.request_metadata.request_attributes.
+     * AuditLog.requestMetadata.requestAttributes.
      */
-    resource_attributes?: Resource;
+    resourceAttributes?: Resource;
 }
 
 /**
  * Resource attributes used in IAM condition evaluation. This field contains resource
  * attributes like resource type and resource name. To get the whole view of the attributes
  * used in IAM condition evaluation, the user must also look into
- * AuditLog.request_metadata.request_attributes.
+ * AuditLog.requestMetadata.requestAttributes.
  */
 export interface Resource {
     labels?:  { [key: string]: any };
@@ -278,40 +278,40 @@ export interface RequestMetadata {
      * address. For caller from a Compute Engine VM with external IP address, this will be the
      * VM's external IP address. For caller from a Compute Engine VM without external IP
      * address, if the VM is in the same organization (or project) as the accessed resource,
-     * `caller_ip` will be the VM's internal IPv4 address, otherwise the `caller_ip` will be
+     * `callerIp` will be the VM's internal IPv4 address, otherwise the `callerIp` will be
      * redacted to "gce-internal-ip". See https://cloud.google.com/compute/docs/vpc/ for more
      * information."
      */
-    caller_ip?: string;
+    callerIp?: string;
     /**
      * The network of the caller.
      */
-    caller_network?: string;
+    callerNetwork?: string;
     /**
      * The user agent of the caller. This information is not authenticated and should be treated
      * accordingly.
      */
-    caller_supplied_user_agent?: string;
+    callerSuppliedUserAgent?: string;
     /**
      * The destination of a network activity, such as accepting a TCP connection.
      */
-    destination_attributes?: Peer;
+    destinationAttributes?: Peer;
     /**
      * Request attributes used in IAM condition evaluation. This field contains request
      * attributes like request time and access levels associated with the request.
      */
-    request_attributes?: Request;
+    requestAttributes?: Request;
 }
 
 /**
  * The destination of a network activity, such as accepting a TCP connection.
  */
 export interface Peer {
-    ip?:          string;
-    labels?:      { [key: string]: any };
-    port?:        number;
-    principal?:   string;
-    region_code?: string;
+    ip?:         string;
+    labels?:     { [key: string]: any };
+    port?:       number;
+    principal?:  string;
+    regionCode?: string;
 }
 
 /**
@@ -334,11 +334,11 @@ export interface Request {
 }
 
 export interface Auth {
-    access_levels?: string[];
-    audiences?:     string[];
-    claims?:        { [key: string]: any };
-    presenter?:     string;
-    principal?:     string;
+    accessLevels?: string[];
+    audiences?:    string[];
+    claims?:       { [key: string]: any };
+    presenter?:    string;
+    principal?:    string;
 }
 
 /**
@@ -349,16 +349,16 @@ export interface Auth {
 export interface ResourceLocation {
     /**
      * The locations of a resource after the execution of the operation. Requests to create or
-     * delete a location based resource must populate the 'current_locations' field and not the
-     * 'original_locations' field.
+     * delete a location based resource must populate the 'currentLocations' field and not the
+     * 'originalLocations' field.
      */
-    current_locations?: string[];
+    currentLocations?: string[];
     /**
      * The locations of a resource prior to the execution of the operation. Requests that mutate
-     * the resource's location must populate both the 'original_locations' as well as the
-     * 'current_locations' fields. For example:
+     * the resource's location must populate both the 'originalLocations' as well as the
+     * 'currentLocations' fields. For example:
      */
-    original_locations?: string[];
+    originalLocations?: string[];
 }
 
 /**
@@ -392,13 +392,13 @@ export interface Status {
 export interface MonitoredResource {
     /**
      * Values for all of the labels listed in the associated monitored resource descriptor. For
-     * example, Compute Engine VM instances use the labels `"project_id"`, `"instance_id"`, and
+     * example, Compute Engine VM instances use the labels `"projectId"`, `"instanceId"`, and
      * `"zone"`.
      */
     labels?: { [key: string]: any };
     /**
      * Required. The monitored resource type. For example, the type of a Compute Engine VM
-     * instance is `gce_instance`.
+     * instance is `gceInstance`.
      */
     type?: string;
 }
@@ -549,15 +549,15 @@ function r(name: string) {
 
 const typeMap: any = {
     "LogEntryData": o([
-        { json: "insert_id", js: "insert_id", typ: u(undefined, "") },
+        { json: "insertId", js: "insertId", typ: u(undefined, "") },
         { json: "labels", js: "labels", typ: u(undefined, m("any")) },
-        { json: "log_name", js: "log_name", typ: u(undefined, "") },
+        { json: "logName", js: "logName", typ: u(undefined, "") },
         { json: "operation", js: "operation", typ: u(undefined, r("LogEntryOperation")) },
-        { json: "proto_payload", js: "proto_payload", typ: u(undefined, r("AuditLog")) },
-        { json: "receive_timestamp", js: "receive_timestamp", typ: u(undefined, "") },
+        { json: "protoPayload", js: "protoPayload", typ: u(undefined, r("AuditLog")) },
+        { json: "receiveTimestamp", js: "receiveTimestamp", typ: u(undefined, "") },
         { json: "resource", js: "resource", typ: u(undefined, r("MonitoredResource")) },
         { json: "severity", js: "severity", typ: u(undefined, "") },
-        { json: "span_id", js: "span_id", typ: u(undefined, "") },
+        { json: "spanId", js: "spanId", typ: u(undefined, "") },
         { json: "timestamp", js: "timestamp", typ: u(undefined, "") },
         { json: "trace", js: "trace", typ: u(undefined, "") },
     ], "any"),
@@ -568,39 +568,39 @@ const typeMap: any = {
         { json: "producer", js: "producer", typ: u(undefined, "") },
     ], "any"),
     "AuditLog": o([
-        { json: "authentication_info", js: "authentication_info", typ: u(undefined, r("AuthenticationInfo")) },
-        { json: "authorization_info", js: "authorization_info", typ: u(undefined, a(r("AuthorizationInfo"))) },
+        { json: "authenticationInfo", js: "authenticationInfo", typ: u(undefined, r("AuthenticationInfo")) },
+        { json: "authorizationInfo", js: "authorizationInfo", typ: u(undefined, a(r("AuthorizationInfo"))) },
         { json: "metadata", js: "metadata", typ: u(undefined, m("any")) },
-        { json: "method_name", js: "method_name", typ: u(undefined, "") },
-        { json: "num_response_items", js: "num_response_items", typ: u(undefined, 0) },
+        { json: "methodName", js: "methodName", typ: u(undefined, "") },
+        { json: "numResponseItems", js: "numResponseItems", typ: u(undefined, 0) },
         { json: "request", js: "request", typ: u(undefined, m("any")) },
-        { json: "request_metadata", js: "request_metadata", typ: u(undefined, r("RequestMetadata")) },
-        { json: "resource_location", js: "resource_location", typ: u(undefined, r("ResourceLocation")) },
-        { json: "resource_name", js: "resource_name", typ: u(undefined, "") },
-        { json: "resource_original_state", js: "resource_original_state", typ: u(undefined, m("any")) },
+        { json: "requestMetadata", js: "requestMetadata", typ: u(undefined, r("RequestMetadata")) },
+        { json: "resourceLocation", js: "resourceLocation", typ: u(undefined, r("ResourceLocation")) },
+        { json: "resourceName", js: "resourceName", typ: u(undefined, "") },
+        { json: "resourceOriginalState", js: "resourceOriginalState", typ: u(undefined, m("any")) },
         { json: "response", js: "response", typ: u(undefined, m("any")) },
-        { json: "service_data", js: "service_data", typ: u(undefined, m("any")) },
-        { json: "service_name", js: "service_name", typ: u(undefined, "") },
+        { json: "serviceData", js: "serviceData", typ: u(undefined, m("any")) },
+        { json: "serviceName", js: "serviceName", typ: u(undefined, "") },
         { json: "status", js: "status", typ: u(undefined, r("Status")) },
     ], "any"),
     "AuthenticationInfo": o([
-        { json: "authority_selector", js: "authority_selector", typ: u(undefined, "") },
-        { json: "principal_email", js: "principal_email", typ: u(undefined, "") },
-        { json: "principal_subject", js: "principal_subject", typ: u(undefined, "") },
-        { json: "service_account_delegation_info", js: "service_account_delegation_info", typ: u(undefined, a(r("ServiceAccountDelegationInfo"))) },
-        { json: "service_account_key_name", js: "service_account_key_name", typ: u(undefined, "") },
-        { json: "third_party_principal", js: "third_party_principal", typ: u(undefined, m("any")) },
+        { json: "authoritySelector", js: "authoritySelector", typ: u(undefined, "") },
+        { json: "principalEmail", js: "principalEmail", typ: u(undefined, "") },
+        { json: "principalSubject", js: "principalSubject", typ: u(undefined, "") },
+        { json: "serviceAccountDelegationInfo", js: "serviceAccountDelegationInfo", typ: u(undefined, a(r("ServiceAccountDelegationInfo"))) },
+        { json: "serviceAccountKeyName", js: "serviceAccountKeyName", typ: u(undefined, "") },
+        { json: "thirdPartyPrincipal", js: "thirdPartyPrincipal", typ: u(undefined, m("any")) },
     ], "any"),
     "ServiceAccountDelegationInfo": o([
-        { json: "principal_email", js: "principal_email", typ: u(undefined, "") },
-        { json: "service_metadata", js: "service_metadata", typ: u(undefined, m("any")) },
-        { json: "third_party_claims", js: "third_party_claims", typ: u(undefined, m("any")) },
+        { json: "principalEmail", js: "principalEmail", typ: u(undefined, "") },
+        { json: "serviceMetadata", js: "serviceMetadata", typ: u(undefined, m("any")) },
+        { json: "thirdPartyClaims", js: "thirdPartyClaims", typ: u(undefined, m("any")) },
     ], "any"),
     "AuthorizationInfo": o([
         { json: "granted", js: "granted", typ: u(undefined, true) },
         { json: "permission", js: "permission", typ: u(undefined, "") },
         { json: "resource", js: "resource", typ: u(undefined, "") },
-        { json: "resource_attributes", js: "resource_attributes", typ: u(undefined, r("Resource")) },
+        { json: "resourceAttributes", js: "resourceAttributes", typ: u(undefined, r("Resource")) },
     ], "any"),
     "Resource": o([
         { json: "labels", js: "labels", typ: u(undefined, m("any")) },
@@ -609,18 +609,18 @@ const typeMap: any = {
         { json: "type", js: "type", typ: u(undefined, "") },
     ], "any"),
     "RequestMetadata": o([
-        { json: "caller_ip", js: "caller_ip", typ: u(undefined, "") },
-        { json: "caller_network", js: "caller_network", typ: u(undefined, "") },
-        { json: "caller_supplied_user_agent", js: "caller_supplied_user_agent", typ: u(undefined, "") },
-        { json: "destination_attributes", js: "destination_attributes", typ: u(undefined, r("Peer")) },
-        { json: "request_attributes", js: "request_attributes", typ: u(undefined, r("Request")) },
+        { json: "callerIp", js: "callerIp", typ: u(undefined, "") },
+        { json: "callerNetwork", js: "callerNetwork", typ: u(undefined, "") },
+        { json: "callerSuppliedUserAgent", js: "callerSuppliedUserAgent", typ: u(undefined, "") },
+        { json: "destinationAttributes", js: "destinationAttributes", typ: u(undefined, r("Peer")) },
+        { json: "requestAttributes", js: "requestAttributes", typ: u(undefined, r("Request")) },
     ], "any"),
     "Peer": o([
         { json: "ip", js: "ip", typ: u(undefined, "") },
         { json: "labels", js: "labels", typ: u(undefined, m("any")) },
         { json: "port", js: "port", typ: u(undefined, 0) },
         { json: "principal", js: "principal", typ: u(undefined, "") },
-        { json: "region_code", js: "region_code", typ: u(undefined, "") },
+        { json: "regionCode", js: "regionCode", typ: u(undefined, "") },
     ], "any"),
     "Request": o([
         { json: "auth", js: "auth", typ: u(undefined, r("Auth")) },
@@ -637,15 +637,15 @@ const typeMap: any = {
         { json: "time", js: "time", typ: u(undefined, "") },
     ], "any"),
     "Auth": o([
-        { json: "access_levels", js: "access_levels", typ: u(undefined, a("")) },
+        { json: "accessLevels", js: "accessLevels", typ: u(undefined, a("")) },
         { json: "audiences", js: "audiences", typ: u(undefined, a("")) },
         { json: "claims", js: "claims", typ: u(undefined, m("any")) },
         { json: "presenter", js: "presenter", typ: u(undefined, "") },
         { json: "principal", js: "principal", typ: u(undefined, "") },
     ], "any"),
     "ResourceLocation": o([
-        { json: "current_locations", js: "current_locations", typ: u(undefined, a("")) },
-        { json: "original_locations", js: "original_locations", typ: u(undefined, a("")) },
+        { json: "currentLocations", js: "currentLocations", typ: u(undefined, a("")) },
+        { json: "originalLocations", js: "originalLocations", typ: u(undefined, a("")) },
     ], "any"),
     "Status": o([
         { json: "code", js: "code", typ: u(undefined, 0) },
