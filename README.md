@@ -3,6 +3,8 @@
 This repository contains types for CloudEvents issued by Google,
 enabling you to have autocompletion in **JavaScript** or **TypeScript** projects.
 
+> Note: This repo is auto-generated from schemas in https://github.com/googleapis/google-cloudevents
+
 ## Prerequisites
 
 - Node 10+
