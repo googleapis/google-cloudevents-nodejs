@@ -23,5 +23,4 @@ qt \
 --l=typescript
 
 # Move generated library into correct directory
-mv google/events/ .
-rm -rf google
+mv google/events/cloud .

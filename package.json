@@ -13,8 +13,7 @@
     "clean": "gts clean",
     "build": "tsc --skipLibCheck",
     "watch": "tsc --watch --skipLibCheck",
-    "gen": "./tools/gen.sh",
-    "gen2": "./tools/gen.sh && node tools/postgen.js"
+    "gen": "./tools/gen.sh && node tools/postgen.js"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
   "author": "Google Inc.",
