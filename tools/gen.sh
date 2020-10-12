@@ -16,7 +16,12 @@
 
 set -e
 
+# Generate TS library from JSON Schemas
 qt \
 --in=$(dirname $PWD)/google-cloudevents/jsonschema \
 --out=$PWD \
 --l=typescript
+
+# Move generated library into correct directory
+mv google/events/ .
+rm -rf google
