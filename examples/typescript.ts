@@ -1,4 +1,4 @@
-import {MessagePublishedData} from '@google/events/cloud/pubsub/v1/MessagePublishedData';	
+import {MessagePublishedData} from '@google/events/cloud/pubsub/v1/MessagePublishedData';
 
 /**	
  * A Pub/Sub message as an object, for example what you'd see from a POST request.	
@@ -12,5 +12,5 @@ const obj = {
     subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'	
 };	
 
-const tsExample: MessagePublishedData = obj;	
+const tsExample: MessagePublishedData = obj;
 console.log(tsExample.message.data);

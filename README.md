@@ -3,6 +3,8 @@
 This repository contains types for CloudEvents issued by Google,
 enabling you to have autocompletion in **JavaScript** or **TypeScript** projects.
 
+> Note: This repo is auto-generated from schemas in https://github.com/googleapis/google-cloudevents
+
 ## Prerequisites
 
 - Node 10+
@@ -31,7 +33,7 @@ The steps are:
 From [JavaScript example](./examples/javascript.js).
 
 ```js
-const {toMessagePublishedEvent} = require('@google/events/cloud/pubsub/v1/MessagePublishedData');
+const {toMessagePublishedData} = require('@google/events/cloud/pubsub/v1/MessagePublishedData');
 
 /**
  * A Pub/Sub message as an object, for example what you'd see from a POST request.
@@ -45,7 +47,7 @@ const obj = {
     subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'
 };
 
-const jsExample = toMessagePublishedEvent(obj);
+const jsExample = toMessagePublishedData(obj);
 console.log(jsExample.message.data);
 ```
 
@@ -65,7 +67,7 @@ The steps are:
 From [TypeScript example](./examples/typescript.ts):
 
 ```ts
-import {MessagePublishedEvent} from '@google/events/cloud/pubsub/v1/MessagePublishedData';
+import {MessagePublishedData} from '@google/events/cloud/pubsub/v1/MessagePublishedData';
 
 /**
  * A Pub/Sub message as an object, for example what you'd see from a POST request.
@@ -79,7 +81,7 @@ const obj = {
     subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'
 };
 
-const tsExample: MessagePublishedEvent = obj;
+const tsExample: MessagePublishedData = obj;
 console.log(tsExample.message.data);
 ```
 
