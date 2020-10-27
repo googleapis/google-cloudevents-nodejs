@@ -13,41 +13,36 @@
 // limitations under the License.
 
 /**
- * A message that is published by publishers and consumed by subscribers.
+ * The data received in an event when a message is published to a topic.
  */
 export interface MessagePublishedData {
     /**
      * The message that was published.
      */
-    message?: PubsubMessage;
+    message?: Message;
     /**
-     * The resource name of the subscription for which this event was generated. The format of
-     * the value is `projects/{project-id}/subscriptions/{subscription-id}`.
+     * The resource name of the subscription for which this event was
+     * generated. The format of the value is
+     * `projects/{project-id}/subscriptions/{subscription-id}`.
      */
     subscription?: string;
 }
 
 /**
  * The message that was published.
- *
- * A message published to a topic.
  */
-export interface PubsubMessage {
+export interface Message {
     /**
-     * Attributes for this message. If this field is empty, the message must contain non-empty
-     * data. This can be used to filter messages on the subscription.
+     * Attributes for this message.
      */
-    attributes?: { [key: string]: any };
+    attributes?: { [key: string]: string };
     /**
-     * The message data field. If this field is empty, the message must contain at least one
-     * attribute. A base64-encoded string.
+     * The binary data in the message.
      */
     data?: string;
     /**
-     * ID of this message, assigned by the server when the message is published. Guaranteed to
-     * be unique within the topic. This value may be read by a subscriber that receives a
-     * PubsubMessage via a subscriptions.pull call or a push delivery. It must not be populated
-     * by the publisher in a topics.publish call.
+     * ID of this message, assigned by the server when the message is published.
+     * Guaranteed to be unique within the topic.
      */
     messageId?: string;
 }
