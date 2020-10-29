@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v2.0.0...v2.1.0) (2020-10-29)
+
+
+### Features
+
+* gen events from proto, more events ([#63](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/63)) ([ee25a88](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/ee25a88df2f373176c913e15911bfd399ae1bd63))
+
 ## [2.0.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v1.5.0...v2.0.0) (2020-10-05)
 
 
