@@ -19,7 +19,10 @@ const recursive = require("recursive-readdir");
 
 // Wrap in IIFE for top-level await
 (async () => {
-  const filePaths: string[] = await recursive("cloud");
+  const filePaths: string[] = [
+    ...await recursive('cloud'),
+    ...await recursive('firebase')
+  ];
 
   // Get every data type file path
   const dataTsFilePaths = filePaths.filter((path) => {

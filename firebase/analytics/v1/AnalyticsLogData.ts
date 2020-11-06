@@ -1,16 +1,18 @@
-// Copyright 2020 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 /**
  * The data within Firebase Analytics log events.
@@ -42,7 +44,7 @@ export interface EventDim {
     /**
      * A repeated record of the parameters associated with this event.
      */
-    params?: { [key: string]: { [key: string]: any } };
+    params?: { [key: string]: GoogleEventsFirebaseAnalyticsV1AnalyticsValue };
     /**
      * UTC client time when the previous event happened.
      */
@@ -55,6 +57,17 @@ export interface EventDim {
      * Value param in USD.
      */
     valueInUsd?: number;
+}
+
+/**
+ * Value for Event Params and UserProperty can be of type string or int or
+ * float or double.
+ */
+export interface GoogleEventsFirebaseAnalyticsV1AnalyticsValue {
+    doubleValue?: number;
+    floatValue?:  number;
+    intValue?:    number | string;
+    stringValue?: string;
 }
 
 /**
@@ -279,5 +292,27 @@ export interface UserProperty {
     /**
      * Last set value of user property.
      */
-    value?: { [key: string]: any };
+    value?: Value;
 }
+
+/**
+ * Last set value of user property.
+ *
+ * Value for Event Params and UserProperty can be of type string or int or
+ * float or double.
+ */
+export interface Value {
+    doubleValue?: number;
+    floatValue?:  number;
+    intValue?:    number | string;
+    stringValue?: string;
+}
+
+/**
+ * Cast a raw JSON object to a typed event (useful for IDE autocompletion).
+ * @param {object} json The JSON object
+ * @return {AnalyticsLogData} The object with type annotations
+ */
+export const toAnalyticsLogData = (json: object) => {
+  return json as AnalyticsLogData;
+};

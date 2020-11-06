@@ -24,4 +24,4 @@ qt \
 
 # Move generated library into correct directory
 cp -a google/events/. .
-rm -r google/events
+rm -r google

@@ -1,16 +1,18 @@
-// Copyright 2020 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 /**
  * Build event data
@@ -142,7 +144,7 @@ export interface BuildEventData {
      * If the build does not specify source or images,
      * these keys will not be included.
      */
-    timing?: { [key: string]: { [key: string]: any } };
+    timing?: { [key: string]: GoogleEventsCloudCloudbuildV1TimeSpan };
 }
 
 /**
@@ -208,7 +210,23 @@ export interface Objects {
     /**
      * Stores timing information for pushing all artifact objects.
      */
-    timing?: { [key: string]: any };
+    timing?: ObjectsTiming;
+}
+
+/**
+ * Stores timing information for pushing all artifact objects.
+ *
+ * Start and end times for a build execution phase.
+ */
+export interface ObjectsTiming {
+    /**
+     * End of time span.
+     */
+    endTime?: Date;
+    /**
+     * Start of time span.
+     */
+    startTime?: Date;
 }
 
 /**
@@ -278,7 +296,7 @@ export interface Options {
      * Using a global volume in a build with only one step is not valid as
      * it is indicative of a build request with an incorrect configuration.
      */
-    volumes?: any[];
+    volumes?: GoogleEventsCloudCloudbuildV1Volume[];
     /**
      * Option to specify a `WorkerPool` for the build.
      * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
@@ -312,6 +330,27 @@ export enum RequestedVerifyOptionEnum {
 export enum SubstitutionOptionEnum {
     AllowLoose = "ALLOW_LOOSE",
     MustMatch = "MUST_MATCH",
+}
+
+/**
+ * Volume describes a Docker container volume which is mounted into build steps
+ * in order to persist files across build step execution.
+ */
+export interface GoogleEventsCloudCloudbuildV1Volume {
+    /**
+     * Name of the volume to mount.
+     *
+     * Volume names must be unique per build step and must be valid names for
+     * Docker volumes. Each named volume must be used by at least two build steps.
+     */
+    name?: string;
+    /**
+     * Path at which to mount the volume.
+     *
+     * Paths must be absolute and cannot conflict with other volume paths on the
+     * same build step or with certain reserved volume paths.
+     */
+    path?: string;
 }
 
 /**
@@ -350,7 +389,7 @@ export interface Results {
     /**
      * Time to push all non-container artifacts.
      */
-    artifactTiming?: { [key: string]: any };
+    artifactTiming?: ArtifactTiming;
     /**
      * List of build step digests, in the order corresponding to build step
      * indices.
@@ -376,6 +415,24 @@ export interface Results {
 }
 
 /**
+ * Time to push all non-container artifacts.
+ *
+ * Stores timing information for pushing all artifact objects.
+ *
+ * Start and end times for a build execution phase.
+ */
+export interface ArtifactTiming {
+    /**
+     * End of time span.
+     */
+    endTime?: Date;
+    /**
+     * Start of time span.
+     */
+    startTime?: Date;
+}
+
+/**
  * An image built by the pipeline.
  */
 export interface Image {
@@ -391,7 +448,25 @@ export interface Image {
     /**
      * Stores timing information for pushing the specified image.
      */
-    pushTiming?: { [key: string]: any };
+    pushTiming?: PushTiming;
+}
+
+/**
+ * Stores timing information for pushing the specified image.
+ *
+ * Stores timing information for pushing all artifact objects.
+ *
+ * Start and end times for a build execution phase.
+ */
+export interface PushTiming {
+    /**
+     * End of time span.
+     */
+    endTime?: Date;
+    /**
+     * Start of time span.
+     */
+    startTime?: Date;
 }
 
 /**
@@ -422,11 +497,86 @@ export interface Source {
      * If provided, get the source from this location in a Cloud Source
      * Repository.
      */
-    repoSource?: { [key: string]: any };
+    repoSource?: RepoSource;
     /**
      * If provided, get the source from this location in Google Cloud Storage.
      */
-    storageSource?: { [key: string]: any };
+    storageSource?: StorageSource;
+}
+
+/**
+ * If provided, get the source from this location in a Cloud Source
+ * Repository.
+ *
+ * Location of the source in a Google Cloud Source Repository.
+ */
+export interface RepoSource {
+    /**
+     * Regex matching branches to build.
+     *
+     * The syntax of the regular expressions accepted is the syntax accepted by
+     * RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    branchName?: string;
+    /**
+     * Explicit commit SHA to build.
+     */
+    commitSha?: string;
+    /**
+     * Directory, relative to the source root, in which to run the build.
+     *
+     * This must be a relative path. If a step's `dir` is specified and is an
+     * absolute path, this value is ignored for that step's execution.
+     */
+    dir?: string;
+    /**
+     * Only trigger a build if the revision regex does NOT match the revision
+     * regex.
+     */
+    invertRegex?: boolean;
+    /**
+     * ID of the project that owns the Cloud Source Repository.
+     */
+    projectId?: string;
+    /**
+     * Name of the Cloud Source Repository.
+     */
+    repoName?: string;
+    /**
+     * Substitutions to use in a triggered build.
+     * Should only be used with RunBuildTrigger
+     */
+    substitutions?: { [key: string]: string };
+    /**
+     * Regex matching tags to build.
+     *
+     * The syntax of the regular expressions accepted is the syntax accepted by
+     * RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    tagName?: string;
+}
+
+/**
+ * If provided, get the source from this location in Google Cloud Storage.
+ *
+ * Location of the source in an archive file in Google Cloud Storage.
+ */
+export interface StorageSource {
+    /**
+     * Google Cloud Storage bucket containing the source (see
+     * [Bucket Name
+     * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string;
+    /**
+     * Google Cloud Storage generation for the object. If the generation is
+     * omitted, the latest generation will be used.
+     */
+    generation?: number | string;
+    /**
+     * Google Cloud Storage object containing the source.
+     */
+    object?: string;
 }
 
 /**
@@ -450,12 +600,12 @@ export interface SourceProvenance {
      * A copy of the build's `source.repo_source`, if exists, with any
      * revisions resolved.
      */
-    resolvedRepoSource?: { [key: string]: any };
+    resolvedRepoSource?: ResolvedRepoSourceObject;
     /**
      * A copy of the build's `source.storage_source`, if exists, with any
      * generations resolved.
      */
-    resolvedStorageSource?: { [key: string]: any };
+    resolvedStorageSource?: ResolvedStorageSourceObject;
 }
 
 export interface FileHashValue {
@@ -483,6 +633,87 @@ export enum TypeEnum {
     Md5 = "MD5",
     None = "NONE",
     Sha256 = "SHA256",
+}
+
+/**
+ * A copy of the build's `source.repo_source`, if exists, with any
+ * revisions resolved.
+ *
+ * If provided, get the source from this location in a Cloud Source
+ * Repository.
+ *
+ * Location of the source in a Google Cloud Source Repository.
+ */
+export interface ResolvedRepoSourceObject {
+    /**
+     * Regex matching branches to build.
+     *
+     * The syntax of the regular expressions accepted is the syntax accepted by
+     * RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    branchName?: string;
+    /**
+     * Explicit commit SHA to build.
+     */
+    commitSha?: string;
+    /**
+     * Directory, relative to the source root, in which to run the build.
+     *
+     * This must be a relative path. If a step's `dir` is specified and is an
+     * absolute path, this value is ignored for that step's execution.
+     */
+    dir?: string;
+    /**
+     * Only trigger a build if the revision regex does NOT match the revision
+     * regex.
+     */
+    invertRegex?: boolean;
+    /**
+     * ID of the project that owns the Cloud Source Repository.
+     */
+    projectId?: string;
+    /**
+     * Name of the Cloud Source Repository.
+     */
+    repoName?: string;
+    /**
+     * Substitutions to use in a triggered build.
+     * Should only be used with RunBuildTrigger
+     */
+    substitutions?: { [key: string]: string };
+    /**
+     * Regex matching tags to build.
+     *
+     * The syntax of the regular expressions accepted is the syntax accepted by
+     * RE2 and described at https://github.com/google/re2/wiki/Syntax
+     */
+    tagName?: string;
+}
+
+/**
+ * A copy of the build's `source.storage_source`, if exists, with any
+ * generations resolved.
+ *
+ * If provided, get the source from this location in Google Cloud Storage.
+ *
+ * Location of the source in an archive file in Google Cloud Storage.
+ */
+export interface ResolvedStorageSourceObject {
+    /**
+     * Google Cloud Storage bucket containing the source (see
+     * [Bucket Name
+     * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string;
+    /**
+     * Google Cloud Storage generation for the object. If the generation is
+     * omitted, the latest generation will be used.
+     */
+    generation?: number | string;
+    /**
+     * Google Cloud Storage object containing the source.
+     */
+    object?: string;
 }
 
 export enum StatusEnum {
@@ -565,7 +796,7 @@ export interface Step {
      * Stores timing information for pulling this build step's
      * builder image only.
      */
-    pullTiming?: { [key: string]: any };
+    pullTiming?: PullTiming;
     /**
      * A list of environment variables which are encrypted using a Cloud Key
      * Management Service crypto key. These values must be specified in the
@@ -587,7 +818,7 @@ export interface Step {
     /**
      * Stores timing information for executing this build step.
      */
-    timing?: { [key: string]: any };
+    timing?: StepTiming;
     /**
      * List of volumes to mount into the build step.
      *
@@ -598,7 +829,7 @@ export interface Step {
      * Using a named volume in only one step is not valid as it is indicative
      * of a build request with an incorrect configuration.
      */
-    volumes?: any[];
+    volumes?: GoogleEventsCloudCloudbuildV1Volume[];
     /**
      * The ID(s) of the step(s) that this build step depends on.
      * This build step will not start until all the build steps in `wait_for`
@@ -607,6 +838,25 @@ export interface Step {
      * completed successfully.
      */
     waitFor?: string[];
+}
+
+/**
+ * Stores timing information for pulling this build step's
+ * builder image only.
+ *
+ * Stores timing information for pushing all artifact objects.
+ *
+ * Start and end times for a build execution phase.
+ */
+export interface PullTiming {
+    /**
+     * End of time span.
+     */
+    endTime?: Date;
+    /**
+     * Start of time span.
+     */
+    startTime?: Date;
 }
 
 /**
@@ -633,6 +883,24 @@ export interface StepTimeout {
 }
 
 /**
+ * Stores timing information for executing this build step.
+ *
+ * Stores timing information for pushing all artifact objects.
+ *
+ * Start and end times for a build execution phase.
+ */
+export interface StepTiming {
+    /**
+     * End of time span.
+     */
+    endTime?: Date;
+    /**
+     * Start of time span.
+     */
+    startTime?: Date;
+}
+
+/**
  * Amount of time that this build should be allowed to run, to second
  * granularity. If this amount of time elapses, work on the build will cease
  * and the build status will be `TIMEOUT`.
@@ -653,6 +921,22 @@ export interface BuildEventDataTimeout {
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
     seconds?: number | string;
+}
+
+/**
+ * Stores timing information for pushing all artifact objects.
+ *
+ * Start and end times for a build execution phase.
+ */
+export interface GoogleEventsCloudCloudbuildV1TimeSpan {
+    /**
+     * End of time span.
+     */
+    endTime?: Date;
+    /**
+     * Start of time span.
+     */
+    startTime?: Date;
 }
 
 /**
