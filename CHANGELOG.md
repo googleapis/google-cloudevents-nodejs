@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v3.0.0...v3.1.0) (2020-11-06)
+
+
+### Features
+
+* run the generator, 11/2020 ([#67](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/67)) ([b1b5aeb](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/b1b5aebb488b19aab78136c8eeae83afe03cee39))
+
 ## [3.0.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v2.0.0...v3.0.0) (2020-10-29)
 
 
