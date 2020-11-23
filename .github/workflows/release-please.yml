@@ -24,7 +24,7 @@ jobs:
           node-version: 12
           registry-url: 'https://wombat-dressing-room.appspot.com'
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm ci
+      - run: npm i
         if: ${{ steps.release.outputs.release_created }}
       - run: npm publish
         env:
