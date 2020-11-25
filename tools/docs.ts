@@ -32,7 +32,11 @@ function getTypeDocumentation(catalog: any): string {
 
 ${schema.description}
 
-#### ${schema.product} – JS
+#### CloudEvent Types:
+
+${schema.cloudeventTypes?.map((t: string) => `- \`${t}\``).join('\n')}
+
+#### JS
 
 \`\`\`js
 ${requireString}
@@ -45,7 +49,7 @@ const jsExample = ${toFunction}(data);
 console.log(jsExample);
 \`\`\`
 
-#### ${schema.product} – TS
+#### TS
 
 \`\`\`ts
 ${importString}

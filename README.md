@@ -3,7 +3,7 @@
 This repository contains types for CloudEvents issued by Google,
 enabling you to have autocompletion in **JavaScript** or **TypeScript** projects.
 
-> Note: This repo is auto-generated from cloudevents in https://github.com/googleapis/google-cloudevents
+> Note: This repo is auto-generated from schemas in https://github.com/googleapis/google-cloudevents
 
 ## Prerequisites
 
@@ -27,7 +27,10 @@ For every event type, this library contains:
 - Exports a TypeScript type interface `DataType`.
 
 This provides autocompletion and inline IDE documentation for event types.
+
 ## Usage
+
+The following sections provide usage information per event type.
 
 <!-- GENERATED START -->
 ### Cloud Audit Logs
@@ -37,7 +40,11 @@ Generic log entry, used as a wrapper for Cloud Audit Logs in events.
  https://github.com/googleapis/googleapis/blob/master/google/logging/v2/log_entry.proto
  and adapted appropriately.
 
-#### Cloud Audit Logs – JS
+#### CloudEvent Types:
+
+- `google.cloud.audit.log.v1.written`
+
+#### JS
 
 ```js
 const {toLogEntryData} = require('@google/events/cloud/audit/v1/LogEntryData');
@@ -50,7 +57,7 @@ const jsExample = toLogEntryData(data);
 console.log(jsExample);
 ```
 
-#### Cloud Audit Logs – TS
+#### TS
 
 ```ts
 import {LogEntryData} from '@google/events/cloud/audit/v1/LogEntryData';
@@ -70,7 +77,11 @@ Build event data
  Copied from
  https://github.com/googleapis/googleapis/blob/master/google/devtools/cloudbuild/v1/cloudbuild.proto.
 
-#### Cloud Build – JS
+#### CloudEvent Types:
+
+- `google.cloud.cloudbuild.build.v1.statusChanged`
+
+#### JS
 
 ```js
 const {toBuildEventData} = require('@google/events/cloud/cloudbuild/v1/BuildEventData');
@@ -83,7 +94,7 @@ const jsExample = toBuildEventData(data);
 console.log(jsExample);
 ```
 
-#### Cloud Build – TS
+#### TS
 
 ```ts
 import {BuildEventData} from '@google/events/cloud/cloudbuild/v1/BuildEventData';
@@ -100,7 +111,14 @@ console.log(tsExample);
 
 The data within all Firestore document events.
 
-#### Cloud Firestore – JS
+#### CloudEvent Types:
+
+- `google.cloud.firestore.document.v1.created`
+- `google.cloud.firestore.document.v1.updated`
+- `google.cloud.firestore.document.v1.deleted`
+- `google.cloud.firestore.document.v1.written`
+
+#### JS
 
 ```js
 const {toDocumentEventData} = require('@google/events/cloud/firestore/v1/DocumentEventData');
@@ -113,7 +131,7 @@ const jsExample = toDocumentEventData(data);
 console.log(jsExample);
 ```
 
-#### Cloud Firestore – TS
+#### TS
 
 ```ts
 import {DocumentEventData} from '@google/events/cloud/firestore/v1/DocumentEventData';
@@ -130,7 +148,11 @@ console.log(tsExample);
 
 The data received in an event when a message is published to a topic.
 
-#### Cloud Pub/Sub – JS
+#### CloudEvent Types:
+
+- `google.cloud.pubsub.topic.v1.messagePublished`
+
+#### JS
 
 ```js
 const {toMessagePublishedData} = require('@google/events/cloud/pubsub/v1/MessagePublishedData');
@@ -143,7 +165,7 @@ const jsExample = toMessagePublishedData(data);
 console.log(jsExample);
 ```
 
-#### Cloud Pub/Sub – TS
+#### TS
 
 ```ts
 import {MessagePublishedData} from '@google/events/cloud/pubsub/v1/MessagePublishedData';
@@ -160,7 +182,11 @@ console.log(tsExample);
 
 Scheduler job data.
 
-#### Cloud Scheduler – JS
+#### CloudEvent Types:
+
+- `google.cloud.scheduler.job.v1.executed`
+
+#### JS
 
 ```js
 const {toSchedulerJobData} = require('@google/events/cloud/scheduler/v1/SchedulerJobData');
@@ -173,7 +199,7 @@ const jsExample = toSchedulerJobData(data);
 console.log(jsExample);
 ```
 
-#### Cloud Scheduler – TS
+#### TS
 
 ```ts
 import {SchedulerJobData} from '@google/events/cloud/scheduler/v1/SchedulerJobData';
@@ -190,7 +216,14 @@ console.log(tsExample);
 
 An object within Google Cloud Storage.
 
-#### Cloud Storage – JS
+#### CloudEvent Types:
+
+- `google.cloud.storage.object.v1.finalized`
+- `google.cloud.storage.object.v1.archived`
+- `google.cloud.storage.object.v1.deleted`
+- `google.cloud.storage.object.v1.metadataUpdated`
+
+#### JS
 
 ```js
 const {toStorageObjectData} = require('@google/events/cloud/storage/v1/StorageObjectData');
@@ -203,7 +236,7 @@ const jsExample = toStorageObjectData(data);
 console.log(jsExample);
 ```
 
-#### Cloud Storage – TS
+#### TS
 
 ```ts
 import {StorageObjectData} from '@google/events/cloud/storage/v1/StorageObjectData';
@@ -220,7 +253,11 @@ console.log(tsExample);
 
 The data within Firebase Analytics log events.
 
-#### Google Analytics for Firebase – JS
+#### CloudEvent Types:
+
+- `google.firebase.analytics.log.v1.written`
+
+#### JS
 
 ```js
 const {toAnalyticsLogData} = require('@google/events/firebase/analytics/v1/AnalyticsLogData');
@@ -233,7 +270,7 @@ const jsExample = toAnalyticsLogData(data);
 console.log(jsExample);
 ```
 
-#### Google Analytics for Firebase – TS
+#### TS
 
 ```ts
 import {AnalyticsLogData} from '@google/events/firebase/analytics/v1/AnalyticsLogData';
@@ -250,7 +287,12 @@ console.log(tsExample);
 
 The data within all Firebase Auth events
 
-#### Firebase Authentication – JS
+#### CloudEvent Types:
+
+- `google.firebase.auth.user.v1.created`
+- `google.firebase.auth.user.v1.deleted`
+
+#### JS
 
 ```js
 const {toAuthEventData} = require('@google/events/firebase/auth/v1/AuthEventData');
@@ -263,7 +305,7 @@ const jsExample = toAuthEventData(data);
 console.log(jsExample);
 ```
 
-#### Firebase Authentication – TS
+#### TS
 
 ```ts
 import {AuthEventData} from '@google/events/firebase/auth/v1/AuthEventData';
@@ -280,7 +322,14 @@ console.log(tsExample);
 
 The data within all Firebase Real Time Database reference events.
 
-#### Firebase Realtime Database – JS
+#### CloudEvent Types:
+
+- `google.firebase.database.ref.v1.created`
+- `google.firebase.database.ref.v1.updated`
+- `google.firebase.database.ref.v1.deleted`
+- `google.firebase.database.ref.v1.written`
+
+#### JS
 
 ```js
 const {toReferenceEventData} = require('@google/events/firebase/database/v1/ReferenceEventData');
@@ -293,7 +342,7 @@ const jsExample = toReferenceEventData(data);
 console.log(jsExample);
 ```
 
-#### Firebase Realtime Database – TS
+#### TS
 
 ```ts
 import {ReferenceEventData} from '@google/events/firebase/database/v1/ReferenceEventData';
@@ -310,7 +359,11 @@ console.log(tsExample);
 
 The data within all Firebase Remote Config events.
 
-#### Firebase Remote Config – JS
+#### CloudEvent Types:
+
+- `google.firebase.remoteconfig.remoteConfig.v1.updated`
+
+#### JS
 
 ```js
 const {toRemoteConfigEventData} = require('@google/events/firebase/remoteconfig/v1/RemoteConfigEventData');
@@ -323,7 +376,7 @@ const jsExample = toRemoteConfigEventData(data);
 console.log(jsExample);
 ```
 
-#### Firebase Remote Config – TS
+#### TS
 
 ```ts
 import {RemoteConfigEventData} from '@google/events/firebase/remoteconfig/v1/RemoteConfigEventData';
