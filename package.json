@@ -11,6 +11,7 @@
     "test": "echo 'no tests'",
     "check": "gts check",
     "clean": "gts clean",
+    "docs": "node tools/docs.js",
     "build": "tsc --skipLibCheck",
     "watch": "tsc --watch --skipLibCheck",
     "gen": "./tools/gen.sh && node tools/postgen.js"
@@ -27,7 +28,9 @@
     "url": "https://github.com/googleapis/google-cloudevents-nodejs/issues"
   },
   "homepage": "https://github.com/googleapis/google-cloudevents-nodejs#readme",
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
   "devDependencies": {
     "gts": "^3.0.0",
     "@types/node": "^14.6.3",
