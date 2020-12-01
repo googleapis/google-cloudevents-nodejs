@@ -17,74 +17,46 @@ Install the library from `npm`:
 npm i @google/events
 ```
 
-## Example – JavaScript
+## Features
 
-This module can be used with JavaScript projects to provide autocompletion to your objects.
+This library is meant to provide types for Node projects accepting CloudEvent data, typically sent through a HTTP request's `POST` body.
 
-The steps are:
+For every event type, this library contains:
 
-- Require `to[MyDataMessage]` from the Google Events library with the path to your event
-    - Replace `MyDataMessage` with your event type. See https://github.com/googleapis/google-cloudevents for all event types.
-- Call `to[MyDataMessage]` on your object.
-- Observe autocompletion for the wrapped object.
+- Exports a JavaScript function `to[DataType]`.
+- Exports a TypeScript type interface `DataType`.
 
-### Code
+This provides autocompletion and inline IDE documentation for event types.
+## Example Usage
 
-From [JavaScript example](./examples/javascript.js).
+Require or import the module. Here is an example JS and TS file:
+
+### JS
 
 ```js
-const {toMessagePublishedData} = require('@google/events/cloud/pubsub/v1/MessagePublishedData');
+const {toLogEntryData} = require('@google/events/cloud/audit/v1/LogEntryData');
 
-/**
- * A Pub/Sub message as an object, for example what you'd see from a POST request.
- */
-const obj = {
-    message: {
-        data: Buffer.from('Pub/Sub data').toString('base64'),
-        messageId: 'my-message-id',
-        publishTime: "2020-08-14T20:50:04.994Z",
-    },
-    subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'
+const data = {
+  // ...
 };
 
-const jsExample = toMessagePublishedData(obj);
-console.log(jsExample.message.data);
+const jsExample = toLogEntryData(data);
+console.log(jsExample);
 ```
 
-## Example – TypeScript
-
-This module can be used with TypeScript projects to provide autocompletion.
-
-The steps are:
-
-- Require `[MyDataMessage]` from the Google Events library with the path to your event
-    - Replace `MyDataMessage` with your event type. See https://github.com/googleapis/google-cloudevents for all event types.
-- When creating an object, use the type, such as `const typedObj: MessagePublishedData = obj;`
-- Observe autocompletion for the typed object.
-
-### Code
-
-From [TypeScript example](./examples/typescript.ts):
+### TS
 
 ```ts
-import {MessagePublishedData} from '@google/events/cloud/pubsub/v1/MessagePublishedData';
+import {LogEntryData} from '@google/events/cloud/audit/v1/LogEntryData';
 
-/**
- * A Pub/Sub message as an object, for example what you'd see from a POST request.
- */
-const obj = {
-    message: {
-        data: atob('Pub/Sub data'),
-        messageId: 'my-message-id',
-        publishTime: "2020-08-14T20:50:04.994Z",
-    },
-    subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000'
+const data = {
+  // ...
 };
 
-const tsExample: MessagePublishedData = obj;
-console.log(tsExample.message.data);
+const tsExample: LogEntryData = data;
+console.log(tsExample);
 ```
 
----
+## Reference
 
-Read [`.github/CONTRIBUTING.md`](.github/CONTRIBUTING.md) for instructions on developing and contributing to this repo.
+The [`reference.md`](reference.md) file has detailed examples for how to use every event data type.
