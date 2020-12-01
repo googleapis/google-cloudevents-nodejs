@@ -91,11 +91,11 @@ ${README_AFTER_TABLE}`;
   
   const nodeDocumentation = getTypeDocumentation(catalogJSON);
 
-  const README_PATH = `${__dirname}/../README.md`;
+  const README_PATH = `${__dirname}/../reference.md`;
   const readmeContents = fs.readFileSync(README_PATH).toString();
   const updatedReadmeContents = getGeneratedStringWithReplacement(readmeContents, nodeDocumentation);
 
-  // Save updated README
+  // Save updated reference
   fs.writeFileSync(README_PATH, updatedReadmeContents);
 })();
 
