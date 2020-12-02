@@ -8,7 +8,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v1.6.3
+      - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -20,13 +20,33 @@ jobs:
         # a new release is created:
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions/setup-node@v1
+        if: ${{ steps.release.outputs.release_created }}
         with:
           node-version: 12
           registry-url: 'https://wombat-dressing-room.appspot.com'
+      - id: publish
         if: ${{ steps.release.outputs.release_created }}
-      - run: npm ci
-        if: ${{ steps.release.outputs.release_created }}
-      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.CLOUDEVENTS_NPM_TOKEN}}
+        run: |
+          npm install
+          npm publish
+      - uses: actions/github-script@v3
         if: ${{ steps.release.outputs.release_created }}
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+            await github.issues.addLabels({
+              owner,
+              repo,
+              issue_number: ${{steps.release.outputs.pr}},
+              labels: ['autorelease: published']
+            });
+            github.issues.removeLabel({
+              owner,
+              repo,
+              issue_number: ${{steps.release.outputs.pr}},
+              name: 'autorelease: tagged',
+            });
+            console.log(`Tagged ${{steps.release.outputs.pr}}`)
