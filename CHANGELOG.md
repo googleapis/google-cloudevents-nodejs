@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.2.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v3.1.0...v3.2.0) (2020-12-02)
+
+
+### Features
+
+* **build:** split release PR and publish step ([#76](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/76)) ([1fe21d5](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/1fe21d54a0d8f3923f17c51534f1973dda136e8a))
+
+
+### Bug Fixes
+
+* **build:** Update release-please.yml ([#73](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/73)) ([87aa569](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/87aa56924a24c0aaa71453b1d908f8f8814334a4))
+
 ## [3.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v3.0.0...v3.1.0) (2020-11-06)
 
 
