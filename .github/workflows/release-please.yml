@@ -5,7 +5,31 @@ on:
       - master
 name: release-please
 jobs:
-  release-please:
+  release-please-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - id: release-pr
+        uses: GoogleCloudPlatform/release-please-action@v2
+        with:
+          token: ${{ secrets.FORKING_TOKEN }}
+          release-type: node
+          fork: true
+          package-name: "@google/events"
+          command: release-pr
+      - id: label
+        uses: actions/github-script@v3
+        with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+              await github.issues.addLabels({
+                owner,
+                repo,
+                issue_number: ${{steps.release-pr.outputs.pr}},
+                labels: ['autorelease: pending']
+              });
+              console.log(`Tagged ${{steps.release-pr.outputs.pr}}`)
+  release-please-release:
     runs-on: ubuntu-latest
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v2
@@ -14,6 +38,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
           package-name: "@google/events"
+          command: github-release
       # The logic below handles the npm publication:
       - uses: actions/checkout@v2
         # these if statements ensure that a publication only occurs when
