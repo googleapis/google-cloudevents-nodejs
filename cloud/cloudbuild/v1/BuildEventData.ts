@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,11 +15,7 @@
  */
 
 /**
- * Build event data
- * Common build format for Google Cloud Platform API operations.
- * Copied from
- *
- * https://github.com/googleapis/googleapis/blob/master/google/devtools/cloudbuild/v1/cloudbuild.proto.
+ * Build event data for Google Cloud Platform API operations.
  */
 export interface BuildEventData {
     /**
@@ -144,7 +140,7 @@ export interface BuildEventData {
      * If the build does not specify source or images,
      * these keys will not be included.
      */
-    timing?: { [key: string]: GoogleEventsCloudCloudbuildV1TimeSpan };
+    timing?: { [key: string]: TimeSpan };
 }
 
 /**
@@ -241,7 +237,7 @@ export interface Options {
      * requested. At present, the maximum disk size is 1000GB; builds that request
      * more than the maximum are rejected with an error.
      */
-    diskSizeGb?: number | string;
+    diskSizeGb?: string;
     /**
      * A list of global environment variable definitions that will exist for all
      * build steps in this build. If a variable is defined in both globally and in
@@ -296,7 +292,7 @@ export interface Options {
      * Using a global volume in a build with only one step is not valid as
      * it is indicative of a build request with an incorrect configuration.
      */
-    volumes?: GoogleEventsCloudCloudbuildV1Volume[];
+    volumes?: Volume[];
     /**
      * Option to specify a `WorkerPool` for the build.
      * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
@@ -336,7 +332,7 @@ export enum SubstitutionOptionEnum {
  * Volume describes a Docker container volume which is mounted into build steps
  * in order to persist files across build step execution.
  */
-export interface GoogleEventsCloudCloudbuildV1Volume {
+export interface Volume {
     /**
      * Name of the volume to mount.
      *
@@ -375,7 +371,7 @@ export interface QueueTTL {
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: number | string;
+    seconds?: string;
 }
 
 /**
@@ -411,7 +407,7 @@ export interface Results {
     /**
      * Number of artifacts uploaded. Only populated when artifacts are uploaded.
      */
-    numArtifacts?: number | string;
+    numArtifacts?: string;
 }
 
 /**
@@ -497,11 +493,11 @@ export interface Source {
      * If provided, get the source from this location in a Cloud Source
      * Repository.
      */
-    repoSource?: RepoSource;
+    repoSource?: RepoSourceObject;
     /**
      * If provided, get the source from this location in Google Cloud Storage.
      */
-    storageSource?: StorageSource;
+    storageSource?: StorageSourceObject;
 }
 
 /**
@@ -510,7 +506,7 @@ export interface Source {
  *
  * Location of the source in a Google Cloud Source Repository.
  */
-export interface RepoSource {
+export interface RepoSourceObject {
     /**
      * Regex matching branches to build.
      *
@@ -561,7 +557,7 @@ export interface RepoSource {
  *
  * Location of the source in an archive file in Google Cloud Storage.
  */
-export interface StorageSource {
+export interface StorageSourceObject {
     /**
      * Google Cloud Storage bucket containing the source (see
      * [Bucket Name
@@ -572,7 +568,7 @@ export interface StorageSource {
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      */
-    generation?: number | string;
+    generation?: string;
     /**
      * Google Cloud Storage object containing the source.
      */
@@ -709,7 +705,7 @@ export interface ResolvedStorageSourceObject {
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      */
-    generation?: number | string;
+    generation?: string;
     /**
      * Google Cloud Storage object containing the source.
      */
@@ -829,7 +825,7 @@ export interface Step {
      * Using a named volume in only one step is not valid as it is indicative
      * of a build request with an incorrect configuration.
      */
-    volumes?: GoogleEventsCloudCloudbuildV1Volume[];
+    volumes?: Volume[];
     /**
      * The ID(s) of the step(s) that this build step depends on.
      * This build step will not start until all the build steps in `wait_for`
@@ -879,7 +875,7 @@ export interface StepTimeout {
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: number | string;
+    seconds?: string;
 }
 
 /**
@@ -920,7 +916,7 @@ export interface BuildEventDataTimeout {
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: number | string;
+    seconds?: string;
 }
 
 /**
@@ -928,7 +924,7 @@ export interface BuildEventDataTimeout {
  *
  * Start and end times for a build execution phase.
  */
-export interface GoogleEventsCloudCloudbuildV1TimeSpan {
+export interface TimeSpan {
     /**
      * End of time span.
      */
