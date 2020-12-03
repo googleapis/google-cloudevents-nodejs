@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,10 +15,7 @@
  */
 
 /**
- * Generic log entry, used as a wrapper for Cloud Audit Logs in events.
- * This is copied from
- * https://github.com/googleapis/googleapis/blob/master/google/logging/v2/log_entry.proto
- * and adapted appropriately.
+ * The data within all Cloud Audit Logs log entry events.
  */
 export interface LogEntryData {
     /**
@@ -136,7 +133,7 @@ export interface ProtoPayload {
      * The number of items returned from a List or Query API method,
      * if applicable.
      */
-    numResponseItems?: number | string;
+    numResponseItems?: string;
     /**
      * The operation request. This may not include all request parameters,
      * such as those that are too large, privacy-sensitive, or duplicated
@@ -498,7 +495,7 @@ export interface DestinationAttributes {
     /**
      * The network port of the peer.
      */
-    port?: number | string;
+    port?: string;
     /**
      * The identity of this peer. Similar to `Request.auth.principal`, but
      * relative to the peer instead of the request. For example, the
@@ -578,7 +575,7 @@ export interface RequestAttributes {
     /**
      * The HTTP request size in bytes. If unknown, it must be -1.
      */
-    size?: number | string;
+    size?: string;
     /**
      * The timestamp when the `destination` service receives the first byte of
      * the request.
