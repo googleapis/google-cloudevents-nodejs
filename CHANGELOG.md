@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.2.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v3.2.0...v3.2.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* fix the build release workflow ([#81](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/81)) ([03ac5be](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/03ac5bea1a508fb8dfa0651ab4c29556fcbb6eee))
+
 ## [3.2.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v3.1.0...v3.2.0) (2020-12-02)
 
 
