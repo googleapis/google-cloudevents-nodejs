@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -80,7 +80,7 @@ export interface StorageObjectData {
      * The content generation of this object. Used for object versioning.
      * Attempting to set this field will result in an error.
      */
-    generation?: number | string;
+    generation?: number;
     /**
      * The ID of the object, including the bucket name, object name, and
      * generation number.
@@ -117,7 +117,7 @@ export interface StorageObjectData {
      * number is only meaningful in the context of a particular generation of a
      * particular object.
      */
-    metageneration?: number | string;
+    metageneration?: number;
     /**
      * The name of the object.
      */
@@ -135,7 +135,7 @@ export interface StorageObjectData {
      * Content-Length of the object data in bytes, matching
      * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
      */
-    size?: number | string;
+    size?: number;
     /**
      * Storage class of the object.
      */

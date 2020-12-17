@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,8 +18,14 @@
  * The data within all Firebase Real Time Database reference events.
  */
 export interface ReferenceEventData {
-    data?:  { [key: string]: any } | null;
-    delta?: { [key: string]: any } | null;
+    /**
+     * The original data for the reference.
+     */
+    data?: { [key: string]: any };
+    /**
+     * The change in the reference data.
+     */
+    delta?: { [key: string]: any };
 }
 
 /**

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,11 +26,11 @@ export interface RemoteConfigEventData {
      * Only present if this version is the result of a rollback, and will be the
      * version number of the Remote Config template that was rolled-back to.
      */
-    rollbackSource?: number | string;
+    rollbackSource?: number;
     /**
      * Where the update action originated.
      */
-    updateOrigin?: number | string;
+    updateOrigin?: UpdateOriginEnum | number;
     /**
      * When the Remote Config template was written to the Remote Config server.
      */
@@ -38,7 +38,7 @@ export interface RemoteConfigEventData {
     /**
      * What type of update was made.
      */
-    updateType?: number | string;
+    updateType?: UpdateTypeEnum | number;
     /**
      * Aggregation of all metadata fields about the account that performed the update.
      */
@@ -46,7 +46,21 @@ export interface RemoteConfigEventData {
     /**
      * The version number of the version's corresponding Remote Config template.
      */
-    versionNumber?: number | string;
+    versionNumber?: number;
+}
+
+export enum UpdateOriginEnum {
+    AdminSDKNode = "ADMIN_SDK_NODE",
+    Console = "CONSOLE",
+    RESTAPI = "REST_API",
+    RemoteConfigUpdateOriginUnspecified = "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED",
+}
+
+export enum UpdateTypeEnum {
+    ForcedUpdate = "FORCED_UPDATE",
+    IncrementalUpdate = "INCREMENTAL_UPDATE",
+    RemoteConfigUpdateTypeUnspecified = "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED",
+    Rollback = "ROLLBACK",
 }
 
 /**

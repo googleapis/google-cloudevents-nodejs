@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,15 +44,15 @@ export interface EventDim {
     /**
      * A repeated record of the parameters associated with this event.
      */
-    params?: { [key: string]: GoogleEventsFirebaseAnalyticsV1AnalyticsValue };
+    params?: { [key: string]: AnalyticsValue };
     /**
      * UTC client time when the previous event happened.
      */
-    previousTimestampMicros?: number | string;
+    previousTimestampMicros?: number;
     /**
      * UTC client time when the event happened.
      */
-    timestampMicros?: number | string;
+    timestampMicros?: number;
     /**
      * Value param in USD.
      */
@@ -63,10 +63,10 @@ export interface EventDim {
  * Value for Event Params and UserProperty can be of type string or int or
  * float or double.
  */
-export interface GoogleEventsFirebaseAnalyticsV1AnalyticsValue {
+export interface AnalyticsValue {
     doubleValue?: number;
     floatValue?:  number;
-    intValue?:    number | string;
+    intValue?:    number;
     stringValue?: string;
 }
 
@@ -89,7 +89,7 @@ export interface UserDim {
     /**
      * The time (in microseconds) at which the user first opened the app.
      */
-    firstOpenTimestampMicros?: number | string;
+    firstOpenTimestampMicros?: number;
     /**
      * User's geographic information.
      */
@@ -155,7 +155,7 @@ export interface BundleInfo {
     /**
      * Timestamp offset between collection time and upload time.
      */
-    serverTimestampOffsetMicros?: number | string;
+    serverTimestampOffsetMicros?: number;
 }
 
 /**
@@ -288,7 +288,7 @@ export interface UserProperty {
     /**
      * UTC client time when user property was last set.
      */
-    setTimestampUsec?: number | string;
+    setTimestampUsec?: number;
     /**
      * Last set value of user property.
      */
@@ -304,7 +304,7 @@ export interface UserProperty {
 export interface Value {
     doubleValue?: number;
     floatValue?:  number;
-    intValue?:    number | string;
+    intValue?:    number;
     stringValue?: string;
 }
 
