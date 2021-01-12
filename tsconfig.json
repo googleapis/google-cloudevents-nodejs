@@ -11,6 +11,7 @@
   "include": [
     "cloud/**/*.ts",
     "src/**/*.ts",
-    "tools/**/*.ts"
+    "tools/**/*.ts",
+    "tests/**/*.ts"
   ]
 }
