@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const nodeFetch = require('node-fetch');
 const fs = require('fs');
 
 // Config
@@ -86,7 +86,7 @@ ${README_AFTER_TABLE}`;
 
 // Runs the generator
 (async () => {
-  const catalog = await fetch(CATALOG_URL);
+  const catalog = await nodeFetch(CATALOG_URL);
   const catalogJSON = await catalog.json();
   
   const nodeDocumentation = getTypeDocumentation(catalogJSON);
