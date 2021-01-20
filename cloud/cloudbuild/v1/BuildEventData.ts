@@ -237,7 +237,7 @@ export interface Options {
      * requested. At present, the maximum disk size is 1000GB; builds that request
      * more than the maximum are rejected with an error.
      */
-    diskSizeGb?: string;
+    diskSizeGb?: number;
     /**
      * A list of global environment variable definitions that will exist for all
      * build steps in this build. If a variable is defined in both globally and in
@@ -275,7 +275,7 @@ export interface Options {
     /**
      * Requested hash for SourceProvenance.
      */
-    sourceProvenanceHash?: Array<number | string>;
+    sourceProvenanceHash?: Array<number | SourceProvenanceHashEnum>;
     /**
      * Option to specify behavior when there is an error in the substitution
      * checks.
@@ -321,6 +321,12 @@ export enum MachineTypeEnum {
 export enum RequestedVerifyOptionEnum {
     NotVerified = "NOT_VERIFIED",
     Verified = "VERIFIED",
+}
+
+export enum SourceProvenanceHashEnum {
+    Md5 = "MD5",
+    None = "NONE",
+    Sha256 = "SHA256",
 }
 
 export enum SubstitutionOptionEnum {
@@ -371,7 +377,7 @@ export interface QueueTTL {
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: string;
+    seconds?: number;
 }
 
 /**
@@ -407,7 +413,7 @@ export interface Results {
     /**
      * Number of artifacts uploaded. Only populated when artifacts are uploaded.
      */
-    numArtifacts?: string;
+    numArtifacts?: number;
 }
 
 /**
@@ -568,7 +574,7 @@ export interface StorageSourceObject {
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      */
-    generation?: string;
+    generation?: number;
     /**
      * Google Cloud Storage object containing the source.
      */
@@ -618,17 +624,11 @@ export interface FileHashElement {
     /**
      * The type of hash that was performed.
      */
-    type?: TypeEnum | number;
+    type?: SourceProvenanceHashEnum | number;
     /**
      * The hash value.
      */
     value?: string;
-}
-
-export enum TypeEnum {
-    Md5 = "MD5",
-    None = "NONE",
-    Sha256 = "SHA256",
 }
 
 /**
@@ -705,7 +705,7 @@ export interface ResolvedStorageSourceObject {
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      */
-    generation?: string;
+    generation?: number;
     /**
      * Google Cloud Storage object containing the source.
      */
@@ -804,7 +804,7 @@ export interface Step {
      * only updated on build completion; step status is not updated in real-time
      * as the build progresses.
      */
-    status?: number | string;
+    status?: StatusEnum | number;
     /**
      * Time limit for executing this build step. If not defined, the step has no
      * time limit and will be allowed to continue to run until either it completes
@@ -875,7 +875,7 @@ export interface StepTimeout {
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: string;
+    seconds?: number;
 }
 
 /**
@@ -916,7 +916,7 @@ export interface BuildEventDataTimeout {
      * to +315,576,000,000 inclusive. Note: these bounds are computed from:
      * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: string;
+    seconds?: number;
 }
 
 /**

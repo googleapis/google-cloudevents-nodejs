@@ -54,7 +54,7 @@ export interface LogEntryData {
     /**
      * The severity of the log entry.
      */
-    severity?: number | string;
+    severity?: InsertID | number;
     /**
      * The span ID within the trace associated with the log entry, if any.
      *
@@ -133,7 +133,7 @@ export interface ProtoPayload {
      * The number of items returned from a List or Query API method,
      * if applicable.
      */
-    numResponseItems?: string;
+    numResponseItems?: number;
     /**
      * The operation request. This may not include all request parameters,
      * such as those that are too large, privacy-sensitive, or duplicated
@@ -279,7 +279,7 @@ export interface ServiceMetadata {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -299,7 +299,7 @@ export interface ThirdPartyClaims {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -312,7 +312,7 @@ export interface AuthenticationInfoThirdPartyPrincipal {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -397,7 +397,7 @@ export interface Metadata {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -412,7 +412,7 @@ export interface Request {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -495,7 +495,7 @@ export interface DestinationAttributes {
     /**
      * The network port of the peer.
      */
-    port?: string;
+    port?: number;
     /**
      * The identity of this peer. Similar to `Request.auth.principal`, but
      * relative to the peer instead of the request. For example, the
@@ -575,7 +575,7 @@ export interface RequestAttributes {
     /**
      * The HTTP request size in bytes. If unknown, it must be -1.
      */
-    size?: string;
+    size?: number;
     /**
      * The timestamp when the `destination` service receives the first byte of
      * the request.
@@ -671,7 +671,7 @@ export interface Claims {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -715,7 +715,7 @@ export interface ResourceOriginalState {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -730,7 +730,7 @@ export interface Response {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -744,7 +744,7 @@ export interface ServiceData {
     /**
      * Unordered map of dynamically typed values.
      */
-    fields?: { [key: string]: { [key: string]: any } | null };
+    fields?: { [key: string]: { [key: string]: any } };
 }
 
 /**
@@ -905,6 +905,18 @@ export interface Resource {
      * Compute Engine VM instance is `gce_instance`.
      */
     type?: string;
+}
+
+export enum InsertID {
+    Alert = "ALERT",
+    Critical = "CRITICAL",
+    Debug = "DEBUG",
+    Default = "DEFAULT",
+    Emergency = "EMERGENCY",
+    Error = "ERROR",
+    Info = "INFO",
+    Notice = "NOTICE",
+    Warning = "WARNING",
 }
 
 /**

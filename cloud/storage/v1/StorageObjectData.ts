@@ -80,7 +80,7 @@ export interface StorageObjectData {
      * The content generation of this object. Used for object versioning.
      * Attempting to set this field will result in an error.
      */
-    generation?: string;
+    generation?: number;
     /**
      * The ID of the object, including the bucket name, object name, and
      * generation number.
@@ -117,7 +117,7 @@ export interface StorageObjectData {
      * number is only meaningful in the context of a particular generation of a
      * particular object.
      */
-    metageneration?: string;
+    metageneration?: number;
     /**
      * The name of the object.
      */
@@ -135,7 +135,7 @@ export interface StorageObjectData {
      * Content-Length of the object data in bytes, matching
      * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
      */
-    size?: string;
+    size?: number;
     /**
      * Storage class of the object.
      */

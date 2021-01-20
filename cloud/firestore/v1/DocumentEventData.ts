@@ -125,7 +125,7 @@ export interface OldValueField {
     /**
      * An integer value.
      */
-    integerValue?: string;
+    integerValue?: number;
     /**
      * A map value.
      */
@@ -133,7 +133,7 @@ export interface OldValueField {
     /**
      * A null value.
      */
-    nullValue?: number | string;
+    nullValue?: BytesValue | number;
     /**
      * A reference to a document. For example:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -189,7 +189,7 @@ export interface MapValueField {
     /**
      * An integer value.
      */
-    integerValue?: string;
+    integerValue?: number;
     /**
      * A map value.
      */
@@ -197,7 +197,7 @@ export interface MapValueField {
     /**
      * A null value.
      */
-    nullValue?: number | string;
+    nullValue?: BytesValue | number;
     /**
      * A reference to a document. For example:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -268,7 +268,7 @@ export interface ValueElement {
     /**
      * An integer value.
      */
-    integerValue?: string;
+    integerValue?: number;
     /**
      * A map value.
      */
@@ -276,7 +276,7 @@ export interface ValueElement {
     /**
      * A null value.
      */
-    nullValue?: number | string;
+    nullValue?: BytesValue | number;
     /**
      * A reference to a document. For example:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
@@ -324,6 +324,10 @@ export interface GeoPointValue {
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
     longitude?: number;
+}
+
+export enum BytesValue {
+    NullValue = "NULL_VALUE",
 }
 
 /**

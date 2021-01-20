@@ -48,11 +48,11 @@ export interface EventDim {
     /**
      * UTC client time when the previous event happened.
      */
-    previousTimestampMicros?: string;
+    previousTimestampMicros?: number;
     /**
      * UTC client time when the event happened.
      */
-    timestampMicros?: string;
+    timestampMicros?: number;
     /**
      * Value param in USD.
      */
@@ -66,7 +66,7 @@ export interface EventDim {
 export interface AnalyticsValue {
     doubleValue?: number;
     floatValue?:  number;
-    intValue?:    string;
+    intValue?:    number;
     stringValue?: string;
 }
 
@@ -89,7 +89,7 @@ export interface UserDim {
     /**
      * The time (in microseconds) at which the user first opened the app.
      */
-    firstOpenTimestampMicros?: string;
+    firstOpenTimestampMicros?: number;
     /**
      * User's geographic information.
      */
@@ -155,7 +155,7 @@ export interface BundleInfo {
     /**
      * Timestamp offset between collection time and upload time.
      */
-    serverTimestampOffsetMicros?: string;
+    serverTimestampOffsetMicros?: number;
 }
 
 /**
@@ -288,7 +288,7 @@ export interface UserProperty {
     /**
      * UTC client time when user property was last set.
      */
-    setTimestampUsec?: string;
+    setTimestampUsec?: number;
     /**
      * Last set value of user property.
      */
@@ -304,7 +304,7 @@ export interface UserProperty {
 export interface Value {
     doubleValue?: number;
     floatValue?:  number;
-    intValue?:    string;
+    intValue?:    number;
     stringValue?: string;
 }
 
