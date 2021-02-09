@@ -28,9 +28,7 @@
     "url": "https://github.com/googleapis/google-cloudevents-nodejs/issues"
   },
   "homepage": "https://github.com/googleapis/google-cloudevents-nodejs#readme",
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
@@ -38,6 +36,7 @@
     "chai": "^4.2.0",
     "gts": "^3.0.0",
     "mocha": "^8.2.1",
+    "node-fetch": "^2.6.1",
     "quicktype-core": "^6.0.68",
     "recursive-readdir": "^2.2.2",
     "ts-node": "^9.1.1",
