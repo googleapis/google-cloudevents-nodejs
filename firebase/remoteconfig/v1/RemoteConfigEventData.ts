@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,8 @@ export interface RemoteConfigEventData {
      */
     updateType?: UpdateTypeEnum | number;
     /**
-     * Aggregation of all metadata fields about the account that performed the update.
+     * Aggregation of all metadata fields about the account that performed the
+     * update.
      */
     updateUser?: UpdateUser;
     /**
@@ -64,7 +65,8 @@ export enum UpdateTypeEnum {
 }
 
 /**
- * Aggregation of all metadata fields about the account that performed the update.
+ * Aggregation of all metadata fields about the account that performed the
+ * update.
  */
 export interface UpdateUser {
     /**

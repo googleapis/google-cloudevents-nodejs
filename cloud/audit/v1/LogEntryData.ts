@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,11 +32,13 @@ export interface LogEntryData {
      */
     logName?: string;
     /**
-     * Information about an operation associated with the log entry, if applicable.
+     * Information about an operation associated with the log entry, if
+     * applicable.
      */
     operation?: Operation;
     /**
-     * The log entry payload, which is always an AuditLog for Cloud Audit Log events.
+     * The log entry payload, which is always an AuditLog for Cloud Audit Log
+     * events.
      */
     protoPayload?: ProtoPayload;
     /**
@@ -77,7 +79,8 @@ export interface LogEntryData {
 }
 
 /**
- * Information about an operation associated with the log entry, if applicable.
+ * Information about an operation associated with the log entry, if
+ * applicable.
  */
 export interface Operation {
     /**
@@ -102,7 +105,8 @@ export interface Operation {
 }
 
 /**
- * The log entry payload, which is always an AuditLog for Cloud Audit Log events.
+ * The log entry payload, which is always an AuditLog for Cloud Audit Log
+ * events.
  */
 export interface ProtoPayload {
     /**

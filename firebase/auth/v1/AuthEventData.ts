@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,11 +79,11 @@ export interface Metadata {
     /**
      * The date the user was created.
      */
-    createdAt?: Date;
+    createTime?: Date;
     /**
      * The date the user last signed in.
      */
-    lastSignedInAt?: Date;
+    lastSignInTime?: Date;
 }
 
 /**
