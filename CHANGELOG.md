@@ -1,5 +1,12 @@
 # Changelog
 
+### [4.0.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v4.0.0...v4.0.1) (2021-02-09)
+
+
+### Bug Fixes
+
+* remove dep from package ([#88](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/88)) ([2b0ba10](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/2b0ba10187d791e378aa67e85ddab060d2065b10))
+
 ## [4.0.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v3.2.1...v4.0.0) (2021-01-20)
 
 
