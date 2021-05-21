@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ export interface AuthEventData {
     /**
      * The user's photo URL.
      */
-    photoUrl?: string;
+    photoURL?: string;
     /**
      * User's info at the providers
      */
@@ -79,11 +79,11 @@ export interface Metadata {
     /**
      * The date the user was created.
      */
-    createdAt?: Date;
+    createTime?: Date | string;
     /**
      * The date the user last signed in.
      */
-    lastSignedInAt?: Date;
+    lastSignInTime?: Date | string;
 }
 
 /**
@@ -101,7 +101,7 @@ export interface ProviderDatum {
     /**
      * The photo URL for the linked provider.
      */
-    photoUrl?: string;
+    photoURL?: string;
     /**
      * The linked provider ID (e.g. "google.com" for the Google provider).
      */

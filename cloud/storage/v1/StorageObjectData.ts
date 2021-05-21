@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ export interface StorageObjectData {
      * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
      * ETags: Best Practices].
      */
-    crc32C?: string;
+    crc32c?: string;
     /**
      * Metadata of customer-supplied encryption key, if the object is encrypted by
      * such a key.
@@ -126,7 +126,7 @@ export interface StorageObjectData {
      * A server-determined value that specifies the earliest time that the
      * object's retention period expires.
      */
-    retentionExpirationTime?: Date;
+    retentionExpirationTime?: Date | string;
     /**
      * The link to this object.
      */
@@ -148,20 +148,20 @@ export interface StorageObjectData {
      * The creation time of the object.
      * Attempting to set this field will result in an error.
      */
-    timeCreated?: Date;
+    timeCreated?: Date | string;
     /**
      * The deletion time of the object. Will be returned if and only if this
      * version of the object has been deleted.
      */
-    timeDeleted?: Date;
+    timeDeleted?: Date | string;
     /**
      * The time at which the object's storage class was last changed.
      */
-    timeStorageClassUpdated?: Date;
+    timeStorageClassUpdated?: Date | string;
     /**
      * The modification time of the object metadata.
      */
-    updated?: Date;
+    updated?: Date | string;
 }
 
 /**
