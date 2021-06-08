@@ -35,7 +35,7 @@
     "@types/node": "^14.6.3",
     "chai": "^4.2.0",
     "gts": "^3.0.0",
-    "mocha": "^8.2.1",
+    "mocha": "^9.0.0",
     "node-fetch": "^2.6.1",
     "quicktype-core": "^6.0.68",
     "recursive-readdir": "^2.2.2",
