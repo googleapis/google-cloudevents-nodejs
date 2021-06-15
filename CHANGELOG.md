@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v4.0.1...v5.0.0) (2021-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* allow date types to be strings (#93)
+
+### Bug Fixes
+
+* allow date types to be strings ([#93](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/93)) ([10e1889](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/10e18896d7ffa442d52098cdf558404c165122cb))
+
 ### [4.0.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v4.0.0...v4.0.1) (2021-02-09)
 
 

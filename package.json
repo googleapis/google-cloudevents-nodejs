@@ -1,6 +1,6 @@
 {
   "name": "@google/events",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Client library for CloudEvents issued by Google.",
   "main": "index.js",
   "engines": {
