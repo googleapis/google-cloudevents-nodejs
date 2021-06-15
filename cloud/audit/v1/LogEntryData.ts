@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,17 +32,19 @@ export interface LogEntryData {
      */
     logName?: string;
     /**
-     * Information about an operation associated with the log entry, if applicable.
+     * Information about an operation associated with the log entry, if
+     * applicable.
      */
     operation?: Operation;
     /**
-     * The log entry payload, which is always an AuditLog for Cloud Audit Log events.
+     * The log entry payload, which is always an AuditLog for Cloud Audit Log
+     * events.
      */
     protoPayload?: ProtoPayload;
     /**
      * The time the log entry was received by Logging.
      */
-    receiveTimestamp?: Date;
+    receiveTimestamp?: Date | string;
     /**
      * The monitored resource that produced this log entry.
      *
@@ -66,7 +68,7 @@ export interface LogEntryData {
     /**
      * The time the event described by the log entry occurred.
      */
-    timestamp?: Date;
+    timestamp?: Date | string;
     /**
      * Resource name of the trace associated with the log entry, if any. If it
      * contains a relative resource name, the name is assumed to be relative to
@@ -77,7 +79,8 @@ export interface LogEntryData {
 }
 
 /**
- * Information about an operation associated with the log entry, if applicable.
+ * Information about an operation associated with the log entry, if
+ * applicable.
  */
 export interface Operation {
     /**
@@ -102,7 +105,8 @@ export interface Operation {
 }
 
 /**
- * The log entry payload, which is always an AuditLog for Cloud Audit Log events.
+ * The log entry payload, which is always an AuditLog for Cloud Audit Log
+ * events.
  */
 export interface ProtoPayload {
     /**
@@ -180,7 +184,7 @@ export interface ProtoPayload {
      */
     response?: Response;
     /**
-     * Deprecated, use `metadata` field instead.
+     * Deprecated: Use `metadata` field instead.
      * Other service-specific data about the request, response, and other
      * activities.
      * When the JSON object represented here has a proto equivalent, the proto
@@ -580,7 +584,7 @@ export interface RequestAttributes {
      * The timestamp when the `destination` service receives the first byte of
      * the request.
      */
-    time?: Date;
+    time?: Date | string;
 }
 
 /**
@@ -734,7 +738,7 @@ export interface Response {
 }
 
 /**
- * Deprecated, use `metadata` field instead.
+ * Deprecated: Use `metadata` field instead.
  * Other service-specific data about the request, response, and other
  * activities.
  * When the JSON object represented here has a proto equivalent, the proto

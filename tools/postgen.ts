@@ -37,9 +37,15 @@ const recursive = require("recursive-readdir");
     const typeFileContent = fs.readFileSync(filename).toString();
 
     // Get TS interfaces
-    const lines = typeFileContent.split('\n');
+    let lines = typeFileContent.split('\n');
     const interfaceLines = lines.filter((line) => {
       return line.startsWith('export interface');
+    });
+
+    // Allow TS Date types to be strings
+    lines = lines.map((l: string) => {
+      if (l.includes('Date;')) console.log(l);
+      return l.replace('Date;', 'Date | string;');
     });
 
     // The data name, e.g. 'export interface MessagePublishedData {'
@@ -47,7 +53,7 @@ const recursive = require("recursive-readdir");
         .split(' ')
         .filter((token) => token.endsWith('Data'))[0];
 
-    const newTypeFileContent = typeFileContent + `
+    const newTypeFileContent = lines.join('\n') + `
 /**
  * Cast a raw JSON object to a typed event (useful for IDE autocompletion).
  * @param {object} json The JSON object

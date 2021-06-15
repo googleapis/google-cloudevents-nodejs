@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ export interface OldValue {
      * recreated. It can also be compared to values from other documents and
      * the `read_time` of a query.
      */
-    createTime?: Date;
+    createTime?: Date | string;
     /**
      * The document's fields.
      *
@@ -78,8 +78,8 @@ export interface OldValue {
      */
     fields?: { [key: string]: OldValueField };
     /**
-     * The resource name of the document, for example
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The resource name of the document. For example:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
      */
     name?: string;
     /**
@@ -89,7 +89,7 @@ export interface OldValue {
      * monotonically with each change to the document. It can also be
      * compared to values from other documents and the `read_time` of a query.
      */
-    updateTime?: Date;
+    updateTime?: Date | string;
 }
 
 /**
@@ -153,7 +153,7 @@ export interface OldValueField {
      * Precise only to microseconds. When stored, any additional precision is
      * rounded down.
      */
-    timestampValue?: Date;
+    timestampValue?: Date | string;
 }
 
 /**
@@ -217,7 +217,7 @@ export interface MapValueField {
      * Precise only to microseconds. When stored, any additional precision is
      * rounded down.
      */
-    timestampValue?: Date;
+    timestampValue?: Date | string;
 }
 
 /**
@@ -296,7 +296,7 @@ export interface ValueElement {
      * Precise only to microseconds. When stored, any additional precision is
      * rounded down.
      */
-    timestampValue?: Date;
+    timestampValue?: Date | string;
 }
 
 /**
@@ -360,7 +360,7 @@ export interface Value {
      * recreated. It can also be compared to values from other documents and
      * the `read_time` of a query.
      */
-    createTime?: Date;
+    createTime?: Date | string;
     /**
      * The document's fields.
      *
@@ -389,8 +389,8 @@ export interface Value {
      */
     fields?: { [key: string]: OldValueField };
     /**
-     * The resource name of the document, for example
-     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * The resource name of the document. For example:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
      */
     name?: string;
     /**
@@ -400,7 +400,7 @@ export interface Value {
      * monotonically with each change to the document. It can also be
      * compared to values from other documents and the `read_time` of a query.
      */
-    updateTime?: Date;
+    updateTime?: Date | string;
 }
 
 /**

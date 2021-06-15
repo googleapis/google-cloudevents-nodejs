@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,16 @@ export interface Message {
      * Guaranteed to be unique within the topic.
      */
     messageId?: string;
+    /**
+     * If non-empty, identifies related messages for which publish order should be
+     * respected.
+     */
+    orderingKey?: string;
+    /**
+     * The time at which the message was published, populated by the server when
+     * it receives the `Publish` call.
+     */
+    publishTime?: Date | string;
 }
 
 /**

@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,14 +31,14 @@ export interface BuildEventData {
     /**
      * Time at which the request to create the build was received.
      */
-    createTime?: Date;
+    createTime?: Date | string;
     /**
      * Time at which execution of the build was finished.
      *
      * The difference between finish_time and start_time is the duration of the
      * build's execution.
      */
-    finishTime?: Date;
+    finishTime?: Date | string;
     /**
      * Unique identifier of the build.
      */
@@ -102,7 +102,7 @@ export interface BuildEventData {
     /**
      * Time at which execution of the build was started.
      */
-    startTime?: Date;
+    startTime?: Date | string;
     /**
      * Status of the build.
      */
@@ -218,11 +218,11 @@ export interface ObjectsTiming {
     /**
      * End of time span.
      */
-    endTime?: Date;
+    endTime?: Date | string;
     /**
      * Start of time span.
      */
-    startTime?: Date;
+    startTime?: Date | string;
 }
 
 /**
@@ -427,11 +427,11 @@ export interface ArtifactTiming {
     /**
      * End of time span.
      */
-    endTime?: Date;
+    endTime?: Date | string;
     /**
      * Start of time span.
      */
-    startTime?: Date;
+    startTime?: Date | string;
 }
 
 /**
@@ -464,11 +464,11 @@ export interface PushTiming {
     /**
      * End of time span.
      */
-    endTime?: Date;
+    endTime?: Date | string;
     /**
      * Start of time span.
      */
-    startTime?: Date;
+    startTime?: Date | string;
 }
 
 /**
@@ -848,11 +848,11 @@ export interface PullTiming {
     /**
      * End of time span.
      */
-    endTime?: Date;
+    endTime?: Date | string;
     /**
      * Start of time span.
      */
-    startTime?: Date;
+    startTime?: Date | string;
 }
 
 /**
@@ -889,11 +889,11 @@ export interface StepTiming {
     /**
      * End of time span.
      */
-    endTime?: Date;
+    endTime?: Date | string;
     /**
      * Start of time span.
      */
-    startTime?: Date;
+    startTime?: Date | string;
 }
 
 /**
@@ -928,11 +928,11 @@ export interface TimeSpan {
     /**
      * End of time span.
      */
-    endTime?: Date;
+    endTime?: Date | string;
     /**
      * Start of time span.
      */
-    startTime?: Date;
+    startTime?: Date | string;
 }
 
 /**
