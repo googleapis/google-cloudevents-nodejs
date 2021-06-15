@@ -39,7 +39,7 @@
     "node-fetch": "^2.6.1",
     "quicktype-core": "^6.0.68",
     "recursive-readdir": "^2.2.2",
-    "ts-node": "^9.1.1",
+    "ts-node": "^10.0.0",
     "typescript": "^3.9.7"
   }
 }
