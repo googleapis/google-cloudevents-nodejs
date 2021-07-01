@@ -18,14 +18,14 @@
  * The data within all Firebase Real Time Database reference events.
  */
 export interface ReferenceEventData {
-    /**
-     * The original data for the reference.
-     */
-    data?: { [key: string]: any };
-    /**
-     * The change in the reference data.
-     */
-    delta?: { [key: string]: any };
+  /**
+   * The original data for the reference.
+   */
+  data?: {[key: string]: any};
+  /**
+   * The change in the reference data.
+   */
+  delta?: {[key: string]: any};
 }
 
 /**

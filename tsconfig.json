@@ -10,7 +10,7 @@
   },
   "include": [
     "cloud/**/*.ts",
-    "src/**/*.ts",
+    "firebase/**/*.ts",
     "tools/**/*.ts",
     "tests/**/*.ts"
   ]

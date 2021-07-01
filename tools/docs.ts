@@ -2,9 +2,8 @@ const nodeFetch = require('node-fetch');
 const fs = require('fs');
 
 // Config
-const CATALOG_URL = 'https://googleapis.github.io/google-cloudevents/jsonschema/catalog.json';
-const README_START = '<!-- GENERATED START -->';
-const README_END = '<!-- GENERATED END -->';
+const CATALOG_URL =
+  'https://googleapis.github.io/google-cloudevents/jsonschema/catalog.json';
 
 /**
  * Gets markdown type documentation for this library.
@@ -22,13 +21,12 @@ const README_END = '<!-- GENERATED END -->';
  */
 function getTypeDocumentation(catalog: any): string {
   const result: any[] = catalog.schemas.map((schema: any) => {
-    const requirePath = `@${schema.datatype.replace(/\./g, '/')}`
+    const requirePath = `@${schema.datatype.replace(/\./g, '/')}`;
     const toFunction = `to${schema.name}`;
     const requireString = `const {${toFunction}} = require('${requirePath}');`;
     const importString = `import {${schema.name}} from '${requirePath}';`;
 
-    return '' +
-`### ${schema.product}
+    return `### ${schema.product}
 
 ${schema.description}
 
@@ -75,7 +73,10 @@ const getGeneratedStringWithReplacement = (s: string, replacement: string) => {
   const README_GEN_START = '<!-- GENERATED START -->';
   const README_GEN_END = '<!-- GENERATED END -->';
 
-  const README_BEFORE_TABLE = s.substring(0, s.indexOf(README_GEN_START) + README_GEN_START.length);
+  const README_BEFORE_TABLE = s.substring(
+    0,
+    s.indexOf(README_GEN_START) + README_GEN_START.length
+  );
   const README_AFTER_TABLE = s.substring(s.indexOf(README_GEN_END));
 
   // Return result (with newlines)
@@ -88,14 +89,16 @@ ${README_AFTER_TABLE}`;
 (async () => {
   const catalog = await nodeFetch(CATALOG_URL);
   const catalogJSON = await catalog.json();
-  
+
   const nodeDocumentation = getTypeDocumentation(catalogJSON);
 
   const README_PATH = `${__dirname}/../reference.md`;
   const readmeContents = fs.readFileSync(README_PATH).toString();
-  const updatedReadmeContents = getGeneratedStringWithReplacement(readmeContents, nodeDocumentation);
+  const updatedReadmeContents = getGeneratedStringWithReplacement(
+    readmeContents,
+    nodeDocumentation
+  );
 
   // Save updated reference
   fs.writeFileSync(README_PATH, updatedReadmeContents);
 })();
-
