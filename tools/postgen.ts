@@ -44,7 +44,6 @@ const recursive = require('recursive-readdir');
 
     // Allow TS Date types to be strings
     lines = lines.map((l: string) => {
-      if (l.includes('Date;')) console.log(l);
       return l.replace('Date;', 'Date | string;');
     });
 
