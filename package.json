@@ -18,8 +18,7 @@
     "lint": "gts lint",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "npm run compile",
-    "posttest": "npm run lint"
+    "prepare": "npm run compile"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
   "author": "Google Inc.",
