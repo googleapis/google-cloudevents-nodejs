@@ -17,8 +17,7 @@
     "gen": "./tools/gen.sh && node tools/postgen.js",
     "lint": "gts lint",
     "compile": "tsc",
-    "fix": "gts fix",
-    "prepare": "npm run compile"
+    "fix": "gts fix"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
   "author": "Google Inc.",
