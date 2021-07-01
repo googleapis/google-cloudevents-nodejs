@@ -14,4 +14,5 @@ package-lock.json
 
 # Ignore JS besides examples
 **/*.js
+!.prettierrc.js
 !examples/**/*.js
