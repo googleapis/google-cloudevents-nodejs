@@ -69,7 +69,9 @@ export interface CustomClaims {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**

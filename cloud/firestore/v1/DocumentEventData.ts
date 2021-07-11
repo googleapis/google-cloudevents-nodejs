@@ -30,7 +30,7 @@ export interface DocumentEventData {
   updateMask?: UpdateMask;
   /**
    * A Document object containing a post-operation document snapshot.
-   * This is not populated for delete events. (TODO: check this!)
+   * This is not populated for delete events.
    */
   value?: Value;
 }
