@@ -323,7 +323,8 @@ describe('Event Types', () => {
     });
     it('Database: should work with a basic Database sample', () => {
       const tsExample: ReferenceEventData = DATABASE_DATA;
-      expect(tsExample?.delta?.deeply?.abc).to.equal('def');
+      const delta = tsExample?.delta as {[key: string]: any};
+      expect(delta.deeply.abc).to.equal('def');
     });
     it('Remote Config: should work with a basic Remote Config sample', () => {
       const tsExample: RemoteConfigEventData = REMOTE_CONFIG_DATA;
