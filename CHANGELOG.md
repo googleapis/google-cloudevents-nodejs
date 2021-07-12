@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v5.0.0...v5.1.0) (2021-07-12)
+
+
+### Features
+
+* improve types for protobuf duration fields ([#101](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/101)) ([7355dcf](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/7355dcf034259d73e32508e0947268ad1f73086c))
+
 ## [5.0.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v4.0.1...v5.0.0) (2021-06-15)
 
 
