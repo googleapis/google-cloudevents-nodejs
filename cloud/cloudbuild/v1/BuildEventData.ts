@@ -82,7 +82,7 @@ export interface BuildEventData {
    *
    * The TTL starts ticking from create_time.
    */
-  queueTtl?: QueueTTL;
+  queueTtl?: string;
   /**
    * Results of the build.
    */
@@ -128,7 +128,7 @@ export interface BuildEventData {
    * granularity. If this amount of time elapses, work on the build will cease
    * and the build status will be `TIMEOUT`.
    */
-  timeout?: BuildEventDataTimeout;
+  timeout?: string;
   /**
    * Stores timing information for phases of the build. Valid keys
    * are:
@@ -353,31 +353,6 @@ export interface Volume {
    * same build step or with certain reserved volume paths.
    */
   path?: string;
-}
-
-/**
- * TTL in queue for this build. If provided and the build is enqueued longer
- * than this value, the build will expire and the build status will be
- * `EXPIRED`.
- *
- * The TTL starts ticking from create_time.
- */
-export interface QueueTTL {
-  /**
-   * Signed fractions of a second at nanosecond resolution of the span
-   * of time. Durations less than one second are represented with a 0
-   * `seconds` field and a positive or negative `nanos` field. For durations
-   * of one second or more, a non-zero value for the `nanos` field must be
-   * of the same sign as the `seconds` field. Must be from -999,999,999
-   * to +999,999,999 inclusive.
-   */
-  nanos?: number;
-  /**
-   * Signed seconds of the span of time. Must be from -315,576,000,000
-   * to +315,576,000,000 inclusive. Note: these bounds are computed from:
-   * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-   */
-  seconds?: number;
 }
 
 /**
@@ -810,7 +785,7 @@ export interface Step {
    * time limit and will be allowed to continue to run until either it completes
    * or the build itself times out.
    */
-  timeout?: StepTimeout;
+  timeout?: string;
   /**
    * Stores timing information for executing this build step.
    */
@@ -856,29 +831,6 @@ export interface PullTiming {
 }
 
 /**
- * Time limit for executing this build step. If not defined, the step has no
- * time limit and will be allowed to continue to run until either it completes
- * or the build itself times out.
- */
-export interface StepTimeout {
-  /**
-   * Signed fractions of a second at nanosecond resolution of the span
-   * of time. Durations less than one second are represented with a 0
-   * `seconds` field and a positive or negative `nanos` field. For durations
-   * of one second or more, a non-zero value for the `nanos` field must be
-   * of the same sign as the `seconds` field. Must be from -999,999,999
-   * to +999,999,999 inclusive.
-   */
-  nanos?: number;
-  /**
-   * Signed seconds of the span of time. Must be from -315,576,000,000
-   * to +315,576,000,000 inclusive. Note: these bounds are computed from:
-   * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-   */
-  seconds?: number;
-}
-
-/**
  * Stores timing information for executing this build step.
  *
  * Stores timing information for pushing all artifact objects.
@@ -894,29 +846,6 @@ export interface StepTiming {
    * Start of time span.
    */
   startTime?: Date | string;
-}
-
-/**
- * Amount of time that this build should be allowed to run, to second
- * granularity. If this amount of time elapses, work on the build will cease
- * and the build status will be `TIMEOUT`.
- */
-export interface BuildEventDataTimeout {
-  /**
-   * Signed fractions of a second at nanosecond resolution of the span
-   * of time. Durations less than one second are represented with a 0
-   * `seconds` field and a positive or negative `nanos` field. For durations
-   * of one second or more, a non-zero value for the `nanos` field must be
-   * of the same sign as the `seconds` field. Must be from -999,999,999
-   * to +999,999,999 inclusive.
-   */
-  nanos?: number;
-  /**
-   * Signed seconds of the span of time. Must be from -315,576,000,000
-   * to +315,576,000,000 inclusive. Note: these bounds are computed from:
-   * 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-   */
-  seconds?: number;
 }
 
 /**

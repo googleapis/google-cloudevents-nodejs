@@ -283,7 +283,9 @@ export interface ServiceMetadata {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -303,7 +305,9 @@ export interface ThirdPartyClaims {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -316,7 +320,9 @@ export interface AuthenticationInfoThirdPartyPrincipal {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -401,7 +407,9 @@ export interface Metadata {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -416,7 +424,9 @@ export interface Request {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -675,7 +685,9 @@ export interface Claims {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -719,7 +731,9 @@ export interface ResourceOriginalState {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -734,7 +748,9 @@ export interface Response {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
@@ -748,7 +764,9 @@ export interface ServiceData {
   /**
    * Unordered map of dynamically typed values.
    */
-  fields?: {[key: string]: {[key: string]: any}};
+  fields?: {
+    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
+  };
 }
 
 /**
