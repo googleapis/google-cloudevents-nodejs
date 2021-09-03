@@ -1,5 +1,12 @@
 # Changelog
 
+### [5.1.1](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v5.1.0...v5.1.1) (2021-09-03)
+
+
+### Bug Fixes
+
+* **build:** migrate to main branch ([#107](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/107)) ([6798540](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/6798540b550f5d54662fd582900c314bd397a12b))
+
 ## [5.1.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v5.0.0...v5.1.0) (2021-07-12)
 
 
