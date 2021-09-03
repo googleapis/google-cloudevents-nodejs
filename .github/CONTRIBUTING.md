@@ -12,7 +12,7 @@ To generate this library, follow these steps:
 
 ### Setup
 
-- Install the `qt` CLI globally from https://github.com/googleapis/google-cloudevents/tree/master/tools/quicktype-wrapper
+- Install the `qt` CLI globally from https://github.com/googleapis/google-cloudevents/tree/main/tools/quicktype-wrapper
 - Clone the types source repo: `git clone git@github.com:googleapis/google-cloudevents.git`
 - Clone this language repo: `git clone git@github.com:googleapis/google-cloudevents-nodejs.git --depth 1`
 
@@ -25,7 +25,7 @@ To generate this library, follow these steps:
 ## Publish to npm
 
 This module is automatically published by [Release Please](https://github.com/googleapis/release-please) when merging a generated release PR.
-This PR is created from a GitHub Action that detects changes to the `master` branch.
+This PR is created from a GitHub Action that detects changes to the `main` branch.
 
 Sometimes publishing does not work. To publish manually, Googlers can run the following commands:
 
