@@ -18,9 +18,11 @@ on:
     # Run at the end of every day
     - cron: 0 0 * * *
 jobs:
+  # Create a pull request
   create_pr:
     runs-on: ubuntu-18.04
     steps:
+    # Check out this client repo and schema source repo
     - name: Checkout this repo
       uses: actions/checkout@v2
       with:
@@ -35,12 +37,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14
+    # Run the generator
     - name: Run the generator
       run: |
         cd google-cloudevents-nodejs
         npm i
         npm run build
         npm run gen
+    # Create a pull request with the updates (if needed)
     - name: Commit and create PR is needed
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
