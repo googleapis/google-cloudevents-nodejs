@@ -43,6 +43,7 @@ jobs:
     - name: Install the generator
       run: |
         cd google-cloudevents/tools/quicktype-wrapper
+        npm i
         npm run cli
     # Run the generator
     - name: Run the generator
