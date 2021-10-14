@@ -18,8 +18,8 @@
  * The data within all Firebase Real Time Database reference events.
  */
 export interface ReferenceEventData {
-  data?: any[] | boolean | number | {[key: string]: any} | string;
-  delta?: any[] | boolean | number | {[key: string]: any} | string;
+    data?:  any[] | boolean | number | { [key: string]: any } | string;
+    delta?: any[] | boolean | number | { [key: string]: any } | string;
 }
 
 /**

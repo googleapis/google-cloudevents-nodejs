@@ -18,47 +18,47 @@
  * The data within all Firebase Auth events.
  */
 export interface AuthEventData {
-  /**
-   * User's custom claims, typically used to define user roles and propagated
-   * to an authenticated user's ID token.
-   */
-  customClaims?: CustomClaims;
-  /**
-   * Whether the user is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * The user's display name.
-   */
-  displayName?: string;
-  /**
-   * The user's primary email, if set.
-   */
-  email?: string;
-  /**
-   * Whether or not the user's primary email is verified.
-   */
-  emailVerified?: boolean;
-  /**
-   * Additional metadata about the user.
-   */
-  metadata?: Metadata;
-  /**
-   * The user's phone number.
-   */
-  phoneNumber?: string;
-  /**
-   * The user's photo URL.
-   */
-  photoURL?: string;
-  /**
-   * User's info at the providers
-   */
-  providerData?: ProviderDatum[];
-  /**
-   * The user identifier in the Firebase app.
-   */
-  uid?: string;
+    /**
+     * User's custom claims, typically used to define user roles and propagated
+     * to an authenticated user's ID token.
+     */
+    customClaims?: CustomClaims;
+    /**
+     * Whether the user is disabled.
+     */
+    disabled?: boolean;
+    /**
+     * The user's display name.
+     */
+    displayName?: string;
+    /**
+     * The user's primary email, if set.
+     */
+    email?: string;
+    /**
+     * Whether or not the user's primary email is verified.
+     */
+    emailVerified?: boolean;
+    /**
+     * Additional metadata about the user.
+     */
+    metadata?: Metadata;
+    /**
+     * The user's phone number.
+     */
+    phoneNumber?: string;
+    /**
+     * The user's photo URL.
+     */
+    photoURL?: string;
+    /**
+     * User's info at the providers
+     */
+    providerData?: ProviderDatum[];
+    /**
+     * The user identifier in the Firebase app.
+     */
+    uid?: string;
 }
 
 /**
@@ -66,52 +66,50 @@ export interface AuthEventData {
  * to an authenticated user's ID token.
  */
 export interface CustomClaims {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
+    /**
+     * Unordered map of dynamically typed values.
+     */
+    fields?: { [key: string]: any[] | boolean | number | { [key: string]: any } | string };
 }
 
 /**
  * Additional metadata about the user.
  */
 export interface Metadata {
-  /**
-   * The date the user was created.
-   */
-  createTime?: Date | string;
-  /**
-   * The date the user last signed in.
-   */
-  lastSignInTime?: Date | string;
+    /**
+     * The date the user was created.
+     */
+    createTime?: Date | string;
+    /**
+     * The date the user last signed in.
+     */
+    lastSignInTime?: Date | string;
 }
 
 /**
  * User's info at the identity provider
  */
 export interface ProviderDatum {
-  /**
-   * The display name for the linked provider.
-   */
-  displayName?: string;
-  /**
-   * The email for the linked provider.
-   */
-  email?: string;
-  /**
-   * The photo URL for the linked provider.
-   */
-  photoURL?: string;
-  /**
-   * The linked provider ID (e.g. "google.com" for the Google provider).
-   */
-  providerId?: string;
-  /**
-   * The user identifier for the linked provider.
-   */
-  uid?: string;
+    /**
+     * The display name for the linked provider.
+     */
+    displayName?: string;
+    /**
+     * The email for the linked provider.
+     */
+    email?: string;
+    /**
+     * The photo URL for the linked provider.
+     */
+    photoURL?: string;
+    /**
+     * The linked provider ID (e.g. "google.com" for the Google provider).
+     */
+    providerId?: string;
+    /**
+     * The user identifier for the linked provider.
+     */
+    uid?: string;
 }
 
 /**

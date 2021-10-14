@@ -18,10 +18,10 @@
  * Scheduler job data.
  */
 export interface SchedulerJobData {
-  /**
-   * The custom data the user specified when creating the scheduler source.
-   */
-  customData?: string;
+    /**
+     * The custom data the user specified when creating the scheduler source.
+     */
+    customData?: string;
 }
 
 /**
