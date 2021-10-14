@@ -1,12 +1,13 @@
 {
   "extends": [
     "config:base",
-    "docker:disable"
+    "docker:disable",
+    ":disableDependencyDashboard"
   ],
   "pinVersions": false,
   "rebaseStalePrs": true,
   "schedule": [
-    "after 9am and before 3pm"
+    "every 3 months on the first day of the month"
   ],
   "gitAuthor": null,
   "packageRules": [
