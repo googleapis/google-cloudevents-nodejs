@@ -52,6 +52,7 @@ jobs:
         npm i
         npm run build
         npm run gen
+        npm run fix
     # Create a pull request with the updates (if needed)
     - name: Commit and create PR is needed
       env:
