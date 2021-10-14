@@ -34,10 +34,16 @@ jobs:
       with:
         repository: googleapis/google-cloudevents
         path: google-cloudevents
+    # Setup Node
     - name: Setup Node for gen/postgen scripts
       uses: actions/setup-node@v1
       with:
         node-version: 14
+    # Install the generator
+    - name: Install the generator
+      run: |
+        cd google-cloudevents/tools/quicktype-wrapper
+        npm run cli
     # Run the generator
     - name: Run the generator
       run: |
