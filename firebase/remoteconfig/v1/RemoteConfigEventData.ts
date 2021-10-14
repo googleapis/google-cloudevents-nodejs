@@ -18,50 +18,50 @@
  * The data within all Firebase Remote Config events.
  */
 export interface RemoteConfigEventData {
-  /**
-   * The user-provided description of the corresponding Remote Config template.
-   */
-  description?: string;
-  /**
-   * Only present if this version is the result of a rollback, and will be the
-   * version number of the Remote Config template that was rolled-back to.
-   */
-  rollbackSource?: number;
-  /**
-   * Where the update action originated.
-   */
-  updateOrigin?: UpdateOriginEnum | number;
-  /**
-   * When the Remote Config template was written to the Remote Config server.
-   */
-  updateTime?: Date | string;
-  /**
-   * What type of update was made.
-   */
-  updateType?: UpdateTypeEnum | number;
-  /**
-   * Aggregation of all metadata fields about the account that performed the
-   * update.
-   */
-  updateUser?: UpdateUser;
-  /**
-   * The version number of the version's corresponding Remote Config template.
-   */
-  versionNumber?: number;
+    /**
+     * The user-provided description of the corresponding Remote Config template.
+     */
+    description?: string;
+    /**
+     * Only present if this version is the result of a rollback, and will be the
+     * version number of the Remote Config template that was rolled-back to.
+     */
+    rollbackSource?: number;
+    /**
+     * Where the update action originated.
+     */
+    updateOrigin?: UpdateOriginEnum | number;
+    /**
+     * When the Remote Config template was written to the Remote Config server.
+     */
+    updateTime?: Date | string;
+    /**
+     * What type of update was made.
+     */
+    updateType?: UpdateTypeEnum | number;
+    /**
+     * Aggregation of all metadata fields about the account that performed the
+     * update.
+     */
+    updateUser?: UpdateUser;
+    /**
+     * The version number of the version's corresponding Remote Config template.
+     */
+    versionNumber?: number;
 }
 
 export enum UpdateOriginEnum {
-  AdminSDKNode = 'ADMIN_SDK_NODE',
-  Console = 'CONSOLE',
-  RESTAPI = 'REST_API',
-  RemoteConfigUpdateOriginUnspecified = 'REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED',
+    AdminSDKNode = "ADMIN_SDK_NODE",
+    Console = "CONSOLE",
+    RESTAPI = "REST_API",
+    RemoteConfigUpdateOriginUnspecified = "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED",
 }
 
 export enum UpdateTypeEnum {
-  ForcedUpdate = 'FORCED_UPDATE',
-  IncrementalUpdate = 'INCREMENTAL_UPDATE',
-  RemoteConfigUpdateTypeUnspecified = 'REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED',
-  Rollback = 'ROLLBACK',
+    ForcedUpdate = "FORCED_UPDATE",
+    IncrementalUpdate = "INCREMENTAL_UPDATE",
+    RemoteConfigUpdateTypeUnspecified = "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED",
+    Rollback = "ROLLBACK",
 }
 
 /**
@@ -69,18 +69,18 @@ export enum UpdateTypeEnum {
  * update.
  */
 export interface UpdateUser {
-  /**
-   * Email address.
-   */
-  email?: string;
-  /**
-   * Image URL.
-   */
-  imageUrl?: string;
-  /**
-   * Display name.
-   */
-  name?: string;
+    /**
+     * Email address.
+     */
+    email?: string;
+    /**
+     * Image URL.
+     */
+    imageUrl?: string;
+    /**
+     * Display name.
+     */
+    name?: string;
 }
 
 /**
