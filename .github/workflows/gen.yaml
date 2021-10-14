@@ -73,7 +73,6 @@ jobs:
             echo "Created commit: $(git rev-parse HEAD)"
             gh pr create \
               --title "Run the generator (${NOW})" \
-              --label "cla: yes" \
               --body "AUTOMATED PR! This PR was created from a recent update in the google-cloudevents repo (https://github.com/googleapis/google-cloudevents/commit/$(git rev-parse HEAD)). Please check to ensure there are no CI failures or unexpected generated results."
           else
             # No changes after running generator
