@@ -27,14 +27,14 @@ const PUBSUB_DATA: MessagePublishedData = {
     'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000',
 };
 const BUILD_EVENT_DATA: BuildEventData = {
-  timeout: "660s",
+  timeout: '660s',
   createTime: '1993-07-25T02:32:41.388Z',
   tags: ['dolor exercitation', 'sit id consequat', 'dolore eu sit irure esse'],
   buildTriggerId: 'my-trigger-id',
   logUrl: 'http://example.com',
   images: ['http://example.com', 'http://example.com'],
   projectId: 'quis minim est laborum ex',
-  queueTtl: "660s"
+  queueTtl: '660s',
 };
 const FIRESTORE_DATA: DocumentEventData = {
   oldValue: {
