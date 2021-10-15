@@ -32,6 +32,8 @@ export interface MessagePublishedData {
 
 /**
  * The message that was published.
+ *
+ * A message published to a topic.
  */
 export interface Message {
   /**

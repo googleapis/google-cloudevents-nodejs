@@ -52,7 +52,7 @@ export interface LogEntryData {
    * the monitored resource designating the particular database that reported
    * the error.
    */
-  resource?: Resource;
+  resource?: ResourceObject;
   /**
    * The severity of the log entry.
    */
@@ -81,6 +81,9 @@ export interface LogEntryData {
 /**
  * Information about an operation associated with the log entry, if
  * applicable.
+ *
+ * Additional information about a potentially long-running operation with which
+ * a log entry is associated.
  */
 export interface Operation {
   /**
@@ -107,6 +110,11 @@ export interface Operation {
 /**
  * The log entry payload, which is always an AuditLog for Cloud Audit Log
  * events.
+ *
+ * Common audit log format for Google Cloud Platform API operations.
+ * Copied from
+ * https://github.com/googleapis/googleapis/blob/master/google/cloud/audit/audit_log.proto,
+ * but changing service_data from Any to Struct.
  */
 export interface ProtoPayload {
   /**
@@ -123,7 +131,7 @@ export interface ProtoPayload {
    * Other service-specific data about the request, response, and other
    * information associated with the current audited event.
    */
-  metadata?: Metadata;
+  metadata?: {[key: string]: any};
   /**
    * The name of the service method or operation.
    * For API calls, this should be the name of the API method.
@@ -146,7 +154,7 @@ export interface ProtoPayload {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  request?: Request;
+  request?: {[key: string]: any};
   /**
    * Metadata about the operation.
    */
@@ -173,7 +181,7 @@ export interface ProtoPayload {
    * When the JSON object represented here has a proto equivalent,
    * the proto name will be indicated in the `@type` property.
    */
-  resourceOriginalState?: ResourceOriginalState;
+  resourceOriginalState?: {[key: string]: any};
   /**
    * The operation response. This may not include all response elements,
    * such as those that are too large, privacy-sensitive, or duplicated
@@ -182,7 +190,7 @@ export interface ProtoPayload {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  response?: Response;
+  response?: {[key: string]: any};
   /**
    * Deprecated: Use `metadata` field instead.
    * Other service-specific data about the request, response, and other
@@ -190,7 +198,7 @@ export interface ProtoPayload {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  serviceData?: ServiceData;
+  serviceData?: {[key: string]: any};
   /**
    * The name of the API service performing the operation. For example,
    * `"datastore.googleapis.com"`.
@@ -204,6 +212,8 @@ export interface ProtoPayload {
 
 /**
  * Authentication information.
+ *
+ * Authentication information for the operation.
  */
 export interface AuthenticationInfo {
   /**
@@ -245,7 +255,7 @@ export interface AuthenticationInfo {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  thirdPartyPrincipal?: AuthenticationInfoThirdPartyPrincipal;
+  thirdPartyPrincipal?: {[key: string]: any};
 }
 
 /**
@@ -259,11 +269,13 @@ export interface ServiceAccountDelegationInfo {
   /**
    * Third party identity as the real authority.
    */
-  thirdPartyPrincipal?: ServiceAccountDelegationInfoThirdPartyPrincipal;
+  thirdPartyPrincipal?: ThirdPartyPrincipal;
 }
 
 /**
  * First party (Google) identity as the real authority.
+ *
+ * First party identity principal.
  */
 export interface FirstPartyPrincipal {
   /**
@@ -273,56 +285,19 @@ export interface FirstPartyPrincipal {
   /**
    * Metadata about the service that uses the service account.
    */
-  serviceMetadata?: ServiceMetadata;
-}
-
-/**
- * Metadata about the service that uses the service account.
- */
-export interface ServiceMetadata {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
+  serviceMetadata?: {[key: string]: any};
 }
 
 /**
  * Third party identity as the real authority.
+ *
+ * Third party identity principal.
  */
-export interface ServiceAccountDelegationInfoThirdPartyPrincipal {
+export interface ThirdPartyPrincipal {
   /**
    * Metadata about third party identity.
    */
-  thirdPartyClaims?: ThirdPartyClaims;
-}
-
-/**
- * Metadata about third party identity.
- */
-export interface ThirdPartyClaims {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
- * The third party identification (if any) of the authenticated user making
- * the request.
- * When the JSON object represented here has a proto equivalent, the proto
- * name will be indicated in the `@type` property.
- */
-export interface AuthenticationInfoThirdPartyPrincipal {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
+  thirdPartyClaims?: {[key: string]: any};
 }
 
 /**
@@ -352,7 +327,7 @@ export interface AuthorizationInfo {
    * condition evaluation, the user must also look into
    * `AuditLogData.request_metadata.request_attributes`.
    */
-  resourceAttributes?: ResourceAttributes;
+  resourceAttributes?: ResourceAttributesObject;
 }
 
 /**
@@ -362,8 +337,12 @@ export interface AuthorizationInfo {
  * To get the whole view of the attributes used in IAM
  * condition evaluation, the user must also look into
  * `AuditLogData.request_metadata.request_attributes`.
+ *
+ * This message defines core attributes for a resource. A resource is an
+ * addressable (named) entity provided by the destination service. For
+ * example, a file stored on a network storage service.
  */
-export interface ResourceAttributes {
+export interface ResourceAttributesObject {
   /**
    * The labels or tags on the resource, such as AWS resource tags and
    * Kubernetes resource labels.
@@ -400,37 +379,9 @@ export interface ResourceAttributes {
 }
 
 /**
- * Other service-specific data about the request, response, and other
- * information associated with the current audited event.
- */
-export interface Metadata {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
- * The operation request. This may not include all request parameters,
- * such as those that are too large, privacy-sensitive, or duplicated
- * elsewhere in the log record.
- * It should never include user-generated data, such as file contents.
- * When the JSON object represented here has a proto equivalent, the proto
- * name will be indicated in the `@type` property.
- */
-export interface Request {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
  * Metadata about the operation.
+ *
+ * Metadata about the request.
  */
 export interface RequestMetadata {
   /**
@@ -487,7 +438,7 @@ export interface RequestMetadata {
    * condition evaluation, the user must also look into
    * `AuditLog.authentication_info.resource_attributes`.
    */
-  requestAttributes?: RequestAttributes;
+  requestAttributes?: Request;
 }
 
 /**
@@ -496,6 +447,11 @@ export interface RequestMetadata {
  * the last hop. Only two fields are used in this message, Peer.port and
  * Peer.ip. These fields are optionally populated by those services utilizing
  * the IAM condition feature.
+ *
+ * This message defines attributes for a node that handles a network request.
+ * The node can be either a service or an application that sends, forwards,
+ * or receives the request. Service peers should fill in
+ * `principal` and `labels` as appropriate.
  */
 export interface DestinationAttributes {
   /**
@@ -533,8 +489,12 @@ export interface DestinationAttributes {
  * To get the whole view of the attributes used in IAM
  * condition evaluation, the user must also look into
  * `AuditLog.authentication_info.resource_attributes`.
+ *
+ * This message defines attributes for an HTTP request. If the actual
+ * request is not an HTTP request, the runtime system should try to map
+ * the actual request to an equivalent HTTP request.
  */
-export interface RequestAttributes {
+export interface Request {
   /**
    * The request authentication. May be absent for unauthenticated requests.
    * Derived from the HTTP request `Authorization` header or equivalent.
@@ -600,6 +560,10 @@ export interface RequestAttributes {
 /**
  * The request authentication. May be absent for unauthenticated requests.
  * Derived from the HTTP request `Authorization` header or equivalent.
+ *
+ * This message defines request authentication attributes. Terminology is
+ * based on the JSON Web Token (JWT) standard, but the terms also
+ * correlate to concepts in other standards.
  */
 export interface Auth {
   /**
@@ -646,7 +610,7 @@ export interface Auth {
    * SAML assertions are similarly specified, but with an identity provider
    * dependent structure.
    */
-  claims?: Claims;
+  claims?: {[key: string]: any};
   /**
    * The authorized presenter of the credential. Reflects the optional
    * Authorized Presenter (`azp`) claim within a JWT or the
@@ -665,33 +629,9 @@ export interface Auth {
 }
 
 /**
- * Structured claims presented with the credential. JWTs include
- * `{key: value}` pairs for standard and private claims. The following
- * is a subset of the standard required and optional claims that would
- * typically be presented for a Google-based JWT:
- *
- * {'iss': 'accounts.google.com',
- * 'sub': '113289723416554971153',
- * 'aud': ['123456789012', 'pubsub.googleapis.com'],
- * 'azp': '123456789012.apps.googleusercontent.com',
- * 'email': 'jsmith@example.com',
- * 'iat': 1353601026,
- * 'exp': 1353604926}
- *
- * SAML assertions are similarly specified, but with an identity provider
- * dependent structure.
- */
-export interface Claims {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
  * The resource location information.
+ *
+ * Location information about a resource.
  */
 export interface ResourceLocation {
   /**
@@ -719,58 +659,15 @@ export interface ResourceLocation {
 }
 
 /**
- * The resource's original state before mutation. Present only for
- * operations which have successfully modified the targeted resource(s).
- * In general, this field should contain all changed fields, except those
- * that are already been included in `request`, `response`, `metadata` or
- * `service_data` fields.
- * When the JSON object represented here has a proto equivalent,
- * the proto name will be indicated in the `@type` property.
- */
-export interface ResourceOriginalState {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
- * The operation response. This may not include all response elements,
- * such as those that are too large, privacy-sensitive, or duplicated
- * elsewhere in the log record.
- * It should never include user-generated data, such as file contents.
- * When the JSON object represented here has a proto equivalent, the proto
- * name will be indicated in the `@type` property.
- */
-export interface Response {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
- * Deprecated: Use `metadata` field instead.
- * Other service-specific data about the request, response, and other
- * activities.
- * When the JSON object represented here has a proto equivalent, the proto
- * name will be indicated in the `@type` property.
- */
-export interface ServiceData {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
-}
-
-/**
  * The status of the overall operation.
+ *
+ * The `Status` type defines a logical error model that is suitable for
+ * different programming environments, including REST APIs and RPC APIs. It is
+ * used by [gRPC](https://github.com/grpc). Each `Status` message contains
+ * three pieces of data: error code, error message, and error details.
+ *
+ * You can find out more about this error model and how to work with it in the
+ * [API Design Guide](https://cloud.google.com/apis/design/errors).
  */
 export interface Status {
   /**
@@ -914,8 +811,15 @@ export interface Detail {
  * Example: a log entry that reports a database error would be associated with
  * the monitored resource designating the particular database that reported
  * the error.
+ *
+ * Note: this is a much-reduced version of the proto at
+ * https://github.com/googleapis/googleapis/blob/master/google/api/monitored_resource.proto
+ * to avoid other dependencies leaking into events.
+ *
+ * An object representing a resource that can be used for monitoring, logging,
+ * billing, or other purposes.
  */
-export interface Resource {
+export interface ResourceObject {
   /**
    * Values for all of the labels listed in the associated monitored
    * resource descriptor. For example, Compute Engine VM instances use the

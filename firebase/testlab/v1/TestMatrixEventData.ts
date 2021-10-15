@@ -47,6 +47,8 @@ export interface TestMatrixEventData {
 
 /**
  * Information provided by the client that created the test matrix.
+ *
+ * Information about the client which invoked the test.
  */
 export interface ClientInfo {
   /**

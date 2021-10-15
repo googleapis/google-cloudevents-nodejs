@@ -27,7 +27,7 @@ export interface DocumentEventData {
    * A DocumentMask object that lists changed fields.
    * This is only populated for update events.
    */
-  updateMask?: UpdateMask;
+  updateMask?: Mask;
   /**
    * A Document object containing a post-operation document snapshot.
    * This is not populated for delete events.
@@ -304,6 +304,8 @@ export interface ValueElement {
  *
  * Cannot directly contain another array value, though can contain an
  * map which contains another array.
+ *
+ * An array value.
  */
 export interface ArrayValue {
   /**
@@ -314,6 +316,12 @@ export interface ArrayValue {
 
 /**
  * A geo point value representing a point on the surface of Earth.
+ *
+ * An object representing a latitude/longitude pair. This is expressed as a pair
+ * of doubles representing degrees latitude and degrees longitude. Unless
+ * specified otherwise, this must conform to the
+ * <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
+ * standard</a>. Values must be within normalized ranges.
  */
 export interface GeoPointValue {
   /**
@@ -333,8 +341,10 @@ export enum BytesValue {
 /**
  * A DocumentMask object that lists changed fields.
  * This is only populated for update events.
+ *
+ * A set of field paths on a document.
  */
-export interface UpdateMask {
+export interface Mask {
   /**
    * The list of field paths in the mask.
    * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
