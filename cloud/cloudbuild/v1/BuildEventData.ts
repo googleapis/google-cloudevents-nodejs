@@ -114,7 +114,7 @@ export interface BuildEventData {
   /**
    * The operations to be performed on the workspace.
    */
-  steps?: Step[];
+  steps?: BuildStep[];
   /**
    * Substitutions data for `Build` resource.
    */
@@ -145,6 +145,9 @@ export interface BuildEventData {
 
 /**
  * Artifacts produced by the build that should be uploaded upon
+ * successful completion of all build steps.
+ *
+ * Artifacts produced by a build that should be uploaded upon
  * successful completion of all build steps.
  */
 export interface Artifacts {
@@ -188,6 +191,9 @@ export interface Artifacts {
  * Build resource's results field.
  *
  * If any objects fail to be pushed, the build is marked FAILURE.
+ *
+ * Files in the workspace to upload to Cloud Storage upon successful
+ * completion of all build steps.
  */
 export interface Objects {
   /**
@@ -227,6 +233,8 @@ export interface ObjectsTiming {
 
 /**
  * Special options for this build.
+ *
+ * Optional arguments to enable specific features of builds.
  */
 export interface Options {
   /**
@@ -357,6 +365,8 @@ export interface Volume {
 
 /**
  * Results of the build.
+ *
+ * Artifacts created by the build pipeline.
  */
 export interface Results {
   /**
@@ -384,7 +394,7 @@ export interface Results {
   /**
    * Container images that were built as a part of the build.
    */
-  images?: Image[];
+  images?: BuiltImage[];
   /**
    * Number of artifacts uploaded. Only populated when artifacts are uploaded.
    */
@@ -412,7 +422,7 @@ export interface ArtifactTiming {
 /**
  * An image built by the pipeline.
  */
-export interface Image {
+export interface BuiltImage {
   /**
    * Docker Registry 2.0 digest.
    */
@@ -558,6 +568,9 @@ export interface StorageSourceObject {
 
 /**
  * A permanent fixed identifier for source.
+ *
+ * Provenance of the source. Ways to find the original source, or verify that
+ * some source was used for this build.
  */
 export interface SourceProvenance {
   /**
@@ -572,7 +585,7 @@ export interface SourceProvenance {
    * If the build source came in a single package such as a gzipped tarfile
    * (`.tar.gz`), the `FileHash` will be for the single path to that file.
    */
-  fileHashes?: {[key: string]: FileHashValue};
+  fileHashes?: {[key: string]: FileHashes};
   /**
    * A copy of the build's `source.repo_source`, if exists, with any
    * revisions resolved.
@@ -585,17 +598,21 @@ export interface SourceProvenance {
   resolvedStorageSource?: ResolvedStorageSourceObject;
 }
 
-export interface FileHashValue {
+/**
+ * Container message for hashes of byte content of files, used in
+ * SourceProvenance messages to verify integrity of source input to the build.
+ */
+export interface FileHashes {
   /**
    * Collection of file hashes.
    */
-  fileHash?: FileHashElement[];
+  fileHash?: Hash[];
 }
 
 /**
  * Container message for hash values.
  */
-export interface FileHashElement {
+export interface Hash {
   /**
    * The type of hash that was performed.
    */
@@ -702,7 +719,7 @@ export enum StatusEnum {
 /**
  * A step in the build pipeline.
  */
-export interface Step {
+export interface BuildStep {
   /**
    * A list of arguments that will be presented to the step when it is started.
    *

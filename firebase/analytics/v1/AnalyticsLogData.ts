@@ -21,7 +21,7 @@ export interface AnalyticsLogData {
   /**
    * A repeated record of event related dimensions.
    */
-  eventDim?: EventDim[];
+  eventDim?: EventDimensions[];
   /**
    * User related dimensions.
    */
@@ -31,7 +31,7 @@ export interface AnalyticsLogData {
 /**
  * Message containing information pertaining to the event.
  */
-export interface EventDim {
+export interface EventDimensions {
   /**
    * The date on which this event was logged.
    * (YYYYMMDD format in the registered timezone of your app.)
@@ -72,6 +72,8 @@ export interface AnalyticsValue {
 
 /**
  * User related dimensions.
+ *
+ * Message containing information about the user associated with the event.
  */
 export interface UserDim {
   /**
@@ -110,11 +112,13 @@ export interface UserDim {
    * A repeated record of user properties set with the setUserProperty API.
    * https://firebase.google.com/docs/analytics/android/properties
    */
-  userProperties?: {[key: string]: UserProperty};
+  userProperties?: {[key: string]: UserPropertyValue};
 }
 
 /**
  * App information.
+ *
+ * Message which contains App Information.
  */
 export interface AppInfo {
   /**
@@ -146,6 +150,9 @@ export interface AppInfo {
 
 /**
  * Information regarding the bundle in which these events were uploaded.
+ *
+ * Message containing information regarding the bundle in which these
+ * events were uploaded.
  */
 export interface BundleInfo {
   /**
@@ -160,6 +167,8 @@ export interface BundleInfo {
 
 /**
  * Device information.
+ *
+ * Message containing device informations.
  */
 export interface DeviceInfo {
   /**
@@ -224,6 +233,8 @@ export interface DeviceInfo {
 
 /**
  * User's geographic information.
+ *
+ * User's geographic informaiton.
  */
 export interface GeoInfo {
   /**
@@ -264,6 +275,8 @@ export interface LtvInfo {
 
 /**
  * Information about marketing campaign which acquired the user.
+ *
+ * Mesage containing marketing campaign information which acquired the user.
  */
 export interface TrafficSource {
   /**
@@ -280,7 +293,11 @@ export interface TrafficSource {
   userAcquiredSource?: string;
 }
 
-export interface UserProperty {
+/**
+ * Predefined (eg: LTV) or custom properties (eg: birthday) stored on client
+ * side and associated with subsequent HitBundles.
+ */
+export interface UserPropertyValue {
   /**
    * Index for user property (one-based).
    */

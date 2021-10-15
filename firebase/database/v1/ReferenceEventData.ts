@@ -18,7 +18,23 @@
  * The data within all Firebase Real Time Database reference events.
  */
 export interface ReferenceEventData {
+  /**
+   * `Value` represents a dynamically typed value which can be either
+   * null, a number, a string, a boolean, a recursive struct value, or a
+   * list of values. A producer of value is expected to set one of that
+   * variants, absence of any variant indicates an error.
+   *
+   * The JSON representation for `Value` is JSON value.
+   */
   data?: any[] | boolean | number | {[key: string]: any} | string;
+  /**
+   * `Value` represents a dynamically typed value which can be either
+   * null, a number, a string, a boolean, a recursive struct value, or a
+   * list of values. A producer of value is expected to set one of that
+   * variants, absence of any variant indicates an error.
+   *
+   * The JSON representation for `Value` is JSON value.
+   */
   delta?: any[] | boolean | number | {[key: string]: any} | string;
 }
 

@@ -43,7 +43,7 @@ export interface RemoteConfigEventData {
    * Aggregation of all metadata fields about the account that performed the
    * update.
    */
-  updateUser?: UpdateUser;
+  updateUser?: User;
   /**
    * The version number of the version's corresponding Remote Config template.
    */
@@ -67,8 +67,11 @@ export enum UpdateTypeEnum {
 /**
  * Aggregation of all metadata fields about the account that performed the
  * update.
+ *
+ * All the fields associated with the person/service account
+ * that wrote a Remote Config template.
  */
-export interface UpdateUser {
+export interface User {
   /**
    * Email address.
    */

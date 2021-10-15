@@ -22,7 +22,7 @@ export interface AuthEventData {
    * User's custom claims, typically used to define user roles and propagated
    * to an authenticated user's ID token.
    */
-  customClaims?: CustomClaims;
+  customClaims?: {[key: string]: any};
   /**
    * Whether the user is disabled.
    */
@@ -54,24 +54,11 @@ export interface AuthEventData {
   /**
    * User's info at the providers
    */
-  providerData?: ProviderDatum[];
+  providerData?: UserInfo[];
   /**
    * The user identifier in the Firebase app.
    */
   uid?: string;
-}
-
-/**
- * User's custom claims, typically used to define user roles and propagated
- * to an authenticated user's ID token.
- */
-export interface CustomClaims {
-  /**
-   * Unordered map of dynamically typed values.
-   */
-  fields?: {
-    [key: string]: any[] | boolean | number | {[key: string]: any} | string;
-  };
 }
 
 /**
@@ -91,7 +78,7 @@ export interface Metadata {
 /**
  * User's info at the identity provider
  */
-export interface ProviderDatum {
+export interface UserInfo {
   /**
    * The display name for the linked provider.
    */
