@@ -43,6 +43,10 @@ export interface TestMatrixEventData {
    * State of the test matrix.
    */
   state?: StateEnum | number;
+  /**
+   * ID of the test matrix this event belongs to.
+   */
+  testMatrixId?: string;
 }
 
 /**
