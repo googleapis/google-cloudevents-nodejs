@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v5.2.0...v5.3.0) (2021-12-14)
+
+
+### Features
+
+* run generator (12-14-2021) ([#122](https://www.github.com/googleapis/google-cloudevents-nodejs/issues/122)) ([f1b91c2](https://www.github.com/googleapis/google-cloudevents-nodejs/commit/f1b91c222ef13221efa8896d1e33d0c09a2a0c77))
+
 ## [5.2.0](https://www.github.com/googleapis/google-cloudevents-nodejs/compare/v5.1.1...v5.2.0) (2021-10-15)
 
 
