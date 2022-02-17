@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2022 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,6 +65,11 @@ export interface LogEntryData {
    * `000000000000004a`.
    */
   spanId?: string;
+  /**
+   * Information indicating this LogEntry is part of a sequence of multiple logs
+   * split from a single LogEntry.
+   */
+  split?: Split;
   /**
    * The time the event described by the log entry occurred.
    */
@@ -843,6 +848,32 @@ export enum InsertID {
   Info = 'INFO',
   Notice = 'NOTICE',
   Warning = 'WARNING',
+}
+
+/**
+ * Information indicating this LogEntry is part of a sequence of multiple logs
+ * split from a single LogEntry.
+ *
+ * Additional information used to correlate multiple LogEntries. Used when a
+ * single LogEntry would exceed the Google Cloud Logging size limit and is split
+ * across multiple entries.
+ */
+export interface Split {
+  /**
+   * The index of this LogEntry in the sequence of split logs. LogEntries are
+   * given |index| values 0, 1, ..., n-1 for a sequence of n entries.
+   */
+  index?: number;
+  /**
+   * The total number of logs that the original LogEntry was split into.
+   */
+  totalSplits?: number;
+  /**
+   * A globally unique identifier for all LogEntries in a sequence of split
+   * logs. All LogEntries with the same |LogSplit.uid| are assumed to be part of
+   * the same sequence of split logs.
+   */
+  uid?: string;
 }
 
 /**
