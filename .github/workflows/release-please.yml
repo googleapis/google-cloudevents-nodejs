@@ -18,7 +18,7 @@ jobs:
           command: release-pr
       - id: label
         if: ${{ steps.release-pr.outputs.pr }}
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
             github-token: ${{secrets.GITHUB_TOKEN}}
             script: |
@@ -41,7 +41,7 @@ jobs:
           package-name: "@google/events"
           command: github-release
       # The logic below handles the npm publication:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         # these if statements ensure that a publication only occurs when
         # a new release is created:
         if: ${{ steps.release.outputs.release_created }}
@@ -58,7 +58,7 @@ jobs:
           npm install
           npm run build
           npm publish
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         if: ${{ steps.release.outputs.release_created }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
