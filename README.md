@@ -1,4 +1,6 @@
-# Google CloudEvents – Node.js [![npm version](https://badge.fury.io/js/%40google%2Fevents.svg)](https://www.npmjs.com/package/@google/events) [![github ci](https://github.com/googleapis/google-cloudevents-nodejs/workflows/ci/badge.svg)](https://github.com/googleapis/google-cloudevents-nodejs/actions?query=workflow%3Aci)
+# Google CloudEvents Node.js
+
+This is a prototype rebuild of this library using protobuf as the source of truth in place of the JSON-Schema definition.
 
 This repository contains types for CloudEvents issued by Google,
 enabling you to have autocompletion in **JavaScript** or **TypeScript** projects.
@@ -7,9 +9,9 @@ enabling you to have autocompletion in **JavaScript** or **TypeScript** projects
 
 ## Prerequisites
 
-- Node 10+
+- Node 14+
 
-## Install
+## Usage
 
 Install the library from `npm`:
 
@@ -17,46 +19,72 @@ Install the library from `npm`:
 npm i @google/events
 ```
 
-## Features
+TODO: describe import paths once they are finalized
 
-This library is meant to provide types for Node projects accepting CloudEvent data, typically sent through a HTTP request's `POST` body.
+## Running the Type Generator
 
-For every event type, this library contains:
+The refreshed code generator is a simple script in [`tools/snowpea.ts`](tools/snowpea.ts). It can be run using the following steps:
 
-- Exports a JavaScript function `to[DataType]`.
-- Exports a TypeScript type interface `DataType`.
+1. Install dependencies
 
-This provides autocompletion and inline IDE documentation for event types.
-## Example Usage
-
-Require or import the module. Here is an example JS and TS file:
-
-### JS
-
-```js
-const {toLogEntryData} = require('@google/events/cloud/audit/v1/LogEntryData');
-
-const data = {
-  // ...
-};
-
-const jsExample = toLogEntryData(data);
-console.log(jsExample);
+```sh
+npm install
 ```
 
-### TS
+2. Run the generator:
 
-```ts
-import {LogEntryData} from '@google/events/cloud/audit/v1/LogEntryData';
-
-const data = {
-  // ...
-};
-
-const tsExample: LogEntryData = data;
-console.log(tsExample);
+```sh
+npm run snowpea
 ```
 
-## Reference
+The output Typescript is written to [`out.ts`](./out.ts).
 
-The [`reference.md`](reference.md) file has detailed examples for how to use every event data type.
+## Type Generator Details
+
+Currently, the `snowpea` type generator just enumerates all the necessary `.proto` files in the `google-events` and `protoc` repos then runs the [`pbjs` and `pbts` code generator tools](https://github.com/protobufjs/protobuf.js/tree/master/cli).
+
+This is roughly equivalent to the following command:
+
+```
+pbjs \
+  -t static \
+  --no-create \
+  --no-encode \
+  --no-decode \
+  --no-verify \
+  --no-convert \
+  --no-delimited \
+  --no-service \
+  <proto files> \
+  | pbts -
+```
+
+## Type Generator Issues
+
+### Generated codes does not really match what we need:
+
+1.  Code includes an interface and concrete class definition. We only need the interface.
+
+    **Proposed solution:** sift through the generated code and remove the classes.
+
+2.  There is no export structure. Currently everything is using typescript namespaces. This is not
+    an idiomatic way to provide a JS library.
+
+    **Proposed solution:** ???
+
+3.  No CE type to data payload mapping. The code generated for CloudEvent types don't include the event  
+    types that they are associated with.
+
+    **Proposed solution:** Use protobuf.js to `load` the event protos, extract this information and code
+    gen it manually with something like babel.
+
+4.  Generated code includes many extraneous types (from the standard lib) that should not be required by
+    Eventarc customers.
+
+    **Proposed solution:** Remove them???
+
+### Comments are not preserved
+
+All the comments in the google-event protos are line comments, but proto.js seems to only parse block comments.
+
+**Proposed solution:** pre-process the files to replace line comments with block comments. E.g. find blocks of lines that start with `//` comments and replace them with `*`.

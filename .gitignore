@@ -16,3 +16,6 @@ package-lock.json
 **/*.js
 !.prettierrc.js
 !examples/**/*.js
+
+# /tmp is used a scratch dir when compiling protos
+tmp/

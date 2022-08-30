@@ -17,7 +17,8 @@
     "gen": "./tools/gen.sh && node tools/postgen.js",
     "lint": "gts lint",
     "compile": "tsc",
-    "fix": "gts fix"
+    "fix": "gts fix",
+    "snowpea": "ts-node tools/snowpea.ts"
   },
   "repository": "googleapis/google-cloudevents-nodejs",
   "author": "Google Inc.",
@@ -39,6 +40,8 @@
     "gts": "^3.1.0",
     "mocha": "^10.0.0",
     "node-fetch": "^3.0.0",
+    "protobufjs": "^7.1.0",
+    "protobufjs-cli": "^1.0.1",
     "quicktype-core": "^6.0.68",
     "recursive-readdir": "^2.2.2",
     "ts-node": "^10.0.0",
