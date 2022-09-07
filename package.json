@@ -33,6 +33,9 @@
   },
   "homepage": "https://github.com/googleapis/google-cloudevents-nodejs#readme",
   "devDependencies": {
+    "@babel/generator": "^7.19.0",
+    "@babel/types": "^7.19.0",
+    "@types/babel__generator": "^7.6.4",
     "@types/chai": "^4.2.19",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.0.0",
