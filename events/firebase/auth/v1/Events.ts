@@ -62,7 +62,7 @@ export interface AuthEventData {
   /**
    * User's info at the providers
    */
-  providerData: UserInfo;
+  providerData: UserInfo[];
 
   /**
    * The user's phone number.
@@ -73,7 +73,7 @@ export interface AuthEventData {
    * User's custom claims, typically used to define user roles and propagated
    * to an authenticated user's ID token.
    */
-  customClaims: any;
+  customClaims: Record<string, any>;
 }
 
 /**

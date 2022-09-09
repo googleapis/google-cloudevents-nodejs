@@ -41,7 +41,7 @@ export interface BuildEventData {
   /**
    * The operations to be performed on the workspace.
    */
-  steps: BuildStep;
+  steps: BuildStep[];
 
   /**
    * Results of the build.
@@ -71,7 +71,7 @@ export interface BuildEventData {
    * granularity. If this amount of time elapses, work on the build will cease
    * and the build status will be `TIMEOUT`.
    */
-  timeout: any;
+  timeout: number;
 
   /**
    * A list of images to be pushed upon the successful completion of all build
@@ -85,7 +85,7 @@ export interface BuildEventData {
    * If any of the images fail to be pushed, the build status is marked
    * `FAILURE`.
    */
-  images: string;
+  images: string[];
 
   /**
    * TTL in queue for this build. If provided and the build is enqueued longer
@@ -94,7 +94,7 @@ export interface BuildEventData {
    * 
    * The TTL starts ticking from create_time.
    */
-  queueTtl: any;
+  queueTtl: number;
 
   /**
    * Artifacts produced by the build that should be uploaded upon
@@ -139,12 +139,12 @@ export interface BuildEventData {
   /**
    * Tags for annotation of a `Build`. These are not docker tags.
    */
-  tags: string;
+  tags: string[];
 
   /**
    * Secrets to decrypt using Cloud Key Management Service.
    */
-  secrets: Secret;
+  secrets: Secret[];
 
   /**
    * Stores timing information for phases of the build. Valid keys
@@ -282,7 +282,7 @@ export interface BuildStep {
    * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
    * being given the value "VALUE".
    */
-  env: string;
+  env: string[];
 
   /**
    * A list of arguments that will be presented to the step when it is started.
@@ -292,7 +292,7 @@ export interface BuildStep {
    * an entrypoint, the first element in args is used as the entrypoint,
    * and the remainder will be used as arguments.
    */
-  args: string;
+  args: string[];
 
   /**
    * Working directory to use when running this step's container.
@@ -321,7 +321,7 @@ export interface BuildStep {
    * start when all previous build steps in the `Build.Steps` list have
    * completed successfully.
    */
-  waitFor: string;
+  waitFor: string[];
 
   /**
    * Entrypoint to be used instead of the build step image's default entrypoint.
@@ -334,7 +334,7 @@ export interface BuildStep {
    * Management Service crypto key. These values must be specified in the
    * build's `Secret`.
    */
-  secretEnv: string;
+  secretEnv: string[];
 
   /**
    * List of volumes to mount into the build step.
@@ -346,7 +346,7 @@ export interface BuildStep {
    * Using a named volume in only one step is not valid as it is indicative
    * of a build request with an incorrect configuration.
    */
-  volumes: Volume;
+  volumes: Volume[];
 
   /**
    * Stores timing information for executing this build step.
@@ -364,7 +364,7 @@ export interface BuildStep {
    * time limit and will be allowed to continue to run until either it completes
    * or the build itself times out.
    */
-  timeout: any;
+  timeout: number;
 
   /**
    * Status of the build step. At this time, build step status is
@@ -403,13 +403,13 @@ export interface Results {
   /**
    * Container images that were built as a part of the build.
    */
-  images: BuiltImage;
+  images: BuiltImage[];
 
   /**
    * List of build step digests, in the order corresponding to build step
    * indices.
    */
-  buildStepImages: string;
+  buildStepImages: string[];
 
   /**
    * Path to the artifact manifest. Only populated when artifacts are uploaded.
@@ -429,7 +429,7 @@ export interface Results {
    * can produce this output by writing to `$BUILDER_OUTPUT/output`.
    * Only the first 4KB of data is stored.
    */
-  buildStepOutputs: any;
+  buildStepOutputs: string[];
 
   /**
    * Time to push all non-container artifacts.
@@ -474,7 +474,7 @@ export interface Artifacts {
    * 
    * If any of the images fail to be pushed, the build is marked FAILURE.
    */
-  images: string;
+  images: string[];
 
   /**
    * A list of objects to be uploaded to Cloud Storage upon successful
@@ -547,7 +547,7 @@ export interface FileHashes {
   /**
    * Collection of file hashes.
    */
-  fileHash: Hash;
+  fileHash: Hash[];
 }
 
 /**
@@ -562,7 +562,7 @@ export interface Hash {
   /**
    * The hash value.
    */
-  value: any;
+  value: string;
 }
 
 /**
@@ -583,7 +583,7 @@ export interface Secret {
    * 64 KB in size. There can be at most 100 secret values across all of a
    * build's secrets.
    */
-  secretEnv: any;
+  secretEnv: string;
 }
 
 /**
@@ -593,7 +593,7 @@ export interface BuildOptions {
   /**
    * Requested hash for SourceProvenance.
    */
-  sourceProvenanceHash: any;
+  sourceProvenanceHash: string[];
 
   /**
    * Requested verifiability options.
@@ -647,7 +647,7 @@ export interface BuildOptions {
    * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
    * being given the value "VALUE".
    */
-  env: string;
+  env: string[];
 
   /**
    * A list of global environment variables, which are encrypted using a Cloud
@@ -655,7 +655,7 @@ export interface BuildOptions {
    * build's `Secret`. These variables will be available to all build steps
    * in this build.
    */
-  secretEnv: string;
+  secretEnv: string[];
 
   /**
    * Global list of volumes to mount for ALL build steps
@@ -668,5 +668,5 @@ export interface BuildOptions {
    * Using a global volume in a build with only one step is not valid as
    * it is indicative of a build request with an incorrect configuration.
    */
-  volumes: Volume;
+  volumes: Volume[];
 }

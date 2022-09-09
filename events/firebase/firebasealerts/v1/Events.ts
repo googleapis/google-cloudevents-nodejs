@@ -28,7 +28,7 @@ export interface AlertData {
    * Payload of the event, which includes the details of the specific alert.
    * It's a map of keys of String type and values of various types
    */
-  payload: any;
+  payload: Record<string, any>;
 }
 
 /**
@@ -105,12 +105,12 @@ export interface CrashlyticsStabilityDigestPayload {
    * The date that the digest gets created, issues in the digest should
    * have the same date as the digest date
    */
-  digestDate: any;
+  digestDate: string;
 
   /**
    * A stability digest contains several trending Crashlytics issues
    */
-  trendingIssues: any;
+  trendingIssues: any[];
 }
 export interface CrashlyticsNewAnrIssuePayload {
   issue: CrashlyticsIssue;

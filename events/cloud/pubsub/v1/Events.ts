@@ -33,7 +33,7 @@ export interface PubsubMessage {
   /**
    * The binary data in the message.
    */
-  data: any;
+  data: string;
 
   /**
    * Attributes for this message.

@@ -16,5 +16,5 @@ export interface SchedulerJobData {
   /**
    * The custom data the user specified when creating the scheduler source.
    */
-  customData: any;
+  customData: string;
 }

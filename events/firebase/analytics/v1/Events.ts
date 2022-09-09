@@ -21,7 +21,7 @@ export interface AnalyticsLogData {
   /**
    * A repeated record of event related dimensions.
    */
-  eventDim: EventDimensions;
+  eventDim: EventDimensions[];
 }
 
 /**
@@ -103,7 +103,7 @@ export interface UserPropertyValue {
 export interface AnalyticsValue {
   stringValue: string;
   intValue: number;
-  floatValue: any;
+  floatValue: number;
   doubleValue: number;
 }
 

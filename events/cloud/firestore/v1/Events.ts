@@ -75,7 +75,7 @@ export interface DocumentMask {
    * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
    * for a field path syntax reference.
    */
-  fieldPaths: string;
+  fieldPaths: string[];
 }
 
 /**
@@ -142,7 +142,7 @@ export interface Value {
   /**
    * A null value.
    */
-  nullValue: any;
+  nullValue: null;
 
   /**
    * A boolean value.
@@ -182,7 +182,7 @@ export interface Value {
    * Must not exceed 1 MiB - 89 bytes.
    * Only the first 1,500 bytes are considered by queries.
    */
-  bytesValue: any;
+  bytesValue: string;
 
   /**
    * A reference to a document. For example:
@@ -216,7 +216,7 @@ export interface ArrayValue {
   /**
    * Values in the array.
    */
-  values: Value;
+  values: Value[];
 }
 
 /**

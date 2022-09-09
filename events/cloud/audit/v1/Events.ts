@@ -185,7 +185,7 @@ export interface AuditLog {
    * When the JSON object represented here has a proto equivalent,
    * the proto name will be indicated in the `@type` property.
    */
-  resourceOriginalState: any;
+  resourceOriginalState: Record<string, any>;
 
   /**
    * The number of items returned from a List or Query API method,
@@ -208,7 +208,7 @@ export interface AuditLog {
    * resources or permissions involved, then there is
    * one AuthorizationInfo element for each {resource, permission} tuple.
    */
-  authorizationInfo: AuthorizationInfo;
+  authorizationInfo: AuthorizationInfo[];
 
   /**
    * Metadata about the operation.
@@ -223,7 +223,7 @@ export interface AuditLog {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  request: any;
+  request: Record<string, any>;
 
   /**
    * The operation response. This may not include all response elements,
@@ -233,13 +233,13 @@ export interface AuditLog {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  response: any;
+  response: Record<string, any>;
 
   /**
    * Other service-specific data about the request, response, and other
    * information associated with the current audited event.
    */
-  metadata: any;
+  metadata: Record<string, any>;
 
   /**
    * Deprecated: Use `metadata` field instead.
@@ -248,7 +248,7 @@ export interface AuditLog {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  serviceData: any;
+  serviceData: Record<string, any>;
 }
 
 /**
@@ -277,7 +277,7 @@ export interface AuthenticationInfo {
    * When the JSON object represented here has a proto equivalent, the proto
    * name will be indicated in the `@type` property.
    */
-  thirdPartyPrincipal: any;
+  thirdPartyPrincipal: Record<string, any>;
 
   /**
    * The name of the service account key used to create or exchange
@@ -295,7 +295,7 @@ export interface AuthenticationInfo {
    * authorities present, they are guaranteed to be sorted based on the original
    * ordering of the identity delegation events.
    */
-  serviceAccountDelegationInfo: ServiceAccountDelegationInfo;
+  serviceAccountDelegationInfo: ServiceAccountDelegationInfo[];
 
   /**
    * String representation of identity of requesting party.
@@ -416,7 +416,7 @@ export interface ResourceLocation {
    * "us-east1"
    * "nam3"
    */
-  currentLocations: string;
+  currentLocations: string[];
 
   /**
    * The locations of a resource prior to the execution of the operation.
@@ -428,7 +428,7 @@ export interface ResourceLocation {
    * "us-east1"
    * "nam3"
    */
-  originalLocations: string;
+  originalLocations: string[];
 }
 
 /**

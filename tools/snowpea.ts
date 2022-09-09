@@ -1,4 +1,4 @@
-import {loadSync, NamespaceBase, ReflectionObject, Type, Field, Namespace, Enum} from 'protobufjs';
+import {loadSync, NamespaceBase, ReflectionObject, Type, Field, Namespace, Enum, Root} from 'protobufjs';
 import * as fs from 'fs';
 import * as path from 'path';
 import {execSync} from 'child_process';
@@ -41,28 +41,46 @@ const addComment = <T extends t.Node>(
   return node;
 };
 
+
 const generateInterfaceProperty = (field: Field, scope: Set<string>): t.TSTypeElement => {
   
-  let result: t.TSPropertySignature;
-  if (scope.has(field.type)) {
-    result = t.tsPropertySignature(
-      t.identifier(field.name), 
-      t.tsTypeAnnotation(t.tsTypeReference(t.identifier(field.type))),
-    );
-  } else if (field.type === 'string' || field.type === 'google.protobuf.Timestamp') {
-    result = t.tsPropertySignature(t.identifier(field.name), t.tsTypeAnnotation(t.tsStringKeyword()));
-  } else if (field.type === 'int64' || field.type === 'double' || field.type === 'int32') {
-    result = t.tsPropertySignature(t.identifier(field.name), t.tsTypeAnnotation(t.tSNumberKeyword()));
+  let fieldType: t.TSType;
+  
+  
+  if (field.type === 'string' || field.type === 'google.protobuf.Timestamp' || field.type === 'google.type.Date' || field.type === 'bytes' || field.type === 'Hash.HashType') {
+    fieldType = t.tsStringKeyword();
+  } else if (field.type === 'int64' || field.type === 'double' || field.type === 'int32' || field.type === 'float' || field.type === 'google.protobuf.Duration') {
+    fieldType = t.tSNumberKeyword();
   } else if (field.type === 'bool') {
-    result = t.tsPropertySignature(t.identifier(field.name), t.tsTypeAnnotation(t.tSBooleanKeyword()));
+    fieldType = t.tSBooleanKeyword();
+  } else if (field.type === 'google.protobuf.Value') {
+    fieldType = t.tsAnyKeyword();
+  } else if (field.type === 'google.protobuf.Struct') {
+    fieldType = t.tsTypeReference(t.identifier('Record'), t.tsTypeParameterInstantiation([t.tsStringKeyword(), t.tsAnyKeyword()]));
+  } else if (field.type === 'google.protobuf.NullValue') {
+    fieldType = t.tsNullKeyword();
+  } else if (scope.has(field.type)) {
+    fieldType = t.tsTypeReference(t.identifier(field.type));
+  } else if (hasNested(field.parent!) && field.parent.nested![field.type]) {
+    console.log('nested!');
+    fieldType = t.tsAnyKeyword();
   } else {
-    console.log('unknown type: ' + field.type);
-    result = t.tsPropertySignature(t.identifier(field.name), t.tsTypeAnnotation(t.tsAnyKeyword()));
+    console.log('=== unknown type: ' + field.name + ' =  ' + field.type);
+    fieldType = t.tsAnyKeyword();
   }
+
+  if (field.repeated) {
+    fieldType = t.tsArrayType(fieldType);
+  }
+
+  const result = t.tsPropertySignature(
+    t.identifier(field.name), 
+    t.tsTypeAnnotation(fieldType),
+  );
   if (field.comment) {
     addComment(result, field.comment);
   }
-  return result
+  return result;
 }
 
 /**
@@ -101,7 +119,7 @@ const generateEnum = (enumNode: Enum): t.Statement => {
   return exportStmt;
 }
 
-const compileNamespace = (namespaceName: string, namespace: Namespace): string => {
+const compileNamespace = (namespaceName: string, namespace: Namespace): t.Statement[] => {
   console.log(`generating ${namespace.fullName}`);
   const scope = new Set(namespace.nestedArray.map(x => x.name))
   const statements: t.Statement[] = [];
@@ -116,45 +134,54 @@ const compileNamespace = (namespaceName: string, namespace: Namespace): string =
       console.dir(x);
     }
   }
-  const ast = t.file(t.program(statements));
-  return generate(ast).code;
+  return statements;
 };
 
-const getOutputFile = (namespace: string): string => {
-  const parts = namespace.split('.').slice(2);
-  parts.push('Events.ts');
-  return parts.join("/")
-}
+// const getOutputFile = (namespace: string): string => {
+//   const parts = namespace.split('.').slice(2);
+//   parts.push('Events.ts');
+//   return parts.join("/")
+// }
 
 
 const compileProtos = (protos: string[]) => {
-  let root = loadSync(protos);
+  let root = new Root();
+  root.loadSync(protos, {alternateCommentMode: true});// loadSync(protos);
   const namespaces = new Map<string, Namespace>();
-  discoverNamespaces(root, namespaces);
+  const statements = discoverNamespaces(root.nestedArray[0], namespaces);
+  statements[0] = t.exportNamedDeclaration(statements[0] as t.TSModuleDeclaration);
+  console.log(generate(t.program(statements)).code);
   
-  for (const [fqName, namespace] of namespaces.entries()) {
-    const result = compileNamespace(fqName, namespace);
-    const outputPath = getOutputFile(fqName);
-    fs.mkdirSync(path.dirname(outputPath), {recursive: true});
-    fs.writeFileSync(outputPath, result);
-  }
+  // const hierarchy = {};
+  // for (const [fqName, namespace] of namespaces.entries()) {
+  //   const result = compileNamespace(fqName, namespace);
+  //   for (const n of fqName.split(".")) {
+  //     if 
+  //   }
+    // const outputPath = getOutputFile(fqName);
+    // fs.mkdirSync(path.dirname(outputPath), {recursive: true});
+    // fs.writeFileSync(outputPath, result);
+  // }
 };
 
-const isNamespace = (namespace: any): namespace is Namespace => {
-  return true;
-}
-
-const discoverNamespaces = (x: ReflectionObject, namespaces: Map<string, Namespace>) => {
+const discoverNamespaces = (x: ReflectionObject, namespaces: Map<string, Namespace>): t.Statement[] => {
   if (x.options && x.options['(google.events.cloud_event_type)']) {
-    const {parent} = x;
-    if (!isNamespace(parent)) {
-      throw "encounted invalid namespace";
-    }
-    namespaces.set(parent.fullName, parent);
+    const parent = x.parent!;
+    return compileNamespace(parent.fullName, parent);
   }
+  const children: t.Statement[] = [];
   if (hasNested(x)) {
-    Object.keys(x.nested!).forEach(key => discoverNamespaces(x.nested![key], namespaces))
+    x.nestedArray.forEach((child) => {
+      children.push(...discoverNamespaces(child, namespaces));
+    });
   }
+  if (children.length === 0) {
+    return [];
+  }
+  return [
+    t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children))
+  ];
+  
 };
 
 const hasNested = (x: ReflectionObject|NamespaceBase): x is NamespaceBase => {
@@ -186,50 +213,21 @@ const findProtos = (dir: string): string[] => {
     } else if (stats.isFile()) {
       if (currentPath?.endsWith('.proto') ) {
         result.push(currentPath);
-      } else if (!currentPath?.endsWith("README.md")) {
-        console.log(
-          'encountered file with unexpected extension: ' + currentPath
-        );
       }
     }
   }
   return result;
 };
 
-const correctComments = (inputPath: string, outputPath: string) => {
-  const input = fs.readFileSync(inputPath, 'utf-8');
-  const lines: string[] = [];
-  let inBlock = false;
-  input.split("\n").forEach(line => {
-    if (line.trim().startsWith('//')) {
-      if (!inBlock) {
-        lines.push('/**')
-        inBlock = true;
-      }
-      lines.push(line.replace(/\w*\/\//, '*'))
-    } else {
-      if (inBlock) {
-        lines.push('*/')
-        inBlock = false;
-      }
-      lines.push(line);
-    }
-  });
-  fs.mkdirSync(path.dirname(outputPath), {recursive: true});
-  fs.writeFileSync(outputPath, lines.join("\n"))
-}
-
 fs.rmSync(TEMP_DIR, {force: true, recursive: true});
 fs.mkdirSync(TEMP_DIR);
 downloadProtoc();
 
 const eventsDir = path.resolve(GOOGLE_EVENTS_DIR, EVENTS_PROTO_DIR);
-const eventProtos = findProtos(eventsDir);
 const correctedEventsDir = path.join(TEMP_DIR, 'goog');
-eventProtos.forEach(x => correctComments(x, path.resolve(correctedEventsDir, path.relative(GOOGLE_EVENTS_DIR, x))));
 
 const libDir = path.resolve(GOOGLE_EVENTS_DIR, LIB_PROTO_DIR);
 const protocDir = path.resolve(TEMP_DIR, 'include');
-const protos = [...findProtos(protocDir), ...findProtos(libDir), ...findProtos(correctedEventsDir)];
+const protos = [...findProtos(protocDir), ...findProtos(libDir), ...findProtos(eventsDir)];
 
 compileProtos(protos)
