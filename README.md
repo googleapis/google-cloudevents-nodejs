@@ -1,11 +1,11 @@
 # Google CloudEvents Node.js
 
-This is a prototype rebuild of this library using protobuf as the source of truth in place of the JSON-Schema definition.
+> Note: This is branch contains a re-write of this library using protobuf as the source of truth in place of the JSON-Schema definition.
 
 This repository contains types for CloudEvents issued by Google,
 enabling you to have autocompletion in **JavaScript** or **TypeScript** projects.
 
-> Note: This repo is auto-generated from schemas in https://github.com/googleapis/google-cloudevents
+The types in this repo are auto-generated from schemas in https://github.com/googleapis/google-cloudevents
 
 ## Prerequisites
 
@@ -13,13 +13,85 @@ enabling you to have autocompletion in **JavaScript** or **TypeScript** projects
 
 ## Usage
 
-Install the library from `npm`:
+### Install the `@google/events` package
+
+Install the Google CloudEvents Node.js library using `npm`:
 
 ```sh
-npm i @google/events
+npm install googleapis/google-cloudevents-nodejs#snowpea --save
 ```
 
-TODO: describe import paths once they are finalized
+### Narrowing Google Cloud Event Types
+
+The `isGoogleEvent` function is a [type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)
+that can be used to narrow a CloudEvent to a particular [Eventarc event type](https://cloud.google.com/eventarc/docs/reference/supported-events).
+
+```typescript
+import {isGoogleEvent} from '@google/event';
+
+function MyEventHandler(cloudEvent) {
+  if (isGoogleEvent(cloudEvent, 'google.firebase.auth.user.v1.created')) {
+    console.log(cloudEvent.data.uid);
+  }
+}
+```
+
+If you do not provide the even type argument, `isGoogleEvent` will return `true` if the event is
+any supported Eventarc even type. This is useful for event handler functions that may accept
+multiple event types:
+
+```typescript
+import {isGoogleEvent} from '@google/event';
+
+function MyEventHandler(cloudEvent) {
+  if (isGoogleEvent(cloudEvent)) {
+    switch (cloudEvent.type) {
+      case 'google.firebase.auth.user.v1.created':
+        console.log(cloudEvent.data.uid);
+        break;
+      case 'google.cloud.storage.object.v1.archived':
+        console.log(ce.data.name);
+        break;
+      default:
+        console.log(cloudEvent.type);
+    }
+  }
+}
+```
+
+### Typescript Type Annotations
+
+The `GoogleCloudEvent` type can be used to annotate CloudEvent types in Typescript. It accepts an [Eventarc event type](https://cloud.google.com/eventarc/docs/reference/supported-events)
+as a string literal type parameter:
+
+```typescript
+import {GoogleCloudEvent} from '@google/event';
+
+function MyEventHandler(
+  cloudEvent: GoogleCloudEvent<'google.cloud.storage.object.v1.archived'>
+) {
+  console.log(ce.data.name);
+}
+```
+
+If you need to annotate a variable that can take on multiple event types, the `GoogleCloudEventsUnion` is a [union](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) of all known even types supported by Eventarc:
+
+```typescript
+import {GoogleCloudEventsUnion} from '@google/event';
+
+function MyEventHandler(cloudEvent: GoogleCloudEventsUnion) {
+  switch (cloudEvent.type) {
+    case 'google.firebase.auth.user.v1.created':
+      console.log(cloudEvent.data.uid);
+      break;
+    case 'google.cloud.storage.object.v1.archived':
+      console.log(ce.data.name);
+      break;
+    default:
+      console.log(cloudEvent.type);
+  }
+}
+```
 
 ## Running the Type Generator
 
@@ -39,52 +111,12 @@ npm run snowpea
 
 The output Typescript is written to [`events/events.ts`](./`events/events.ts).
 
+3. Build the generated typescript and hand crafted code:
+
+```sh
+npm run build
+```
+
 ## Type Generator Details
 
-Currently, the `snowpea` type generator just enumerates all the necessary `.proto` files in the `google-events` and `protoc` repos then runs the [`pbjs` and `pbts` code generator tools](https://github.com/protobufjs/protobuf.js/tree/master/cli).
-
-This is roughly equivalent to the following command:
-
-```
-pbjs \
-  -t static \
-  --no-create \
-  --no-encode \
-  --no-decode \
-  --no-verify \
-  --no-convert \
-  --no-delimited \
-  --no-service \
-  <proto files> \
-  | pbts -
-```
-
-## Type Generator Issues
-
-### Generated codes does not really match what we need:
-
-1.  Code includes an interface and concrete class definition. We only need the interface.
-
-    **Proposed solution:** sift through the generated code and remove the classes.
-
-2.  There is no export structure. Currently everything is using typescript namespaces. This is not
-    an idiomatic way to provide a JS library.
-
-    **Proposed solution:** ???
-
-3.  No CE type to data payload mapping. The code generated for CloudEvent types don't include the event  
-    types that they are associated with.
-
-    **Proposed solution:** Use protobuf.js to `load` the event protos, extract this information and code
-    gen it manually with something like babel.
-
-4.  Generated code includes many extraneous types (from the standard lib) that should not be required by
-    Eventarc customers.
-
-    **Proposed solution:** Remove them???
-
-### Comments are not preserved
-
-All the comments in the google-event protos are line comments, but proto.js seems to only parse block comments.
-
-**Proposed solution:** pre-process the files to replace line comments with block comments. E.g. find blocks of lines that start with `//` comments and replace them with `*`.
+Currently, the `snowpea` type generator enumerates all the `.proto` files in the `google-events` and `protoc` repos, then uses protobuf.js to load them into `Root` namespace. Typescript interface definitions are generated from the protobuf.js namespace object using the [Babel javascript compiler](https://babeljs.io/).
