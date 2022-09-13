@@ -1,3 +1,17 @@
+// Copyright 2022 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 import {
   NamespaceBase,
   ReflectionObject,
@@ -12,7 +26,6 @@ import * as path from 'path';
 import {execSync} from 'child_process';
 import * as t from '@babel/types';
 import generate from '@babel/generator';
-import template from "@babel/template";
 import * as templates from './templates';
 
 const GOOGLE_EVENTS_DIR = '../google-cloudevents/';
@@ -21,10 +34,6 @@ const LIB_PROTO_DIR = './third_party/googleapis/';
 const PROTOC_URL =
   'https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protoc-21.5-linux-x86_64.zip';
 const TEMP_DIR = './tmp';
-
-
-
-
 
 const isType = (x: ReflectionObject): x is Type => {
   // @ts-ignore
@@ -105,6 +114,7 @@ const generateInterfaceProperty = (
     t.identifier(field.name),
     t.tsTypeAnnotation(fieldType)
   );
+  result.optional = true;
   if (field.comment) {
     addComment(result, field.comment);
   }
@@ -142,10 +152,11 @@ const generateTypeInterface = (
       )
     );
   }
+  const exportStmt = t.exportNamedDeclaration(interfaceStmt);
   if (typeNode.comment) {
-    addComment(interfaceStmt, typeNode.comment);
+    addComment(exportStmt, typeNode.comment);
   }
-  return interfaceStmt;
+  return exportStmt;
 };
 
 const generateEnum = (enumNode: Enum): t.Statement => {
@@ -159,10 +170,11 @@ const generateEnum = (enumNode: Enum): t.Statement => {
     })
   );
 
+  const exportStmt = t.exportNamedDeclaration(enumStmt);
   if (enumNode.comment) {
-    addComment(enumStmt, enumNode.comment);
+    addComment(exportStmt, enumNode.comment);
   }
-  return enumStmt;
+  return exportStmt;
 };
 
 const cloudEventDataType = (x: Type): string => {
@@ -184,8 +196,14 @@ const compileNamespace = (
   const statements: t.Statement[] = [];
   for (let x of namespace.nestedArray) {
     if (isCloudEventType(x)) {
-      cloudEvents.set(x.options!['(google.events.cloud_event_type)'], cloudEventDataType(x))
-      statements.push(generateTypeInterface(x, scope));
+      const ceType = x.options!['(google.events.cloud_event_type)'];
+      const ceDataType = cloudEventDataType(x)
+      cloudEvents.set(ceType, ceDataType);
+      const stmt = templates.CloudEventInterfaceStatement(x.name, ceType, ceDataType);
+      if (x.comment) {
+        addComment(stmt, x.comment);
+      }
+      statements.push(stmt);
     } else if (isType(x)) {
       statements.push(generateTypeInterface(x, scope));
     } else if (isEnum(x)) {
@@ -202,9 +220,6 @@ const compileProtos = (protos: string[]): string => {
   root.loadSync(protos, {alternateCommentMode: true});
   const cloudEvents = new Map<string, string>();
   const statements = discoverNamespaces(root.nestedArray[0], cloudEvents);
-  statements[0] = t.exportNamedDeclaration(
-    statements[0] as t.TSModuleDeclaration
-  );
   statements.push(
     ...templates.KnownEventsStatements(cloudEvents)
   );
@@ -230,7 +245,7 @@ const discoverNamespaces = (
     return [];
   }
   return [
-    t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children)),
+    t.exportNamedDeclaration(t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children))),
   ];
 };
 

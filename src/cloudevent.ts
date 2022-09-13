@@ -3,7 +3,7 @@
  * The object interface for a CloudEvent.
  * @see https://github.com/cloudevents/spec/blob/v1.0/spec.md
  */
-export interface CloudEvent<T> {
+export interface CloudEvent<T=unknown> {
   
   /**
    * Identifier for the event.

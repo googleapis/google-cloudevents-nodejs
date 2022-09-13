@@ -1,87 +1,83 @@
 import { CloudEvent } from '../src/cloudevent';
 export namespace google {
-  namespace events {
-    namespace firebase {
-      namespace testlab {
-        namespace v1 {
+  export namespace events {
+    export namespace firebase {
+      export namespace testlab {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a TestMatrix is completed
            */
-          interface TestMatrixCompletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: TestMatrixEventData;
-            type: "google.firebase.testlab.testMatrix.v1.completed";
+          export interface TestMatrixCompletedEvent extends CloudEvent<google.events.firebase.testlab.v1.TestMatrixEventData> {
+            type: 'google.firebase.testlab.testMatrix.v1.completed' | string;
           }
 
           /**
            * The data within all Firebase test matrix events.
            */
-          interface TestMatrixEventData {
+          export interface TestMatrixEventData {
             /**
              * Time the test matrix was created.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * State of the test matrix.
              */
-            state: TestState;
+            state?: TestState;
 
             /**
              * Code that describes why the test matrix is considered invalid. Only set for
              * matrices in the INVALID state.
              */
-            invalidMatrixDetails: string;
+            invalidMatrixDetails?: string;
 
             /**
              * Outcome summary of the test matrix.
              */
-            outcomeSummary: OutcomeSummary;
+            outcomeSummary?: OutcomeSummary;
 
             /**
              * Locations where test results are stored.
              */
-            resultStorage: ResultStorage;
+            resultStorage?: ResultStorage;
 
             /**
              * Information provided by the client that created the test matrix.
              */
-            clientInfo: ClientInfo;
+            clientInfo?: ClientInfo;
 
             /**
              * ID of the test matrix this event belongs to.
              */
-            testMatrixId: string;
+            testMatrixId?: string;
           }
 
           /**
            * Information about the client which invoked the test.
            */
-          interface ClientInfo {
+          export interface ClientInfo {
             /**
              * Client name, such as "gcloud".
              */
-            client: string;
+            client?: string;
 
             /**
              * Map of detailed information about the client.
              */
-            details: string;
+            details?: string;
           }
 
           /**
            * Locations where test results are stored.
            */
-          interface ResultStorage {
+          export interface ResultStorage {
             /**
              * Tool Results history resource containing test results. Format is
              * `projects/{project_id}/histories/{history_id}`.
              * See https://firebase.google.com/docs/test-lab/reference/toolresults/rest
              * for more information.
              */
-            toolResultsHistory: string;
+            toolResultsHistory?: string;
 
             /**
              * Tool Results execution resource containing test results. Format is
@@ -90,24 +86,24 @@ export namespace google {
              * See https://firebase.google.com/docs/test-lab/reference/toolresults/rest
              * for more information.
              */
-            toolResultsExecution: string;
+            toolResultsExecution?: string;
 
             /**
              * URI to the test results in the Firebase Web Console.
              */
-            resultsUri: string;
+            resultsUri?: string;
 
             /**
              * Location in Google Cloud Storage where test results are written to.
              * In the form "gs://bucket/path/to/somewhere".
              */
-            gcsPath: string;
+            gcsPath?: string;
           }
 
           /**
            * Possible test states for a test matrix.
            */
-          enum TestState {
+          export enum TestState {
             TEST_STATE_UNSPECIFIED = 0,
             VALIDATING = 1,
             PENDING = 2,
@@ -119,7 +115,7 @@ export namespace google {
           /**
            * Outcome summary for a finished test matrix.
            */
-          enum OutcomeSummary {
+          export enum OutcomeSummary {
             OUTCOME_SUMMARY_UNSPECIFIED = 0,
             SUCCESS = 1,
             FAILURE = 2,
@@ -128,86 +124,82 @@ export namespace google {
           }
         }
       }
-      namespace remoteconfig {
-        namespace v1 {
+      export namespace remoteconfig {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a Remote Config is updated
            */
-          interface RemoteConfigUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: RemoteConfigEventData;
-            type: "google.firebase.remoteconfig.remoteConfig.v1.updated";
+          export interface RemoteConfigUpdatedEvent extends CloudEvent<google.events.firebase.remoteconfig.v1.RemoteConfigEventData> {
+            type: 'google.firebase.remoteconfig.remoteConfig.v1.updated' | string;
           }
 
           /**
            * The data within all Firebase Remote Config events.
            */
-          interface RemoteConfigEventData {
+          export interface RemoteConfigEventData {
             /**
              * The version number of the version's corresponding Remote Config template.
              */
-            versionNumber: number;
+            versionNumber?: number;
 
             /**
              * When the Remote Config template was written to the Remote Config server.
              */
-            updateTime: string;
+            updateTime?: string;
 
             /**
              * Aggregation of all metadata fields about the account that performed the
              * update.
              */
-            updateUser: RemoteConfigUser;
+            updateUser?: RemoteConfigUser;
 
             /**
              * The user-provided description of the corresponding Remote Config template.
              */
-            description: string;
+            description?: string;
 
             /**
              * Where the update action originated.
              */
-            updateOrigin: RemoteConfigUpdateOrigin;
+            updateOrigin?: RemoteConfigUpdateOrigin;
 
             /**
              * What type of update was made.
              */
-            updateType: RemoteConfigUpdateType;
+            updateType?: RemoteConfigUpdateType;
 
             /**
              * Only present if this version is the result of a rollback, and will be the
              * version number of the Remote Config template that was rolled-back to.
              */
-            rollbackSource: number;
+            rollbackSource?: number;
           }
 
           /**
            * All the fields associated with the person/service account
            * that wrote a Remote Config template.
            */
-          interface RemoteConfigUser {
+          export interface RemoteConfigUser {
             /**
              * Display name.
              */
-            name: string;
+            name?: string;
 
             /**
              * Email address.
              */
-            email: string;
+            email?: string;
 
             /**
              * Image URL.
              */
-            imageUrl: string;
+            imageUrl?: string;
           }
 
           /**
            * What type of update was associated with the Remote Config template version.
            */
-          enum RemoteConfigUpdateOrigin {
+          export enum RemoteConfigUpdateOrigin {
             REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED = 0,
             CONSOLE = 1,
             REST_API = 2,
@@ -217,7 +209,7 @@ export namespace google {
           /**
            * Where the Remote Config update action originated.
            */
-          enum RemoteConfigUpdateType {
+          export enum RemoteConfigUpdateType {
             REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED = 0,
             INCREMENTAL_UPDATE = 1,
             FORCED_UPDATE = 2,
@@ -225,877 +217,789 @@ export namespace google {
           }
         }
       }
-      namespace firebasealerts {
-        namespace v1 {
+      export namespace firebasealerts {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a alert has been published by Firebase Alerts.
            */
-          interface AlertPublishedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: AlertData;
-            type: "google.firebase.firebasealerts.alerts.v1.published";
+          export interface AlertPublishedEvent extends CloudEvent<google.events.firebase.firebasealerts.v1.AlertData> {
+            type: 'google.firebase.firebasealerts.alerts.v1.published' | string;
           }
 
           /**
            * The data within all Firebase Alerts.
            */
-          interface AlertData {
+          export interface AlertData {
             /**
              * Time that the event has created
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * Time that the event has ended. Optional, only present for alertsthat are
              * ongoing
              */
-            endTime: string;
+            endTime?: string;
 
             /**
              * Payload of the event, which includes the details of the specific alert.
              * It's a map of keys of String type and values of various types
              */
-            payload: Record<string, any>;
+            payload?: Record<string, any>;
           }
 
           /**
            * Basic information of the Crashlytics issue
            */
-          interface CrashlyticsIssue {
-            id: string;
-            title: string;
-            subtitle: string;
-            appVersion: string;
+          export interface CrashlyticsIssue {
+            id?: string;
+            title?: string;
+            subtitle?: string;
+            appVersion?: string;
           }
-          interface CrashlyticsNewFatalIssuePayload {
+          export interface CrashlyticsNewFatalIssuePayload {
             /**
              * Basic information of the Crashlytics issue
              */
-            issue: CrashlyticsIssue;
+            issue?: CrashlyticsIssue;
           }
-          interface CrashlyticsNewNonfatalIssuePayload {
+          export interface CrashlyticsNewNonfatalIssuePayload {
             /**
              * Basic information of the Crashlytics issue
              */
-            issue: CrashlyticsIssue;
+            issue?: CrashlyticsIssue;
           }
-          interface CrashlyticsRegressionAlertPayload {
+          export interface CrashlyticsRegressionAlertPayload {
             /**
              * The type of the Crashlytics issue, e.g. new fatal, new nonfatal, ANR
              */
-            type: string;
+            type?: string;
 
             /**
              * Basic information of the Crashlytics issue
              */
-            issue: CrashlyticsIssue;
+            issue?: CrashlyticsIssue;
 
             /**
              * The time that the Crashlytics issues was most recently resolved before it
              * began to reoccur
              */
-            resolveTime: string;
+            resolveTime?: string;
           }
-          interface CrashlyticsVelocityAlertPayload {
+          export interface CrashlyticsVelocityAlertPayload {
             /**
              * Basic information of the Crashlytics issue
              */
-            issue: CrashlyticsIssue;
+            issue?: CrashlyticsIssue;
 
             /**
              * The time that the Crashlytics issue gets created
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The number of user sessions for the given app version that had this
              * specific crash issue in the time period used to trigger the velocity alert,
              * which is currently 1h
              */
-            crashCount: number;
+            crashCount?: number;
 
             /**
              * The percentage of user sessions for the given app version that had this
              * specific crash issue in the time period used to trigger the velocity alert,
              * which is currently 1h
              */
-            crashPercentage: number;
+            crashPercentage?: number;
 
             /**
              * The first app version where this issue was seen, and not necessarily the
              * version that has triggered the alert
              */
-            firstVersion: string;
+            firstVersion?: string;
           }
-          interface CrashlyticsStabilityDigestPayload {
+          export interface CrashlyticsStabilityDigestPayload {
             /**
              * The date that the digest gets created, issues in the digest should
              * have the same date as the digest date
              */
-            digestDate: string;
+            digestDate?: string;
 
             /**
              * A stability digest contains several trending Crashlytics issues
              */
-            trendingIssues: any[];
+            trendingIssues?: any[];
           }
-          interface CrashlyticsNewAnrIssuePayload {
-            issue: CrashlyticsIssue;
+          export interface CrashlyticsNewAnrIssuePayload {
+            issue?: CrashlyticsIssue;
           }
-          interface AppDistroNewTesterIosDevicePayload {
-            testerName: string;
-            testerEmail: string;
-            testerDeviceModelName: string;
-            testerDeviceIdentifier: string;
+          export interface AppDistroNewTesterIosDevicePayload {
+            testerName?: string;
+            testerEmail?: string;
+            testerDeviceModelName?: string;
+            testerDeviceIdentifier?: string;
           }
-          interface AppDistroInAppFeedbackPayload {
+          export interface AppDistroInAppFeedbackPayload {
             /**
              * Resource name. Format:
              * projects/{project_number}/apps/{app_id}/releases/{release_id}/feedbackReports/{feedback_id}
              */
-            feedbackReport: string;
+            feedbackReport?: string;
 
             /**
              * Deep link back to the Firebase console.
              */
-            feedbackConsoleUri: string;
+            feedbackConsoleUri?: string;
 
             /**
              * Name of the tester.
              */
-            testerName: string;
+            testerName?: string;
 
             /**
              * Email address of the tester.
              */
-            testerEmail: string;
+            testerEmail?: string;
 
             /**
              * Version consisting of `versionName` and `versionCode` for Android and
              * `CFBundleShortVersionString` and `CFBundleVersion` for iOS.
              */
-            appVersion: string;
+            appVersion?: string;
 
             /**
              * Text entered by the tester.
              */
-            text: string;
+            text?: string;
 
             /**
              * URI to download screenshot.  This URI is fast expiring.
              */
-            screenshotUri: string;
+            screenshotUri?: string;
           }
-          interface BillingPlanUpdatePayload {
+          export interface BillingPlanUpdatePayload {
             /**
              * A Firebase plan
              */
-            billingPlan: string;
+            billingPlan?: string;
 
             /**
              * The email address of the person that triggered billing plan change
              */
-            principalEmail: string;
+            principalEmail?: string;
 
             /**
              * The type of the notification, e.g. upgrade, downgrade
              */
-            notificationType: string;
+            notificationType?: string;
           }
-          interface BillingPlanAutomatedUpdatePayload {
+          export interface BillingPlanAutomatedUpdatePayload {
             /**
              * A Firebase plan
              */
-            billingPlan: string;
+            billingPlan?: string;
 
             /**
              * The type of the notification, e.g. upgrade, downgrade
              */
-            notificationType: string;
+            notificationType?: string;
           }
         }
       }
-      namespace database {
-        namespace v1 {
+      export namespace database {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a ref is created in the Firebase Realtime
            * Database.
            */
-          interface ReferenceCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.created";
+          export interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is updated in the Firebase Realtime
            * Database.
            */
-          interface ReferenceUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.updated";
+          export interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is deleted in the Firebase Realtime
            * Database.
            */
-          interface ReferenceDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.deleted";
+          export interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is written (created, updated or
            * deleted) in the Firebase Realtime Database.
            */
-          interface ReferenceWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.written";
+          export interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.written' | string;
           }
 
           /**
            * The data within all Firebase Real Time Database reference events.
            */
-          interface ReferenceEventData {
+          export interface ReferenceEventData {
             /**
              * The original data for the reference.
              */
-            data: any;
+            data?: any;
 
             /**
              * The change in the reference data.
              */
-            delta: any;
+            delta?: any;
           }
 
           /**
            * The CloudEvent raised when a ref is created in the Firebase Realtime
            * Database.
            */
-          interface ReferenceCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.created";
+          export interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is updated in the Firebase Realtime
            * Database.
            */
-          interface ReferenceUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.updated";
+          export interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is deleted in the Firebase Realtime
            * Database.
            */
-          interface ReferenceDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.deleted";
+          export interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is written (created, updated or
            * deleted) in the Firebase Realtime Database.
            */
-          interface ReferenceWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.written";
+          export interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.written' | string;
           }
 
           /**
            * The data within all Firebase Real Time Database reference events.
            */
-          interface ReferenceEventData {
+          export interface ReferenceEventData {
             /**
              * The original data for the reference.
              */
-            data: any;
+            data?: any;
 
             /**
              * The change in the reference data.
              */
-            delta: any;
+            delta?: any;
           }
 
           /**
            * The CloudEvent raised when a ref is created in the Firebase Realtime
            * Database.
            */
-          interface ReferenceCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.created";
+          export interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is updated in the Firebase Realtime
            * Database.
            */
-          interface ReferenceUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.updated";
+          export interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is deleted in the Firebase Realtime
            * Database.
            */
-          interface ReferenceDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.deleted";
+          export interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is written (created, updated or
            * deleted) in the Firebase Realtime Database.
            */
-          interface ReferenceWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.written";
+          export interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.written' | string;
           }
 
           /**
            * The data within all Firebase Real Time Database reference events.
            */
-          interface ReferenceEventData {
+          export interface ReferenceEventData {
             /**
              * The original data for the reference.
              */
-            data: any;
+            data?: any;
 
             /**
              * The change in the reference data.
              */
-            delta: any;
+            delta?: any;
           }
 
           /**
            * The CloudEvent raised when a ref is created in the Firebase Realtime
            * Database.
            */
-          interface ReferenceCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.created";
+          export interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is updated in the Firebase Realtime
            * Database.
            */
-          interface ReferenceUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.updated";
+          export interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is deleted in the Firebase Realtime
            * Database.
            */
-          interface ReferenceDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.deleted";
+          export interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a reference is written (created, updated or
            * deleted) in the Firebase Realtime Database.
            */
-          interface ReferenceWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: ReferenceEventData;
-            type: "google.firebase.database.ref.v1.written";
+          export interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+            type: 'google.firebase.database.ref.v1.written' | string;
           }
 
           /**
            * The data within all Firebase Real Time Database reference events.
            */
-          interface ReferenceEventData {
+          export interface ReferenceEventData {
             /**
              * The original data for the reference.
              */
-            data: any;
+            data?: any;
 
             /**
              * The change in the reference data.
              */
-            delta: any;
+            delta?: any;
           }
         }
       }
-      namespace auth {
-        namespace v1 {
+      export namespace auth {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a Firebase user is created.
            */
-          interface UserCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: AuthEventData;
-            type: "google.firebase.auth.user.v1.created";
+          export interface UserCreatedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
+            type: 'google.firebase.auth.user.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firebase user is deleted.
            */
-          interface UserDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: AuthEventData;
-            type: "google.firebase.auth.user.v1.deleted";
+          export interface UserDeletedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
+            type: 'google.firebase.auth.user.v1.deleted' | string;
           }
 
           /**
            * The data within all Firebase Auth events.
            */
-          interface AuthEventData {
+          export interface AuthEventData {
             /**
              * The user identifier in the Firebase app.
              */
-            uid: string;
+            uid?: string;
 
             /**
              * The user's primary email, if set.
              */
-            email: string;
+            email?: string;
 
             /**
              * Whether or not the user's primary email is verified.
              */
-            emailVerified: boolean;
+            emailVerified?: boolean;
 
             /**
              * The user's display name.
              */
-            displayName: string;
+            displayName?: string;
 
             /**
              * The user's photo URL.
              */
-            photo_URL: string;
+            photo_URL?: string;
 
             /**
              * Whether the user is disabled.
              */
-            disabled: boolean;
+            disabled?: boolean;
 
             /**
              * Additional metadata about the user.
              */
-            metadata: UserMetadata;
+            metadata?: UserMetadata;
 
             /**
              * User's info at the providers
              */
-            providerData: UserInfo[];
+            providerData?: UserInfo[];
 
             /**
              * The user's phone number.
              */
-            phoneNumber: string;
+            phoneNumber?: string;
 
             /**
              * User's custom claims, typically used to define user roles and propagated
              * to an authenticated user's ID token.
              */
-            customClaims: Record<string, any>;
+            customClaims?: Record<string, any>;
           }
 
           /**
            * Additional metadata about the user.
            */
-          interface UserMetadata {
+          export interface UserMetadata {
             /**
              * The date the user was created.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The date the user last signed in.
              */
-            lastSignInTime: string;
+            lastSignInTime?: string;
           }
 
           /**
            * User's info at the identity provider
            */
-          interface UserInfo {
+          export interface UserInfo {
             /**
              * The user identifier for the linked provider.
              */
-            uid: string;
+            uid?: string;
 
             /**
              * The email for the linked provider.
              */
-            email: string;
+            email?: string;
 
             /**
              * The display name for the linked provider.
              */
-            displayName: string;
+            displayName?: string;
 
             /**
              * The photo URL for the linked provider.
              */
-            photo_URL: string;
+            photo_URL?: string;
 
             /**
              * The linked provider ID (e.g. "google.com" for the Google provider).
              */
-            providerId: string;
+            providerId?: string;
           }
 
           /**
            * The CloudEvent raised when a Firebase user is created.
            */
-          interface UserCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: AuthEventData;
-            type: "google.firebase.auth.user.v1.created";
+          export interface UserCreatedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
+            type: 'google.firebase.auth.user.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firebase user is deleted.
            */
-          interface UserDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: AuthEventData;
-            type: "google.firebase.auth.user.v1.deleted";
+          export interface UserDeletedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
+            type: 'google.firebase.auth.user.v1.deleted' | string;
           }
 
           /**
            * The data within all Firebase Auth events.
            */
-          interface AuthEventData {
+          export interface AuthEventData {
             /**
              * The user identifier in the Firebase app.
              */
-            uid: string;
+            uid?: string;
 
             /**
              * The user's primary email, if set.
              */
-            email: string;
+            email?: string;
 
             /**
              * Whether or not the user's primary email is verified.
              */
-            emailVerified: boolean;
+            emailVerified?: boolean;
 
             /**
              * The user's display name.
              */
-            displayName: string;
+            displayName?: string;
 
             /**
              * The user's photo URL.
              */
-            photo_URL: string;
+            photo_URL?: string;
 
             /**
              * Whether the user is disabled.
              */
-            disabled: boolean;
+            disabled?: boolean;
 
             /**
              * Additional metadata about the user.
              */
-            metadata: UserMetadata;
+            metadata?: UserMetadata;
 
             /**
              * User's info at the providers
              */
-            providerData: UserInfo[];
+            providerData?: UserInfo[];
 
             /**
              * The user's phone number.
              */
-            phoneNumber: string;
+            phoneNumber?: string;
 
             /**
              * User's custom claims, typically used to define user roles and propagated
              * to an authenticated user's ID token.
              */
-            customClaims: Record<string, any>;
+            customClaims?: Record<string, any>;
           }
 
           /**
            * Additional metadata about the user.
            */
-          interface UserMetadata {
+          export interface UserMetadata {
             /**
              * The date the user was created.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The date the user last signed in.
              */
-            lastSignInTime: string;
+            lastSignInTime?: string;
           }
 
           /**
            * User's info at the identity provider
            */
-          interface UserInfo {
+          export interface UserInfo {
             /**
              * The user identifier for the linked provider.
              */
-            uid: string;
+            uid?: string;
 
             /**
              * The email for the linked provider.
              */
-            email: string;
+            email?: string;
 
             /**
              * The display name for the linked provider.
              */
-            displayName: string;
+            displayName?: string;
 
             /**
              * The photo URL for the linked provider.
              */
-            photo_URL: string;
+            photo_URL?: string;
 
             /**
              * The linked provider ID (e.g. "google.com" for the Google provider).
              */
-            providerId: string;
+            providerId?: string;
           }
         }
       }
-      namespace analytics {
-        namespace v1 {
+      export namespace analytics {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a Firebase Analytics log is written.
            */
-          interface AnalyticsLogWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: AnalyticsLogData;
-            type: "google.firebase.analytics.log.v1.written";
+          export interface AnalyticsLogWrittenEvent extends CloudEvent<google.events.firebase.analytics.v1.AnalyticsLogData> {
+            type: 'google.firebase.analytics.log.v1.written' | string;
           }
 
           /**
            * The data within Firebase Analytics log events.
            */
-          interface AnalyticsLogData {
+          export interface AnalyticsLogData {
             /**
              * User related dimensions.
              */
-            userDim: UserDimensions;
+            userDim?: UserDimensions;
 
             /**
              * A repeated record of event related dimensions.
              */
-            eventDim: EventDimensions[];
+            eventDim?: EventDimensions[];
           }
 
           /**
            * Message containing information about the user associated with the event.
            */
-          interface UserDimensions {
+          export interface UserDimensions {
             /**
              * The user ID set via the setUserId API.
              */
-            userId: string;
+            userId?: string;
 
             /**
              * The time (in microseconds) at which the user first opened the app.
              */
-            firstOpenTimestampMicros: number;
+            firstOpenTimestampMicros?: number;
 
             /**
              * A repeated record of user properties set with the setUserProperty API.
              * https://firebase.google.com/docs/analytics/android/properties
              */
-            userProperties: UserPropertyValue;
+            userProperties?: UserPropertyValue;
 
             /**
              * Device information.
              */
-            deviceInfo: DeviceInfo;
+            deviceInfo?: DeviceInfo;
 
             /**
              * User's geographic information.
              */
-            geoInfo: GeoInfo;
+            geoInfo?: GeoInfo;
 
             /**
              * App information.
              */
-            appInfo: AppInfo;
+            appInfo?: AppInfo;
 
             /**
              * Information about marketing campaign which acquired the user.
              */
-            trafficSource: TrafficSource;
+            trafficSource?: TrafficSource;
 
             /**
              * Information regarding the bundle in which these events were uploaded.
              */
-            bundleInfo: ExportBundleInfo;
+            bundleInfo?: ExportBundleInfo;
 
             /**
              * Lifetime Value information about this user.
              */
-            ltvInfo: LtvInfo;
+            ltvInfo?: LtvInfo;
           }
 
           /**
            * Predefined (eg: LTV) or custom properties (eg: birthday) stored on client
            * side and associated with subsequent HitBundles.
            */
-          interface UserPropertyValue {
+          export interface UserPropertyValue {
             /**
              * Last set value of user property.
              */
-            value: AnalyticsValue;
+            value?: AnalyticsValue;
 
             /**
              * UTC client time when user property was last set.
              */
-            setTimestampUsec: number;
+            setTimestampUsec?: number;
 
             /**
              * Index for user property (one-based).
              */
-            index: number;
+            index?: number;
           }
 
           /**
            * Value for Event Params and UserProperty can be of type string or int or
            * float or double.
            */
-          interface AnalyticsValue {
-            stringValue: string;
-            intValue: number;
-            floatValue: number;
-            doubleValue: number;
+          export interface AnalyticsValue {
+            stringValue?: string;
+            intValue?: number;
+            floatValue?: number;
+            doubleValue?: number;
           }
 
           /**
            * Message containing device informations.
            */
-          interface DeviceInfo {
+          export interface DeviceInfo {
             /**
              * Device category.
              * Eg. tablet or mobile.
              */
-            deviceCategory: string;
+            deviceCategory?: string;
 
             /**
              * Device brand name.
              * Eg. Samsung, HTC, etc.
              */
-            mobileBrandName: string;
+            mobileBrandName?: string;
 
             /**
              * Device model name.
              * Eg. GT-I9192
              */
-            mobileModelName: string;
+            mobileModelName?: string;
 
             /**
              * Device marketing name.
              * Eg. Galaxy S4 Mini
              */
-            mobileMarketingName: string;
+            mobileMarketingName?: string;
 
             /**
              * Device model.
              * Eg. GT-I9192
              */
-            deviceModel: string;
+            deviceModel?: string;
 
             /**
              * Device OS version when data capture ended.
              * Eg. 4.4.2
              */
-            platformVersion: string;
+            platformVersion?: string;
 
             /**
              * Vendor specific device identifier. This is IDFV on iOS. Not used for
              * Android.
              * Example: "599F9C00-92DC-4B5C-9464-7971F01F8370"
              */
-            deviceId: string;
+            deviceId?: string;
 
             /**
              * The type of the resettable_device_id is always IDFA on iOS and AdId
              * on Android.
              * Example: "71683BF9-FA3B-4B0D-9535-A1F05188BAF3"
              */
-            resettableDeviceId: string;
+            resettableDeviceId?: string;
 
             /**
              * The user language.
              * Eg. "en-us", "en-za", "zh-tw", "jp"
              */
-            userDefaultLanguage: string;
+            userDefaultLanguage?: string;
 
             /**
              * The timezone of the device when data was uploaded as seconds skew from UTC.
              */
-            deviceTimeZoneOffsetSeconds: number;
+            deviceTimeZoneOffsetSeconds?: number;
 
             /**
              * The device's Limit Ad Tracking setting.
@@ -1103,237 +1007,221 @@ export namespace google {
              * influencing ads serving behaviour. However, we can use device_id for
              * conversion tracking and campaign attribution.
              */
-            limitedAdTracking: boolean;
+            limitedAdTracking?: boolean;
           }
 
           /**
            * Message which contains App Information.
            */
-          interface AppInfo {
+          export interface AppInfo {
             /**
              * The app's version name
              * Examples: "1.0", "4.3.1.1.213361", "2.3 (1824253)", "v1.8b22p6"
              */
-            appVersion: string;
+            appVersion?: string;
 
             /**
              * Unique id for this instance of the app.
              * Example: "71683BF9FA3B4B0D9535A1F05188BAF3"
              */
-            appInstanceId: string;
+            appInstanceId?: string;
 
             /**
              * The identifier of the store that installed the app.
              * Eg. "com.sec.android.app.samsungapps", "com.amazon.venezia",
              * "com.nokia.nstore"
              */
-            appStore: string;
+            appStore?: string;
 
             /**
              * The app platform.
              * Eg "ANDROID", "IOS".
              */
-            appPlatform: string;
+            appPlatform?: string;
 
             /**
              * Unique application identifier within an app store.
              */
-            appId: string;
+            appId?: string;
           }
 
           /**
            * User's geographic informaiton.
            */
-          interface GeoInfo {
+          export interface GeoInfo {
             /**
              * The geographic continent.
              * Eg. Americas
              */
-            continent: string;
+            continent?: string;
 
             /**
              * The geographic country.
              * Eg. Brazil
              */
-            country: string;
+            country?: string;
 
             /**
              * The geographic region.
              * Eg. State of Sao Paulo
              */
-            region: string;
+            region?: string;
 
             /**
              * The geographic city.
              * Eg. Sao Paulo
              */
-            city: string;
+            city?: string;
           }
 
           /**
            * Mesage containing marketing campaign information which acquired the user.
            */
-          interface TrafficSource {
+          export interface TrafficSource {
             /**
              * The name of the campaign which acquired the user.
              */
-            userAcquiredCampaign: string;
+            userAcquiredCampaign?: string;
 
             /**
              * The name of the network which acquired the user.
              */
-            userAcquiredSource: string;
+            userAcquiredSource?: string;
 
             /**
              * The name of the medium which acquired the user.
              */
-            userAcquiredMedium: string;
+            userAcquiredMedium?: string;
           }
 
           /**
            * Message containing information regarding the bundle in which these
            * events were uploaded.
            */
-          interface ExportBundleInfo {
+          export interface ExportBundleInfo {
             /**
              * Monotonically increasing index for each bundle set by SDK.
              */
-            bundleSequenceId: number;
+            bundleSequenceId?: number;
 
             /**
              * Timestamp offset between collection time and upload time.
              */
-            serverTimestampOffsetMicros: number;
+            serverTimestampOffsetMicros?: number;
           }
 
           /**
            * Lifetime Value information about this user.
            */
-          interface LtvInfo {
+          export interface LtvInfo {
             /**
              * The Lifetime Value revenue of this user.
              */
-            revenue: number;
+            revenue?: number;
 
             /**
              * The currency corresponding to the revenue.
              */
-            currency: string;
+            currency?: string;
           }
 
           /**
            * Message containing information pertaining to the event.
            */
-          interface EventDimensions {
+          export interface EventDimensions {
             /**
              * The date on which this event was logged.
              * (YYYYMMDD format in the registered timezone of your app.)
              */
-            date: string;
+            date?: string;
 
             /**
              * The name of this event.
              */
-            name: string;
+            name?: string;
 
             /**
              * A repeated record of the parameters associated with this event.
              */
-            params: AnalyticsValue;
+            params?: AnalyticsValue;
 
             /**
              * UTC client time when the event happened.
              */
-            timestampMicros: number;
+            timestampMicros?: number;
 
             /**
              * UTC client time when the previous event happened.
              */
-            previousTimestampMicros: number;
+            previousTimestampMicros?: number;
 
             /**
              * Value param in USD.
              */
-            valueInUsd: number;
+            valueInUsd?: number;
           }
         }
       }
     }
-    namespace cloud {
-      namespace storage {
-        namespace v1 {
+    export namespace cloud {
+      export namespace storage {
+        export namespace v1 {
           /**
            * The CloudEvent raised when an object is finalized in Google Cloud Storage.
            */
-          interface ObjectFinalizedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.finalized";
+          export interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.finalized' | string;
           }
 
           /**
            * The CloudEvent raised when an object is archived in Google Cloud Storage.
            */
-          interface ObjectArchivedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.archived";
+          export interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.archived' | string;
           }
 
           /**
            * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
            */
-          interface ObjectDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.deleted";
+          export interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when an object's metadata is updated  in Google Cloud
            * Storage.
            */
-          interface ObjectMetadataUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.metadataUpdated";
+          export interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
           }
 
           /**
            * An object within Google Cloud Storage.
            */
-          interface StorageObjectData {
+          export interface StorageObjectData {
             /**
              * Content-Encoding of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
              */
-            contentEncoding: string;
+            contentEncoding?: string;
 
             /**
              * Content-Disposition of the object data, matching
              * [https://tools.ietf.org/html/rfc6266][RFC 6266].
              */
-            contentDisposition: string;
+            contentDisposition?: string;
 
             /**
              * Cache-Control directive for the object data, matching
              * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
              */
-            cacheControl: string;
+            cacheControl?: string;
 
             /**
              * Content-Language of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
              */
-            contentLanguage: string;
+            contentLanguage?: string;
 
             /**
              * The version of the metadata for this object at this generation. Used for
@@ -1341,13 +1229,13 @@ export namespace google {
              * number is only meaningful in the context of a particular generation of a
              * particular object.
              */
-            metageneration: number;
+            metageneration?: number;
 
             /**
              * The deletion time of the object. Will be returned if and only if this
              * version of the object has been deleted.
              */
-            timeDeleted: string;
+            timeDeleted?: string;
 
             /**
              * Content-Type of the object data, matching
@@ -1355,19 +1243,19 @@ export namespace google {
              * If an object is stored without a Content-Type, it is served as
              * `application/octet-stream`.
              */
-            contentType: string;
+            contentType?: string;
 
             /**
              * Content-Length of the object data in bytes, matching
              * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
              */
-            size: number;
+            size?: number;
 
             /**
              * The creation time of the object.
              * Attempting to set this field will result in an error.
              */
-            timeCreated: string;
+            timeCreated?: string;
 
             /**
              * CRC32c checksum. For more information about using the CRC32c
@@ -1375,14 +1263,14 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            crc32c: string;
+            crc32c?: string;
 
             /**
              * Number of underlying components that make up this object. Components are
              * accumulated by compose operations.
              * Attempting to set this field will result in an error.
              */
-            componentCount: number;
+            componentCount?: number;
 
             /**
              * MD5 hash of the data; encoded using base64 as per
@@ -1391,172 +1279,156 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            md5Hash: string;
+            md5Hash?: string;
 
             /**
              * HTTP 1.1 Entity tag for the object. See
              * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
              */
-            etag: string;
+            etag?: string;
 
             /**
              * The modification time of the object metadata.
              */
-            updated: string;
+            updated?: string;
 
             /**
              * Storage class of the object.
              */
-            storageClass: string;
+            storageClass?: string;
 
             /**
              * Cloud KMS Key used to encrypt this object, if the object is encrypted by
              * such a key.
              */
-            kmsKeyName: string;
+            kmsKeyName?: string;
 
             /**
              * The time at which the object's storage class was last changed.
              */
-            timeStorageClassUpdated: string;
+            timeStorageClassUpdated?: string;
 
             /**
              * Whether an object is under temporary hold.
              */
-            temporaryHold: boolean;
+            temporaryHold?: boolean;
 
             /**
              * A server-determined value that specifies the earliest time that the
              * object's retention period expires.
              */
-            retentionExpirationTime: string;
+            retentionExpirationTime?: string;
 
             /**
              * User-provided metadata, in key/value pairs.
              */
-            metadata: string;
+            metadata?: string;
 
             /**
              * Whether an object is under event-based hold.
              */
-            eventBasedHold: boolean;
+            eventBasedHold?: boolean;
 
             /**
              * The name of the object.
              */
-            name: string;
+            name?: string;
 
             /**
              * The ID of the object, including the bucket name, object name, and
              * generation number.
              */
-            id: string;
+            id?: string;
 
             /**
              * The name of the bucket containing this object.
              */
-            bucket: string;
+            bucket?: string;
 
             /**
              * The content generation of this object. Used for object versioning.
              * Attempting to set this field will result in an error.
              */
-            generation: number;
+            generation?: number;
 
             /**
              * Metadata of customer-supplied encryption key, if the object is encrypted by
              * such a key.
              */
-            customerEncryption: any;
+            customerEncryption?: any;
 
             /**
              * Media download link.
              */
-            mediaLink: string;
+            mediaLink?: string;
 
             /**
              * The link to this object.
              */
-            selfLink: string;
+            selfLink?: string;
 
             /**
              * The kind of item this is. For objects, this is always "storage#object".
              */
-            kind: string;
+            kind?: string;
           }
 
           /**
            * The CloudEvent raised when an object is finalized in Google Cloud Storage.
            */
-          interface ObjectFinalizedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.finalized";
+          export interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.finalized' | string;
           }
 
           /**
            * The CloudEvent raised when an object is archived in Google Cloud Storage.
            */
-          interface ObjectArchivedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.archived";
+          export interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.archived' | string;
           }
 
           /**
            * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
            */
-          interface ObjectDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.deleted";
+          export interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when an object's metadata is updated  in Google Cloud
            * Storage.
            */
-          interface ObjectMetadataUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.metadataUpdated";
+          export interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
           }
 
           /**
            * An object within Google Cloud Storage.
            */
-          interface StorageObjectData {
+          export interface StorageObjectData {
             /**
              * Content-Encoding of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
              */
-            contentEncoding: string;
+            contentEncoding?: string;
 
             /**
              * Content-Disposition of the object data, matching
              * [https://tools.ietf.org/html/rfc6266][RFC 6266].
              */
-            contentDisposition: string;
+            contentDisposition?: string;
 
             /**
              * Cache-Control directive for the object data, matching
              * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
              */
-            cacheControl: string;
+            cacheControl?: string;
 
             /**
              * Content-Language of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
              */
-            contentLanguage: string;
+            contentLanguage?: string;
 
             /**
              * The version of the metadata for this object at this generation. Used for
@@ -1564,13 +1436,13 @@ export namespace google {
              * number is only meaningful in the context of a particular generation of a
              * particular object.
              */
-            metageneration: number;
+            metageneration?: number;
 
             /**
              * The deletion time of the object. Will be returned if and only if this
              * version of the object has been deleted.
              */
-            timeDeleted: string;
+            timeDeleted?: string;
 
             /**
              * Content-Type of the object data, matching
@@ -1578,19 +1450,19 @@ export namespace google {
              * If an object is stored without a Content-Type, it is served as
              * `application/octet-stream`.
              */
-            contentType: string;
+            contentType?: string;
 
             /**
              * Content-Length of the object data in bytes, matching
              * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
              */
-            size: number;
+            size?: number;
 
             /**
              * The creation time of the object.
              * Attempting to set this field will result in an error.
              */
-            timeCreated: string;
+            timeCreated?: string;
 
             /**
              * CRC32c checksum. For more information about using the CRC32c
@@ -1598,14 +1470,14 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            crc32c: string;
+            crc32c?: string;
 
             /**
              * Number of underlying components that make up this object. Components are
              * accumulated by compose operations.
              * Attempting to set this field will result in an error.
              */
-            componentCount: number;
+            componentCount?: number;
 
             /**
              * MD5 hash of the data; encoded using base64 as per
@@ -1614,172 +1486,156 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            md5Hash: string;
+            md5Hash?: string;
 
             /**
              * HTTP 1.1 Entity tag for the object. See
              * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
              */
-            etag: string;
+            etag?: string;
 
             /**
              * The modification time of the object metadata.
              */
-            updated: string;
+            updated?: string;
 
             /**
              * Storage class of the object.
              */
-            storageClass: string;
+            storageClass?: string;
 
             /**
              * Cloud KMS Key used to encrypt this object, if the object is encrypted by
              * such a key.
              */
-            kmsKeyName: string;
+            kmsKeyName?: string;
 
             /**
              * The time at which the object's storage class was last changed.
              */
-            timeStorageClassUpdated: string;
+            timeStorageClassUpdated?: string;
 
             /**
              * Whether an object is under temporary hold.
              */
-            temporaryHold: boolean;
+            temporaryHold?: boolean;
 
             /**
              * A server-determined value that specifies the earliest time that the
              * object's retention period expires.
              */
-            retentionExpirationTime: string;
+            retentionExpirationTime?: string;
 
             /**
              * User-provided metadata, in key/value pairs.
              */
-            metadata: string;
+            metadata?: string;
 
             /**
              * Whether an object is under event-based hold.
              */
-            eventBasedHold: boolean;
+            eventBasedHold?: boolean;
 
             /**
              * The name of the object.
              */
-            name: string;
+            name?: string;
 
             /**
              * The ID of the object, including the bucket name, object name, and
              * generation number.
              */
-            id: string;
+            id?: string;
 
             /**
              * The name of the bucket containing this object.
              */
-            bucket: string;
+            bucket?: string;
 
             /**
              * The content generation of this object. Used for object versioning.
              * Attempting to set this field will result in an error.
              */
-            generation: number;
+            generation?: number;
 
             /**
              * Metadata of customer-supplied encryption key, if the object is encrypted by
              * such a key.
              */
-            customerEncryption: any;
+            customerEncryption?: any;
 
             /**
              * Media download link.
              */
-            mediaLink: string;
+            mediaLink?: string;
 
             /**
              * The link to this object.
              */
-            selfLink: string;
+            selfLink?: string;
 
             /**
              * The kind of item this is. For objects, this is always "storage#object".
              */
-            kind: string;
+            kind?: string;
           }
 
           /**
            * The CloudEvent raised when an object is finalized in Google Cloud Storage.
            */
-          interface ObjectFinalizedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.finalized";
+          export interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.finalized' | string;
           }
 
           /**
            * The CloudEvent raised when an object is archived in Google Cloud Storage.
            */
-          interface ObjectArchivedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.archived";
+          export interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.archived' | string;
           }
 
           /**
            * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
            */
-          interface ObjectDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.deleted";
+          export interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when an object's metadata is updated  in Google Cloud
            * Storage.
            */
-          interface ObjectMetadataUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.metadataUpdated";
+          export interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
           }
 
           /**
            * An object within Google Cloud Storage.
            */
-          interface StorageObjectData {
+          export interface StorageObjectData {
             /**
              * Content-Encoding of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
              */
-            contentEncoding: string;
+            contentEncoding?: string;
 
             /**
              * Content-Disposition of the object data, matching
              * [https://tools.ietf.org/html/rfc6266][RFC 6266].
              */
-            contentDisposition: string;
+            contentDisposition?: string;
 
             /**
              * Cache-Control directive for the object data, matching
              * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
              */
-            cacheControl: string;
+            cacheControl?: string;
 
             /**
              * Content-Language of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
              */
-            contentLanguage: string;
+            contentLanguage?: string;
 
             /**
              * The version of the metadata for this object at this generation. Used for
@@ -1787,13 +1643,13 @@ export namespace google {
              * number is only meaningful in the context of a particular generation of a
              * particular object.
              */
-            metageneration: number;
+            metageneration?: number;
 
             /**
              * The deletion time of the object. Will be returned if and only if this
              * version of the object has been deleted.
              */
-            timeDeleted: string;
+            timeDeleted?: string;
 
             /**
              * Content-Type of the object data, matching
@@ -1801,19 +1657,19 @@ export namespace google {
              * If an object is stored without a Content-Type, it is served as
              * `application/octet-stream`.
              */
-            contentType: string;
+            contentType?: string;
 
             /**
              * Content-Length of the object data in bytes, matching
              * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
              */
-            size: number;
+            size?: number;
 
             /**
              * The creation time of the object.
              * Attempting to set this field will result in an error.
              */
-            timeCreated: string;
+            timeCreated?: string;
 
             /**
              * CRC32c checksum. For more information about using the CRC32c
@@ -1821,14 +1677,14 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            crc32c: string;
+            crc32c?: string;
 
             /**
              * Number of underlying components that make up this object. Components are
              * accumulated by compose operations.
              * Attempting to set this field will result in an error.
              */
-            componentCount: number;
+            componentCount?: number;
 
             /**
              * MD5 hash of the data; encoded using base64 as per
@@ -1837,172 +1693,156 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            md5Hash: string;
+            md5Hash?: string;
 
             /**
              * HTTP 1.1 Entity tag for the object. See
              * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
              */
-            etag: string;
+            etag?: string;
 
             /**
              * The modification time of the object metadata.
              */
-            updated: string;
+            updated?: string;
 
             /**
              * Storage class of the object.
              */
-            storageClass: string;
+            storageClass?: string;
 
             /**
              * Cloud KMS Key used to encrypt this object, if the object is encrypted by
              * such a key.
              */
-            kmsKeyName: string;
+            kmsKeyName?: string;
 
             /**
              * The time at which the object's storage class was last changed.
              */
-            timeStorageClassUpdated: string;
+            timeStorageClassUpdated?: string;
 
             /**
              * Whether an object is under temporary hold.
              */
-            temporaryHold: boolean;
+            temporaryHold?: boolean;
 
             /**
              * A server-determined value that specifies the earliest time that the
              * object's retention period expires.
              */
-            retentionExpirationTime: string;
+            retentionExpirationTime?: string;
 
             /**
              * User-provided metadata, in key/value pairs.
              */
-            metadata: string;
+            metadata?: string;
 
             /**
              * Whether an object is under event-based hold.
              */
-            eventBasedHold: boolean;
+            eventBasedHold?: boolean;
 
             /**
              * The name of the object.
              */
-            name: string;
+            name?: string;
 
             /**
              * The ID of the object, including the bucket name, object name, and
              * generation number.
              */
-            id: string;
+            id?: string;
 
             /**
              * The name of the bucket containing this object.
              */
-            bucket: string;
+            bucket?: string;
 
             /**
              * The content generation of this object. Used for object versioning.
              * Attempting to set this field will result in an error.
              */
-            generation: number;
+            generation?: number;
 
             /**
              * Metadata of customer-supplied encryption key, if the object is encrypted by
              * such a key.
              */
-            customerEncryption: any;
+            customerEncryption?: any;
 
             /**
              * Media download link.
              */
-            mediaLink: string;
+            mediaLink?: string;
 
             /**
              * The link to this object.
              */
-            selfLink: string;
+            selfLink?: string;
 
             /**
              * The kind of item this is. For objects, this is always "storage#object".
              */
-            kind: string;
+            kind?: string;
           }
 
           /**
            * The CloudEvent raised when an object is finalized in Google Cloud Storage.
            */
-          interface ObjectFinalizedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.finalized";
+          export interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.finalized' | string;
           }
 
           /**
            * The CloudEvent raised when an object is archived in Google Cloud Storage.
            */
-          interface ObjectArchivedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.archived";
+          export interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.archived' | string;
           }
 
           /**
            * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
            */
-          interface ObjectDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.deleted";
+          export interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when an object's metadata is updated  in Google Cloud
            * Storage.
            */
-          interface ObjectMetadataUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: StorageObjectData;
-            type: "google.cloud.storage.object.v1.metadataUpdated";
+          export interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+            type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
           }
 
           /**
            * An object within Google Cloud Storage.
            */
-          interface StorageObjectData {
+          export interface StorageObjectData {
             /**
              * Content-Encoding of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
              */
-            contentEncoding: string;
+            contentEncoding?: string;
 
             /**
              * Content-Disposition of the object data, matching
              * [https://tools.ietf.org/html/rfc6266][RFC 6266].
              */
-            contentDisposition: string;
+            contentDisposition?: string;
 
             /**
              * Cache-Control directive for the object data, matching
              * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
              */
-            cacheControl: string;
+            cacheControl?: string;
 
             /**
              * Content-Language of the object data, matching
              * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
              */
-            contentLanguage: string;
+            contentLanguage?: string;
 
             /**
              * The version of the metadata for this object at this generation. Used for
@@ -2010,13 +1850,13 @@ export namespace google {
              * number is only meaningful in the context of a particular generation of a
              * particular object.
              */
-            metageneration: number;
+            metageneration?: number;
 
             /**
              * The deletion time of the object. Will be returned if and only if this
              * version of the object has been deleted.
              */
-            timeDeleted: string;
+            timeDeleted?: string;
 
             /**
              * Content-Type of the object data, matching
@@ -2024,19 +1864,19 @@ export namespace google {
              * If an object is stored without a Content-Type, it is served as
              * `application/octet-stream`.
              */
-            contentType: string;
+            contentType?: string;
 
             /**
              * Content-Length of the object data in bytes, matching
              * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
              */
-            size: number;
+            size?: number;
 
             /**
              * The creation time of the object.
              * Attempting to set this field will result in an error.
              */
-            timeCreated: string;
+            timeCreated?: string;
 
             /**
              * CRC32c checksum. For more information about using the CRC32c
@@ -2044,14 +1884,14 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            crc32c: string;
+            crc32c?: string;
 
             /**
              * Number of underlying components that make up this object. Components are
              * accumulated by compose operations.
              * Attempting to set this field will result in an error.
              */
-            componentCount: number;
+            componentCount?: number;
 
             /**
              * MD5 hash of the data; encoded using base64 as per
@@ -2060,280 +1900,256 @@ export namespace google {
              * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
              * ETags: Best Practices].
              */
-            md5Hash: string;
+            md5Hash?: string;
 
             /**
              * HTTP 1.1 Entity tag for the object. See
              * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
              */
-            etag: string;
+            etag?: string;
 
             /**
              * The modification time of the object metadata.
              */
-            updated: string;
+            updated?: string;
 
             /**
              * Storage class of the object.
              */
-            storageClass: string;
+            storageClass?: string;
 
             /**
              * Cloud KMS Key used to encrypt this object, if the object is encrypted by
              * such a key.
              */
-            kmsKeyName: string;
+            kmsKeyName?: string;
 
             /**
              * The time at which the object's storage class was last changed.
              */
-            timeStorageClassUpdated: string;
+            timeStorageClassUpdated?: string;
 
             /**
              * Whether an object is under temporary hold.
              */
-            temporaryHold: boolean;
+            temporaryHold?: boolean;
 
             /**
              * A server-determined value that specifies the earliest time that the
              * object's retention period expires.
              */
-            retentionExpirationTime: string;
+            retentionExpirationTime?: string;
 
             /**
              * User-provided metadata, in key/value pairs.
              */
-            metadata: string;
+            metadata?: string;
 
             /**
              * Whether an object is under event-based hold.
              */
-            eventBasedHold: boolean;
+            eventBasedHold?: boolean;
 
             /**
              * The name of the object.
              */
-            name: string;
+            name?: string;
 
             /**
              * The ID of the object, including the bucket name, object name, and
              * generation number.
              */
-            id: string;
+            id?: string;
 
             /**
              * The name of the bucket containing this object.
              */
-            bucket: string;
+            bucket?: string;
 
             /**
              * The content generation of this object. Used for object versioning.
              * Attempting to set this field will result in an error.
              */
-            generation: number;
+            generation?: number;
 
             /**
              * Metadata of customer-supplied encryption key, if the object is encrypted by
              * such a key.
              */
-            customerEncryption: any;
+            customerEncryption?: any;
 
             /**
              * Media download link.
              */
-            mediaLink: string;
+            mediaLink?: string;
 
             /**
              * The link to this object.
              */
-            selfLink: string;
+            selfLink?: string;
 
             /**
              * The kind of item this is. For objects, this is always "storage#object".
              */
-            kind: string;
+            kind?: string;
           }
         }
       }
-      namespace scheduler {
-        namespace v1 {
+      export namespace scheduler {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a Scheduler job is executed.
            */
-          interface JobExecutedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: SchedulerJobData;
-            type: "google.cloud.scheduler.job.v1.executed";
+          export interface JobExecutedEvent extends CloudEvent<google.events.cloud.scheduler.v1.SchedulerJobData> {
+            type: 'google.cloud.scheduler.job.v1.executed' | string;
           }
 
           /**
            * Scheduler job data.
            */
-          interface SchedulerJobData {
+          export interface SchedulerJobData {
             /**
              * The custom data the user specified when creating the scheduler source.
              */
-            customData: string;
+            customData?: string;
           }
         }
       }
-      namespace pubsub {
-        namespace v1 {
+      export namespace pubsub {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a PubSub message is published for a topic.
            */
-          interface MessagePublishedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: MessagePublishedData;
-            type: "google.cloud.pubsub.topic.v1.messagePublished";
+          export interface MessagePublishedEvent extends CloudEvent<google.events.cloud.pubsub.v1.MessagePublishedData> {
+            type: 'google.cloud.pubsub.topic.v1.messagePublished' | string;
           }
 
           /**
            * The event data when a message is published to a topic.
            */
-          interface MessagePublishedData {
+          export interface MessagePublishedData {
             /**
              * The message that was published.
              */
-            message: PubsubMessage;
+            message?: PubsubMessage;
 
             /**
              * The resource name of the subscription for which this event was
              * generated. The format of the value is
              * `projects/{project-id}/subscriptions/{subscription-id}`.
              */
-            subscription: string;
+            subscription?: string;
           }
 
           /**
            * A message published to a topic.
            */
-          interface PubsubMessage {
+          export interface PubsubMessage {
             /**
              * The binary data in the message.
              */
-            data: string;
+            data?: string;
 
             /**
              * Attributes for this message.
              */
-            attributes: string;
+            attributes?: string;
 
             /**
              * ID of this message, assigned by the server when the message is published.
              * Guaranteed to be unique within the topic.
              */
-            messageId: string;
+            messageId?: string;
 
             /**
              * The time at which the message was published, populated by the server when
              * it receives the `Publish` call.
              */
-            publishTime: string;
+            publishTime?: string;
 
             /**
              * If non-empty, identifies related messages for which publish order should be
              * respected.
              */
-            orderingKey: string;
+            orderingKey?: string;
           }
         }
       }
-      namespace firestore {
-        namespace v1 {
+      export namespace firestore {
+        export namespace v1 {
           /**
            * The CloudEvent raised when a Firestore document is created.
            */
-          interface DocumentCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.created";
+          export interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is updated.
            */
-          interface DocumentUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.updated";
+          export interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is deleted.
            */
-          interface DocumentDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.deleted";
+          export interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created, updated or
            * deleted.
            */
-          interface DocumentWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.written";
+          export interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.written' | string;
           }
 
           /**
            * The data within all Firestore document events.
            */
-          interface DocumentEventData {
+          export interface DocumentEventData {
             /**
              * A Document object containing a post-operation document snapshot.
              * This is not populated for delete events.
              */
-            value: Document;
+            value?: Document;
 
             /**
              * A Document object containing a pre-operation document snapshot.
              * This is only populated for update and delete events.
              */
-            oldValue: Document;
+            oldValue?: Document;
 
             /**
              * A DocumentMask object that lists changed fields.
              * This is only populated for update events.
              */
-            updateMask: DocumentMask;
+            updateMask?: DocumentMask;
           }
 
           /**
            * A set of field paths on a document.
            */
-          interface DocumentMask {
+          export interface DocumentMask {
             /**
              * The list of field paths in the mask.
              * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
              * for a field path syntax reference.
              */
-            fieldPaths: string[];
+            fieldPaths?: string[];
           }
 
           /**
            * A Firestore document.
            */
-          interface Document {
+          export interface Document {
             /**
              * The resource name of the document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
              */
-            name: string;
+            name?: string;
 
             /**
              * The document's fields.
@@ -2361,7 +2177,7 @@ export namespace google {
              * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
              * `` `bak\`tik` `` represents `` bak`tik ``.
              */
-            fields: Value;
+            fields?: Value;
 
             /**
              * The time at which the document was created.
@@ -2370,7 +2186,7 @@ export namespace google {
              * recreated. It can also be compared to values from other documents and
              * the `read_time` of a query.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The time at which the document was last changed.
@@ -2379,32 +2195,32 @@ export namespace google {
              * monotonically with each change to the document. It can also be
              * compared to values from other documents and the `read_time` of a query.
              */
-            updateTime: string;
+            updateTime?: string;
           }
 
           /**
            * A message that can hold any of the supported value types.
            */
-          interface Value {
+          export interface Value {
             /**
              * A null value.
              */
-            nullValue: null;
+            nullValue?: null;
 
             /**
              * A boolean value.
              */
-            booleanValue: boolean;
+            booleanValue?: boolean;
 
             /**
              * An integer value.
              */
-            integerValue: number;
+            integerValue?: number;
 
             /**
              * A double value.
              */
-            doubleValue: number;
+            doubleValue?: number;
 
             /**
              * A timestamp value.
@@ -2412,7 +2228,7 @@ export namespace google {
              * Precise only to microseconds. When stored, any additional precision is
              * rounded down.
              */
-            timestampValue: string;
+            timestampValue?: string;
 
             /**
              * A string value.
@@ -2421,7 +2237,7 @@ export namespace google {
              * Only the first 1,500 bytes of the UTF-8 representation are considered by
              * queries.
              */
-            stringValue: string;
+            stringValue?: string;
 
             /**
              * A bytes value.
@@ -2429,18 +2245,18 @@ export namespace google {
              * Must not exceed 1 MiB - 89 bytes.
              * Only the first 1,500 bytes are considered by queries.
              */
-            bytesValue: string;
+            bytesValue?: string;
 
             /**
              * A reference to a document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
              */
-            referenceValue: string;
+            referenceValue?: string;
 
             /**
              * A geo point value representing a point on the surface of Earth.
              */
-            geoPointValue: any;
+            geoPointValue?: any;
 
             /**
              * An array value.
@@ -2448,28 +2264,28 @@ export namespace google {
              * Cannot directly contain another array value, though can contain an
              * map which contains another array.
              */
-            arrayValue: ArrayValue;
+            arrayValue?: ArrayValue;
 
             /**
              * A map value.
              */
-            mapValue: MapValue;
+            mapValue?: MapValue;
           }
 
           /**
            * An array value.
            */
-          interface ArrayValue {
+          export interface ArrayValue {
             /**
              * Values in the array.
              */
-            values: Value[];
+            values?: Value[];
           }
 
           /**
            * A map value.
            */
-          interface MapValue {
+          export interface MapValue {
             /**
              * The map's fields.
              * 
@@ -2478,98 +2294,82 @@ export namespace google {
              * in certain documented contexts. The map keys, represented as UTF-8, must
              * not exceed 1,500 bytes and cannot be empty.
              */
-            fields: Value;
+            fields?: Value;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created.
            */
-          interface DocumentCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.created";
+          export interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is updated.
            */
-          interface DocumentUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.updated";
+          export interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is deleted.
            */
-          interface DocumentDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.deleted";
+          export interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created, updated or
            * deleted.
            */
-          interface DocumentWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.written";
+          export interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.written' | string;
           }
 
           /**
            * The data within all Firestore document events.
            */
-          interface DocumentEventData {
+          export interface DocumentEventData {
             /**
              * A Document object containing a post-operation document snapshot.
              * This is not populated for delete events.
              */
-            value: Document;
+            value?: Document;
 
             /**
              * A Document object containing a pre-operation document snapshot.
              * This is only populated for update and delete events.
              */
-            oldValue: Document;
+            oldValue?: Document;
 
             /**
              * A DocumentMask object that lists changed fields.
              * This is only populated for update events.
              */
-            updateMask: DocumentMask;
+            updateMask?: DocumentMask;
           }
 
           /**
            * A set of field paths on a document.
            */
-          interface DocumentMask {
+          export interface DocumentMask {
             /**
              * The list of field paths in the mask.
              * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
              * for a field path syntax reference.
              */
-            fieldPaths: string[];
+            fieldPaths?: string[];
           }
 
           /**
            * A Firestore document.
            */
-          interface Document {
+          export interface Document {
             /**
              * The resource name of the document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
              */
-            name: string;
+            name?: string;
 
             /**
              * The document's fields.
@@ -2597,7 +2397,7 @@ export namespace google {
              * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
              * `` `bak\`tik` `` represents `` bak`tik ``.
              */
-            fields: Value;
+            fields?: Value;
 
             /**
              * The time at which the document was created.
@@ -2606,7 +2406,7 @@ export namespace google {
              * recreated. It can also be compared to values from other documents and
              * the `read_time` of a query.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The time at which the document was last changed.
@@ -2615,32 +2415,32 @@ export namespace google {
              * monotonically with each change to the document. It can also be
              * compared to values from other documents and the `read_time` of a query.
              */
-            updateTime: string;
+            updateTime?: string;
           }
 
           /**
            * A message that can hold any of the supported value types.
            */
-          interface Value {
+          export interface Value {
             /**
              * A null value.
              */
-            nullValue: null;
+            nullValue?: null;
 
             /**
              * A boolean value.
              */
-            booleanValue: boolean;
+            booleanValue?: boolean;
 
             /**
              * An integer value.
              */
-            integerValue: number;
+            integerValue?: number;
 
             /**
              * A double value.
              */
-            doubleValue: number;
+            doubleValue?: number;
 
             /**
              * A timestamp value.
@@ -2648,7 +2448,7 @@ export namespace google {
              * Precise only to microseconds. When stored, any additional precision is
              * rounded down.
              */
-            timestampValue: string;
+            timestampValue?: string;
 
             /**
              * A string value.
@@ -2657,7 +2457,7 @@ export namespace google {
              * Only the first 1,500 bytes of the UTF-8 representation are considered by
              * queries.
              */
-            stringValue: string;
+            stringValue?: string;
 
             /**
              * A bytes value.
@@ -2665,18 +2465,18 @@ export namespace google {
              * Must not exceed 1 MiB - 89 bytes.
              * Only the first 1,500 bytes are considered by queries.
              */
-            bytesValue: string;
+            bytesValue?: string;
 
             /**
              * A reference to a document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
              */
-            referenceValue: string;
+            referenceValue?: string;
 
             /**
              * A geo point value representing a point on the surface of Earth.
              */
-            geoPointValue: any;
+            geoPointValue?: any;
 
             /**
              * An array value.
@@ -2684,28 +2484,28 @@ export namespace google {
              * Cannot directly contain another array value, though can contain an
              * map which contains another array.
              */
-            arrayValue: ArrayValue;
+            arrayValue?: ArrayValue;
 
             /**
              * A map value.
              */
-            mapValue: MapValue;
+            mapValue?: MapValue;
           }
 
           /**
            * An array value.
            */
-          interface ArrayValue {
+          export interface ArrayValue {
             /**
              * Values in the array.
              */
-            values: Value[];
+            values?: Value[];
           }
 
           /**
            * A map value.
            */
-          interface MapValue {
+          export interface MapValue {
             /**
              * The map's fields.
              * 
@@ -2714,98 +2514,82 @@ export namespace google {
              * in certain documented contexts. The map keys, represented as UTF-8, must
              * not exceed 1,500 bytes and cannot be empty.
              */
-            fields: Value;
+            fields?: Value;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created.
            */
-          interface DocumentCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.created";
+          export interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is updated.
            */
-          interface DocumentUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.updated";
+          export interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is deleted.
            */
-          interface DocumentDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.deleted";
+          export interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created, updated or
            * deleted.
            */
-          interface DocumentWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.written";
+          export interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.written' | string;
           }
 
           /**
            * The data within all Firestore document events.
            */
-          interface DocumentEventData {
+          export interface DocumentEventData {
             /**
              * A Document object containing a post-operation document snapshot.
              * This is not populated for delete events.
              */
-            value: Document;
+            value?: Document;
 
             /**
              * A Document object containing a pre-operation document snapshot.
              * This is only populated for update and delete events.
              */
-            oldValue: Document;
+            oldValue?: Document;
 
             /**
              * A DocumentMask object that lists changed fields.
              * This is only populated for update events.
              */
-            updateMask: DocumentMask;
+            updateMask?: DocumentMask;
           }
 
           /**
            * A set of field paths on a document.
            */
-          interface DocumentMask {
+          export interface DocumentMask {
             /**
              * The list of field paths in the mask.
              * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
              * for a field path syntax reference.
              */
-            fieldPaths: string[];
+            fieldPaths?: string[];
           }
 
           /**
            * A Firestore document.
            */
-          interface Document {
+          export interface Document {
             /**
              * The resource name of the document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
              */
-            name: string;
+            name?: string;
 
             /**
              * The document's fields.
@@ -2833,7 +2617,7 @@ export namespace google {
              * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
              * `` `bak\`tik` `` represents `` bak`tik ``.
              */
-            fields: Value;
+            fields?: Value;
 
             /**
              * The time at which the document was created.
@@ -2842,7 +2626,7 @@ export namespace google {
              * recreated. It can also be compared to values from other documents and
              * the `read_time` of a query.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The time at which the document was last changed.
@@ -2851,32 +2635,32 @@ export namespace google {
              * monotonically with each change to the document. It can also be
              * compared to values from other documents and the `read_time` of a query.
              */
-            updateTime: string;
+            updateTime?: string;
           }
 
           /**
            * A message that can hold any of the supported value types.
            */
-          interface Value {
+          export interface Value {
             /**
              * A null value.
              */
-            nullValue: null;
+            nullValue?: null;
 
             /**
              * A boolean value.
              */
-            booleanValue: boolean;
+            booleanValue?: boolean;
 
             /**
              * An integer value.
              */
-            integerValue: number;
+            integerValue?: number;
 
             /**
              * A double value.
              */
-            doubleValue: number;
+            doubleValue?: number;
 
             /**
              * A timestamp value.
@@ -2884,7 +2668,7 @@ export namespace google {
              * Precise only to microseconds. When stored, any additional precision is
              * rounded down.
              */
-            timestampValue: string;
+            timestampValue?: string;
 
             /**
              * A string value.
@@ -2893,7 +2677,7 @@ export namespace google {
              * Only the first 1,500 bytes of the UTF-8 representation are considered by
              * queries.
              */
-            stringValue: string;
+            stringValue?: string;
 
             /**
              * A bytes value.
@@ -2901,18 +2685,18 @@ export namespace google {
              * Must not exceed 1 MiB - 89 bytes.
              * Only the first 1,500 bytes are considered by queries.
              */
-            bytesValue: string;
+            bytesValue?: string;
 
             /**
              * A reference to a document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
              */
-            referenceValue: string;
+            referenceValue?: string;
 
             /**
              * A geo point value representing a point on the surface of Earth.
              */
-            geoPointValue: any;
+            geoPointValue?: any;
 
             /**
              * An array value.
@@ -2920,28 +2704,28 @@ export namespace google {
              * Cannot directly contain another array value, though can contain an
              * map which contains another array.
              */
-            arrayValue: ArrayValue;
+            arrayValue?: ArrayValue;
 
             /**
              * A map value.
              */
-            mapValue: MapValue;
+            mapValue?: MapValue;
           }
 
           /**
            * An array value.
            */
-          interface ArrayValue {
+          export interface ArrayValue {
             /**
              * Values in the array.
              */
-            values: Value[];
+            values?: Value[];
           }
 
           /**
            * A map value.
            */
-          interface MapValue {
+          export interface MapValue {
             /**
              * The map's fields.
              * 
@@ -2950,98 +2734,82 @@ export namespace google {
              * in certain documented contexts. The map keys, represented as UTF-8, must
              * not exceed 1,500 bytes and cannot be empty.
              */
-            fields: Value;
+            fields?: Value;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created.
            */
-          interface DocumentCreatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.created";
+          export interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is updated.
            */
-          interface DocumentUpdatedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.updated";
+          export interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is deleted.
            */
-          interface DocumentDeletedEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.deleted";
+          export interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.deleted' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is created, updated or
            * deleted.
            */
-          interface DocumentWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: DocumentEventData;
-            type: "google.cloud.firestore.document.v1.written";
+          export interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+            type: 'google.cloud.firestore.document.v1.written' | string;
           }
 
           /**
            * The data within all Firestore document events.
            */
-          interface DocumentEventData {
+          export interface DocumentEventData {
             /**
              * A Document object containing a post-operation document snapshot.
              * This is not populated for delete events.
              */
-            value: Document;
+            value?: Document;
 
             /**
              * A Document object containing a pre-operation document snapshot.
              * This is only populated for update and delete events.
              */
-            oldValue: Document;
+            oldValue?: Document;
 
             /**
              * A DocumentMask object that lists changed fields.
              * This is only populated for update events.
              */
-            updateMask: DocumentMask;
+            updateMask?: DocumentMask;
           }
 
           /**
            * A set of field paths on a document.
            */
-          interface DocumentMask {
+          export interface DocumentMask {
             /**
              * The list of field paths in the mask.
              * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
              * for a field path syntax reference.
              */
-            fieldPaths: string[];
+            fieldPaths?: string[];
           }
 
           /**
            * A Firestore document.
            */
-          interface Document {
+          export interface Document {
             /**
              * The resource name of the document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
              */
-            name: string;
+            name?: string;
 
             /**
              * The document's fields.
@@ -3069,7 +2837,7 @@ export namespace google {
              * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
              * `` `bak\`tik` `` represents `` bak`tik ``.
              */
-            fields: Value;
+            fields?: Value;
 
             /**
              * The time at which the document was created.
@@ -3078,7 +2846,7 @@ export namespace google {
              * recreated. It can also be compared to values from other documents and
              * the `read_time` of a query.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * The time at which the document was last changed.
@@ -3087,32 +2855,32 @@ export namespace google {
              * monotonically with each change to the document. It can also be
              * compared to values from other documents and the `read_time` of a query.
              */
-            updateTime: string;
+            updateTime?: string;
           }
 
           /**
            * A message that can hold any of the supported value types.
            */
-          interface Value {
+          export interface Value {
             /**
              * A null value.
              */
-            nullValue: null;
+            nullValue?: null;
 
             /**
              * A boolean value.
              */
-            booleanValue: boolean;
+            booleanValue?: boolean;
 
             /**
              * An integer value.
              */
-            integerValue: number;
+            integerValue?: number;
 
             /**
              * A double value.
              */
-            doubleValue: number;
+            doubleValue?: number;
 
             /**
              * A timestamp value.
@@ -3120,7 +2888,7 @@ export namespace google {
              * Precise only to microseconds. When stored, any additional precision is
              * rounded down.
              */
-            timestampValue: string;
+            timestampValue?: string;
 
             /**
              * A string value.
@@ -3129,7 +2897,7 @@ export namespace google {
              * Only the first 1,500 bytes of the UTF-8 representation are considered by
              * queries.
              */
-            stringValue: string;
+            stringValue?: string;
 
             /**
              * A bytes value.
@@ -3137,18 +2905,18 @@ export namespace google {
              * Must not exceed 1 MiB - 89 bytes.
              * Only the first 1,500 bytes are considered by queries.
              */
-            bytesValue: string;
+            bytesValue?: string;
 
             /**
              * A reference to a document. For example:
              * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
              */
-            referenceValue: string;
+            referenceValue?: string;
 
             /**
              * A geo point value representing a point on the surface of Earth.
              */
-            geoPointValue: any;
+            geoPointValue?: any;
 
             /**
              * An array value.
@@ -3156,28 +2924,28 @@ export namespace google {
              * Cannot directly contain another array value, though can contain an
              * map which contains another array.
              */
-            arrayValue: ArrayValue;
+            arrayValue?: ArrayValue;
 
             /**
              * A map value.
              */
-            mapValue: MapValue;
+            mapValue?: MapValue;
           }
 
           /**
            * An array value.
            */
-          interface ArrayValue {
+          export interface ArrayValue {
             /**
              * Values in the array.
              */
-            values: Value[];
+            values?: Value[];
           }
 
           /**
            * A map value.
            */
-          interface MapValue {
+          export interface MapValue {
             /**
              * The map's fields.
              * 
@@ -3186,71 +2954,67 @@ export namespace google {
              * in certain documented contexts. The map keys, represented as UTF-8, must
              * not exceed 1,500 bytes and cannot be empty.
              */
-            fields: Value;
+            fields?: Value;
           }
         }
       }
-      namespace cloudbuild {
-        namespace v1 {
+      export namespace cloudbuild {
+        export namespace v1 {
           /**
            * The CloudEvent raised when your build's state changes.
            */
-          interface CloudBuildEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: BuildEventData;
-            type: "google.cloud.cloudbuild.build.v1.statusChanged";
+          export interface CloudBuildEvent extends CloudEvent<google.events.cloud.cloudbuild.v1.BuildEventData> {
+            type: 'google.cloud.cloudbuild.build.v1.statusChanged' | string;
           }
 
           /**
            * Build event data for Google Cloud Platform API operations.
            */
-          interface BuildEventData {
+          export interface BuildEventData {
             /**
              * Unique identifier of the build.
              */
-            id: string;
+            id?: string;
 
             /**
              * ID of the project.
              */
-            projectId: string;
+            projectId?: string;
 
             /**
              * Status of the build.
              */
-            status: any;
+            status?: any;
 
             /**
              * Customer-readable message about the current status.
              */
-            statusDetail: string;
+            statusDetail?: string;
 
             /**
              * The location of the source files to build.
              */
-            source: Source;
+            source?: Source;
 
             /**
              * The operations to be performed on the workspace.
              */
-            steps: BuildStep[];
+            steps?: BuildStep[];
 
             /**
              * Results of the build.
              */
-            results: Results;
+            results?: Results;
 
             /**
              * Time at which the request to create the build was received.
              */
-            createTime: string;
+            createTime?: string;
 
             /**
              * Time at which execution of the build was started.
              */
-            startTime: string;
+            startTime?: string;
 
             /**
              * Time at which execution of the build was finished.
@@ -3258,14 +3022,14 @@ export namespace google {
              * The difference between finish_time and start_time is the duration of the
              * build's execution.
              */
-            finishTime: string;
+            finishTime?: string;
 
             /**
              * Amount of time that this build should be allowed to run, to second
              * granularity. If this amount of time elapses, work on the build will cease
              * and the build status will be `TIMEOUT`.
              */
-            timeout: number;
+            timeout?: number;
 
             /**
              * A list of images to be pushed upon the successful completion of all build
@@ -3279,7 +3043,7 @@ export namespace google {
              * If any of the images fail to be pushed, the build status is marked
              * `FAILURE`.
              */
-            images: string[];
+            images?: string[];
 
             /**
              * TTL in queue for this build. If provided and the build is enqueued longer
@@ -3288,13 +3052,13 @@ export namespace google {
              * 
              * The TTL starts ticking from create_time.
              */
-            queueTtl: number;
+            queueTtl?: number;
 
             /**
              * Artifacts produced by the build that should be uploaded upon
              * successful completion of all build steps.
              */
-            artifacts: Artifacts;
+            artifacts?: Artifacts;
 
             /**
              * Google Cloud Storage bucket where logs should be written (see
@@ -3302,43 +3066,43 @@ export namespace google {
              * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
              * Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
              */
-            logsBucket: string;
+            logsBucket?: string;
 
             /**
              * A permanent fixed identifier for source.
              */
-            sourceProvenance: SourceProvenance;
+            sourceProvenance?: SourceProvenance;
 
             /**
              * The ID of the `BuildTrigger` that triggered this build, if it
              * was triggered automatically.
              */
-            buildTriggerId: string;
+            buildTriggerId?: string;
 
             /**
              * Special options for this build.
              */
-            options: BuildOptions;
+            options?: BuildOptions;
 
             /**
              * URL to logs for this build in Google Cloud Console.
              */
-            logUrl: string;
+            logUrl?: string;
 
             /**
              * Substitutions data for `Build` resource.
              */
-            substitutions: string;
+            substitutions?: string;
 
             /**
              * Tags for annotation of a `Build`. These are not docker tags.
              */
-            tags: string[];
+            tags?: string[];
 
             /**
              * Secrets to decrypt using Cloud Key Management Service.
              */
-            secrets: Secret[];
+            secrets?: Secret[];
 
             /**
              * Stores timing information for phases of the build. Valid keys
@@ -3351,57 +3115,57 @@ export namespace google {
              * If the build does not specify source or images,
              * these keys will not be included.
              */
-            timing: TimeSpan;
+            timing?: TimeSpan;
           }
-          interface Source {
+          export interface Source {
             /**
              * If provided, get the source from this location in Google Cloud Storage.
              */
-            storageSource: StorageSource;
+            storageSource?: StorageSource;
 
             /**
              * If provided, get the source from this location in a Cloud Source
              * Repository.
              */
-            repoSource: RepoSource;
+            repoSource?: RepoSource;
           }
 
           /**
            * Location of the source in an archive file in Google Cloud Storage.
            */
-          interface StorageSource {
+          export interface StorageSource {
             /**
              * Google Cloud Storage bucket containing the source (see
              * [Bucket Name
              * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
              */
-            bucket: string;
+            bucket?: string;
 
             /**
              * Google Cloud Storage object containing the source.
              */
-            object: string;
+            object?: string;
 
             /**
              * Google Cloud Storage generation for the object. If the generation is
              * omitted, the latest generation will be used.
              */
-            generation: number;
+            generation?: number;
           }
 
           /**
            * Location of the source in a Google Cloud Source Repository.
            */
-          interface RepoSource {
+          export interface RepoSource {
             /**
              * ID of the project that owns the Cloud Source Repository.
              */
-            projectId: string;
+            projectId?: string;
 
             /**
              * Name of the Cloud Source Repository.
              */
-            repoName: string;
+            repoName?: string;
 
             /**
              * Regex matching branches to build.
@@ -3409,7 +3173,7 @@ export namespace google {
              * The syntax of the regular expressions accepted is the syntax accepted by
              * RE2 and described at https://github.com/google/re2/wiki/Syntax
              */
-            branchName: string;
+            branchName?: string;
 
             /**
              * Regex matching tags to build.
@@ -3417,12 +3181,12 @@ export namespace google {
              * The syntax of the regular expressions accepted is the syntax accepted by
              * RE2 and described at https://github.com/google/re2/wiki/Syntax
              */
-            tagName: string;
+            tagName?: string;
 
             /**
              * Explicit commit SHA to build.
              */
-            commitSha: string;
+            commitSha?: string;
 
             /**
              * Directory, relative to the source root, in which to run the build.
@@ -3430,25 +3194,25 @@ export namespace google {
              * This must be a relative path. If a step's `dir` is specified and is an
              * absolute path, this value is ignored for that step's execution.
              */
-            dir: string;
+            dir?: string;
 
             /**
              * Only trigger a build if the revision regex does NOT match the revision
              * regex.
              */
-            invertRegex: boolean;
+            invertRegex?: boolean;
 
             /**
              * Substitutions to use in a triggered build.
              * Should only be used with RunBuildTrigger
              */
-            substitutions: string;
+            substitutions?: string;
           }
 
           /**
            * A step in the build pipeline.
            */
-          interface BuildStep {
+          export interface BuildStep {
             /**
              * The name of the container image that will run this particular
              * build step.
@@ -3468,7 +3232,7 @@ export namespace google {
              * host's Docker daemon's cache and is available to use as the name for a
              * later build step.
              */
-            name: string;
+            name?: string;
 
             /**
              * A list of environment variable definitions to be used when running a step.
@@ -3476,7 +3240,7 @@ export namespace google {
              * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
              * being given the value "VALUE".
              */
-            env: string[];
+            env?: string[];
 
             /**
              * A list of arguments that will be presented to the step when it is started.
@@ -3486,7 +3250,7 @@ export namespace google {
              * an entrypoint, the first element in args is used as the entrypoint,
              * and the remainder will be used as arguments.
              */
-            args: string[];
+            args?: string[];
 
             /**
              * Working directory to use when running this step's container.
@@ -3500,13 +3264,13 @@ export namespace google {
              * which specifies an absolute path, the `RepoSource` `dir` is ignored for
              * the step's execution.
              */
-            dir: string;
+            dir?: string;
 
             /**
              * Unique identifier for this build step, used in `wait_for` to
              * reference this build step as a dependency.
              */
-            id: string;
+            id?: string;
 
             /**
              * The ID(s) of the step(s) that this build step depends on.
@@ -3515,20 +3279,20 @@ export namespace google {
              * start when all previous build steps in the `Build.Steps` list have
              * completed successfully.
              */
-            waitFor: string[];
+            waitFor?: string[];
 
             /**
              * Entrypoint to be used instead of the build step image's default entrypoint.
              * If unset, the image's default entrypoint is used.
              */
-            entrypoint: string;
+            entrypoint?: string;
 
             /**
              * A list of environment variables which are encrypted using a Cloud Key
              * Management Service crypto key. These values must be specified in the
              * build's `Secret`.
              */
-            secretEnv: string[];
+            secretEnv?: string[];
 
             /**
              * List of volumes to mount into the build step.
@@ -3540,46 +3304,46 @@ export namespace google {
              * Using a named volume in only one step is not valid as it is indicative
              * of a build request with an incorrect configuration.
              */
-            volumes: Volume[];
+            volumes?: Volume[];
 
             /**
              * Stores timing information for executing this build step.
              */
-            timing: TimeSpan;
+            timing?: TimeSpan;
 
             /**
              * Stores timing information for pulling this build step's
              * builder image only.
              */
-            pullTiming: TimeSpan;
+            pullTiming?: TimeSpan;
 
             /**
              * Time limit for executing this build step. If not defined, the step has no
              * time limit and will be allowed to continue to run until either it completes
              * or the build itself times out.
              */
-            timeout: number;
+            timeout?: number;
 
             /**
              * Status of the build step. At this time, build step status is
              * only updated on build completion; step status is not updated in real-time
              * as the build progresses.
              */
-            status: any;
+            status?: any;
           }
 
           /**
            * Volume describes a Docker container volume which is mounted into build steps
            * in order to persist files across build step execution.
            */
-          interface Volume {
+          export interface Volume {
             /**
              * Name of the volume to mount.
              * 
              * Volume names must be unique per build step and must be valid names for
              * Docker volumes. Each named volume must be used by at least two build steps.
              */
-            name: string;
+            name?: string;
 
             /**
              * Path at which to mount the volume.
@@ -3587,33 +3351,33 @@ export namespace google {
              * Paths must be absolute and cannot conflict with other volume paths on the
              * same build step or with certain reserved volume paths.
              */
-            path: string;
+            path?: string;
           }
 
           /**
            * Artifacts created by the build pipeline.
            */
-          interface Results {
+          export interface Results {
             /**
              * Container images that were built as a part of the build.
              */
-            images: BuiltImage[];
+            images?: BuiltImage[];
 
             /**
              * List of build step digests, in the order corresponding to build step
              * indices.
              */
-            buildStepImages: string[];
+            buildStepImages?: string[];
 
             /**
              * Path to the artifact manifest. Only populated when artifacts are uploaded.
              */
-            artifactManifest: string;
+            artifactManifest?: string;
 
             /**
              * Number of artifacts uploaded. Only populated when artifacts are uploaded.
              */
-            numArtifacts: number;
+            numArtifacts?: number;
 
             /**
              * List of build step outputs, produced by builder images, in the order
@@ -3623,40 +3387,40 @@ export namespace google {
              * can produce this output by writing to `$BUILDER_OUTPUT/output`.
              * Only the first 4KB of data is stored.
              */
-            buildStepOutputs: string[];
+            buildStepOutputs?: string[];
 
             /**
              * Time to push all non-container artifacts.
              */
-            artifactTiming: TimeSpan;
+            artifactTiming?: TimeSpan;
           }
 
           /**
            * An image built by the pipeline.
            */
-          interface BuiltImage {
+          export interface BuiltImage {
             /**
              * Name used to push the container image to Google Container Registry, as
              * presented to `docker push`.
              */
-            name: string;
+            name?: string;
 
             /**
              * Docker Registry 2.0 digest.
              */
-            digest: string;
+            digest?: string;
 
             /**
              * Stores timing information for pushing the specified image.
              */
-            pushTiming: TimeSpan;
+            pushTiming?: TimeSpan;
           }
 
           /**
            * Artifacts produced by a build that should be uploaded upon
            * successful completion of all build steps.
            */
-          interface Artifacts {
+          export interface Artifacts {
             /**
              * A list of images to be pushed upon the successful completion of all build
              * steps.
@@ -3668,7 +3432,7 @@ export namespace google {
              * 
              * If any of the images fail to be pushed, the build is marked FAILURE.
              */
-            images: string[];
+            images?: string[];
 
             /**
              * A list of objects to be uploaded to Cloud Storage upon successful
@@ -3683,40 +3447,40 @@ export namespace google {
              * 
              * If any objects fail to be pushed, the build is marked FAILURE.
              */
-            objects: any;
+            objects?: any;
           }
 
           /**
            * Start and end times for a build execution phase.
            */
-          interface TimeSpan {
+          export interface TimeSpan {
             /**
              * Start of time span.
              */
-            startTime: string;
+            startTime?: string;
 
             /**
              * End of time span.
              */
-            endTime: string;
+            endTime?: string;
           }
 
           /**
            * Provenance of the source. Ways to find the original source, or verify that
            * some source was used for this build.
            */
-          interface SourceProvenance {
+          export interface SourceProvenance {
             /**
              * A copy of the build's `source.storage_source`, if exists, with any
              * generations resolved.
              */
-            resolvedStorageSource: StorageSource;
+            resolvedStorageSource?: StorageSource;
 
             /**
              * A copy of the build's `source.repo_source`, if exists, with any
              * revisions resolved.
              */
-            resolvedRepoSource: RepoSource;
+            resolvedRepoSource?: RepoSource;
 
             /**
              * Hash(es) of the build source, which can be used to verify that
@@ -3730,44 +3494,44 @@ export namespace google {
              * If the build source came in a single package such as a gzipped tarfile
              * (`.tar.gz`), the `FileHash` will be for the single path to that file.
              */
-            fileHashes: FileHashes;
+            fileHashes?: FileHashes;
           }
 
           /**
            * Container message for hashes of byte content of files, used in
            * SourceProvenance messages to verify integrity of source input to the build.
            */
-          interface FileHashes {
+          export interface FileHashes {
             /**
              * Collection of file hashes.
              */
-            fileHash: Hash[];
+            fileHash?: Hash[];
           }
 
           /**
            * Container message for hash values.
            */
-          interface Hash {
+          export interface Hash {
             /**
              * The type of hash that was performed.
              */
-            type: any;
+            type?: any;
 
             /**
              * The hash value.
              */
-            value: string;
+            value?: string;
           }
 
           /**
            * Pairs a set of secret environment variables containing encrypted
            * values with the Cloud KMS key to use to decrypt the value.
            */
-          interface Secret {
+          export interface Secret {
             /**
              * Cloud KMS key name to use to decrypt these envs.
              */
-            kmsKeyName: string;
+            kmsKeyName?: string;
 
             /**
              * Map of environment variable name to its encrypted value.
@@ -3777,27 +3541,27 @@ export namespace google {
              * 64 KB in size. There can be at most 100 secret values across all of a
              * build's secrets.
              */
-            secretEnv: string;
+            secretEnv?: string;
           }
 
           /**
            * Optional arguments to enable specific features of builds.
            */
-          interface BuildOptions {
+          export interface BuildOptions {
             /**
              * Requested hash for SourceProvenance.
              */
-            sourceProvenanceHash: string[];
+            sourceProvenanceHash?: string[];
 
             /**
              * Requested verifiability options.
              */
-            requestedVerifyOption: any;
+            requestedVerifyOption?: any;
 
             /**
              * Compute Engine machine type on which to run the build.
              */
-            machineType: any;
+            machineType?: any;
 
             /**
              * Requested disk size for the VM that runs the build. Note that this is *NOT*
@@ -3807,31 +3571,31 @@ export namespace google {
              * requested. At present, the maximum disk size is 1000GB; builds that request
              * more than the maximum are rejected with an error.
              */
-            diskSizeGb: number;
+            diskSizeGb?: number;
 
             /**
              * Option to specify behavior when there is an error in the substitution
              * checks.
              */
-            substitutionOption: any;
+            substitutionOption?: any;
 
             /**
              * Option to define build log streaming behavior to Google Cloud
              * Storage.
              */
-            logStreamingOption: any;
+            logStreamingOption?: any;
 
             /**
              * Option to specify a `WorkerPool` for the build.
              * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
              */
-            workerPool: string;
+            workerPool?: string;
 
             /**
              * Option to specify the logging mode, which determines where the logs are
              * stored.
              */
-            logging: any;
+            logging?: any;
 
             /**
              * A list of global environment variable definitions that will exist for all
@@ -3841,7 +3605,7 @@ export namespace google {
              * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
              * being given the value "VALUE".
              */
-            env: string[];
+            env?: string[];
 
             /**
              * A list of global environment variables, which are encrypted using a Cloud
@@ -3849,7 +3613,7 @@ export namespace google {
              * build's `Secret`. These variables will be available to all build steps
              * in this build.
              */
-            secretEnv: string[];
+            secretEnv?: string[];
 
             /**
              * Global list of volumes to mount for ALL build steps
@@ -3862,31 +3626,27 @@ export namespace google {
              * Using a global volume in a build with only one step is not valid as
              * it is indicative of a build request with an incorrect configuration.
              */
-            volumes: Volume[];
+            volumes?: Volume[];
           }
         }
       }
-      namespace audit {
-        namespace v1 {
+      export namespace audit {
+        export namespace v1 {
           /**
            * The CloudEvent raised when an audit log entry is written.
            */
-          interface AuditLogWrittenEvent {
-            /**
-             * The data associated with the event.
-             */
-            data: LogEntryData;
-            type: "google.cloud.audit.log.v1.written";
+          export interface AuditLogWrittenEvent extends CloudEvent<google.events.cloud.audit.v1.LogEntryData> {
+            type: 'google.cloud.audit.log.v1.written' | string;
           }
 
           /**
            * The data within all Cloud Audit Logs log entry events.
            */
-          interface LogEntryData {
+          export interface LogEntryData {
             /**
              * The resource name of the log to which this log entry belongs.
              */
-            logName: string;
+            logName?: string;
 
             /**
              * The monitored resource that produced this log entry.
@@ -3895,45 +3655,45 @@ export namespace google {
              * the monitored resource designating the particular database that reported
              * the error.
              */
-            resource: any;
+            resource?: any;
 
             /**
              * The log entry payload, which is always an AuditLog for Cloud Audit Log
              * events.
              */
-            protoPayload: AuditLog;
+            protoPayload?: AuditLog;
 
             /**
              * A unique identifier for the log entry.
              */
-            insertId: string;
+            insertId?: string;
 
             /**
              * A set of user-defined (key, value) data that provides additional
              * information about the log entry.
              */
-            labels: string;
+            labels?: string;
 
             /**
              * Information about an operation associated with the log entry, if
              * applicable.
              */
-            operation: LogEntryOperation;
+            operation?: LogEntryOperation;
 
             /**
              * The time the event described by the log entry occurred.
              */
-            timestamp: string;
+            timestamp?: string;
 
             /**
              * The time the log entry was received by Logging.
              */
-            receiveTimestamp: string;
+            receiveTimestamp?: string;
 
             /**
              * The severity of the log entry.
              */
-            severity: LogSeverity;
+            severity?: LogSeverity;
 
             /**
              * Resource name of the trace associated with the log entry, if any. If it
@@ -3941,7 +3701,7 @@ export namespace google {
              * `//tracing.googleapis.com`. Example:
              * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
              */
-            trace: string;
+            trace?: string;
 
             /**
              * The span ID within the trace associated with the log entry, if any.
@@ -3950,42 +3710,42 @@ export namespace google {
              * 16-character hexadecimal encoding of an 8-byte array, such as
              * `000000000000004a`.
              */
-            spanId: string;
+            spanId?: string;
 
             /**
              * Information indicating this LogEntry is part of a sequence of multiple logs
              * split from a single LogEntry.
              */
-            split: LogSplit;
+            split?: LogSplit;
           }
 
           /**
            * Additional information about a potentially long-running operation with which
            * a log entry is associated.
            */
-          interface LogEntryOperation {
+          export interface LogEntryOperation {
             /**
              * An arbitrary operation identifier. Log entries with the same
              * identifier are assumed to be part of the same operation.
              */
-            id: string;
+            id?: string;
 
             /**
              * An arbitrary producer identifier. The combination of `id` and
              * `producer` must be globally unique. Examples for `producer`:
              * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
              */
-            producer: string;
+            producer?: string;
 
             /**
              * True if this is the first log entry in the operation.
              */
-            first: boolean;
+            first?: boolean;
 
             /**
              * True if this is the last log entry in the operation.
              */
-            last: boolean;
+            last?: boolean;
           }
 
           /**
@@ -3996,7 +3756,7 @@ export namespace google {
            * Copied from
            * https://github.com/googleapis/googleapis/blob/master/google/logging/type/log_severity.proto
            */
-          enum LogSeverity {
+          export enum LogSeverity {
             DEFAULT = 0,
             DEBUG = 100,
             INFO = 200,
@@ -4014,12 +3774,12 @@ export namespace google {
            * https://github.com/googleapis/googleapis/blob/master/google/cloud/audit/audit_log.proto,
            * but changing service_data from Any to Struct.
            */
-          interface AuditLog {
+          export interface AuditLog {
             /**
              * The name of the API service performing the operation. For example,
              * `"datastore.googleapis.com"`.
              */
-            serviceName: string;
+            serviceName?: string;
 
             /**
              * The name of the service method or operation.
@@ -4029,7 +3789,7 @@ export namespace google {
              * "google.datastore.v1.Datastore.RunQuery"
              * "google.logging.v1.LoggingService.DeleteLog"
              */
-            methodName: string;
+            methodName?: string;
 
             /**
              * The resource or collection that is the target of the operation.
@@ -4039,12 +3799,12 @@ export namespace google {
              * "shelves/SHELF_ID/books"
              * "shelves/SHELF_ID/books/BOOK_ID"
              */
-            resourceName: string;
+            resourceName?: string;
 
             /**
              * The resource location information.
              */
-            resourceLocation: ResourceLocation;
+            resourceLocation?: ResourceLocation;
 
             /**
              * The resource's original state before mutation. Present only for
@@ -4055,35 +3815,35 @@ export namespace google {
              * When the JSON object represented here has a proto equivalent,
              * the proto name will be indicated in the `@type` property.
              */
-            resourceOriginalState: Record<string, any>;
+            resourceOriginalState?: Record<string, any>;
 
             /**
              * The number of items returned from a List or Query API method,
              * if applicable.
              */
-            numResponseItems: number;
+            numResponseItems?: number;
 
             /**
              * The status of the overall operation.
              */
-            status: any;
+            status?: any;
 
             /**
              * Authentication information.
              */
-            authenticationInfo: AuthenticationInfo;
+            authenticationInfo?: AuthenticationInfo;
 
             /**
              * Authorization information. If there are multiple
              * resources or permissions involved, then there is
              * one AuthorizationInfo element for each {resource, permission} tuple.
              */
-            authorizationInfo: AuthorizationInfo[];
+            authorizationInfo?: AuthorizationInfo[];
 
             /**
              * Metadata about the operation.
              */
-            requestMetadata: RequestMetadata;
+            requestMetadata?: RequestMetadata;
 
             /**
              * The operation request. This may not include all request parameters,
@@ -4093,7 +3853,7 @@ export namespace google {
              * When the JSON object represented here has a proto equivalent, the proto
              * name will be indicated in the `@type` property.
              */
-            request: Record<string, any>;
+            request?: Record<string, any>;
 
             /**
              * The operation response. This may not include all response elements,
@@ -4103,13 +3863,13 @@ export namespace google {
              * When the JSON object represented here has a proto equivalent, the proto
              * name will be indicated in the `@type` property.
              */
-            response: Record<string, any>;
+            response?: Record<string, any>;
 
             /**
              * Other service-specific data about the request, response, and other
              * information associated with the current audited event.
              */
-            metadata: Record<string, any>;
+            metadata?: Record<string, any>;
 
             /**
              * Deprecated: Use `metadata` field instead.
@@ -4118,13 +3878,13 @@ export namespace google {
              * When the JSON object represented here has a proto equivalent, the proto
              * name will be indicated in the `@type` property.
              */
-            serviceData: Record<string, any>;
+            serviceData?: Record<string, any>;
           }
 
           /**
            * Authentication information for the operation.
            */
-          interface AuthenticationInfo {
+          export interface AuthenticationInfo {
             /**
              * The email address of the authenticated user (or service account on behalf
              * of third party principal) making the request. For third party identity
@@ -4133,13 +3893,13 @@ export namespace google {
              * For more information, see [Caller identities in audit
              * logs](https://cloud.google.com/logging/docs/audit#user-id).
              */
-            principalEmail: string;
+            principalEmail?: string;
 
             /**
              * The authority selector specified by the requestor, if any.
              * It is not guaranteed that the principal was allowed to use this authority.
              */
-            authoritySelector: string;
+            authoritySelector?: string;
 
             /**
              * The third party identification (if any) of the authenticated user making
@@ -4147,7 +3907,7 @@ export namespace google {
              * When the JSON object represented here has a proto equivalent, the proto
              * name will be indicated in the `@type` property.
              */
-            thirdPartyPrincipal: Record<string, any>;
+            thirdPartyPrincipal?: Record<string, any>;
 
             /**
              * The name of the service account key used to create or exchange
@@ -4156,7 +3916,7 @@ export namespace google {
              * 
              * "//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}"
              */
-            serviceAccountKeyName: string;
+            serviceAccountKeyName?: string;
 
             /**
              * Identity delegation history of an authenticated service account that makes
@@ -4165,36 +3925,36 @@ export namespace google {
              * authorities present, they are guaranteed to be sorted based on the original
              * ordering of the identity delegation events.
              */
-            serviceAccountDelegationInfo: ServiceAccountDelegationInfo[];
+            serviceAccountDelegationInfo?: ServiceAccountDelegationInfo[];
 
             /**
              * String representation of identity of requesting party.
              * Populated for both first and third party identities.
              */
-            principalSubject: string;
+            principalSubject?: string;
           }
 
           /**
            * Authorization information for the operation.
            */
-          interface AuthorizationInfo {
+          export interface AuthorizationInfo {
             /**
              * The resource being accessed, as a REST-style string. For example:
              * 
              * bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
              */
-            resource: string;
+            resource?: string;
 
             /**
              * The required IAM permission.
              */
-            permission: string;
+            permission?: string;
 
             /**
              * Whether or not authorization for `resource` and `permission`
              * was granted.
              */
-            granted: boolean;
+            granted?: boolean;
 
             /**
              * Resource attributes used in IAM condition evaluation. This field contains
@@ -4204,13 +3964,13 @@ export namespace google {
              * condition evaluation, the user must also look into
              * `AuditLogData.request_metadata.request_attributes`.
              */
-            resourceAttributes: any;
+            resourceAttributes?: any;
           }
 
           /**
            * Metadata about the request.
            */
-          interface RequestMetadata {
+          export interface RequestMetadata {
             /**
              * The IP address of the caller.
              * For caller from internet, this will be public IPv4 or IPv6 address.
@@ -4222,7 +3982,7 @@ export namespace google {
              * redacted to "gce-internal-ip".
              * See https://cloud.google.com/compute/docs/vpc/ for more information.
              */
-            callerIp: string;
+            callerIp?: string;
 
             /**
              * The user agent of the caller.
@@ -4237,7 +3997,7 @@ export namespace google {
              * s~my-project`:
              * The request was made from the `my-project` App Engine app.
              */
-            callerSuppliedUserAgent: string;
+            callerSuppliedUserAgent?: string;
 
             /**
              * The network of the caller.
@@ -4248,7 +4008,7 @@ export namespace google {
              * 
              * "//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID"
              */
-            callerNetwork: string;
+            callerNetwork?: string;
 
             /**
              * Request attributes used in IAM condition evaluation. This field contains
@@ -4260,7 +4020,7 @@ export namespace google {
              * condition evaluation, the user must also look into
              * `AuditLog.authentication_info.resource_attributes`.
              */
-            requestAttributes: any;
+            requestAttributes?: any;
 
             /**
              * The destination of a network activity, such as accepting a TCP connection.
@@ -4269,13 +4029,13 @@ export namespace google {
              * Peer.ip. These fields are optionally populated by those services utilizing
              * the IAM condition feature.
              */
-            destinationAttributes: any;
+            destinationAttributes?: any;
           }
 
           /**
            * Location information about a resource.
            */
-          interface ResourceLocation {
+          export interface ResourceLocation {
             /**
              * The locations of a resource after the execution of the operation.
              * Requests to create or delete a location based resource must populate
@@ -4286,7 +4046,7 @@ export namespace google {
              * "us-east1"
              * "nam3"
              */
-            currentLocations: string[];
+            currentLocations?: string[];
 
             /**
              * The locations of a resource prior to the execution of the operation.
@@ -4298,22 +4058,22 @@ export namespace google {
              * "us-east1"
              * "nam3"
              */
-            originalLocations: string[];
+            originalLocations?: string[];
           }
 
           /**
            * Identity delegation history of an authenticated service account.
            */
-          interface ServiceAccountDelegationInfo {
+          export interface ServiceAccountDelegationInfo {
             /**
              * First party (Google) identity as the real authority.
              */
-            firstPartyPrincipal: any;
+            firstPartyPrincipal?: any;
 
             /**
              * Third party identity as the real authority.
              */
-            thirdPartyPrincipal: any;
+            thirdPartyPrincipal?: any;
           }
 
           /**
@@ -4321,24 +4081,24 @@ export namespace google {
            * single LogEntry would exceed the Google Cloud Logging size limit and is split
            * across multiple entries.
            */
-          interface LogSplit {
+          export interface LogSplit {
             /**
              * A globally unique identifier for all LogEntries in a sequence of split
              * logs. All LogEntries with the same |LogSplit.uid| are assumed to be part of
              * the same sequence of split logs.
              */
-            uid: string;
+            uid?: string;
 
             /**
              * The index of this LogEntry in the sequence of split logs. LogEntries are
              * given |index| values 0, 1, ..., n-1 for a sequence of n entries.
              */
-            index: number;
+            index?: number;
 
             /**
              * The total number of logs that the original LogEntry was split into.
              */
-            totalSplits: number;
+            totalSplits?: number;
           }
         }
       }
@@ -4353,7 +4113,7 @@ export namespace google {
  *
  * @see https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
  */
-type GoogleCloudEventTypesToDataType = {
+export type GoogleCloudEventTypesToDataType = {
   'google.firebase.testlab.testMatrix.v1.completed': google.events.firebase.testlab.v1.TestMatrixEventData;
   'google.firebase.remoteconfig.remoteConfig.v1.updated': google.events.firebase.remoteconfig.v1.RemoteConfigEventData;
   'google.firebase.firebasealerts.alerts.v1.published': google.events.firebase.firebasealerts.v1.AlertData;
@@ -4382,23 +4142,28 @@ type GoogleCloudEventTypesToDataType = {
  * with known "type" of literal type and known data type.
  */
 
-interface KnownGoogleCloudEvent<T extends keyof GoogleCloudEventTypesToDataType> extends CloudEvent<GoogleCloudEventTypesToDataType[T]> {
+export interface GoogleCloudEvent<T extends keyof GoogleCloudEventTypesToDataType> extends CloudEvent<GoogleCloudEventTypesToDataType[T]> {}
+;
+/**
+ * This is a bit of syntactic sugar the allows us to create a concrete CloudEvent type
+ * with known "type" of literal type and known data type.
+ */
+
+export interface GoogleCloudEventUnionType<T extends keyof GoogleCloudEventTypesToDataType> extends GoogleCloudEvent<T> {
   type: T;
 }
 ;
 /**
- * Modification 4: Define the GoogleCloudEvent type as a union type of all known
- * Google Events.
+ * Define the GoogleCloudEvent type as a union type of all known Google CloudEvents.
  *
  * see https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types
  * and https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions
  */
 
-export type GoogleCloudEvent = KnownGoogleCloudEvent<'google.firebase.testlab.testMatrix.v1.completed'> | KnownGoogleCloudEvent<'google.firebase.remoteconfig.remoteConfig.v1.updated'> | KnownGoogleCloudEvent<'google.firebase.firebasealerts.alerts.v1.published'> | KnownGoogleCloudEvent<'google.firebase.database.ref.v1.created'> | KnownGoogleCloudEvent<'google.firebase.database.ref.v1.updated'> | KnownGoogleCloudEvent<'google.firebase.database.ref.v1.deleted'> | KnownGoogleCloudEvent<'google.firebase.database.ref.v1.written'> | KnownGoogleCloudEvent<'google.firebase.auth.user.v1.created'> | KnownGoogleCloudEvent<'google.firebase.auth.user.v1.deleted'> | KnownGoogleCloudEvent<'google.firebase.analytics.log.v1.written'> | KnownGoogleCloudEvent<'google.cloud.storage.object.v1.finalized'> | KnownGoogleCloudEvent<'google.cloud.storage.object.v1.archived'> | KnownGoogleCloudEvent<'google.cloud.storage.object.v1.deleted'> | KnownGoogleCloudEvent<'google.cloud.storage.object.v1.metadataUpdated'> | KnownGoogleCloudEvent<'google.cloud.scheduler.job.v1.executed'> | KnownGoogleCloudEvent<'google.cloud.pubsub.topic.v1.messagePublished'> | KnownGoogleCloudEvent<'google.cloud.firestore.document.v1.created'> | KnownGoogleCloudEvent<'google.cloud.firestore.document.v1.updated'> | KnownGoogleCloudEvent<'google.cloud.firestore.document.v1.deleted'> | KnownGoogleCloudEvent<'google.cloud.firestore.document.v1.written'> | KnownGoogleCloudEvent<'google.cloud.cloudbuild.build.v1.statusChanged'> | KnownGoogleCloudEvent<'google.cloud.audit.log.v1.written'>;
+export type GoogleCloudEventsUnion = GoogleCloudEventUnionType<'google.firebase.testlab.testMatrix.v1.completed'> | GoogleCloudEventUnionType<'google.firebase.remoteconfig.remoteConfig.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.firebasealerts.alerts.v1.published'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.created'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.written'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.created'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.analytics.log.v1.written'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.finalized'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.archived'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.metadataUpdated'> | GoogleCloudEventUnionType<'google.cloud.scheduler.job.v1.executed'> | GoogleCloudEventUnionType<'google.cloud.pubsub.topic.v1.messagePublished'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.created'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.updated'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.written'> | GoogleCloudEventUnionType<'google.cloud.cloudbuild.build.v1.statusChanged'> | GoogleCloudEventUnionType<'google.cloud.audit.log.v1.written'>;
 /**
- * Modification 5: Keep a set of of all known GoogleCloudEvent types to be used
- * in the type predicates defined below. This is an internal implementation detail
- * of the @google/events library, it is not exposed in the public API.
+ * Keep a set of of all known GoogleCloudEvent types to be used in the type predicates 
+ * provided by this library.
  */
 
-const knownEventTypes = new Set(['google.firebase.testlab.testMatrix.v1.completed', 'google.firebase.remoteconfig.remoteConfig.v1.updated', 'google.firebase.firebasealerts.alerts.v1.published', 'google.firebase.database.ref.v1.created', 'google.firebase.database.ref.v1.updated', 'google.firebase.database.ref.v1.deleted', 'google.firebase.database.ref.v1.written', 'google.firebase.auth.user.v1.created', 'google.firebase.auth.user.v1.deleted', 'google.firebase.analytics.log.v1.written', 'google.cloud.storage.object.v1.finalized', 'google.cloud.storage.object.v1.archived', 'google.cloud.storage.object.v1.deleted', 'google.cloud.storage.object.v1.metadataUpdated', 'google.cloud.scheduler.job.v1.executed', 'google.cloud.pubsub.topic.v1.messagePublished', 'google.cloud.firestore.document.v1.created', 'google.cloud.firestore.document.v1.updated', 'google.cloud.firestore.document.v1.deleted', 'google.cloud.firestore.document.v1.written', 'google.cloud.cloudbuild.build.v1.statusChanged', 'google.cloud.audit.log.v1.written']);
+export const GoogleCloudEventTypes = new Set(['google.firebase.testlab.testMatrix.v1.completed', 'google.firebase.remoteconfig.remoteConfig.v1.updated', 'google.firebase.firebasealerts.alerts.v1.published', 'google.firebase.database.ref.v1.created', 'google.firebase.database.ref.v1.updated', 'google.firebase.database.ref.v1.deleted', 'google.firebase.database.ref.v1.written', 'google.firebase.auth.user.v1.created', 'google.firebase.auth.user.v1.deleted', 'google.firebase.analytics.log.v1.written', 'google.cloud.storage.object.v1.finalized', 'google.cloud.storage.object.v1.archived', 'google.cloud.storage.object.v1.deleted', 'google.cloud.storage.object.v1.metadataUpdated', 'google.cloud.scheduler.job.v1.executed', 'google.cloud.pubsub.topic.v1.messagePublished', 'google.cloud.firestore.document.v1.created', 'google.cloud.firestore.document.v1.updated', 'google.cloud.firestore.document.v1.deleted', 'google.cloud.firestore.document.v1.written', 'google.cloud.cloudbuild.build.v1.statusChanged', 'google.cloud.audit.log.v1.written']);

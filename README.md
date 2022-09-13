@@ -37,7 +37,7 @@ npm install
 npm run snowpea
 ```
 
-The output Typescript is written to [`out.ts`](./out.ts).
+The output Typescript is written to [`events/events.ts`](./`events/events.ts).
 
 ## Type Generator Details
 

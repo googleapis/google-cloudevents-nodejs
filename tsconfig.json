@@ -2,16 +2,18 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "lib": [
-      "es2017"
+      "es2018"
     ],
     "rootDir": ".",
+    "outDir": "build",
     "sourceMap": false,
     "target": "es2017"
   },
   "include": [
-    "cloud/**/*.ts",
-    "firebase/**/*.ts",
-    "tools/**/*.ts",
-    "tests/**/*.ts"
+    "src/*.ts",
+    "src/**/*.ts",
+    "tests/*.ts",
+    "tests/**/*.ts",
+    "events/*.ts",
   ]
 }

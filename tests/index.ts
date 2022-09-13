@@ -1,23 +1,10 @@
 import {expect} from 'chai';
-import {MessagePublishedData} from '../cloud/pubsub/v1/MessagePublishedData';
-import {StorageObjectData} from '../cloud/storage/v1/StorageObjectData';
-import {DocumentEventData} from '../cloud/firestore/v1/DocumentEventData';
-import {BuildEventData} from '../cloud/cloudbuild/v1/BuildEventData';
-import {SchedulerJobData} from '../cloud/scheduler/v1/SchedulerJobData';
-import {LogEntryData} from '../cloud/audit/v1/LogEntryData';
-import {AnalyticsLogData} from '../firebase/analytics/v1/AnalyticsLogData';
-import {AuthEventData} from '../firebase/auth/v1/AuthEventData';
-import {ReferenceEventData} from '../firebase/database/v1/ReferenceEventData';
-import {
-  RemoteConfigEventData,
-  UpdateTypeEnum,
-  UpdateOriginEnum,
-} from '../firebase/remoteconfig/v1/RemoteConfigEventData';
+import {google} from '../src';
 
 /**
  * JSON objects that are similar to what you'd see from a POST request.
  */
-const PUBSUB_DATA: MessagePublishedData = {
+const PUBSUB_DATA: google.events.cloud.pubsub.v1.MessagePublishedData = {
   message: {
     data: Buffer.from('Pub/Sub data').toString('base64'),
     messageId: 'my-message-id',
@@ -26,7 +13,8 @@ const PUBSUB_DATA: MessagePublishedData = {
   subscription:
     'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000',
 };
-const BUILD_EVENT_DATA: BuildEventData = {
+const BUILD_EVENT_DATA: google.events.cloud.cloudbuild.v1.BuildEventData = {
+  // @ts-ignore
   timeout: '660s',
   createTime: '1993-07-25T02:32:41.388Z',
   tags: ['dolor exercitation', 'sit id consequat', 'dolore eu sit irure esse'],
@@ -34,12 +22,14 @@ const BUILD_EVENT_DATA: BuildEventData = {
   logUrl: 'http://example.com',
   images: ['http://example.com', 'http://example.com'],
   projectId: 'quis minim est laborum ex',
+  // @ts-ignore
   queueTtl: '660s',
 };
-const FIRESTORE_DATA: DocumentEventData = {
+const FIRESTORE_DATA: google.events.cloud.firestore.v1.DocumentEventData = {
   oldValue: {
     createTime: '2020-04-23T09:58:53.211035Z',
     fields: {
+      // @ts-ignore
       'another test': {
         stringValue: 'asd',
       },
@@ -59,6 +49,7 @@ const FIRESTORE_DATA: DocumentEventData = {
   value: {
     createTime: '2020-04-23T09:58:53.211035Z',
     fields: {
+      // @ts-ignore
       'another test': {
         stringValue: 'asd',
       },
@@ -73,10 +64,10 @@ const FIRESTORE_DATA: DocumentEventData = {
     updateTime: '2020-04-23T12:00:27.247187Z',
   },
 };
-const SCHEDULER_DATA: SchedulerJobData = {
+const SCHEDULER_DATA: google.events.cloud.scheduler.v1.SchedulerJobData = {
   customData: 'bXkgYmFzZTY0IGRhdGE=',
 };
-const STORAGE_DATA: StorageObjectData = {
+const STORAGE_DATA: google.events.cloud.storage.v1.StorageObjectData = {
   bucket: 'some-bucket',
   contentType: 'text/plain',
   crc32c: 'rTVTeQ==',
@@ -97,7 +88,7 @@ const STORAGE_DATA: StorageObjectData = {
   timeStorageClassUpdated: '2020-04-23T07:38:57.230Z',
   updated: '2020-04-23T07:38:57.230Z',
 };
-const LOG_ENTRY_DATA: LogEntryData = {
+const LOG_ENTRY_DATA: google.events.cloud.audit.v1.LogEntryData = {
   insertId: '9frck8cf9j',
   logName: 'projects/test-project/logs/cloudaudit.googleapis.com%2Factivity',
   protoPayload: {
@@ -161,7 +152,7 @@ const LOG_ENTRY_DATA: LogEntryData = {
   },
   timestamp: '2020-06-30T16:14:47.593398572Z',
 };
-const ANALYTICS_DATA: AnalyticsLogData = {
+const ANALYTICS_DATA: google.events.firebase.analytics.v1.AnalyticsLogData = {
   userDim: {
     appInfo: {
       appId: 'com.example.exampleapp',
@@ -194,6 +185,7 @@ const ANALYTICS_DATA: AnalyticsLogData = {
     },
     userId: '0123456789abcdef0123456789abcdef',
     userProperties: {
+      // @ts-ignore
       completed_tutorial: {
         setTimestampUsec: 1606948068187909,
         value: {stringValue: 'true'},
@@ -218,6 +210,7 @@ const ANALYTICS_DATA: AnalyticsLogData = {
       date: '20201202',
       name: 'session_start',
       params: {
+        // @ts-ignore
         engaged_session_event: {intValue: 1},
         firebase_conversion: {intValue: 1},
         firebase_event_origin: {stringValue: 'auto'},
@@ -233,7 +226,7 @@ const ANALYTICS_DATA: AnalyticsLogData = {
     },
   ],
 };
-const AUTH_DATA: AuthEventData = {
+const AUTH_DATA: google.events.firebase.auth.v1.AuthEventData = {
   email: 'test@nowhere.com',
   metadata: {
     createTime: '2020-05-26T10:42:27Z',
@@ -248,7 +241,7 @@ const AUTH_DATA: AuthEventData = {
   ],
   uid: 'UUpby3s4spZre6kHsgVSPetzQ8l2',
 };
-const DATABASE_DATA: ReferenceEventData = {
+const DATABASE_DATA: google.events.firebase.database.v1.ReferenceEventData = {
   data: {
     deeply: {
       nested: {
@@ -264,10 +257,10 @@ const DATABASE_DATA: ReferenceEventData = {
     },
   },
 };
-const REMOTE_CONFIG_DATA: RemoteConfigEventData = {
-  updateOrigin: UpdateOriginEnum.Console,
+const REMOTE_CONFIG_DATA: google.events.firebase.remoteconfig.v1.RemoteConfigEventData = {
+  updateOrigin: google.events.firebase.remoteconfig.v1.RemoteConfigUpdateOrigin.CONSOLE,
   updateTime: '2020-11-16T16:35:33.569229Z',
-  updateType: UpdateTypeEnum.IncrementalUpdate,
+  updateType: google.events.firebase.remoteconfig.v1.RemoteConfigUpdateType.INCREMENTAL_UPDATE,
   updateUser: {
     name: 'Ut ad aute',
     email: 'test@nowhere.com',
@@ -281,52 +274,52 @@ const REMOTE_CONFIG_DATA: RemoteConfigEventData = {
 describe('Event Types', () => {
   describe('cloud', () => {
     it('Audit Log: should work with a basic Audit Log sample', () => {
-      const tsExample: LogEntryData = LOG_ENTRY_DATA;
+      const tsExample = LOG_ENTRY_DATA;
       expect(tsExample.timestamp).to.equal('2020-06-30T16:14:47.593398572Z');
     });
     it('Cloud Build: should work with a basic Build sample', () => {
-      const tsExample: BuildEventData = BUILD_EVENT_DATA;
+      const tsExample = BUILD_EVENT_DATA;
       expect(tsExample.buildTriggerId).to.equal('my-trigger-id');
     });
     it('Firestore: should work with a basic Firestore sample', () => {
-      const tsExample: DocumentEventData = FIRESTORE_DATA;
+      const tsExample = FIRESTORE_DATA;
       expect(tsExample.value?.name).to.equal(
         'projects/project-id/databases/(default)/documents/gcf-test/2Vm2mI1d0wIaK2Waj5to'
       );
     });
     it('Pub/Sub: should work with a basic Pub/Sub sample', () => {
-      const tsExample: MessagePublishedData = PUBSUB_DATA;
+      const tsExample = PUBSUB_DATA;
       expect(tsExample?.message?.data).to.equal(
         Buffer.from('Pub/Sub data').toString('base64')
       );
     });
     it('Scheduler: should work with a basic Scheduler sample', () => {
-      const tsExample: SchedulerJobData = SCHEDULER_DATA;
+      const tsExample = SCHEDULER_DATA;
       expect(tsExample.customData).to.equal('bXkgYmFzZTY0IGRhdGE=');
     });
     it('Storage: should work with a basic Storage sample', () => {
-      const tsExample: StorageObjectData = STORAGE_DATA;
+      const tsExample = STORAGE_DATA;
       expect(tsExample.bucket).to.equal('some-bucket');
     });
   });
   describe('firebase', () => {
     it('Analytics: should work with a basic Analytics sample', () => {
-      const tsExample: AnalyticsLogData = ANALYTICS_DATA;
+      const tsExample = ANALYTICS_DATA;
       expect(tsExample.userDim?.userId).to.equal(
         '0123456789abcdef0123456789abcdef'
       );
     });
     it('Auth: should work with a basic Auth sample', () => {
-      const tsExample: AuthEventData = AUTH_DATA;
+      const tsExample = AUTH_DATA;
       expect(tsExample.uid).to.equal('UUpby3s4spZre6kHsgVSPetzQ8l2');
     });
     it('Database: should work with a basic Database sample', () => {
-      const tsExample: ReferenceEventData = DATABASE_DATA;
+      const tsExample = DATABASE_DATA;
       const delta = tsExample?.delta as {[key: string]: any};
       expect(delta.deeply.abc).to.equal('def');
     });
     it('Remote Config: should work with a basic Remote Config sample', () => {
-      const tsExample: RemoteConfigEventData = REMOTE_CONFIG_DATA;
+      const tsExample = REMOTE_CONFIG_DATA;
       expect(tsExample.rollbackSource).to.equal(75404139);
     });
   });
