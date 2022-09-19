@@ -65,6 +65,87 @@ var google;
         })(firebase = events.firebase || (events.firebase = {}));
         let cloud;
         (function (cloud) {
+            let iot;
+            (function (iot) {
+                let v1;
+                (function (v1) {
+                    /**
+                     * Indicates whether an MQTT connection is enabled or disabled. See the field
+                     * description for details.
+                     */
+                    let MqttState;
+                    (function (MqttState) {
+                        MqttState[MqttState["MQTT_STATE_UNSPECIFIED"] = 0] = "MQTT_STATE_UNSPECIFIED";
+                        MqttState[MqttState["MQTT_ENABLED"] = 1] = "MQTT_ENABLED";
+                        MqttState[MqttState["MQTT_DISABLED"] = 2] = "MQTT_DISABLED";
+                    })(MqttState = v1.MqttState || (v1.MqttState = {}));
+                    /**
+                     * Indicates whether DeviceService (HTTP) is enabled or disabled for the
+                     * registry. See the field description for details.
+                     */
+                    let HttpState;
+                    (function (HttpState) {
+                        HttpState[HttpState["HTTP_STATE_UNSPECIFIED"] = 0] = "HTTP_STATE_UNSPECIFIED";
+                        HttpState[HttpState["HTTP_ENABLED"] = 1] = "HTTP_ENABLED";
+                        HttpState[HttpState["HTTP_DISABLED"] = 2] = "HTTP_DISABLED";
+                    })(HttpState = v1.HttpState || (v1.HttpState = {}));
+                    /**
+                     * *Beta Feature**
+                     *
+                     * The logging verbosity for device activity. Specifies which events should be
+                     * written to logs. For example, if the LogLevel is ERROR, only events that
+                     * terminate in errors will be logged. LogLevel is inclusive; enabling INFO
+                     * logging will also enable ERROR logging.
+                     */
+                    let LogLevel;
+                    (function (LogLevel) {
+                        LogLevel[LogLevel["LOG_LEVEL_UNSPECIFIED"] = 0] = "LOG_LEVEL_UNSPECIFIED";
+                        LogLevel[LogLevel["NONE"] = 10] = "NONE";
+                        LogLevel[LogLevel["ERROR"] = 20] = "ERROR";
+                        LogLevel[LogLevel["INFO"] = 30] = "INFO";
+                        LogLevel[LogLevel["DEBUG"] = 40] = "DEBUG";
+                    })(LogLevel = v1.LogLevel || (v1.LogLevel = {}));
+                    /**
+                     * Gateway type.
+                     */
+                    let GatewayType;
+                    (function (GatewayType) {
+                        GatewayType[GatewayType["GATEWAY_TYPE_UNSPECIFIED"] = 0] = "GATEWAY_TYPE_UNSPECIFIED";
+                        GatewayType[GatewayType["GATEWAY"] = 1] = "GATEWAY";
+                        GatewayType[GatewayType["NON_GATEWAY"] = 2] = "NON_GATEWAY";
+                    })(GatewayType = v1.GatewayType || (v1.GatewayType = {}));
+                    /**
+                     * The gateway authorization/authentication method. This setting determines how
+                     * Cloud IoT Core authorizes/authenticate devices to access the gateway.
+                     */
+                    let GatewayAuthMethod;
+                    (function (GatewayAuthMethod) {
+                        GatewayAuthMethod[GatewayAuthMethod["GATEWAY_AUTH_METHOD_UNSPECIFIED"] = 0] = "GATEWAY_AUTH_METHOD_UNSPECIFIED";
+                        GatewayAuthMethod[GatewayAuthMethod["ASSOCIATION_ONLY"] = 1] = "ASSOCIATION_ONLY";
+                        GatewayAuthMethod[GatewayAuthMethod["DEVICE_AUTH_TOKEN_ONLY"] = 2] = "DEVICE_AUTH_TOKEN_ONLY";
+                        GatewayAuthMethod[GatewayAuthMethod["ASSOCIATION_AND_DEVICE_AUTH_TOKEN"] = 3] = "ASSOCIATION_AND_DEVICE_AUTH_TOKEN";
+                    })(GatewayAuthMethod = v1.GatewayAuthMethod || (v1.GatewayAuthMethod = {}));
+                    /**
+                     * The supported formats for the public key.
+                     */
+                    let PublicKeyCertificateFormat;
+                    (function (PublicKeyCertificateFormat) {
+                        PublicKeyCertificateFormat[PublicKeyCertificateFormat["UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT"] = 0] = "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT";
+                        PublicKeyCertificateFormat[PublicKeyCertificateFormat["X509_CERTIFICATE_PEM"] = 1] = "X509_CERTIFICATE_PEM";
+                    })(PublicKeyCertificateFormat = v1.PublicKeyCertificateFormat || (v1.PublicKeyCertificateFormat = {}));
+                    /**
+                     * The supported formats for the public key.
+                     */
+                    let PublicKeyFormat;
+                    (function (PublicKeyFormat) {
+                        PublicKeyFormat[PublicKeyFormat["UNSPECIFIED_PUBLIC_KEY_FORMAT"] = 0] = "UNSPECIFIED_PUBLIC_KEY_FORMAT";
+                        PublicKeyFormat[PublicKeyFormat["RSA_PEM"] = 3] = "RSA_PEM";
+                        PublicKeyFormat[PublicKeyFormat["RSA_X509_PEM"] = 1] = "RSA_X509_PEM";
+                        PublicKeyFormat[PublicKeyFormat["ES256_PEM"] = 2] = "ES256_PEM";
+                        PublicKeyFormat[PublicKeyFormat["ES256_X509_PEM"] = 4] = "ES256_X509_PEM";
+                    })(PublicKeyFormat = v1.PublicKeyFormat || (v1.PublicKeyFormat = {}));
+                })(v1 = iot.v1 || (iot.v1 = {}));
+            })(iot = cloud.iot || (cloud.iot = {}));
             let audit;
             (function (audit) {
                 let v1;
@@ -100,4 +181,4 @@ var google;
  * Keep a set of of all known GoogleCloudEvent types to be used in the type predicates
  * provided by this library.
  */
-exports.GoogleCloudEventTypes = new Set(['google.firebase.testlab.testMatrix.v1.completed', 'google.firebase.remoteconfig.remoteConfig.v1.updated', 'google.firebase.firebasealerts.alerts.v1.published', 'google.firebase.database.ref.v1.created', 'google.firebase.database.ref.v1.updated', 'google.firebase.database.ref.v1.deleted', 'google.firebase.database.ref.v1.written', 'google.firebase.auth.user.v1.created', 'google.firebase.auth.user.v1.deleted', 'google.firebase.analytics.log.v1.written', 'google.cloud.storage.object.v1.finalized', 'google.cloud.storage.object.v1.archived', 'google.cloud.storage.object.v1.deleted', 'google.cloud.storage.object.v1.metadataUpdated', 'google.cloud.scheduler.job.v1.executed', 'google.cloud.pubsub.topic.v1.messagePublished', 'google.cloud.firestore.document.v1.created', 'google.cloud.firestore.document.v1.updated', 'google.cloud.firestore.document.v1.deleted', 'google.cloud.firestore.document.v1.written', 'google.cloud.cloudbuild.build.v1.statusChanged', 'google.cloud.audit.log.v1.written']);
+exports.GoogleCloudEventTypes = new Set(['google.firebase.testlab.testMatrix.v1.completed', 'google.firebase.remoteconfig.remoteConfig.v1.updated', 'google.firebase.firebasealerts.alerts.v1.published', 'google.firebase.database.ref.v1.created', 'google.firebase.database.ref.v1.updated', 'google.firebase.database.ref.v1.deleted', 'google.firebase.database.ref.v1.written', 'google.firebase.auth.user.v1.created', 'google.firebase.auth.user.v1.deleted', 'google.firebase.analytics.log.v1.written', 'google.cloud.storage.object.v1.finalized', 'google.cloud.storage.object.v1.archived', 'google.cloud.storage.object.v1.deleted', 'google.cloud.storage.object.v1.metadataUpdated', 'google.cloud.scheduler.job.v1.executed', 'google.cloud.pubsub.topic.v1.messagePublished', 'google.cloud.iot.v1.DeviceManager.CreateDevice', 'google.cloud.iot.v1.DeviceManager.UpdateDevice', 'google.cloud.iot.v1.DeviceManager.DeleteDevice', 'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry', 'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry', 'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry', 'google.cloud.firestore.document.v1.created', 'google.cloud.firestore.document.v1.updated', 'google.cloud.firestore.document.v1.deleted', 'google.cloud.firestore.document.v1.written', 'google.cloud.cloudbuild.build.v1.statusChanged', 'google.cloud.audit.log.v1.written']);

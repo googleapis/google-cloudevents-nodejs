@@ -190,11 +190,18 @@ const cloudEventDataType = (x: Type): string => {
 const compileNamespace = (
   namespace: Namespace,
   cloudEvents: Map<string, string>,
+  seenTypes: Set<string>,
 ): t.Statement[] => {
   console.log(`generating ${namespace.fullName}`);
   const scope = new Set(namespace.nestedArray.map(x => x.name));
   const statements: t.Statement[] = [];
   for (let x of namespace.nestedArray) {
+    if (seenTypes.has(x.fullName)) {
+      console.log('skipping dupe');
+      continue;
+    }
+    console.log(x.fullName);
+    seenTypes.add(x.fullName);
     if (isCloudEventType(x)) {
       const ceType = x.options!['(google.events.cloud_event_type)'];
       const ceDataType = cloudEventDataType(x)
@@ -230,15 +237,16 @@ const compileProtos = (protos: string[]): string => {
 const discoverNamespaces = (
   x: ReflectionObject,
   cloudEvents: Map<string, string>,
+  seenTypes: Set<string> = new Set<string>(),
 ): t.Statement[] => {
   if (isCloudEventType(x)) {
     const parent = x.parent!;
-    return compileNamespace(parent, cloudEvents);
+    return compileNamespace(parent, cloudEvents, seenTypes);
   }
   const children: t.Statement[] = [];
   if (hasNested(x)) {
     x.nestedArray.forEach(child => {
-      children.push(...discoverNamespaces(child, cloudEvents));
+      children.push(...discoverNamespaces(child, cloudEvents, seenTypes));
     });
   }
   if (children.length === 0) {

@@ -294,6 +294,62 @@ export declare namespace google {
                     interface CrashlyticsNewAnrIssuePayload {
                         issue?: CrashlyticsIssue;
                     }
+                    interface CrashlyticsMissingSymbolsPayload {
+                        appVersion?: string;
+                        uuid?: string;
+                    }
+                    interface FireperfThresholdAlertPayload {
+                        /**
+                         * Name of the trace or network request this alert is for (e.g.
+                         * my_custom_trace, firebase.com/api/123)
+                         */
+                        eventName?: string;
+                        /**
+                         * The resource type this alert is for (i.e. trace, network request, screen
+                         * rendering, etc.)
+                         */
+                        eventType?: string;
+                        /**
+                         * The metric type this alert is for (i.e. success rate, response time,
+                         * duration, etc.)
+                         */
+                        metricType?: string;
+                        /**
+                         * The number of events checked for this alert condition
+                         */
+                        numSamples?: number;
+                        /**
+                         * The threshold value of the alert condition without units (e.g. "75", "2.1")
+                         */
+                        thresholdValue?: number;
+                        /**
+                         * The unit for the alert threshold (e.g. "percent", "seconds")
+                         */
+                        thresholdUnit?: string;
+                        /**
+                         * The percentile of the alert condition, can be 0 if percentile is not
+                         * applicable to the alert condition; range: [0, 100]
+                         */
+                        conditionPercentile?: number;
+                        /**
+                         * The app version this alert was triggered for, can be empty if the alert is
+                         * for a network request (because the alert was checked against data from all
+                         * versions of app) or a web app (where the app is versionless)
+                         */
+                        appVersion?: string;
+                        /**
+                         * The value that violated the alert condition (e.g. "76.5", "3")
+                         */
+                        violationValue?: number;
+                        /**
+                         * The unit for the violation value (e.g. "percent", "seconds")
+                         */
+                        violationUnit?: string;
+                        /**
+                         * The link to Fireconsole to investigate more into this alert
+                         */
+                        investigateUri?: string;
+                    }
                     interface AppDistroNewTesterIosDevicePayload {
                         testerName?: string;
                         testerEmail?: string;
@@ -401,229 +457,10 @@ export declare namespace google {
                          */
                         delta?: any;
                     }
-                    /**
-                     * The CloudEvent raised when a ref is created in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.created' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is updated in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.updated' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is deleted in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is written (created, updated or
-                     * deleted) in the Firebase Realtime Database.
-                     */
-                    interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.written' | string;
-                    }
-                    /**
-                     * The data within all Firebase Real Time Database reference events.
-                     */
-                    interface ReferenceEventData {
-                        /**
-                         * The original data for the reference.
-                         */
-                        data?: any;
-                        /**
-                         * The change in the reference data.
-                         */
-                        delta?: any;
-                    }
-                    /**
-                     * The CloudEvent raised when a ref is created in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.created' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is updated in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.updated' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is deleted in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is written (created, updated or
-                     * deleted) in the Firebase Realtime Database.
-                     */
-                    interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.written' | string;
-                    }
-                    /**
-                     * The data within all Firebase Real Time Database reference events.
-                     */
-                    interface ReferenceEventData {
-                        /**
-                         * The original data for the reference.
-                         */
-                        data?: any;
-                        /**
-                         * The change in the reference data.
-                         */
-                        delta?: any;
-                    }
-                    /**
-                     * The CloudEvent raised when a ref is created in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.created' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is updated in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.updated' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is deleted in the Firebase Realtime
-                     * Database.
-                     */
-                    interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a reference is written (created, updated or
-                     * deleted) in the Firebase Realtime Database.
-                     */
-                    interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
-                        type: 'google.firebase.database.ref.v1.written' | string;
-                    }
-                    /**
-                     * The data within all Firebase Real Time Database reference events.
-                     */
-                    interface ReferenceEventData {
-                        /**
-                         * The original data for the reference.
-                         */
-                        data?: any;
-                        /**
-                         * The change in the reference data.
-                         */
-                        delta?: any;
-                    }
                 }
             }
             namespace auth {
                 namespace v1 {
-                    /**
-                     * The CloudEvent raised when a Firebase user is created.
-                     */
-                    interface UserCreatedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
-                        type: 'google.firebase.auth.user.v1.created' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firebase user is deleted.
-                     */
-                    interface UserDeletedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
-                        type: 'google.firebase.auth.user.v1.deleted' | string;
-                    }
-                    /**
-                     * The data within all Firebase Auth events.
-                     */
-                    interface AuthEventData {
-                        /**
-                         * The user identifier in the Firebase app.
-                         */
-                        uid?: string;
-                        /**
-                         * The user's primary email, if set.
-                         */
-                        email?: string;
-                        /**
-                         * Whether or not the user's primary email is verified.
-                         */
-                        emailVerified?: boolean;
-                        /**
-                         * The user's display name.
-                         */
-                        displayName?: string;
-                        /**
-                         * The user's photo URL.
-                         */
-                        photo_URL?: string;
-                        /**
-                         * Whether the user is disabled.
-                         */
-                        disabled?: boolean;
-                        /**
-                         * Additional metadata about the user.
-                         */
-                        metadata?: UserMetadata;
-                        /**
-                         * User's info at the providers
-                         */
-                        providerData?: UserInfo[];
-                        /**
-                         * The user's phone number.
-                         */
-                        phoneNumber?: string;
-                        /**
-                         * User's custom claims, typically used to define user roles and propagated
-                         * to an authenticated user's ID token.
-                         */
-                        customClaims?: Record<string, any>;
-                    }
-                    /**
-                     * Additional metadata about the user.
-                     */
-                    interface UserMetadata {
-                        /**
-                         * The date the user was created.
-                         */
-                        createTime?: string;
-                        /**
-                         * The date the user last signed in.
-                         */
-                        lastSignInTime?: string;
-                    }
-                    /**
-                     * User's info at the identity provider
-                     */
-                    interface UserInfo {
-                        /**
-                         * The user identifier for the linked provider.
-                         */
-                        uid?: string;
-                        /**
-                         * The email for the linked provider.
-                         */
-                        email?: string;
-                        /**
-                         * The display name for the linked provider.
-                         */
-                        displayName?: string;
-                        /**
-                         * The photo URL for the linked provider.
-                         */
-                        photo_URL?: string;
-                        /**
-                         * The linked provider ID (e.g. "google.com" for the Google provider).
-                         */
-                        providerId?: string;
-                    }
                     /**
                      * The CloudEvent raised when a Firebase user is created.
                      */
@@ -1185,528 +1022,6 @@ export declare namespace google {
                          */
                         kind?: string;
                     }
-                    /**
-                     * The CloudEvent raised when an object is finalized in Google Cloud Storage.
-                     */
-                    interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.finalized' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is archived in Google Cloud Storage.
-                     */
-                    interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.archived' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
-                     */
-                    interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object's metadata is updated  in Google Cloud
-                     * Storage.
-                     */
-                    interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
-                    }
-                    /**
-                     * An object within Google Cloud Storage.
-                     */
-                    interface StorageObjectData {
-                        /**
-                         * Content-Encoding of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
-                         */
-                        contentEncoding?: string;
-                        /**
-                         * Content-Disposition of the object data, matching
-                         * [https://tools.ietf.org/html/rfc6266][RFC 6266].
-                         */
-                        contentDisposition?: string;
-                        /**
-                         * Cache-Control directive for the object data, matching
-                         * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
-                         */
-                        cacheControl?: string;
-                        /**
-                         * Content-Language of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
-                         */
-                        contentLanguage?: string;
-                        /**
-                         * The version of the metadata for this object at this generation. Used for
-                         * preconditions and for detecting changes in metadata. A metageneration
-                         * number is only meaningful in the context of a particular generation of a
-                         * particular object.
-                         */
-                        metageneration?: number;
-                        /**
-                         * The deletion time of the object. Will be returned if and only if this
-                         * version of the object has been deleted.
-                         */
-                        timeDeleted?: string;
-                        /**
-                         * Content-Type of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.1.5][RFC 7231 §3.1.1.5].
-                         * If an object is stored without a Content-Type, it is served as
-                         * `application/octet-stream`.
-                         */
-                        contentType?: string;
-                        /**
-                         * Content-Length of the object data in bytes, matching
-                         * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
-                         */
-                        size?: number;
-                        /**
-                         * The creation time of the object.
-                         * Attempting to set this field will result in an error.
-                         */
-                        timeCreated?: string;
-                        /**
-                         * CRC32c checksum. For more information about using the CRC32c
-                         * checksum, see
-                         * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
-                         * ETags: Best Practices].
-                         */
-                        crc32c?: string;
-                        /**
-                         * Number of underlying components that make up this object. Components are
-                         * accumulated by compose operations.
-                         * Attempting to set this field will result in an error.
-                         */
-                        componentCount?: number;
-                        /**
-                         * MD5 hash of the data; encoded using base64 as per
-                         * [https://tools.ietf.org/html/rfc4648#section-4][RFC 4648 §4]. For more
-                         * information about using the MD5 hash, see
-                         * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
-                         * ETags: Best Practices].
-                         */
-                        md5Hash?: string;
-                        /**
-                         * HTTP 1.1 Entity tag for the object. See
-                         * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
-                         */
-                        etag?: string;
-                        /**
-                         * The modification time of the object metadata.
-                         */
-                        updated?: string;
-                        /**
-                         * Storage class of the object.
-                         */
-                        storageClass?: string;
-                        /**
-                         * Cloud KMS Key used to encrypt this object, if the object is encrypted by
-                         * such a key.
-                         */
-                        kmsKeyName?: string;
-                        /**
-                         * The time at which the object's storage class was last changed.
-                         */
-                        timeStorageClassUpdated?: string;
-                        /**
-                         * Whether an object is under temporary hold.
-                         */
-                        temporaryHold?: boolean;
-                        /**
-                         * A server-determined value that specifies the earliest time that the
-                         * object's retention period expires.
-                         */
-                        retentionExpirationTime?: string;
-                        /**
-                         * User-provided metadata, in key/value pairs.
-                         */
-                        metadata?: string;
-                        /**
-                         * Whether an object is under event-based hold.
-                         */
-                        eventBasedHold?: boolean;
-                        /**
-                         * The name of the object.
-                         */
-                        name?: string;
-                        /**
-                         * The ID of the object, including the bucket name, object name, and
-                         * generation number.
-                         */
-                        id?: string;
-                        /**
-                         * The name of the bucket containing this object.
-                         */
-                        bucket?: string;
-                        /**
-                         * The content generation of this object. Used for object versioning.
-                         * Attempting to set this field will result in an error.
-                         */
-                        generation?: number;
-                        /**
-                         * Metadata of customer-supplied encryption key, if the object is encrypted by
-                         * such a key.
-                         */
-                        customerEncryption?: any;
-                        /**
-                         * Media download link.
-                         */
-                        mediaLink?: string;
-                        /**
-                         * The link to this object.
-                         */
-                        selfLink?: string;
-                        /**
-                         * The kind of item this is. For objects, this is always "storage#object".
-                         */
-                        kind?: string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is finalized in Google Cloud Storage.
-                     */
-                    interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.finalized' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is archived in Google Cloud Storage.
-                     */
-                    interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.archived' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
-                     */
-                    interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object's metadata is updated  in Google Cloud
-                     * Storage.
-                     */
-                    interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
-                    }
-                    /**
-                     * An object within Google Cloud Storage.
-                     */
-                    interface StorageObjectData {
-                        /**
-                         * Content-Encoding of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
-                         */
-                        contentEncoding?: string;
-                        /**
-                         * Content-Disposition of the object data, matching
-                         * [https://tools.ietf.org/html/rfc6266][RFC 6266].
-                         */
-                        contentDisposition?: string;
-                        /**
-                         * Cache-Control directive for the object data, matching
-                         * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
-                         */
-                        cacheControl?: string;
-                        /**
-                         * Content-Language of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
-                         */
-                        contentLanguage?: string;
-                        /**
-                         * The version of the metadata for this object at this generation. Used for
-                         * preconditions and for detecting changes in metadata. A metageneration
-                         * number is only meaningful in the context of a particular generation of a
-                         * particular object.
-                         */
-                        metageneration?: number;
-                        /**
-                         * The deletion time of the object. Will be returned if and only if this
-                         * version of the object has been deleted.
-                         */
-                        timeDeleted?: string;
-                        /**
-                         * Content-Type of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.1.5][RFC 7231 §3.1.1.5].
-                         * If an object is stored without a Content-Type, it is served as
-                         * `application/octet-stream`.
-                         */
-                        contentType?: string;
-                        /**
-                         * Content-Length of the object data in bytes, matching
-                         * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
-                         */
-                        size?: number;
-                        /**
-                         * The creation time of the object.
-                         * Attempting to set this field will result in an error.
-                         */
-                        timeCreated?: string;
-                        /**
-                         * CRC32c checksum. For more information about using the CRC32c
-                         * checksum, see
-                         * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
-                         * ETags: Best Practices].
-                         */
-                        crc32c?: string;
-                        /**
-                         * Number of underlying components that make up this object. Components are
-                         * accumulated by compose operations.
-                         * Attempting to set this field will result in an error.
-                         */
-                        componentCount?: number;
-                        /**
-                         * MD5 hash of the data; encoded using base64 as per
-                         * [https://tools.ietf.org/html/rfc4648#section-4][RFC 4648 §4]. For more
-                         * information about using the MD5 hash, see
-                         * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
-                         * ETags: Best Practices].
-                         */
-                        md5Hash?: string;
-                        /**
-                         * HTTP 1.1 Entity tag for the object. See
-                         * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
-                         */
-                        etag?: string;
-                        /**
-                         * The modification time of the object metadata.
-                         */
-                        updated?: string;
-                        /**
-                         * Storage class of the object.
-                         */
-                        storageClass?: string;
-                        /**
-                         * Cloud KMS Key used to encrypt this object, if the object is encrypted by
-                         * such a key.
-                         */
-                        kmsKeyName?: string;
-                        /**
-                         * The time at which the object's storage class was last changed.
-                         */
-                        timeStorageClassUpdated?: string;
-                        /**
-                         * Whether an object is under temporary hold.
-                         */
-                        temporaryHold?: boolean;
-                        /**
-                         * A server-determined value that specifies the earliest time that the
-                         * object's retention period expires.
-                         */
-                        retentionExpirationTime?: string;
-                        /**
-                         * User-provided metadata, in key/value pairs.
-                         */
-                        metadata?: string;
-                        /**
-                         * Whether an object is under event-based hold.
-                         */
-                        eventBasedHold?: boolean;
-                        /**
-                         * The name of the object.
-                         */
-                        name?: string;
-                        /**
-                         * The ID of the object, including the bucket name, object name, and
-                         * generation number.
-                         */
-                        id?: string;
-                        /**
-                         * The name of the bucket containing this object.
-                         */
-                        bucket?: string;
-                        /**
-                         * The content generation of this object. Used for object versioning.
-                         * Attempting to set this field will result in an error.
-                         */
-                        generation?: number;
-                        /**
-                         * Metadata of customer-supplied encryption key, if the object is encrypted by
-                         * such a key.
-                         */
-                        customerEncryption?: any;
-                        /**
-                         * Media download link.
-                         */
-                        mediaLink?: string;
-                        /**
-                         * The link to this object.
-                         */
-                        selfLink?: string;
-                        /**
-                         * The kind of item this is. For objects, this is always "storage#object".
-                         */
-                        kind?: string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is finalized in Google Cloud Storage.
-                     */
-                    interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.finalized' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is archived in Google Cloud Storage.
-                     */
-                    interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.archived' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
-                     */
-                    interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when an object's metadata is updated  in Google Cloud
-                     * Storage.
-                     */
-                    interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
-                        type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
-                    }
-                    /**
-                     * An object within Google Cloud Storage.
-                     */
-                    interface StorageObjectData {
-                        /**
-                         * Content-Encoding of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.2.2][RFC 7231 §3.1.2.2]
-                         */
-                        contentEncoding?: string;
-                        /**
-                         * Content-Disposition of the object data, matching
-                         * [https://tools.ietf.org/html/rfc6266][RFC 6266].
-                         */
-                        contentDisposition?: string;
-                        /**
-                         * Cache-Control directive for the object data, matching
-                         * [https://tools.ietf.org/html/rfc7234#section-5.2"][RFC 7234 §5.2].
-                         */
-                        cacheControl?: string;
-                        /**
-                         * Content-Language of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.3.2][RFC 7231 §3.1.3.2].
-                         */
-                        contentLanguage?: string;
-                        /**
-                         * The version of the metadata for this object at this generation. Used for
-                         * preconditions and for detecting changes in metadata. A metageneration
-                         * number is only meaningful in the context of a particular generation of a
-                         * particular object.
-                         */
-                        metageneration?: number;
-                        /**
-                         * The deletion time of the object. Will be returned if and only if this
-                         * version of the object has been deleted.
-                         */
-                        timeDeleted?: string;
-                        /**
-                         * Content-Type of the object data, matching
-                         * [https://tools.ietf.org/html/rfc7231#section-3.1.1.5][RFC 7231 §3.1.1.5].
-                         * If an object is stored without a Content-Type, it is served as
-                         * `application/octet-stream`.
-                         */
-                        contentType?: string;
-                        /**
-                         * Content-Length of the object data in bytes, matching
-                         * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
-                         */
-                        size?: number;
-                        /**
-                         * The creation time of the object.
-                         * Attempting to set this field will result in an error.
-                         */
-                        timeCreated?: string;
-                        /**
-                         * CRC32c checksum. For more information about using the CRC32c
-                         * checksum, see
-                         * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
-                         * ETags: Best Practices].
-                         */
-                        crc32c?: string;
-                        /**
-                         * Number of underlying components that make up this object. Components are
-                         * accumulated by compose operations.
-                         * Attempting to set this field will result in an error.
-                         */
-                        componentCount?: number;
-                        /**
-                         * MD5 hash of the data; encoded using base64 as per
-                         * [https://tools.ietf.org/html/rfc4648#section-4][RFC 4648 §4]. For more
-                         * information about using the MD5 hash, see
-                         * [https://cloud.google.com/storage/docs/hashes-etags#_JSONAPI][Hashes and
-                         * ETags: Best Practices].
-                         */
-                        md5Hash?: string;
-                        /**
-                         * HTTP 1.1 Entity tag for the object. See
-                         * [https://tools.ietf.org/html/rfc7232#section-2.3][RFC 7232 §2.3].
-                         */
-                        etag?: string;
-                        /**
-                         * The modification time of the object metadata.
-                         */
-                        updated?: string;
-                        /**
-                         * Storage class of the object.
-                         */
-                        storageClass?: string;
-                        /**
-                         * Cloud KMS Key used to encrypt this object, if the object is encrypted by
-                         * such a key.
-                         */
-                        kmsKeyName?: string;
-                        /**
-                         * The time at which the object's storage class was last changed.
-                         */
-                        timeStorageClassUpdated?: string;
-                        /**
-                         * Whether an object is under temporary hold.
-                         */
-                        temporaryHold?: boolean;
-                        /**
-                         * A server-determined value that specifies the earliest time that the
-                         * object's retention period expires.
-                         */
-                        retentionExpirationTime?: string;
-                        /**
-                         * User-provided metadata, in key/value pairs.
-                         */
-                        metadata?: string;
-                        /**
-                         * Whether an object is under event-based hold.
-                         */
-                        eventBasedHold?: boolean;
-                        /**
-                         * The name of the object.
-                         */
-                        name?: string;
-                        /**
-                         * The ID of the object, including the bucket name, object name, and
-                         * generation number.
-                         */
-                        id?: string;
-                        /**
-                         * The name of the bucket containing this object.
-                         */
-                        bucket?: string;
-                        /**
-                         * The content generation of this object. Used for object versioning.
-                         * Attempting to set this field will result in an error.
-                         */
-                        generation?: number;
-                        /**
-                         * Metadata of customer-supplied encryption key, if the object is encrypted by
-                         * such a key.
-                         */
-                        customerEncryption?: any;
-                        /**
-                         * Media download link.
-                         */
-                        mediaLink?: string;
-                        /**
-                         * The link to this object.
-                         */
-                        selfLink?: string;
-                        /**
-                         * The kind of item this is. For objects, this is always "storage#object".
-                         */
-                        kind?: string;
-                    }
                 }
             }
             namespace scheduler {
@@ -1781,593 +1096,530 @@ export declare namespace google {
                     }
                 }
             }
-            namespace firestore {
+            namespace iot {
                 namespace v1 {
                     /**
-                     * The CloudEvent raised when a Firestore document is created.
+                     * CreateDevice event.
                      */
-                    interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.created' | string;
+                    interface CreateDeviceEvent extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
+                        type: 'google.cloud.iot.v1.DeviceManager.CreateDevice' | string;
                     }
                     /**
-                     * The CloudEvent raised when a Firestore document is updated.
+                     * UpdateDevice event.
                      */
-                    interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.updated' | string;
+                    interface UpdateDeviceEvent extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
+                        type: 'google.cloud.iot.v1.DeviceManager.UpdateDevice' | string;
                     }
                     /**
-                     * The CloudEvent raised when a Firestore document is deleted.
+                     * DeleteDevice event.
                      */
-                    interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.deleted' | string;
+                    interface DeleteDeviceEvent extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
+                        type: 'google.cloud.iot.v1.DeviceManager.DeleteDevice' | string;
                     }
                     /**
-                     * The CloudEvent raised when a Firestore document is created, updated or
-                     * deleted.
+                     * CreateDeviceRegistry event.
                      */
-                    interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.written' | string;
+                    interface CreateDeviceRegistryEvent extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
+                        type: 'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry' | string;
                     }
                     /**
-                     * The data within all Firestore document events.
+                     * UpdateDeviceRegistry event.
                      */
-                    interface DocumentEventData {
+                    interface UpdateDeviceRegistryEvent extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
+                        type: 'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry' | string;
+                    }
+                    /**
+                     * DeleteDeviceRegistry event.
+                     */
+                    interface DeleteDeviceRegistryEvent extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
+                        type: 'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry' | string;
+                    }
+                    /**
+                     * The device resource.
+                     */
+                    interface Device {
                         /**
-                         * A Document object containing a post-operation document snapshot.
-                         * This is not populated for delete events.
+                         * The user-defined device identifier. The device ID must be unique
+                         * within a device registry.
                          */
-                        value?: Document;
+                        id?: string;
                         /**
-                         * A Document object containing a pre-operation document snapshot.
-                         * This is only populated for update and delete events.
-                         */
-                        oldValue?: Document;
-                        /**
-                         * A DocumentMask object that lists changed fields.
-                         * This is only populated for update events.
-                         */
-                        updateMask?: DocumentMask;
-                    }
-                    /**
-                     * A set of field paths on a document.
-                     */
-                    interface DocumentMask {
-                        /**
-                         * The list of field paths in the mask.
-                         * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
-                         * for a field path syntax reference.
-                         */
-                        fieldPaths?: string[];
-                    }
-                    /**
-                     * A Firestore document.
-                     */
-                    interface Document {
-                        /**
-                         * The resource name of the document. For example:
-                         * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
+                         * The resource path name. For example,
+                         * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
+                         * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+                         * When `name` is populated as a response from the service, it always ends
+                         * in the device numeric ID.
                          */
                         name?: string;
                         /**
-                         * The document's fields.
-                         *
-                         * The map keys represent field names.
-                         *
-                         * A simple field name contains only characters `a` to `z`, `A` to `Z`,
-                         * `0` to `9`, or `_`, and must not start with `0` to `9`. For example,
-                         * `foo_bar_17`.
-                         *
-                         * Field names matching the regular expression `__.*__` are reserved. Reserved
-                         * field names are forbidden except in certain documented contexts. The map
-                         * keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be
-                         * empty.
-                         *
-                         * Field paths may be used in other contexts to refer to structured fields
-                         * defined here. For `map_value`, the field path is represented by the simple
-                         * or quoted field names of the containing fields, delimited by `.`. For
-                         * example, the structured field
-                         * `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be
-                         * represented by the field path `foo.x&y`.
-                         *
-                         * Within a field path, a quoted field name starts and ends with `` ` `` and
-                         * may contain any character. Some characters, including `` ` ``, must be
-                         * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
-                         * `` `bak\`tik` `` represents `` bak`tik ``.
+                         * [Output only] A server-defined unique numeric ID for the device. This is a
+                         * more compact way to identify devices, and it is globally unique.
                          */
-                        fields?: Value;
+                        numId?: any;
                         /**
-                         * The time at which the document was created.
-                         *
-                         * This value increases monotonically when a document is deleted then
-                         * recreated. It can also be compared to values from other documents and
-                         * the `read_time` of a query.
+                         * The credentials used to authenticate this device. To allow credential
+                         * rotation without interruption, multiple device credentials can be bound to
+                         * this device. No more than 3 credentials can be bound to a single device at
+                         * a time. When new credentials are added to a device, they are verified
+                         * against the registry credentials. For details, see the description of the
+                         * `DeviceRegistry.credentials` field.
                          */
-                        createTime?: string;
+                        credentials?: DeviceCredential[];
                         /**
-                         * The time at which the document was last changed.
-                         *
-                         * This value is initially set to the `create_time` then increases
-                         * monotonically with each change to the document. It can also be
-                         * compared to values from other documents and the `read_time` of a query.
+                         * [Output only] The last time an MQTT `PINGREQ` was received. This field
+                         * applies only to devices connecting through MQTT. MQTT clients usually only
+                         * send `PINGREQ` messages if the connection is idle, and no other messages
+                         * have been sent. Timestamps are periodically collected and written to
+                         * storage; they may be stale by a few minutes.
                          */
-                        updateTime?: string;
+                        lastHeartbeatTime?: string;
+                        /**
+                         * [Output only] The last time a telemetry event was received. Timestamps are
+                         * periodically collected and written to storage; they may be stale by a few
+                         * minutes.
+                         */
+                        lastEventTime?: string;
+                        /**
+                         * [Output only] The last time a state event was received. Timestamps are
+                         * periodically collected and written to storage; they may be stale by a few
+                         * minutes.
+                         */
+                        lastStateTime?: string;
+                        /**
+                         * [Output only] The last time a cloud-to-device config version acknowledgment
+                         * was received from the device. This field is only for configurations
+                         * sent through MQTT.
+                         */
+                        lastConfigAckTime?: string;
+                        /**
+                         * [Output only] The last time a cloud-to-device config version was sent to
+                         * the device.
+                         */
+                        lastConfigSendTime?: string;
+                        /**
+                         * If a device is blocked, connections or requests from this device will fail.
+                         * Can be used to temporarily prevent the device from connecting if, for
+                         * example, the sensor is generating bad data and needs maintenance.
+                         */
+                        blocked?: boolean;
+                        /**
+                         * [Output only] The time the most recent error occurred, such as a failure to
+                         * publish to Cloud Pub/Sub. This field is the timestamp of
+                         * 'last_error_status'.
+                         */
+                        lastErrorTime?: string;
+                        /**
+                         * [Output only] The error message of the most recent error, such as a failure
+                         * to publish to Cloud Pub/Sub. 'last_error_time' is the timestamp of this
+                         * field. If no errors have occurred, this field has an empty message
+                         * and the status code 0 == OK. Otherwise, this field is expected to have a
+                         * status code other than OK.
+                         */
+                        lastErrorStatus?: any;
+                        /**
+                         * The most recent device configuration, which is eventually sent from
+                         * Cloud IoT Core to the device. If not present on creation, the
+                         * configuration will be initialized with an empty payload and version value
+                         * of `1`. To update this field after creation, use the
+                         * `DeviceManager.ModifyCloudToDeviceConfig` method.
+                         */
+                        config?: DeviceConfig;
+                        /**
+                         * [Output only] The state most recently received from the device. If no state
+                         * has been reported, this field is not present.
+                         */
+                        state?: DeviceState;
+                        /**
+                         * *Beta Feature**
+                         *
+                         * The logging verbosity for device activity. If unspecified,
+                         * DeviceRegistry.log_level will be used.
+                         */
+                        logLevel?: LogLevel;
+                        /**
+                         * The metadata key-value pairs assigned to the device. This metadata is not
+                         * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
+                         * information for the device.
+                         *
+                         * Keys must conform to the regular expression [a-zA-Z][a-zA-Z0-9-_.+~%]+ and
+                         * be less than 128 bytes in length.
+                         *
+                         * Values are free-form strings. Each value must be less than or equal to 32
+                         * KB in size.
+                         *
+                         * The total size of all keys and values must be less than 256 KB, and the
+                         * maximum number of key-value pairs is 500.
+                         */
+                        metadata?: string;
+                        /**
+                         * Gateway-related configuration and state.
+                         */
+                        gatewayConfig?: GatewayConfig;
                     }
                     /**
-                     * A message that can hold any of the supported value types.
+                     * Gateway-related configuration and state.
                      */
-                    interface Value {
+                    interface GatewayConfig {
                         /**
-                         * A null value.
+                         * Indicates whether the device is a gateway.
                          */
-                        nullValue?: null;
+                        gatewayType?: GatewayType;
                         /**
-                         * A boolean value.
+                         * Indicates how to authorize and/or authenticate devices to access the
+                         * gateway.
                          */
-                        booleanValue?: boolean;
+                        gatewayAuthMethod?: GatewayAuthMethod;
                         /**
-                         * An integer value.
+                         * [Output only] The ID of the gateway the device accessed most recently.
                          */
-                        integerValue?: number;
+                        lastAccessedGatewayId?: string;
                         /**
-                         * A double value.
+                         * [Output only] The most recent time at which the device accessed the gateway
+                         * specified in `last_accessed_gateway`.
                          */
-                        doubleValue?: number;
-                        /**
-                         * A timestamp value.
-                         *
-                         * Precise only to microseconds. When stored, any additional precision is
-                         * rounded down.
-                         */
-                        timestampValue?: string;
-                        /**
-                         * A string value.
-                         *
-                         * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes.
-                         * Only the first 1,500 bytes of the UTF-8 representation are considered by
-                         * queries.
-                         */
-                        stringValue?: string;
-                        /**
-                         * A bytes value.
-                         *
-                         * Must not exceed 1 MiB - 89 bytes.
-                         * Only the first 1,500 bytes are considered by queries.
-                         */
-                        bytesValue?: string;
-                        /**
-                         * A reference to a document. For example:
-                         * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-                         */
-                        referenceValue?: string;
-                        /**
-                         * A geo point value representing a point on the surface of Earth.
-                         */
-                        geoPointValue?: any;
-                        /**
-                         * An array value.
-                         *
-                         * Cannot directly contain another array value, though can contain an
-                         * map which contains another array.
-                         */
-                        arrayValue?: ArrayValue;
-                        /**
-                         * A map value.
-                         */
-                        mapValue?: MapValue;
+                        lastAccessedGatewayTime?: string;
                     }
                     /**
-                     * An array value.
+                     * A container for a group of devices.
                      */
-                    interface ArrayValue {
+                    interface DeviceRegistry {
                         /**
-                         * Values in the array.
+                         * The identifier of this device registry. For example, `myRegistry`.
                          */
-                        values?: Value[];
-                    }
-                    /**
-                     * A map value.
-                     */
-                    interface MapValue {
+                        id?: string;
                         /**
-                         * The map's fields.
-                         *
-                         * The map keys represent field names. Field names matching the regular
-                         * expression `__.*__` are reserved. Reserved field names are forbidden except
-                         * in certain documented contexts. The map keys, represented as UTF-8, must
-                         * not exceed 1,500 bytes and cannot be empty.
-                         */
-                        fields?: Value;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is created.
-                     */
-                    interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.created' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is updated.
-                     */
-                    interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.updated' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is deleted.
-                     */
-                    interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is created, updated or
-                     * deleted.
-                     */
-                    interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.written' | string;
-                    }
-                    /**
-                     * The data within all Firestore document events.
-                     */
-                    interface DocumentEventData {
-                        /**
-                         * A Document object containing a post-operation document snapshot.
-                         * This is not populated for delete events.
-                         */
-                        value?: Document;
-                        /**
-                         * A Document object containing a pre-operation document snapshot.
-                         * This is only populated for update and delete events.
-                         */
-                        oldValue?: Document;
-                        /**
-                         * A DocumentMask object that lists changed fields.
-                         * This is only populated for update events.
-                         */
-                        updateMask?: DocumentMask;
-                    }
-                    /**
-                     * A set of field paths on a document.
-                     */
-                    interface DocumentMask {
-                        /**
-                         * The list of field paths in the mask.
-                         * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
-                         * for a field path syntax reference.
-                         */
-                        fieldPaths?: string[];
-                    }
-                    /**
-                     * A Firestore document.
-                     */
-                    interface Document {
-                        /**
-                         * The resource name of the document. For example:
-                         * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
+                         * The resource path name. For example,
+                         * `projects/example-project/locations/us-central1/registries/my-registry`.
                          */
                         name?: string;
                         /**
-                         * The document's fields.
-                         *
-                         * The map keys represent field names.
-                         *
-                         * A simple field name contains only characters `a` to `z`, `A` to `Z`,
-                         * `0` to `9`, or `_`, and must not start with `0` to `9`. For example,
-                         * `foo_bar_17`.
-                         *
-                         * Field names matching the regular expression `__.*__` are reserved. Reserved
-                         * field names are forbidden except in certain documented contexts. The map
-                         * keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be
-                         * empty.
-                         *
-                         * Field paths may be used in other contexts to refer to structured fields
-                         * defined here. For `map_value`, the field path is represented by the simple
-                         * or quoted field names of the containing fields, delimited by `.`. For
-                         * example, the structured field
-                         * `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be
-                         * represented by the field path `foo.x&y`.
-                         *
-                         * Within a field path, a quoted field name starts and ends with `` ` `` and
-                         * may contain any character. Some characters, including `` ` ``, must be
-                         * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
-                         * `` `bak\`tik` `` represents `` bak`tik ``.
+                         * The configuration for notification of telemetry events received from the
+                         * device. All telemetry events that were successfully published by the
+                         * device and acknowledged by Cloud IoT Core are guaranteed to be
+                         * delivered to Cloud Pub/Sub. If multiple configurations match a message,
+                         * only the first matching configuration is used. If you try to publish a
+                         * device telemetry event using MQTT without specifying a Cloud Pub/Sub topic
+                         * for the device's registry, the connection closes automatically. If you try
+                         * to do so using an HTTP connection, an error is returned. Up to 10
+                         * configurations may be provided.
                          */
-                        fields?: Value;
+                        eventNotificationConfigs?: EventNotificationConfig[];
                         /**
-                         * The time at which the document was created.
-                         *
-                         * This value increases monotonically when a document is deleted then
-                         * recreated. It can also be compared to values from other documents and
-                         * the `read_time` of a query.
+                         * The configuration for notification of new states received from the device.
+                         * State updates are guaranteed to be stored in the state history, but
+                         * notifications to Cloud Pub/Sub are not guaranteed. For example, if
+                         * permissions are misconfigured or the specified topic doesn't exist, no
+                         * notification will be published but the state will still be stored in Cloud
+                         * IoT Core.
                          */
-                        createTime?: string;
+                        stateNotificationConfig?: StateNotificationConfig;
                         /**
-                         * The time at which the document was last changed.
+                         * The MQTT configuration for this device registry.
+                         */
+                        mqttConfig?: MqttConfig;
+                        /**
+                         * The DeviceService (HTTP) configuration for this device registry.
+                         */
+                        httpConfig?: HttpConfig;
+                        /**
+                         * *Beta Feature**
                          *
-                         * This value is initially set to the `create_time` then increases
-                         * monotonically with each change to the document. It can also be
-                         * compared to values from other documents and the `read_time` of a query.
+                         * The default logging verbosity for activity from devices in this registry.
+                         * The verbosity level can be overridden by Device.log_level.
+                         */
+                        logLevel?: LogLevel;
+                        /**
+                         * The credentials used to verify the device credentials. No more than 10
+                         * credentials can be bound to a single registry at a time. The verification
+                         * process occurs at the time of device creation or update. If this field is
+                         * empty, no verification is performed. Otherwise, the credentials of a newly
+                         * created device or added credentials of an updated device should be signed
+                         * with one of these registry credentials.
+                         *
+                         * Note, however, that existing devices will never be affected by
+                         * modifications to this list of credentials: after a device has been
+                         * successfully created in a registry, it should be able to connect even if
+                         * its registry credentials are revoked, deleted, or modified.
+                         */
+                        credentials?: RegistryCredential[];
+                    }
+                    /**
+                     * The configuration of MQTT for a device registry.
+                     */
+                    interface MqttConfig {
+                        /**
+                         * If enabled, allows connections using the MQTT protocol. Otherwise, MQTT
+                         * connections to this registry will fail.
+                         */
+                        mqttEnabledState?: MqttState;
+                    }
+                    /**
+                     * Indicates whether an MQTT connection is enabled or disabled. See the field
+                     * description for details.
+                     */
+                    enum MqttState {
+                        MQTT_STATE_UNSPECIFIED = 0,
+                        MQTT_ENABLED = 1,
+                        MQTT_DISABLED = 2
+                    }
+                    /**
+                     * The configuration of the HTTP bridge for a device registry.
+                     */
+                    interface HttpConfig {
+                        /**
+                         * If enabled, allows devices to use DeviceService via the HTTP protocol.
+                         * Otherwise, any requests to DeviceService will fail for this registry.
+                         */
+                        httpEnabledState?: HttpState;
+                    }
+                    /**
+                     * Indicates whether DeviceService (HTTP) is enabled or disabled for the
+                     * registry. See the field description for details.
+                     */
+                    enum HttpState {
+                        HTTP_STATE_UNSPECIFIED = 0,
+                        HTTP_ENABLED = 1,
+                        HTTP_DISABLED = 2
+                    }
+                    /**
+                     * *Beta Feature**
+                     *
+                     * The logging verbosity for device activity. Specifies which events should be
+                     * written to logs. For example, if the LogLevel is ERROR, only events that
+                     * terminate in errors will be logged. LogLevel is inclusive; enabling INFO
+                     * logging will also enable ERROR logging.
+                     */
+                    enum LogLevel {
+                        LOG_LEVEL_UNSPECIFIED = 0,
+                        NONE = 10,
+                        ERROR = 20,
+                        INFO = 30,
+                        DEBUG = 40
+                    }
+                    /**
+                     * Gateway type.
+                     */
+                    enum GatewayType {
+                        GATEWAY_TYPE_UNSPECIFIED = 0,
+                        GATEWAY = 1,
+                        NON_GATEWAY = 2
+                    }
+                    /**
+                     * The gateway authorization/authentication method. This setting determines how
+                     * Cloud IoT Core authorizes/authenticate devices to access the gateway.
+                     */
+                    enum GatewayAuthMethod {
+                        GATEWAY_AUTH_METHOD_UNSPECIFIED = 0,
+                        ASSOCIATION_ONLY = 1,
+                        DEVICE_AUTH_TOKEN_ONLY = 2,
+                        ASSOCIATION_AND_DEVICE_AUTH_TOKEN = 3
+                    }
+                    /**
+                     * The configuration for forwarding telemetry events.
+                     */
+                    interface EventNotificationConfig {
+                        /**
+                         * If the subfolder name matches this string exactly, this configuration will
+                         * be used. The string must not include the leading '/' character. If empty,
+                         * all strings are matched. This field is used only for telemetry events;
+                         * subfolders are not supported for state changes.
+                         */
+                        subfolderMatches?: string;
+                        /**
+                         * A Cloud Pub/Sub topic name. For example,
+                         * `projects/myProject/topics/deviceEvents`.
+                         */
+                        pubsubTopicName?: string;
+                    }
+                    /**
+                     * The configuration for notification of new states received from the device.
+                     */
+                    interface StateNotificationConfig {
+                        /**
+                         * A Cloud Pub/Sub topic name. For example,
+                         * `projects/myProject/topics/deviceEvents`.
+                         */
+                        pubsubTopicName?: string;
+                    }
+                    /**
+                     * A server-stored registry credential used to validate device credentials.
+                     */
+                    interface RegistryCredential {
+                        /**
+                         * A public key certificate used to verify the device credentials.
+                         */
+                        publicKeyCertificate?: PublicKeyCertificate;
+                    }
+                    /**
+                     * Details of an X.509 certificate. For informational purposes only.
+                     */
+                    interface X509CertificateDetails {
+                        /**
+                         * The entity that signed the certificate.
+                         */
+                        issuer?: string;
+                        /**
+                         * The entity the certificate and public key belong to.
+                         */
+                        subject?: string;
+                        /**
+                         * The time the certificate becomes valid.
+                         */
+                        startTime?: string;
+                        /**
+                         * The time the certificate becomes invalid.
+                         */
+                        expiryTime?: string;
+                        /**
+                         * The algorithm used to sign the certificate.
+                         */
+                        signatureAlgorithm?: string;
+                        /**
+                         * The type of public key in the certificate.
+                         */
+                        publicKeyType?: string;
+                    }
+                    /**
+                     * A public key certificate format and data.
+                     */
+                    interface PublicKeyCertificate {
+                        /**
+                         * The certificate format.
+                         */
+                        format?: PublicKeyCertificateFormat;
+                        /**
+                         * The certificate data.
+                         */
+                        certificate?: string;
+                        /**
+                         * [Output only] The certificate details. Used only for X.509 certificates.
+                         */
+                        x509Details?: X509CertificateDetails;
+                    }
+                    /**
+                     * The supported formats for the public key.
+                     */
+                    enum PublicKeyCertificateFormat {
+                        UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT = 0,
+                        X509_CERTIFICATE_PEM = 1
+                    }
+                    /**
+                     * A server-stored device credential used for authentication.
+                     */
+                    interface DeviceCredential {
+                        /**
+                         * A public key used to verify the signature of JSON Web Tokens (JWTs).
+                         * When adding a new device credential, either via device creation or via
+                         * modifications, this public key credential may be required to be signed by
+                         * one of the registry level certificates. More specifically, if the
+                         * registry contains at least one certificate, any new device credential
+                         * must be signed by one of the registry certificates. As a result,
+                         * when the registry contains certificates, only X.509 certificates are
+                         * accepted as device credentials. However, if the registry does
+                         * not contain a certificate, self-signed certificates and public keys will
+                         * be accepted. New device credentials must be different from every
+                         * registry-level certificate.
+                         */
+                        publicKey?: PublicKeyCredential;
+                        /**
+                         * [Optional] The time at which this credential becomes invalid. This
+                         * credential will be ignored for new client authentication requests after
+                         * this timestamp; however, it will not be automatically deleted.
+                         */
+                        expirationTime?: string;
+                    }
+                    /**
+                     * A public key format and data.
+                     */
+                    interface PublicKeyCredential {
+                        /**
+                         * The format of the key.
+                         */
+                        format?: PublicKeyFormat;
+                        /**
+                         * The key data.
+                         */
+                        key?: string;
+                    }
+                    /**
+                     * The supported formats for the public key.
+                     */
+                    enum PublicKeyFormat {
+                        UNSPECIFIED_PUBLIC_KEY_FORMAT = 0,
+                        RSA_PEM = 3,
+                        RSA_X509_PEM = 1,
+                        ES256_PEM = 2,
+                        ES256_X509_PEM = 4
+                    }
+                    /**
+                     * The device configuration. Eventually delivered to devices.
+                     */
+                    interface DeviceConfig {
+                        /**
+                         * [Output only] The version of this update. The version number is assigned by
+                         * the server, and is always greater than 0 after device creation. The
+                         * version must be 0 on the `CreateDevice` request if a `config` is
+                         * specified; the response of `CreateDevice` will always have a value of 1.
+                         */
+                        version?: number;
+                        /**
+                         * [Output only] The time at which this configuration version was updated in
+                         * Cloud IoT Core. This timestamp is set by the server.
+                         */
+                        cloudUpdateTime?: string;
+                        /**
+                         * [Output only] The time at which Cloud IoT Core received the
+                         * acknowledgment from the device, indicating that the device has received
+                         * this configuration version. If this field is not present, the device has
+                         * not yet acknowledged that it received this version. Note that when
+                         * the config was sent to the device, many config versions may have been
+                         * available in Cloud IoT Core while the device was disconnected, and on
+                         * connection, only the latest version is sent to the device. Some
+                         * versions may never be sent to the device, and therefore are never
+                         * acknowledged. This timestamp is set by Cloud IoT Core.
+                         */
+                        deviceAckTime?: string;
+                        /**
+                         * The device configuration data.
+                         */
+                        binaryData?: string;
+                    }
+                    /**
+                     * The device state, as reported by the device.
+                     */
+                    interface DeviceState {
+                        /**
+                         * [Output only] The time at which this state version was updated in Cloud
+                         * IoT Core.
                          */
                         updateTime?: string;
+                        /**
+                         * The device state data.
+                         */
+                        binaryData?: string;
                     }
                     /**
-                     * A message that can hold any of the supported value types.
+                     * The data within all Cloud IoT Device events.
                      */
-                    interface Value {
+                    interface DeviceEventData {
                         /**
-                         * A null value.
+                         * Optional. The Device event payload. Unset for deletion events.
                          */
-                        nullValue?: null;
-                        /**
-                         * A boolean value.
-                         */
-                        booleanValue?: boolean;
-                        /**
-                         * An integer value.
-                         */
-                        integerValue?: number;
-                        /**
-                         * A double value.
-                         */
-                        doubleValue?: number;
-                        /**
-                         * A timestamp value.
-                         *
-                         * Precise only to microseconds. When stored, any additional precision is
-                         * rounded down.
-                         */
-                        timestampValue?: string;
-                        /**
-                         * A string value.
-                         *
-                         * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes.
-                         * Only the first 1,500 bytes of the UTF-8 representation are considered by
-                         * queries.
-                         */
-                        stringValue?: string;
-                        /**
-                         * A bytes value.
-                         *
-                         * Must not exceed 1 MiB - 89 bytes.
-                         * Only the first 1,500 bytes are considered by queries.
-                         */
-                        bytesValue?: string;
-                        /**
-                         * A reference to a document. For example:
-                         * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-                         */
-                        referenceValue?: string;
-                        /**
-                         * A geo point value representing a point on the surface of Earth.
-                         */
-                        geoPointValue?: any;
-                        /**
-                         * An array value.
-                         *
-                         * Cannot directly contain another array value, though can contain an
-                         * map which contains another array.
-                         */
-                        arrayValue?: ArrayValue;
-                        /**
-                         * A map value.
-                         */
-                        mapValue?: MapValue;
+                        payload?: Device;
                     }
                     /**
-                     * An array value.
+                     * The data within all Cloud IoT Registry events.
                      */
-                    interface ArrayValue {
+                    interface RegistryEventData {
                         /**
-                         * Values in the array.
+                         * Optional. The Registry event payload. Unset for deletion events.
                          */
-                        values?: Value[];
+                        payload?: DeviceRegistry;
                     }
-                    /**
-                     * A map value.
-                     */
-                    interface MapValue {
-                        /**
-                         * The map's fields.
-                         *
-                         * The map keys represent field names. Field names matching the regular
-                         * expression `__.*__` are reserved. Reserved field names are forbidden except
-                         * in certain documented contexts. The map keys, represented as UTF-8, must
-                         * not exceed 1,500 bytes and cannot be empty.
-                         */
-                        fields?: Value;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is created.
-                     */
-                    interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.created' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is updated.
-                     */
-                    interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.updated' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is deleted.
-                     */
-                    interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.deleted' | string;
-                    }
-                    /**
-                     * The CloudEvent raised when a Firestore document is created, updated or
-                     * deleted.
-                     */
-                    interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
-                        type: 'google.cloud.firestore.document.v1.written' | string;
-                    }
-                    /**
-                     * The data within all Firestore document events.
-                     */
-                    interface DocumentEventData {
-                        /**
-                         * A Document object containing a post-operation document snapshot.
-                         * This is not populated for delete events.
-                         */
-                        value?: Document;
-                        /**
-                         * A Document object containing a pre-operation document snapshot.
-                         * This is only populated for update and delete events.
-                         */
-                        oldValue?: Document;
-                        /**
-                         * A DocumentMask object that lists changed fields.
-                         * This is only populated for update events.
-                         */
-                        updateMask?: DocumentMask;
-                    }
-                    /**
-                     * A set of field paths on a document.
-                     */
-                    interface DocumentMask {
-                        /**
-                         * The list of field paths in the mask.
-                         * See [Document.fields][google.cloud.firestore.v1.events.Document.fields]
-                         * for a field path syntax reference.
-                         */
-                        fieldPaths?: string[];
-                    }
-                    /**
-                     * A Firestore document.
-                     */
-                    interface Document {
-                        /**
-                         * The resource name of the document. For example:
-                         * `projects/{project_id}/databases/{database_id}/documents/{document_path}`
-                         */
-                        name?: string;
-                        /**
-                         * The document's fields.
-                         *
-                         * The map keys represent field names.
-                         *
-                         * A simple field name contains only characters `a` to `z`, `A` to `Z`,
-                         * `0` to `9`, or `_`, and must not start with `0` to `9`. For example,
-                         * `foo_bar_17`.
-                         *
-                         * Field names matching the regular expression `__.*__` are reserved. Reserved
-                         * field names are forbidden except in certain documented contexts. The map
-                         * keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be
-                         * empty.
-                         *
-                         * Field paths may be used in other contexts to refer to structured fields
-                         * defined here. For `map_value`, the field path is represented by the simple
-                         * or quoted field names of the containing fields, delimited by `.`. For
-                         * example, the structured field
-                         * `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be
-                         * represented by the field path `foo.x&y`.
-                         *
-                         * Within a field path, a quoted field name starts and ends with `` ` `` and
-                         * may contain any character. Some characters, including `` ` ``, must be
-                         * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
-                         * `` `bak\`tik` `` represents `` bak`tik ``.
-                         */
-                        fields?: Value;
-                        /**
-                         * The time at which the document was created.
-                         *
-                         * This value increases monotonically when a document is deleted then
-                         * recreated. It can also be compared to values from other documents and
-                         * the `read_time` of a query.
-                         */
-                        createTime?: string;
-                        /**
-                         * The time at which the document was last changed.
-                         *
-                         * This value is initially set to the `create_time` then increases
-                         * monotonically with each change to the document. It can also be
-                         * compared to values from other documents and the `read_time` of a query.
-                         */
-                        updateTime?: string;
-                    }
-                    /**
-                     * A message that can hold any of the supported value types.
-                     */
-                    interface Value {
-                        /**
-                         * A null value.
-                         */
-                        nullValue?: null;
-                        /**
-                         * A boolean value.
-                         */
-                        booleanValue?: boolean;
-                        /**
-                         * An integer value.
-                         */
-                        integerValue?: number;
-                        /**
-                         * A double value.
-                         */
-                        doubleValue?: number;
-                        /**
-                         * A timestamp value.
-                         *
-                         * Precise only to microseconds. When stored, any additional precision is
-                         * rounded down.
-                         */
-                        timestampValue?: string;
-                        /**
-                         * A string value.
-                         *
-                         * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes.
-                         * Only the first 1,500 bytes of the UTF-8 representation are considered by
-                         * queries.
-                         */
-                        stringValue?: string;
-                        /**
-                         * A bytes value.
-                         *
-                         * Must not exceed 1 MiB - 89 bytes.
-                         * Only the first 1,500 bytes are considered by queries.
-                         */
-                        bytesValue?: string;
-                        /**
-                         * A reference to a document. For example:
-                         * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-                         */
-                        referenceValue?: string;
-                        /**
-                         * A geo point value representing a point on the surface of Earth.
-                         */
-                        geoPointValue?: any;
-                        /**
-                         * An array value.
-                         *
-                         * Cannot directly contain another array value, though can contain an
-                         * map which contains another array.
-                         */
-                        arrayValue?: ArrayValue;
-                        /**
-                         * A map value.
-                         */
-                        mapValue?: MapValue;
-                    }
-                    /**
-                     * An array value.
-                     */
-                    interface ArrayValue {
-                        /**
-                         * Values in the array.
-                         */
-                        values?: Value[];
-                    }
-                    /**
-                     * A map value.
-                     */
-                    interface MapValue {
-                        /**
-                         * The map's fields.
-                         *
-                         * The map keys represent field names. Field names matching the regular
-                         * expression `__.*__` are reserved. Reserved field names are forbidden except
-                         * in certain documented contexts. The map keys, represented as UTF-8, must
-                         * not exceed 1,500 bytes and cannot be empty.
-                         */
-                        fields?: Value;
-                    }
+                }
+            }
+            namespace firestore {
+                namespace v1 {
                     /**
                      * The CloudEvent raised when a Firestore document is created.
                      */
@@ -3601,6 +2853,12 @@ export declare type GoogleCloudEventTypesToDataType = {
     'google.cloud.storage.object.v1.metadataUpdated': google.events.cloud.storage.v1.StorageObjectData;
     'google.cloud.scheduler.job.v1.executed': google.events.cloud.scheduler.v1.SchedulerJobData;
     'google.cloud.pubsub.topic.v1.messagePublished': google.events.cloud.pubsub.v1.MessagePublishedData;
+    'google.cloud.iot.v1.DeviceManager.CreateDevice': google.events.cloud.iot.v1.DeviceEventData;
+    'google.cloud.iot.v1.DeviceManager.UpdateDevice': google.events.cloud.iot.v1.DeviceEventData;
+    'google.cloud.iot.v1.DeviceManager.DeleteDevice': google.events.cloud.iot.v1.DeviceEventData;
+    'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry': google.events.cloud.iot.v1.RegistryEventData;
+    'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry': google.events.cloud.iot.v1.RegistryEventData;
+    'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry': google.events.cloud.iot.v1.RegistryEventData;
     'google.cloud.firestore.document.v1.created': google.events.cloud.firestore.v1.DocumentEventData;
     'google.cloud.firestore.document.v1.updated': google.events.cloud.firestore.v1.DocumentEventData;
     'google.cloud.firestore.document.v1.deleted': google.events.cloud.firestore.v1.DocumentEventData;
@@ -3627,7 +2885,7 @@ export interface GoogleCloudEventUnionType<T extends keyof GoogleCloudEventTypes
  * see https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types
  * and https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions
  */
-export declare type GoogleCloudEventsUnion = GoogleCloudEventUnionType<'google.firebase.testlab.testMatrix.v1.completed'> | GoogleCloudEventUnionType<'google.firebase.remoteconfig.remoteConfig.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.firebasealerts.alerts.v1.published'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.created'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.written'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.created'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.analytics.log.v1.written'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.finalized'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.archived'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.metadataUpdated'> | GoogleCloudEventUnionType<'google.cloud.scheduler.job.v1.executed'> | GoogleCloudEventUnionType<'google.cloud.pubsub.topic.v1.messagePublished'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.created'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.updated'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.written'> | GoogleCloudEventUnionType<'google.cloud.cloudbuild.build.v1.statusChanged'> | GoogleCloudEventUnionType<'google.cloud.audit.log.v1.written'>;
+export declare type GoogleCloudEventsUnion = GoogleCloudEventUnionType<'google.firebase.testlab.testMatrix.v1.completed'> | GoogleCloudEventUnionType<'google.firebase.remoteconfig.remoteConfig.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.firebasealerts.alerts.v1.published'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.created'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.written'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.created'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.analytics.log.v1.written'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.finalized'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.archived'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.metadataUpdated'> | GoogleCloudEventUnionType<'google.cloud.scheduler.job.v1.executed'> | GoogleCloudEventUnionType<'google.cloud.pubsub.topic.v1.messagePublished'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.CreateDevice'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.UpdateDevice'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.DeleteDevice'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.created'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.updated'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.written'> | GoogleCloudEventUnionType<'google.cloud.cloudbuild.build.v1.statusChanged'> | GoogleCloudEventUnionType<'google.cloud.audit.log.v1.written'>;
 /**
  * Keep a set of of all known GoogleCloudEvent types to be used in the type predicates
  * provided by this library.
