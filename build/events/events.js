@@ -146,6 +146,88 @@ var google;
                     })(PublicKeyFormat = v1.PublicKeyFormat || (v1.PublicKeyFormat = {}));
                 })(v1 = iot.v1 || (iot.v1 = {}));
             })(iot = cloud.iot || (cloud.iot = {}));
+            let cloudbuild;
+            (function (cloudbuild) {
+                let v1;
+                (function (v1) {
+                    let BuildEventData;
+                    (function (BuildEventData) {
+                        /**
+                         * Possible status of a build or build step.
+                         */
+                        let Status;
+                        (function (Status) {
+                            Status[Status["STATUS_UNKNOWN"] = 0] = "STATUS_UNKNOWN";
+                            Status[Status["QUEUED"] = 1] = "QUEUED";
+                            Status[Status["WORKING"] = 2] = "WORKING";
+                            Status[Status["SUCCESS"] = 3] = "SUCCESS";
+                            Status[Status["FAILURE"] = 4] = "FAILURE";
+                            Status[Status["INTERNAL_ERROR"] = 5] = "INTERNAL_ERROR";
+                            Status[Status["TIMEOUT"] = 6] = "TIMEOUT";
+                            Status[Status["CANCELLED"] = 7] = "CANCELLED";
+                            Status[Status["EXPIRED"] = 9] = "EXPIRED";
+                        })(Status = BuildEventData.Status || (BuildEventData.Status = {}));
+                    })(BuildEventData = v1.BuildEventData || (v1.BuildEventData = {}));
+                    let Hash;
+                    (function (Hash) {
+                        /**
+                         * Specifies the hash algorithm, if any.
+                         */
+                        let HashType;
+                        (function (HashType) {
+                            HashType[HashType["NONE"] = 0] = "NONE";
+                            HashType[HashType["SHA256"] = 1] = "SHA256";
+                            HashType[HashType["MD5"] = 2] = "MD5";
+                        })(HashType = Hash.HashType || (Hash.HashType = {}));
+                    })(Hash = v1.Hash || (v1.Hash = {}));
+                    let BuildOptions;
+                    (function (BuildOptions) {
+                        /**
+                         * Specifies the manner in which the build should be verified, if at all.
+                         */
+                        let VerifyOption;
+                        (function (VerifyOption) {
+                            VerifyOption[VerifyOption["NOT_VERIFIED"] = 0] = "NOT_VERIFIED";
+                            VerifyOption[VerifyOption["VERIFIED"] = 1] = "VERIFIED";
+                        })(VerifyOption = BuildOptions.VerifyOption || (BuildOptions.VerifyOption = {}));
+                        /**
+                         * Supported VM sizes.
+                         */
+                        let MachineType;
+                        (function (MachineType) {
+                            MachineType[MachineType["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+                            MachineType[MachineType["N1_HIGHCPU_8"] = 1] = "N1_HIGHCPU_8";
+                            MachineType[MachineType["N1_HIGHCPU_32"] = 2] = "N1_HIGHCPU_32";
+                        })(MachineType = BuildOptions.MachineType || (BuildOptions.MachineType = {}));
+                        /**
+                         * Specifies the behavior when there is an error in the substitution checks.
+                         */
+                        let SubstitutionOption;
+                        (function (SubstitutionOption) {
+                            SubstitutionOption[SubstitutionOption["MUST_MATCH"] = 0] = "MUST_MATCH";
+                            SubstitutionOption[SubstitutionOption["ALLOW_LOOSE"] = 1] = "ALLOW_LOOSE";
+                        })(SubstitutionOption = BuildOptions.SubstitutionOption || (BuildOptions.SubstitutionOption = {}));
+                        /**
+                         * Specifies the behavior when writing build logs to Google Cloud Storage.
+                         */
+                        let LogStreamingOption;
+                        (function (LogStreamingOption) {
+                            LogStreamingOption[LogStreamingOption["STREAM_DEFAULT"] = 0] = "STREAM_DEFAULT";
+                            LogStreamingOption[LogStreamingOption["STREAM_ON"] = 1] = "STREAM_ON";
+                            LogStreamingOption[LogStreamingOption["STREAM_OFF"] = 2] = "STREAM_OFF";
+                        })(LogStreamingOption = BuildOptions.LogStreamingOption || (BuildOptions.LogStreamingOption = {}));
+                        /**
+                         * Specifies the logging mode.
+                         */
+                        let LoggingMode;
+                        (function (LoggingMode) {
+                            LoggingMode[LoggingMode["LOGGING_UNSPECIFIED"] = 0] = "LOGGING_UNSPECIFIED";
+                            LoggingMode[LoggingMode["LEGACY"] = 1] = "LEGACY";
+                            LoggingMode[LoggingMode["GCS_ONLY"] = 2] = "GCS_ONLY";
+                        })(LoggingMode = BuildOptions.LoggingMode || (BuildOptions.LoggingMode = {}));
+                    })(BuildOptions = v1.BuildOptions || (v1.BuildOptions = {}));
+                })(v1 = cloudbuild.v1 || (cloudbuild.v1 = {}));
+            })(cloudbuild = cloud.cloudbuild || (cloud.cloudbuild = {}));
             let audit;
             (function (audit) {
                 let v1;

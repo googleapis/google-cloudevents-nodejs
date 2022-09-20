@@ -55,7 +55,7 @@ export declare namespace google {
                         /**
                          * Map of detailed information about the client.
                          */
-                        details?: string;
+                        details?: Record<string, string>;
                     }
                     /**
                      * Locations where test results are stored.
@@ -289,7 +289,27 @@ export declare namespace google {
                         /**
                          * A stability digest contains several trending Crashlytics issues
                          */
-                        trendingIssues?: any[];
+                        trendingIssues?: CrashlyticsStabilityDigestPayload.TrendingIssueDetails[];
+                    }
+                    namespace CrashlyticsStabilityDigestPayload {
+                        interface TrendingIssueDetails {
+                            /**
+                             * The type of the Crashlytics issue, e.g. new fatal, new nonfatal, ANR
+                             */
+                            type?: string;
+                            /**
+                             * Basic information of the Crashlytics issue
+                             */
+                            issue?: any;
+                            /**
+                             * The number of crashes that occurred with the issue
+                             */
+                            eventCount?: number;
+                            /**
+                             * The number of distinct users that were affected by the issue
+                             */
+                            userCount?: number;
+                        }
                     }
                     interface CrashlyticsNewAnrIssuePayload {
                         issue?: CrashlyticsIssue;
@@ -596,7 +616,7 @@ export declare namespace google {
                          * A repeated record of user properties set with the setUserProperty API.
                          * https://firebase.google.com/docs/analytics/android/properties
                          */
-                        userProperties?: UserPropertyValue;
+                        userProperties?: Record<string, UserPropertyValue>;
                         /**
                          * Device information.
                          */
@@ -828,7 +848,7 @@ export declare namespace google {
                         /**
                          * A repeated record of the parameters associated with this event.
                          */
-                        params?: AnalyticsValue;
+                        params?: Record<string, AnalyticsValue>;
                         /**
                          * UTC client time when the event happened.
                          */
@@ -981,7 +1001,7 @@ export declare namespace google {
                         /**
                          * User-provided metadata, in key/value pairs.
                          */
-                        metadata?: string;
+                        metadata?: Record<string, string>;
                         /**
                          * Whether an object is under event-based hold.
                          */
@@ -1008,7 +1028,7 @@ export declare namespace google {
                          * Metadata of customer-supplied encryption key, if the object is encrypted by
                          * such a key.
                          */
-                        customerEncryption?: any;
+                        customerEncryption?: StorageObjectData.CustomerEncryption;
                         /**
                          * Media download link.
                          */
@@ -1021,6 +1041,21 @@ export declare namespace google {
                          * The kind of item this is. For objects, this is always "storage#object".
                          */
                         kind?: string;
+                    }
+                    namespace StorageObjectData {
+                        /**
+                         * Describes the customer-specified mechanism used to store the data at rest.
+                         */
+                        interface CustomerEncryption {
+                            /**
+                             * The encryption algorithm.
+                             */
+                            encryptionAlgorithm?: string;
+                            /**
+                             * SHA256 hash value of the encryption key.
+                             */
+                            keySha256?: string;
+                        }
                     }
                 }
             }
@@ -1077,7 +1112,7 @@ export declare namespace google {
                         /**
                          * Attributes for this message.
                          */
-                        attributes?: string;
+                        attributes?: Record<string, string>;
                         /**
                          * ID of this message, assigned by the server when the message is published.
                          * Guaranteed to be unique within the topic.
@@ -1250,7 +1285,7 @@ export declare namespace google {
                          * The total size of all keys and values must be less than 256 KB, and the
                          * maximum number of key-value pairs is 500.
                          */
-                        metadata?: string;
+                        metadata?: Record<string, string>;
                         /**
                          * Gateway-related configuration and state.
                          */
@@ -1711,7 +1746,7 @@ export declare namespace google {
                          * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
                          * `` `bak\`tik` `` represents `` bak`tik ``.
                          */
-                        fields?: Value;
+                        fields?: Record<string, Value>;
                         /**
                          * The time at which the document was created.
                          *
@@ -1813,7 +1848,7 @@ export declare namespace google {
                          * in certain documented contexts. The map keys, represented as UTF-8, must
                          * not exceed 1,500 bytes and cannot be empty.
                          */
-                        fields?: Value;
+                        fields?: Record<string, Value>;
                     }
                 }
             }
@@ -1840,7 +1875,7 @@ export declare namespace google {
                         /**
                          * Status of the build.
                          */
-                        status?: any;
+                        status?: BuildEventData.Status;
                         /**
                          * Customer-readable message about the current status.
                          */
@@ -1931,7 +1966,7 @@ export declare namespace google {
                         /**
                          * Substitutions data for `Build` resource.
                          */
-                        substitutions?: string;
+                        substitutions?: Record<string, string>;
                         /**
                          * Tags for annotation of a `Build`. These are not docker tags.
                          */
@@ -1951,7 +1986,23 @@ export declare namespace google {
                          * If the build does not specify source or images,
                          * these keys will not be included.
                          */
-                        timing?: TimeSpan;
+                        timing?: Record<string, TimeSpan>;
+                    }
+                    namespace BuildEventData {
+                        /**
+                         * Possible status of a build or build step.
+                         */
+                        enum Status {
+                            STATUS_UNKNOWN = 0,
+                            QUEUED = 1,
+                            WORKING = 2,
+                            SUCCESS = 3,
+                            FAILURE = 4,
+                            INTERNAL_ERROR = 5,
+                            TIMEOUT = 6,
+                            CANCELLED = 7,
+                            EXPIRED = 9
+                        }
                     }
                     interface Source {
                         /**
@@ -2030,7 +2081,7 @@ export declare namespace google {
                          * Substitutions to use in a triggered build.
                          * Should only be used with RunBuildTrigger
                          */
-                        substitutions?: string;
+                        substitutions?: Record<string, string>;
                     }
                     /**
                      * A step in the build pipeline.
@@ -2245,7 +2296,32 @@ export declare namespace google {
                          *
                          * If any objects fail to be pushed, the build is marked FAILURE.
                          */
-                        objects?: any;
+                        objects?: Artifacts.ArtifactObjects;
+                    }
+                    namespace Artifacts {
+                        /**
+                         * Files in the workspace to upload to Cloud Storage upon successful
+                         * completion of all build steps.
+                         */
+                        interface ArtifactObjects {
+                            /**
+                             * Cloud Storage bucket and optional object path, in the form
+                             * "gs://bucket/path/to/somewhere/". (see [Bucket Name
+                             * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+                             *
+                             * Files in the workspace matching any path pattern will be uploaded to
+                             * Cloud Storage with this location as a prefix.
+                             */
+                            location?: string;
+                            /**
+                             * Path globs used to match files in the build's workspace.
+                             */
+                            paths?: string[];
+                            /**
+                             * Stores timing information for pushing all artifact objects.
+                             */
+                            timing?: any;
+                        }
                     }
                     /**
                      * Start and end times for a build execution phase.
@@ -2287,7 +2363,7 @@ export declare namespace google {
                          * If the build source came in a single package such as a gzipped tarfile
                          * (`.tar.gz`), the `FileHash` will be for the single path to that file.
                          */
-                        fileHashes?: FileHashes;
+                        fileHashes?: Record<string, FileHashes>;
                     }
                     /**
                      * Container message for hashes of byte content of files, used in
@@ -2306,11 +2382,21 @@ export declare namespace google {
                         /**
                          * The type of hash that was performed.
                          */
-                        type?: any;
+                        type?: Hash.HashType;
                         /**
                          * The hash value.
                          */
                         value?: string;
+                    }
+                    namespace Hash {
+                        /**
+                         * Specifies the hash algorithm, if any.
+                         */
+                        enum HashType {
+                            NONE = 0,
+                            SHA256 = 1,
+                            MD5 = 2
+                        }
                     }
                     /**
                      * Pairs a set of secret environment variables containing encrypted
@@ -2329,7 +2415,7 @@ export declare namespace google {
                          * 64 KB in size. There can be at most 100 secret values across all of a
                          * build's secrets.
                          */
-                        secretEnv?: string;
+                        secretEnv?: Record<string, string>;
                     }
                     /**
                      * Optional arguments to enable specific features of builds.
@@ -2342,11 +2428,11 @@ export declare namespace google {
                         /**
                          * Requested verifiability options.
                          */
-                        requestedVerifyOption?: any;
+                        requestedVerifyOption?: BuildOptions.VerifyOption;
                         /**
                          * Compute Engine machine type on which to run the build.
                          */
-                        machineType?: any;
+                        machineType?: BuildOptions.MachineType;
                         /**
                          * Requested disk size for the VM that runs the build. Note that this is *NOT*
                          * "disk free"; some of the space will be used by the operating system and
@@ -2360,12 +2446,12 @@ export declare namespace google {
                          * Option to specify behavior when there is an error in the substitution
                          * checks.
                          */
-                        substitutionOption?: any;
+                        substitutionOption?: BuildOptions.SubstitutionOption;
                         /**
                          * Option to define build log streaming behavior to Google Cloud
                          * Storage.
                          */
-                        logStreamingOption?: any;
+                        logStreamingOption?: BuildOptions.LogStreamingOption;
                         /**
                          * Option to specify a `WorkerPool` for the build.
                          * Format: projects/{project}/locations/{location}/workerPools/{workerPool}
@@ -2375,7 +2461,7 @@ export declare namespace google {
                          * Option to specify the logging mode, which determines where the logs are
                          * stored.
                          */
-                        logging?: any;
+                        logging?: BuildOptions.LoggingMode;
                         /**
                          * A list of global environment variable definitions that will exist for all
                          * build steps in this build. If a variable is defined in both globally and in
@@ -2404,6 +2490,46 @@ export declare namespace google {
                          * it is indicative of a build request with an incorrect configuration.
                          */
                         volumes?: Volume[];
+                    }
+                    namespace BuildOptions {
+                        /**
+                         * Specifies the manner in which the build should be verified, if at all.
+                         */
+                        enum VerifyOption {
+                            NOT_VERIFIED = 0,
+                            VERIFIED = 1
+                        }
+                        /**
+                         * Supported VM sizes.
+                         */
+                        enum MachineType {
+                            UNSPECIFIED = 0,
+                            N1_HIGHCPU_8 = 1,
+                            N1_HIGHCPU_32 = 2
+                        }
+                        /**
+                         * Specifies the behavior when there is an error in the substitution checks.
+                         */
+                        enum SubstitutionOption {
+                            MUST_MATCH = 0,
+                            ALLOW_LOOSE = 1
+                        }
+                        /**
+                         * Specifies the behavior when writing build logs to Google Cloud Storage.
+                         */
+                        enum LogStreamingOption {
+                            STREAM_DEFAULT = 0,
+                            STREAM_ON = 1,
+                            STREAM_OFF = 2
+                        }
+                        /**
+                         * Specifies the logging mode.
+                         */
+                        enum LoggingMode {
+                            LOGGING_UNSPECIFIED = 0,
+                            LEGACY = 1,
+                            GCS_ONLY = 2
+                        }
                     }
                 }
             }
@@ -2444,7 +2570,7 @@ export declare namespace google {
                          * A set of user-defined (key, value) data that provides additional
                          * information about the log entry.
                          */
-                        labels?: string;
+                        labels?: Record<string, string>;
                         /**
                          * Information about an operation associated with the log entry, if
                          * applicable.
@@ -2796,11 +2922,35 @@ export declare namespace google {
                         /**
                          * First party (Google) identity as the real authority.
                          */
-                        firstPartyPrincipal?: any;
+                        firstPartyPrincipal?: ServiceAccountDelegationInfo.FirstPartyPrincipal;
                         /**
                          * Third party identity as the real authority.
                          */
-                        thirdPartyPrincipal?: any;
+                        thirdPartyPrincipal?: ServiceAccountDelegationInfo.ThirdPartyPrincipal;
+                    }
+                    namespace ServiceAccountDelegationInfo {
+                        /**
+                         * First party identity principal.
+                         */
+                        interface FirstPartyPrincipal {
+                            /**
+                             * The email address of a Google account.
+                             */
+                            principalEmail?: string;
+                            /**
+                             * Metadata about the service that uses the service account.
+                             */
+                            serviceMetadata?: Record<string, any>;
+                        }
+                        /**
+                         * Third party identity principal.
+                         */
+                        interface ThirdPartyPrincipal {
+                            /**
+                             * Metadata about third party identity.
+                             */
+                            thirdPartyClaims?: Record<string, any>;
+                        }
                     }
                     /**
                      * Additional information used to correlate multiple LogEntries. Used when a

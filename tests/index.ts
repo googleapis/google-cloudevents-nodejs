@@ -14,7 +14,6 @@ const PUBSUB_DATA: google.events.cloud.pubsub.v1.MessagePublishedData = {
     'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000',
 };
 const BUILD_EVENT_DATA: google.events.cloud.cloudbuild.v1.BuildEventData = {
-  // @ts-ignore
   timeout: '660s',
   createTime: '1993-07-25T02:32:41.388Z',
   tags: ['dolor exercitation', 'sit id consequat', 'dolore eu sit irure esse'],
@@ -22,14 +21,12 @@ const BUILD_EVENT_DATA: google.events.cloud.cloudbuild.v1.BuildEventData = {
   logUrl: 'http://example.com',
   images: ['http://example.com', 'http://example.com'],
   projectId: 'quis minim est laborum ex',
-  // @ts-ignore
   queueTtl: '660s',
 };
 const FIRESTORE_DATA: google.events.cloud.firestore.v1.DocumentEventData = {
   oldValue: {
     createTime: '2020-04-23T09:58:53.211035Z',
     fields: {
-      // @ts-ignore
       'another test': {
         stringValue: 'asd',
       },
@@ -49,7 +46,6 @@ const FIRESTORE_DATA: google.events.cloud.firestore.v1.DocumentEventData = {
   value: {
     createTime: '2020-04-23T09:58:53.211035Z',
     fields: {
-      // @ts-ignore
       'another test': {
         stringValue: 'asd',
       },
@@ -185,7 +181,6 @@ const ANALYTICS_DATA: google.events.firebase.analytics.v1.AnalyticsLogData = {
     },
     userId: '0123456789abcdef0123456789abcdef',
     userProperties: {
-      // @ts-ignore
       completed_tutorial: {
         setTimestampUsec: 1606948068187909,
         value: {stringValue: 'true'},
@@ -210,7 +205,6 @@ const ANALYTICS_DATA: google.events.firebase.analytics.v1.AnalyticsLogData = {
       date: '20201202',
       name: 'session_start',
       params: {
-        // @ts-ignore
         engaged_session_event: {intValue: 1},
         firebase_conversion: {intValue: 1},
         firebase_event_origin: {stringValue: 'auto'},

@@ -68,21 +68,20 @@ const generateInterfaceProperty = (
   scope: Set<string>
 ): t.TSTypeElement => {
   let fieldType: t.TSType;
-
   if (
     field.type === 'string' ||
     field.type === 'google.protobuf.Timestamp' ||
     field.type === 'google.type.Date' ||
     field.type === 'bytes' ||
-    field.type === 'Hash.HashType'
+    field.type === 'Hash.HashType' ||
+    field.type === 'google.protobuf.Duration'
   ) {
     fieldType = t.tsStringKeyword();
   } else if (
     field.type === 'int64' ||
     field.type === 'double' ||
     field.type === 'int32' ||
-    field.type === 'float' ||
-    field.type === 'google.protobuf.Duration'
+    field.type === 'float'
   ) {
     fieldType = t.tSNumberKeyword();
   } else if (field.type === 'bool') {
@@ -99,8 +98,7 @@ const generateInterfaceProperty = (
   } else if (scope.has(field.type)) {
     fieldType = t.tsTypeReference(t.identifier(field.type));
   } else if (hasNested(field.parent!) && field.parent.nested![field.type]) {
-    console.log('nested!');
-    fieldType = t.tsAnyKeyword();
+    fieldType = t.tSTypeReference(t.tsQualifiedName(t.identifier(field.parent.name), t.identifier(field.type)));
   } else {
     console.log('=== unknown type: ' + field.name + ' =  ' + field.type);
     fieldType = t.tsAnyKeyword();
@@ -108,6 +106,13 @@ const generateInterfaceProperty = (
 
   if (field.repeated) {
     fieldType = t.tsArrayType(fieldType);
+  }
+  if (field.map) {
+    // @ts-ignore
+    if (field.keyType !== 'string') {
+      throw 'found an invalid map type: ' + field.fullName
+    }
+    fieldType = t.tsTypeReference(t.identifier('Record'), t.tsTypeParameterInstantiation([t.tsStringKeyword(), fieldType]));
   }
 
   const result = t.tsPropertySignature(
@@ -197,7 +202,7 @@ const compileNamespace = (
   const statements: t.Statement[] = [];
   for (let x of namespace.nestedArray) {
     if (seenTypes.has(x.fullName)) {
-      console.log('skipping dupe');
+      // this type has already been generated
       continue;
     }
     console.log(x.fullName);
@@ -217,6 +222,12 @@ const compileNamespace = (
       statements.push(generateEnum(x));
     } else {
       throw 'Found unknown node type: ' + x.fullName;
+    }
+
+    // nested types:
+    if (hasNested(x)) {
+      const children = compileNamespace(x, cloudEvents, seenTypes);
+      statements.push(t.exportNamedDeclaration(t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children))))
     }
   }
   return statements;
@@ -256,8 +267,6 @@ const discoverNamespaces = (
     t.exportNamedDeclaration(t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children))),
   ];
 };
-
-// URL of the image
 
 const downloadProtoc = () => {
   const zipPath = path.resolve(TEMP_DIR, 'protobuf.zip');

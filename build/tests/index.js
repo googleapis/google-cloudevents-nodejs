@@ -29,7 +29,6 @@ const FIRESTORE_DATA = {
     oldValue: {
         createTime: '2020-04-23T09:58:53.211035Z',
         fields: {
-            // @ts-ignore
             'another test': {
                 stringValue: 'asd',
             },
@@ -49,7 +48,6 @@ const FIRESTORE_DATA = {
     value: {
         createTime: '2020-04-23T09:58:53.211035Z',
         fields: {
-            // @ts-ignore
             'another test': {
                 stringValue: 'asd',
             },
@@ -181,7 +179,6 @@ const ANALYTICS_DATA = {
         },
         userId: '0123456789abcdef0123456789abcdef',
         userProperties: {
-            // @ts-ignore
             completed_tutorial: {
                 setTimestampUsec: 1606948068187909,
                 value: { stringValue: 'true' },
@@ -206,7 +203,6 @@ const ANALYTICS_DATA = {
             date: '20201202',
             name: 'session_start',
             params: {
-                // @ts-ignore
                 engaged_session_event: { intValue: 1 },
                 firebase_conversion: { intValue: 1 },
                 firebase_event_origin: { stringValue: 'auto' },
