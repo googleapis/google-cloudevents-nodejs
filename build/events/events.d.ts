@@ -1912,7 +1912,7 @@ export declare namespace google {
                          * granularity. If this amount of time elapses, work on the build will cease
                          * and the build status will be `TIMEOUT`.
                          */
-                        timeout?: number;
+                        timeout?: string;
                         /**
                          * A list of images to be pushed upon the successful completion of all build
                          * steps.
@@ -1933,7 +1933,7 @@ export declare namespace google {
                          *
                          * The TTL starts ticking from create_time.
                          */
-                        queueTtl?: number;
+                        queueTtl?: string;
                         /**
                          * Artifacts produced by the build that should be uploaded upon
                          * successful completion of all build steps.
@@ -2185,7 +2185,7 @@ export declare namespace google {
                          * time limit and will be allowed to continue to run until either it completes
                          * or the build itself times out.
                          */
-                        timeout?: number;
+                        timeout?: string;
                         /**
                          * Status of the build step. At this time, build step status is
                          * only updated on build completion; step status is not updated in real-time

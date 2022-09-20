@@ -14,7 +14,6 @@ const PUBSUB_DATA = {
     subscription: 'projects/my-project/subscriptions/cre-us-central1-pubsub-trigger-5-sub-000',
 };
 const BUILD_EVENT_DATA = {
-    // @ts-ignore
     timeout: '660s',
     createTime: '1993-07-25T02:32:41.388Z',
     tags: ['dolor exercitation', 'sit id consequat', 'dolore eu sit irure esse'],
@@ -22,7 +21,6 @@ const BUILD_EVENT_DATA = {
     logUrl: 'http://example.com',
     images: ['http://example.com', 'http://example.com'],
     projectId: 'quis minim est laborum ex',
-    // @ts-ignore
     queueTtl: '660s',
 };
 const FIRESTORE_DATA = {

@@ -15,6 +15,10 @@
 import template from '@babel/template';
 import * as t from '@babel/types';
 
+export const RecordType = (valType: t.TSType): t.TSTypeReference => {
+  return t.tsTypeReference(t.identifier('Record'), t.tsTypeParameterInstantiation([t.tsStringKeyword(), valType]));
+}
+
 export const CloudEventImportStatement = template.statement(`
 import {CloudEvent} from '../src/cloudevent';
 `);
