@@ -345,5 +345,6 @@ export const generate = (protos: string[]): string => {
     ...templates.KnownEventsStatements(cloudEvents)
   );
   statements.unshift(templates.CloudEventImportStatement());
-  return babelGenerate(t.program(statements)).code;
+  const {code} = babelGenerate(t.program(statements));
+  return templates.FileHeader + code;
 };
