@@ -36,7 +36,7 @@ function MyEventHandler(cloudEvent) {
 }
 ```
 
-If you do not provide the even type argument, `isGoogleEvent` will return `true` if the event is
+If you do not provide the event type argument, `isGoogleEvent` will return `true` if the event is
 any supported Eventarc even type. This is useful for event handler functions that may accept
 multiple event types:
 
@@ -74,7 +74,7 @@ function MyEventHandler(
 }
 ```
 
-If you need to annotate a variable that can take on multiple event types, the `GoogleCloudEventsUnion` is a [union](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) of all known even types supported by Eventarc:
+If you need to annotate a variable that can take on multiple event types, the `GoogleCloudEventsUnion` is a [union](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) of all known event types supported by Eventarc:
 
 ```typescript
 import {GoogleCloudEventsUnion} from '@google/event';

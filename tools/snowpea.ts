@@ -15,10 +15,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execSync } from 'child_process';
-import { generate } from './generator';
+import { generate, generateTests } from './generator';
 
 const GOOGLE_EVENTS_DIR = '../google-cloudevents/';
 const EVENTS_PROTO_DIR = './proto/';
+const TEST_DATA_DIR = './testdata/';
 const LIB_PROTO_DIR = './third_party/googleapis/';
 const PROTOC_URL =
   'https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protoc-21.5-linux-x86_64.zip';
@@ -61,8 +62,35 @@ const findProtos = (dir: string): string[] => {
   return result;
 };
 
+const findTestData = (root_dir: string): {type: string, ext: string, json: string}[] => {
+  const testData: {type: string, ext: string, json: string}[] = [];
+  const reg = new RegExp('([a-zA-Z]+)(-[a-zA-Z]+\.json)')
+  const checkDir = (dirs: string[]) => {
+    const dirPath = path.join(root_dir, dirs.join('/'));
+    const dirContents = fs.readdirSync(dirPath);
+    dirContents.forEach((fName: any) => {
+      const fullPath = path.join(dirPath, fName);
+      if (fs.lstatSync(fullPath).isDirectory()) {
+        checkDir(dirs.concat(fName));
+      } else {
+        const fMatch = reg.exec(fName);
+        const fileContents = fs.readFileSync(fullPath).toString();
+        if (fMatch) {
+          testData.push({
+            type: dirs.concat(fMatch[1]).join('.'),
+            ext: fMatch[2],
+            json: fileContents
+          })
+        }
+      }
+    })
+  }
+  checkDir(['google']);
+  return testData;
+}
 
-downloadProtoc(TEMP_DIR);
+
+//downloadProtoc(TEMP_DIR);
 
 const eventsDir = path.resolve(GOOGLE_EVENTS_DIR, EVENTS_PROTO_DIR);
 const libDir = path.resolve(GOOGLE_EVENTS_DIR, LIB_PROTO_DIR);
@@ -73,5 +101,11 @@ const protos = [
   ...findProtos(eventsDir),
 ];
 
+const testDataDir = path.resolve(GOOGLE_EVENTS_DIR, TEST_DATA_DIR);
+const testData = findTestData(testDataDir);
+
 const code = generate(protos);
 fs.writeFileSync('./events/events.ts', code);
+
+const testCode = generateTests(testData);
+fs.writeFileSync('./tests/testEvents.ts', testCode);

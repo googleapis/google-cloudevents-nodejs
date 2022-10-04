@@ -31,6 +31,12 @@ export const CloudEventInterfaceStatement = (name: string, ceType: string, dataT
   `, {plugins: ['typescript'], syntacticPlaceholders: true, preserveComments: true})()[0];
 };
 
+export const TestAssignStatements = (testData: {type: string, ext: string, json: string}[]): string => {
+  return "import { google } from '../src'\n\n" + testData.map((d, i) => {
+    return `var obj${i}: ${d.type} = ${d.json};`;
+  }).join('\n')
+}
+
 export const KnownEventsStatements = (
   cloudEvents: Map<string, string>
 ): t.Statement[] => {

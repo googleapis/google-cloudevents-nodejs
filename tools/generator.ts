@@ -331,7 +331,7 @@ const doGenerate = (
 };
 
 /**
- * Generate the Typescript type defintions of the CloudEvens described
+ * Generate the Typescript type defintions of the CloudEvents described
  * in a set of proto files.
  * @param protos an array of proto files to generate code from
  * @returns a string of gerenated code
@@ -348,3 +348,8 @@ export const generate = (protos: string[]): string => {
   const {code} = babelGenerate(t.program(statements));
   return templates.FileHeader + code;
 };
+
+export const generateTests = (testData: { type: string, ext: string, json: string }[]): string => {
+  const testCode = templates.TestAssignStatements(testData);
+  return testCode;
+}

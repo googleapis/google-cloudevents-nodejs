@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// NOTE: This code is auto-generated and should not be edited directly.
+// NOTE: This code is auto-geerated and should not be edited directly.
 
 import { CloudEvent } from '../src/cloudevent';
 export namespace google {
@@ -3404,9 +3404,9 @@ export namespace google {
 }
 
 /**
- * Declare a mapped type that defines which CloudEvent types correspond
- * to which data payload schemas. This is an internal implementation detail of the
- * @google/events library, it is not exposed in the public API.
+ * A mapped type that defines which CloudEvent types correspond to which data 
+ * payload schemas. This is an internal implementation detail of the @google/events
+ * library, it is not exposed in the public API.
  *
  * @see https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
  */
@@ -3441,15 +3441,17 @@ export type GoogleCloudEventTypesToDataType = {
   'google.cloud.audit.log.v1.written': google.events.cloud.audit.v1.LogEntryData;
 };
 /**
- * This is a bit of syntactic sugar the allows us to create a concrete CloudEvent type
- * with known "type" of literal type and known data type.
+ * A GoogleCloudEvent is known CloudEvent type which a well defined data payload schema.
  */
 
 export interface GoogleCloudEvent<T extends keyof GoogleCloudEventTypesToDataType> extends CloudEvent<GoogleCloudEventTypesToDataType[T]> {}
 ;
 /**
- * This is a bit of syntactic sugar the allows us to create a concrete CloudEvent type
- * with known "type" of literal type and known data type.
+ * This interface is used to create the GoogleCloudEventsUnion type. Is it more rigid than
+ * the GoogleCloudEvent above because it constrains the 'type' field a one of the known
+ * Google event types. This is useful when working with the union type but can be too strict
+ * when working with individual events because it prevents assignment from untyped CloudEvent
+ * in Typescript.
  */
 
 export interface GoogleCloudEventUnionType<T extends keyof GoogleCloudEventTypesToDataType> extends GoogleCloudEvent<T> {
@@ -3457,7 +3459,7 @@ export interface GoogleCloudEventUnionType<T extends keyof GoogleCloudEventTypes
 }
 ;
 /**
- * Define the GoogleCloudEvent type as a union type of all known Google CloudEvents.
+ * A union type of all known Google CloudEvents.
  *
  * see https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types
  * and https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions
