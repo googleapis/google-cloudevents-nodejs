@@ -27,26 +27,26 @@ var google;
                     /**
                      * Possible test states for a test matrix.
                      */
-                    let TestState;
-                    (function (TestState) {
-                        TestState[TestState["TEST_STATE_UNSPECIFIED"] = 0] = "TEST_STATE_UNSPECIFIED";
-                        TestState[TestState["VALIDATING"] = 1] = "VALIDATING";
-                        TestState[TestState["PENDING"] = 2] = "PENDING";
-                        TestState[TestState["FINISHED"] = 3] = "FINISHED";
-                        TestState[TestState["ERROR"] = 4] = "ERROR";
-                        TestState[TestState["INVALID"] = 5] = "INVALID";
-                    })(TestState = v1.TestState || (v1.TestState = {}));
+                    let TestStateEnum;
+                    (function (TestStateEnum) {
+                        TestStateEnum[TestStateEnum["TEST_STATE_UNSPECIFIED"] = 0] = "TEST_STATE_UNSPECIFIED";
+                        TestStateEnum[TestStateEnum["VALIDATING"] = 1] = "VALIDATING";
+                        TestStateEnum[TestStateEnum["PENDING"] = 2] = "PENDING";
+                        TestStateEnum[TestStateEnum["FINISHED"] = 3] = "FINISHED";
+                        TestStateEnum[TestStateEnum["ERROR"] = 4] = "ERROR";
+                        TestStateEnum[TestStateEnum["INVALID"] = 5] = "INVALID";
+                    })(TestStateEnum = v1.TestStateEnum || (v1.TestStateEnum = {}));
                     /**
                      * Outcome summary for a finished test matrix.
                      */
-                    let OutcomeSummary;
-                    (function (OutcomeSummary) {
-                        OutcomeSummary[OutcomeSummary["OUTCOME_SUMMARY_UNSPECIFIED"] = 0] = "OUTCOME_SUMMARY_UNSPECIFIED";
-                        OutcomeSummary[OutcomeSummary["SUCCESS"] = 1] = "SUCCESS";
-                        OutcomeSummary[OutcomeSummary["FAILURE"] = 2] = "FAILURE";
-                        OutcomeSummary[OutcomeSummary["INCONCLUSIVE"] = 3] = "INCONCLUSIVE";
-                        OutcomeSummary[OutcomeSummary["SKIPPED"] = 4] = "SKIPPED";
-                    })(OutcomeSummary = v1.OutcomeSummary || (v1.OutcomeSummary = {}));
+                    let OutcomeSummaryEnum;
+                    (function (OutcomeSummaryEnum) {
+                        OutcomeSummaryEnum[OutcomeSummaryEnum["OUTCOME_SUMMARY_UNSPECIFIED"] = 0] = "OUTCOME_SUMMARY_UNSPECIFIED";
+                        OutcomeSummaryEnum[OutcomeSummaryEnum["SUCCESS"] = 1] = "SUCCESS";
+                        OutcomeSummaryEnum[OutcomeSummaryEnum["FAILURE"] = 2] = "FAILURE";
+                        OutcomeSummaryEnum[OutcomeSummaryEnum["INCONCLUSIVE"] = 3] = "INCONCLUSIVE";
+                        OutcomeSummaryEnum[OutcomeSummaryEnum["SKIPPED"] = 4] = "SKIPPED";
+                    })(OutcomeSummaryEnum = v1.OutcomeSummaryEnum || (v1.OutcomeSummaryEnum = {}));
                 })(v1 = testlab.v1 || (testlab.v1 = {}));
             })(testlab = firebase.testlab || (firebase.testlab = {}));
             let remoteconfig;
@@ -56,23 +56,23 @@ var google;
                     /**
                      * What type of update was associated with the Remote Config template version.
                      */
-                    let RemoteConfigUpdateOrigin;
-                    (function (RemoteConfigUpdateOrigin) {
-                        RemoteConfigUpdateOrigin[RemoteConfigUpdateOrigin["REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED"] = 0] = "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED";
-                        RemoteConfigUpdateOrigin[RemoteConfigUpdateOrigin["CONSOLE"] = 1] = "CONSOLE";
-                        RemoteConfigUpdateOrigin[RemoteConfigUpdateOrigin["REST_API"] = 2] = "REST_API";
-                        RemoteConfigUpdateOrigin[RemoteConfigUpdateOrigin["ADMIN_SDK_NODE"] = 3] = "ADMIN_SDK_NODE";
-                    })(RemoteConfigUpdateOrigin = v1.RemoteConfigUpdateOrigin || (v1.RemoteConfigUpdateOrigin = {}));
+                    let RemoteConfigUpdateOriginEnum;
+                    (function (RemoteConfigUpdateOriginEnum) {
+                        RemoteConfigUpdateOriginEnum[RemoteConfigUpdateOriginEnum["REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED"] = 0] = "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED";
+                        RemoteConfigUpdateOriginEnum[RemoteConfigUpdateOriginEnum["CONSOLE"] = 1] = "CONSOLE";
+                        RemoteConfigUpdateOriginEnum[RemoteConfigUpdateOriginEnum["REST_API"] = 2] = "REST_API";
+                        RemoteConfigUpdateOriginEnum[RemoteConfigUpdateOriginEnum["ADMIN_SDK_NODE"] = 3] = "ADMIN_SDK_NODE";
+                    })(RemoteConfigUpdateOriginEnum = v1.RemoteConfigUpdateOriginEnum || (v1.RemoteConfigUpdateOriginEnum = {}));
                     /**
                      * Where the Remote Config update action originated.
                      */
-                    let RemoteConfigUpdateType;
-                    (function (RemoteConfigUpdateType) {
-                        RemoteConfigUpdateType[RemoteConfigUpdateType["REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED"] = 0] = "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED";
-                        RemoteConfigUpdateType[RemoteConfigUpdateType["INCREMENTAL_UPDATE"] = 1] = "INCREMENTAL_UPDATE";
-                        RemoteConfigUpdateType[RemoteConfigUpdateType["FORCED_UPDATE"] = 2] = "FORCED_UPDATE";
-                        RemoteConfigUpdateType[RemoteConfigUpdateType["ROLLBACK"] = 3] = "ROLLBACK";
-                    })(RemoteConfigUpdateType = v1.RemoteConfigUpdateType || (v1.RemoteConfigUpdateType = {}));
+                    let RemoteConfigUpdateTypeEnum;
+                    (function (RemoteConfigUpdateTypeEnum) {
+                        RemoteConfigUpdateTypeEnum[RemoteConfigUpdateTypeEnum["REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED"] = 0] = "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED";
+                        RemoteConfigUpdateTypeEnum[RemoteConfigUpdateTypeEnum["INCREMENTAL_UPDATE"] = 1] = "INCREMENTAL_UPDATE";
+                        RemoteConfigUpdateTypeEnum[RemoteConfigUpdateTypeEnum["FORCED_UPDATE"] = 2] = "FORCED_UPDATE";
+                        RemoteConfigUpdateTypeEnum[RemoteConfigUpdateTypeEnum["ROLLBACK"] = 3] = "ROLLBACK";
+                    })(RemoteConfigUpdateTypeEnum = v1.RemoteConfigUpdateTypeEnum || (v1.RemoteConfigUpdateTypeEnum = {}));
                 })(v1 = remoteconfig.v1 || (remoteconfig.v1 = {}));
             })(remoteconfig = firebase.remoteconfig || (firebase.remoteconfig = {}));
         })(firebase = events.firebase || (events.firebase = {}));
@@ -86,22 +86,22 @@ var google;
                      * Indicates whether an MQTT connection is enabled or disabled. See the field
                      * description for details.
                      */
-                    let MqttState;
-                    (function (MqttState) {
-                        MqttState[MqttState["MQTT_STATE_UNSPECIFIED"] = 0] = "MQTT_STATE_UNSPECIFIED";
-                        MqttState[MqttState["MQTT_ENABLED"] = 1] = "MQTT_ENABLED";
-                        MqttState[MqttState["MQTT_DISABLED"] = 2] = "MQTT_DISABLED";
-                    })(MqttState = v1.MqttState || (v1.MqttState = {}));
+                    let MqttStateEnum;
+                    (function (MqttStateEnum) {
+                        MqttStateEnum[MqttStateEnum["MQTT_STATE_UNSPECIFIED"] = 0] = "MQTT_STATE_UNSPECIFIED";
+                        MqttStateEnum[MqttStateEnum["MQTT_ENABLED"] = 1] = "MQTT_ENABLED";
+                        MqttStateEnum[MqttStateEnum["MQTT_DISABLED"] = 2] = "MQTT_DISABLED";
+                    })(MqttStateEnum = v1.MqttStateEnum || (v1.MqttStateEnum = {}));
                     /**
                      * Indicates whether DeviceService (HTTP) is enabled or disabled for the
                      * registry. See the field description for details.
                      */
-                    let HttpState;
-                    (function (HttpState) {
-                        HttpState[HttpState["HTTP_STATE_UNSPECIFIED"] = 0] = "HTTP_STATE_UNSPECIFIED";
-                        HttpState[HttpState["HTTP_ENABLED"] = 1] = "HTTP_ENABLED";
-                        HttpState[HttpState["HTTP_DISABLED"] = 2] = "HTTP_DISABLED";
-                    })(HttpState = v1.HttpState || (v1.HttpState = {}));
+                    let HttpStateEnum;
+                    (function (HttpStateEnum) {
+                        HttpStateEnum[HttpStateEnum["HTTP_STATE_UNSPECIFIED"] = 0] = "HTTP_STATE_UNSPECIFIED";
+                        HttpStateEnum[HttpStateEnum["HTTP_ENABLED"] = 1] = "HTTP_ENABLED";
+                        HttpStateEnum[HttpStateEnum["HTTP_DISABLED"] = 2] = "HTTP_DISABLED";
+                    })(HttpStateEnum = v1.HttpStateEnum || (v1.HttpStateEnum = {}));
                     /**
                      * *Beta Feature**
                      *
@@ -110,53 +110,53 @@ var google;
                      * terminate in errors will be logged. LogLevel is inclusive; enabling INFO
                      * logging will also enable ERROR logging.
                      */
-                    let LogLevel;
-                    (function (LogLevel) {
-                        LogLevel[LogLevel["LOG_LEVEL_UNSPECIFIED"] = 0] = "LOG_LEVEL_UNSPECIFIED";
-                        LogLevel[LogLevel["NONE"] = 10] = "NONE";
-                        LogLevel[LogLevel["ERROR"] = 20] = "ERROR";
-                        LogLevel[LogLevel["INFO"] = 30] = "INFO";
-                        LogLevel[LogLevel["DEBUG"] = 40] = "DEBUG";
-                    })(LogLevel = v1.LogLevel || (v1.LogLevel = {}));
+                    let LogLevelEnum;
+                    (function (LogLevelEnum) {
+                        LogLevelEnum[LogLevelEnum["LOG_LEVEL_UNSPECIFIED"] = 0] = "LOG_LEVEL_UNSPECIFIED";
+                        LogLevelEnum[LogLevelEnum["NONE"] = 10] = "NONE";
+                        LogLevelEnum[LogLevelEnum["ERROR"] = 20] = "ERROR";
+                        LogLevelEnum[LogLevelEnum["INFO"] = 30] = "INFO";
+                        LogLevelEnum[LogLevelEnum["DEBUG"] = 40] = "DEBUG";
+                    })(LogLevelEnum = v1.LogLevelEnum || (v1.LogLevelEnum = {}));
                     /**
                      * Gateway type.
                      */
-                    let GatewayType;
-                    (function (GatewayType) {
-                        GatewayType[GatewayType["GATEWAY_TYPE_UNSPECIFIED"] = 0] = "GATEWAY_TYPE_UNSPECIFIED";
-                        GatewayType[GatewayType["GATEWAY"] = 1] = "GATEWAY";
-                        GatewayType[GatewayType["NON_GATEWAY"] = 2] = "NON_GATEWAY";
-                    })(GatewayType = v1.GatewayType || (v1.GatewayType = {}));
+                    let GatewayTypeEnum;
+                    (function (GatewayTypeEnum) {
+                        GatewayTypeEnum[GatewayTypeEnum["GATEWAY_TYPE_UNSPECIFIED"] = 0] = "GATEWAY_TYPE_UNSPECIFIED";
+                        GatewayTypeEnum[GatewayTypeEnum["GATEWAY"] = 1] = "GATEWAY";
+                        GatewayTypeEnum[GatewayTypeEnum["NON_GATEWAY"] = 2] = "NON_GATEWAY";
+                    })(GatewayTypeEnum = v1.GatewayTypeEnum || (v1.GatewayTypeEnum = {}));
                     /**
                      * The gateway authorization/authentication method. This setting determines how
                      * Cloud IoT Core authorizes/authenticate devices to access the gateway.
                      */
-                    let GatewayAuthMethod;
-                    (function (GatewayAuthMethod) {
-                        GatewayAuthMethod[GatewayAuthMethod["GATEWAY_AUTH_METHOD_UNSPECIFIED"] = 0] = "GATEWAY_AUTH_METHOD_UNSPECIFIED";
-                        GatewayAuthMethod[GatewayAuthMethod["ASSOCIATION_ONLY"] = 1] = "ASSOCIATION_ONLY";
-                        GatewayAuthMethod[GatewayAuthMethod["DEVICE_AUTH_TOKEN_ONLY"] = 2] = "DEVICE_AUTH_TOKEN_ONLY";
-                        GatewayAuthMethod[GatewayAuthMethod["ASSOCIATION_AND_DEVICE_AUTH_TOKEN"] = 3] = "ASSOCIATION_AND_DEVICE_AUTH_TOKEN";
-                    })(GatewayAuthMethod = v1.GatewayAuthMethod || (v1.GatewayAuthMethod = {}));
+                    let GatewayAuthMethodEnum;
+                    (function (GatewayAuthMethodEnum) {
+                        GatewayAuthMethodEnum[GatewayAuthMethodEnum["GATEWAY_AUTH_METHOD_UNSPECIFIED"] = 0] = "GATEWAY_AUTH_METHOD_UNSPECIFIED";
+                        GatewayAuthMethodEnum[GatewayAuthMethodEnum["ASSOCIATION_ONLY"] = 1] = "ASSOCIATION_ONLY";
+                        GatewayAuthMethodEnum[GatewayAuthMethodEnum["DEVICE_AUTH_TOKEN_ONLY"] = 2] = "DEVICE_AUTH_TOKEN_ONLY";
+                        GatewayAuthMethodEnum[GatewayAuthMethodEnum["ASSOCIATION_AND_DEVICE_AUTH_TOKEN"] = 3] = "ASSOCIATION_AND_DEVICE_AUTH_TOKEN";
+                    })(GatewayAuthMethodEnum = v1.GatewayAuthMethodEnum || (v1.GatewayAuthMethodEnum = {}));
                     /**
                      * The supported formats for the public key.
                      */
-                    let PublicKeyCertificateFormat;
-                    (function (PublicKeyCertificateFormat) {
-                        PublicKeyCertificateFormat[PublicKeyCertificateFormat["UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT"] = 0] = "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT";
-                        PublicKeyCertificateFormat[PublicKeyCertificateFormat["X509_CERTIFICATE_PEM"] = 1] = "X509_CERTIFICATE_PEM";
-                    })(PublicKeyCertificateFormat = v1.PublicKeyCertificateFormat || (v1.PublicKeyCertificateFormat = {}));
+                    let PublicKeyCertificateFormatEnum;
+                    (function (PublicKeyCertificateFormatEnum) {
+                        PublicKeyCertificateFormatEnum[PublicKeyCertificateFormatEnum["UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT"] = 0] = "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT";
+                        PublicKeyCertificateFormatEnum[PublicKeyCertificateFormatEnum["X509_CERTIFICATE_PEM"] = 1] = "X509_CERTIFICATE_PEM";
+                    })(PublicKeyCertificateFormatEnum = v1.PublicKeyCertificateFormatEnum || (v1.PublicKeyCertificateFormatEnum = {}));
                     /**
                      * The supported formats for the public key.
                      */
-                    let PublicKeyFormat;
-                    (function (PublicKeyFormat) {
-                        PublicKeyFormat[PublicKeyFormat["UNSPECIFIED_PUBLIC_KEY_FORMAT"] = 0] = "UNSPECIFIED_PUBLIC_KEY_FORMAT";
-                        PublicKeyFormat[PublicKeyFormat["RSA_PEM"] = 3] = "RSA_PEM";
-                        PublicKeyFormat[PublicKeyFormat["RSA_X509_PEM"] = 1] = "RSA_X509_PEM";
-                        PublicKeyFormat[PublicKeyFormat["ES256_PEM"] = 2] = "ES256_PEM";
-                        PublicKeyFormat[PublicKeyFormat["ES256_X509_PEM"] = 4] = "ES256_X509_PEM";
-                    })(PublicKeyFormat = v1.PublicKeyFormat || (v1.PublicKeyFormat = {}));
+                    let PublicKeyFormatEnum;
+                    (function (PublicKeyFormatEnum) {
+                        PublicKeyFormatEnum[PublicKeyFormatEnum["UNSPECIFIED_PUBLIC_KEY_FORMAT"] = 0] = "UNSPECIFIED_PUBLIC_KEY_FORMAT";
+                        PublicKeyFormatEnum[PublicKeyFormatEnum["RSA_PEM"] = 3] = "RSA_PEM";
+                        PublicKeyFormatEnum[PublicKeyFormatEnum["RSA_X509_PEM"] = 1] = "RSA_X509_PEM";
+                        PublicKeyFormatEnum[PublicKeyFormatEnum["ES256_PEM"] = 2] = "ES256_PEM";
+                        PublicKeyFormatEnum[PublicKeyFormatEnum["ES256_X509_PEM"] = 4] = "ES256_X509_PEM";
+                    })(PublicKeyFormatEnum = v1.PublicKeyFormatEnum || (v1.PublicKeyFormatEnum = {}));
                 })(v1 = iot.v1 || (iot.v1 = {}));
             })(iot = cloud.iot || (cloud.iot = {}));
             let cloudbuild;
@@ -168,76 +168,76 @@ var google;
                         /**
                          * Possible status of a build or build step.
                          */
-                        let Status;
-                        (function (Status) {
-                            Status[Status["STATUS_UNKNOWN"] = 0] = "STATUS_UNKNOWN";
-                            Status[Status["QUEUED"] = 1] = "QUEUED";
-                            Status[Status["WORKING"] = 2] = "WORKING";
-                            Status[Status["SUCCESS"] = 3] = "SUCCESS";
-                            Status[Status["FAILURE"] = 4] = "FAILURE";
-                            Status[Status["INTERNAL_ERROR"] = 5] = "INTERNAL_ERROR";
-                            Status[Status["TIMEOUT"] = 6] = "TIMEOUT";
-                            Status[Status["CANCELLED"] = 7] = "CANCELLED";
-                            Status[Status["EXPIRED"] = 9] = "EXPIRED";
-                        })(Status = BuildEventData.Status || (BuildEventData.Status = {}));
+                        let StatusEnum;
+                        (function (StatusEnum) {
+                            StatusEnum[StatusEnum["STATUS_UNKNOWN"] = 0] = "STATUS_UNKNOWN";
+                            StatusEnum[StatusEnum["QUEUED"] = 1] = "QUEUED";
+                            StatusEnum[StatusEnum["WORKING"] = 2] = "WORKING";
+                            StatusEnum[StatusEnum["SUCCESS"] = 3] = "SUCCESS";
+                            StatusEnum[StatusEnum["FAILURE"] = 4] = "FAILURE";
+                            StatusEnum[StatusEnum["INTERNAL_ERROR"] = 5] = "INTERNAL_ERROR";
+                            StatusEnum[StatusEnum["TIMEOUT"] = 6] = "TIMEOUT";
+                            StatusEnum[StatusEnum["CANCELLED"] = 7] = "CANCELLED";
+                            StatusEnum[StatusEnum["EXPIRED"] = 9] = "EXPIRED";
+                        })(StatusEnum = BuildEventData.StatusEnum || (BuildEventData.StatusEnum = {}));
                     })(BuildEventData = v1.BuildEventData || (v1.BuildEventData = {}));
                     let Hash;
                     (function (Hash) {
                         /**
                          * Specifies the hash algorithm, if any.
                          */
-                        let HashType;
-                        (function (HashType) {
-                            HashType[HashType["NONE"] = 0] = "NONE";
-                            HashType[HashType["SHA256"] = 1] = "SHA256";
-                            HashType[HashType["MD5"] = 2] = "MD5";
-                        })(HashType = Hash.HashType || (Hash.HashType = {}));
+                        let HashTypeEnum;
+                        (function (HashTypeEnum) {
+                            HashTypeEnum[HashTypeEnum["NONE"] = 0] = "NONE";
+                            HashTypeEnum[HashTypeEnum["SHA256"] = 1] = "SHA256";
+                            HashTypeEnum[HashTypeEnum["MD5"] = 2] = "MD5";
+                        })(HashTypeEnum = Hash.HashTypeEnum || (Hash.HashTypeEnum = {}));
                     })(Hash = v1.Hash || (v1.Hash = {}));
                     let BuildOptions;
                     (function (BuildOptions) {
                         /**
                          * Specifies the manner in which the build should be verified, if at all.
                          */
-                        let VerifyOption;
-                        (function (VerifyOption) {
-                            VerifyOption[VerifyOption["NOT_VERIFIED"] = 0] = "NOT_VERIFIED";
-                            VerifyOption[VerifyOption["VERIFIED"] = 1] = "VERIFIED";
-                        })(VerifyOption = BuildOptions.VerifyOption || (BuildOptions.VerifyOption = {}));
+                        let VerifyOptionEnum;
+                        (function (VerifyOptionEnum) {
+                            VerifyOptionEnum[VerifyOptionEnum["NOT_VERIFIED"] = 0] = "NOT_VERIFIED";
+                            VerifyOptionEnum[VerifyOptionEnum["VERIFIED"] = 1] = "VERIFIED";
+                        })(VerifyOptionEnum = BuildOptions.VerifyOptionEnum || (BuildOptions.VerifyOptionEnum = {}));
                         /**
                          * Supported VM sizes.
                          */
-                        let MachineType;
-                        (function (MachineType) {
-                            MachineType[MachineType["UNSPECIFIED"] = 0] = "UNSPECIFIED";
-                            MachineType[MachineType["N1_HIGHCPU_8"] = 1] = "N1_HIGHCPU_8";
-                            MachineType[MachineType["N1_HIGHCPU_32"] = 2] = "N1_HIGHCPU_32";
-                        })(MachineType = BuildOptions.MachineType || (BuildOptions.MachineType = {}));
+                        let MachineTypeEnum;
+                        (function (MachineTypeEnum) {
+                            MachineTypeEnum[MachineTypeEnum["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+                            MachineTypeEnum[MachineTypeEnum["N1_HIGHCPU_8"] = 1] = "N1_HIGHCPU_8";
+                            MachineTypeEnum[MachineTypeEnum["N1_HIGHCPU_32"] = 2] = "N1_HIGHCPU_32";
+                        })(MachineTypeEnum = BuildOptions.MachineTypeEnum || (BuildOptions.MachineTypeEnum = {}));
                         /**
                          * Specifies the behavior when there is an error in the substitution checks.
                          */
-                        let SubstitutionOption;
-                        (function (SubstitutionOption) {
-                            SubstitutionOption[SubstitutionOption["MUST_MATCH"] = 0] = "MUST_MATCH";
-                            SubstitutionOption[SubstitutionOption["ALLOW_LOOSE"] = 1] = "ALLOW_LOOSE";
-                        })(SubstitutionOption = BuildOptions.SubstitutionOption || (BuildOptions.SubstitutionOption = {}));
+                        let SubstitutionOptionEnum;
+                        (function (SubstitutionOptionEnum) {
+                            SubstitutionOptionEnum[SubstitutionOptionEnum["MUST_MATCH"] = 0] = "MUST_MATCH";
+                            SubstitutionOptionEnum[SubstitutionOptionEnum["ALLOW_LOOSE"] = 1] = "ALLOW_LOOSE";
+                        })(SubstitutionOptionEnum = BuildOptions.SubstitutionOptionEnum || (BuildOptions.SubstitutionOptionEnum = {}));
                         /**
                          * Specifies the behavior when writing build logs to Google Cloud Storage.
                          */
-                        let LogStreamingOption;
-                        (function (LogStreamingOption) {
-                            LogStreamingOption[LogStreamingOption["STREAM_DEFAULT"] = 0] = "STREAM_DEFAULT";
-                            LogStreamingOption[LogStreamingOption["STREAM_ON"] = 1] = "STREAM_ON";
-                            LogStreamingOption[LogStreamingOption["STREAM_OFF"] = 2] = "STREAM_OFF";
-                        })(LogStreamingOption = BuildOptions.LogStreamingOption || (BuildOptions.LogStreamingOption = {}));
+                        let LogStreamingOptionEnum;
+                        (function (LogStreamingOptionEnum) {
+                            LogStreamingOptionEnum[LogStreamingOptionEnum["STREAM_DEFAULT"] = 0] = "STREAM_DEFAULT";
+                            LogStreamingOptionEnum[LogStreamingOptionEnum["STREAM_ON"] = 1] = "STREAM_ON";
+                            LogStreamingOptionEnum[LogStreamingOptionEnum["STREAM_OFF"] = 2] = "STREAM_OFF";
+                        })(LogStreamingOptionEnum = BuildOptions.LogStreamingOptionEnum || (BuildOptions.LogStreamingOptionEnum = {}));
                         /**
                          * Specifies the logging mode.
                          */
-                        let LoggingMode;
-                        (function (LoggingMode) {
-                            LoggingMode[LoggingMode["LOGGING_UNSPECIFIED"] = 0] = "LOGGING_UNSPECIFIED";
-                            LoggingMode[LoggingMode["LEGACY"] = 1] = "LEGACY";
-                            LoggingMode[LoggingMode["GCS_ONLY"] = 2] = "GCS_ONLY";
-                        })(LoggingMode = BuildOptions.LoggingMode || (BuildOptions.LoggingMode = {}));
+                        let LoggingModeEnum;
+                        (function (LoggingModeEnum) {
+                            LoggingModeEnum[LoggingModeEnum["LOGGING_UNSPECIFIED"] = 0] = "LOGGING_UNSPECIFIED";
+                            LoggingModeEnum[LoggingModeEnum["LEGACY"] = 1] = "LEGACY";
+                            LoggingModeEnum[LoggingModeEnum["GCS_ONLY"] = 2] = "GCS_ONLY";
+                        })(LoggingModeEnum = BuildOptions.LoggingModeEnum || (BuildOptions.LoggingModeEnum = {}));
                     })(BuildOptions = v1.BuildOptions || (v1.BuildOptions = {}));
                 })(v1 = cloudbuild.v1 || (cloudbuild.v1 = {}));
             })(cloudbuild = cloud.cloudbuild || (cloud.cloudbuild = {}));
@@ -253,18 +253,18 @@ var google;
                      * Copied from
                      * https://github.com/googleapis/googleapis/blob/master/google/logging/type/log_severity.proto
                      */
-                    let LogSeverity;
-                    (function (LogSeverity) {
-                        LogSeverity[LogSeverity["DEFAULT"] = 0] = "DEFAULT";
-                        LogSeverity[LogSeverity["DEBUG"] = 100] = "DEBUG";
-                        LogSeverity[LogSeverity["INFO"] = 200] = "INFO";
-                        LogSeverity[LogSeverity["NOTICE"] = 300] = "NOTICE";
-                        LogSeverity[LogSeverity["WARNING"] = 400] = "WARNING";
-                        LogSeverity[LogSeverity["ERROR"] = 500] = "ERROR";
-                        LogSeverity[LogSeverity["CRITICAL"] = 600] = "CRITICAL";
-                        LogSeverity[LogSeverity["ALERT"] = 700] = "ALERT";
-                        LogSeverity[LogSeverity["EMERGENCY"] = 800] = "EMERGENCY";
-                    })(LogSeverity = v1.LogSeverity || (v1.LogSeverity = {}));
+                    let LogSeverityEnum;
+                    (function (LogSeverityEnum) {
+                        LogSeverityEnum[LogSeverityEnum["DEFAULT"] = 0] = "DEFAULT";
+                        LogSeverityEnum[LogSeverityEnum["DEBUG"] = 100] = "DEBUG";
+                        LogSeverityEnum[LogSeverityEnum["INFO"] = 200] = "INFO";
+                        LogSeverityEnum[LogSeverityEnum["NOTICE"] = 300] = "NOTICE";
+                        LogSeverityEnum[LogSeverityEnum["WARNING"] = 400] = "WARNING";
+                        LogSeverityEnum[LogSeverityEnum["ERROR"] = 500] = "ERROR";
+                        LogSeverityEnum[LogSeverityEnum["CRITICAL"] = 600] = "CRITICAL";
+                        LogSeverityEnum[LogSeverityEnum["ALERT"] = 700] = "ALERT";
+                        LogSeverityEnum[LogSeverityEnum["EMERGENCY"] = 800] = "EMERGENCY";
+                    })(LogSeverityEnum = v1.LogSeverityEnum || (v1.LogSeverityEnum = {}));
                 })(v1 = audit.v1 || (audit.v1 = {}));
             })(audit = cloud.audit || (cloud.audit = {}));
         })(cloud = events.cloud || (events.cloud = {}));

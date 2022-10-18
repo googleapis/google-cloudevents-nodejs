@@ -120,7 +120,7 @@ const interfacePropType = (field: Field, scope: Set<string>): t.TSType => {
     case 'double':
     case 'int32':
     case 'float':
-      return t.tSNumberKeyword();
+      return t.tsUnionType([t.tSNumberKeyword(), t.tsStringKeyword()]);
     case 'bool':
       return t.tSBooleanKeyword();
     case 'google.protobuf.Value':
@@ -212,22 +212,32 @@ const generateInterface = (
  * @param enumNode the protojs node to generate the enum for
  * @returns an Statement AST node representing the enu
  */
-const generateEnum = (enumNode: Enum): t.Statement => {
+const generateEnum = (enumNode: Enum): t.Statement[] => {
   const enumStmt = t.tsEnumDeclaration(
-    t.identifier(enumNode.name),
-    Object.keys(enumNode.values).map(key => {
-      return t.tsEnumMember(
+    t.identifier(enumNode.name + 'Enum'),
+    Object.entries(enumNode.values).map(([key, value]) =>
+      t.tsEnumMember(
         t.identifier(key),
-        t.numericLiteral(enumNode.values[key])
-      );
-    })
+        t.numericLiteral(value)
+      )
+    )
   );
 
-  const exportStmt = t.exportNamedDeclaration(enumStmt);
+  const typeStmt = t.tsTypeAliasDeclaration(
+    t.identifier(enumNode.name),
+    null,
+    t.tsUnionType(
+      [...Object.keys(enumNode.values).map(key => t.tsLiteralType(t.stringLiteral(key))),
+      t.tSTypeReference(t.identifier(enumNode.name + 'Enum'))]
+    )
+  );
+  const exportType = t.exportNamedDeclaration(typeStmt);
+  const exportEnum = t.exportNamedDeclaration(enumStmt)
+  //const exportObj = t.callExpression(t.identifier('poop', enumObj);
   if (enumNode.comment) {
-    addComment(exportStmt, enumNode.comment);
+    addComment(exportEnum, enumNode.comment);
   }
-  return exportStmt;
+  return [exportEnum, exportType];
 };
 
 /**
@@ -282,7 +292,7 @@ const generateNamespaceAST = (
     } else if (isType(x)) {
       statements.push(generateInterface(x, scope));
     } else if (isEnum(x)) {
-      statements.push(generateEnum(x));
+      statements.push(...generateEnum(x));
     } else {
       throw 'Found unknown node type: ' + x.fullName;
     }
@@ -349,7 +359,31 @@ export const generate = (protos: string[]): string => {
   return templates.FileHeader + code;
 };
 
-export const generateTests = (testData: { type: string, ext: string, json: string }[]): string => {
-  const testCode = templates.TestAssignStatements(testData);
-  return testCode;
+
+/**
+ * Strips out any @type fields from subobjects within obj
+ */
+function stripExtras(obj: object): object {
+  return Object.fromEntries(Object.entries(obj).map(([k1, v1]) => {
+    if (v1 instanceof Object && !(v1 instanceof Array)) {
+      return [k1, Object.fromEntries(Object.entries(v1).filter(([k2, v2]) => k2 !== '@type'))]
+    } else {
+      return [k1, v1]
+    }
+  }))
+  
+}
+
+/**
+ * Generates validation tests ensuring accuracy of generated interfaces
+ * @param testData testData sourced from google-cloudevents/testdata
+ * @returns code to be written into tests/testEvents.ts
+ */
+export const generateTests = (testData: { type: string, ext: string, obj: object }[]): string => {
+  const statements: t.Statement[] = [
+    templates.GoogleSrcImportStatement(),
+    ...testData.map((t, i) => templates.TestAssignStatement(t.type, stripExtras(t.obj), i))
+  ];
+  const {code} = babelGenerate(t.program(statements));
+  return code;
 }

@@ -252,9 +252,9 @@ const DATABASE_DATA: google.events.firebase.database.v1.ReferenceEventData = {
   },
 };
 const REMOTE_CONFIG_DATA: google.events.firebase.remoteconfig.v1.RemoteConfigEventData = {
-  updateOrigin: google.events.firebase.remoteconfig.v1.RemoteConfigUpdateOrigin.CONSOLE,
+  updateOrigin: google.events.firebase.remoteconfig.v1.RemoteConfigUpdateOriginEnum.CONSOLE,
   updateTime: '2020-11-16T16:35:33.569229Z',
-  updateType: google.events.firebase.remoteconfig.v1.RemoteConfigUpdateType.INCREMENTAL_UPDATE,
+  updateType: google.events.firebase.remoteconfig.v1.RemoteConfigUpdateTypeEnum.INCREMENTAL_UPDATE,
   updateUser: {
     name: 'Ut ad aute',
     email: 'test@nowhere.com',

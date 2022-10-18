@@ -62,8 +62,8 @@ const findProtos = (dir: string): string[] => {
   return result;
 };
 
-const findTestData = (root_dir: string): {type: string, ext: string, json: string}[] => {
-  const testData: {type: string, ext: string, json: string}[] = [];
+const findTestData = (root_dir: string): {type: string, ext: string, obj: object}[] => {
+  const testData: {type: string, ext: string, obj: object}[] = [];
   const reg = new RegExp('([a-zA-Z]+)(-[a-zA-Z]+\.json)')
   const checkDir = (dirs: string[]) => {
     const dirPath = path.join(root_dir, dirs.join('/'));
@@ -74,12 +74,12 @@ const findTestData = (root_dir: string): {type: string, ext: string, json: strin
         checkDir(dirs.concat(fName));
       } else {
         const fMatch = reg.exec(fName);
-        const fileContents = fs.readFileSync(fullPath).toString();
+        const testObj = JSON.parse(fs.readFileSync(fullPath).toString());        
         if (fMatch) {
           testData.push({
             type: dirs.concat(fMatch[1]).join('.'),
             ext: fMatch[2],
-            json: fileContents
+            obj: testObj
           })
         }
       }
@@ -90,7 +90,7 @@ const findTestData = (root_dir: string): {type: string, ext: string, json: strin
 }
 
 
-//downloadProtoc(TEMP_DIR);
+downloadProtoc(TEMP_DIR);
 
 const eventsDir = path.resolve(GOOGLE_EVENTS_DIR, EVENTS_PROTO_DIR);
 const libDir = path.resolve(GOOGLE_EVENTS_DIR, LIB_PROTO_DIR);

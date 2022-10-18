@@ -31,10 +31,14 @@ export const CloudEventInterfaceStatement = (name: string, ceType: string, dataT
   `, {plugins: ['typescript'], syntacticPlaceholders: true, preserveComments: true})()[0];
 };
 
-export const TestAssignStatements = (testData: {type: string, ext: string, json: string}[]): string => {
-  return "import { google } from '../src'\n\n" + testData.map((d, i) => {
-    return `var obj${i}: ${d.type} = ${d.json};`;
-  }).join('\n')
+export const GoogleSrcImportStatement = template.statement(`
+import {google} from '../src';
+`);
+
+export const TestAssignStatement = (type: string, obj: object, i: number): t.Statement => {
+  return template.statements(`
+    const obj${i}: ${type} = ${JSON.stringify(obj)};
+  `, {plugins: ['typescript'], syntacticPlaceholders: true, preserveComments: true})()[0];
 }
 
 export const KnownEventsStatements = (

@@ -89,7 +89,7 @@ export declare namespace google {
                     /**
                      * Possible test states for a test matrix.
                      */
-                    enum TestState {
+                    enum TestStateEnum {
                         TEST_STATE_UNSPECIFIED = 0,
                         VALIDATING = 1,
                         PENDING = 2,
@@ -97,16 +97,18 @@ export declare namespace google {
                         ERROR = 4,
                         INVALID = 5
                     }
+                    type TestState = "TEST_STATE_UNSPECIFIED" | "VALIDATING" | "PENDING" | "FINISHED" | "ERROR" | "INVALID" | TestStateEnum;
                     /**
                      * Outcome summary for a finished test matrix.
                      */
-                    enum OutcomeSummary {
+                    enum OutcomeSummaryEnum {
                         OUTCOME_SUMMARY_UNSPECIFIED = 0,
                         SUCCESS = 1,
                         FAILURE = 2,
                         INCONCLUSIVE = 3,
                         SKIPPED = 4
                     }
+                    type OutcomeSummary = "OUTCOME_SUMMARY_UNSPECIFIED" | "SUCCESS" | "FAILURE" | "INCONCLUSIVE" | "SKIPPED" | OutcomeSummaryEnum;
                 }
             }
             namespace remoteconfig {
@@ -124,7 +126,7 @@ export declare namespace google {
                         /**
                          * The version number of the version's corresponding Remote Config template.
                          */
-                        versionNumber?: number;
+                        versionNumber?: number | string;
                         /**
                          * When the Remote Config template was written to the Remote Config server.
                          */
@@ -150,7 +152,7 @@ export declare namespace google {
                          * Only present if this version is the result of a rollback, and will be the
                          * version number of the Remote Config template that was rolled-back to.
                          */
-                        rollbackSource?: number;
+                        rollbackSource?: number | string;
                     }
                     /**
                      * All the fields associated with the person/service account
@@ -173,21 +175,23 @@ export declare namespace google {
                     /**
                      * What type of update was associated with the Remote Config template version.
                      */
-                    enum RemoteConfigUpdateOrigin {
+                    enum RemoteConfigUpdateOriginEnum {
                         REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED = 0,
                         CONSOLE = 1,
                         REST_API = 2,
                         ADMIN_SDK_NODE = 3
                     }
+                    type RemoteConfigUpdateOrigin = "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED" | "CONSOLE" | "REST_API" | "ADMIN_SDK_NODE" | RemoteConfigUpdateOriginEnum;
                     /**
                      * Where the Remote Config update action originated.
                      */
-                    enum RemoteConfigUpdateType {
+                    enum RemoteConfigUpdateTypeEnum {
                         REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED = 0,
                         INCREMENTAL_UPDATE = 1,
                         FORCED_UPDATE = 2,
                         ROLLBACK = 3
                     }
+                    type RemoteConfigUpdateType = "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED" | "INCREMENTAL_UPDATE" | "FORCED_UPDATE" | "ROLLBACK" | RemoteConfigUpdateTypeEnum;
                 }
             }
             namespace firebasealerts {
@@ -267,13 +271,13 @@ export declare namespace google {
                          * specific crash issue in the time period used to trigger the velocity alert,
                          * which is currently 1h
                          */
-                        crashCount?: number;
+                        crashCount?: number | string;
                         /**
                          * The percentage of user sessions for the given app version that had this
                          * specific crash issue in the time period used to trigger the velocity alert,
                          * which is currently 1h
                          */
-                        crashPercentage?: number;
+                        crashPercentage?: number | string;
                         /**
                          * The first app version where this issue was seen, and not necessarily the
                          * version that has triggered the alert
@@ -304,11 +308,11 @@ export declare namespace google {
                             /**
                              * The number of crashes that occurred with the issue
                              */
-                            eventCount?: number;
+                            eventCount?: number | string;
                             /**
                              * The number of distinct users that were affected by the issue
                              */
-                            userCount?: number;
+                            userCount?: number | string;
                         }
                     }
                     interface CrashlyticsNewAnrIssuePayload {
@@ -337,11 +341,11 @@ export declare namespace google {
                         /**
                          * The number of events checked for this alert condition
                          */
-                        numSamples?: number;
+                        numSamples?: number | string;
                         /**
                          * The threshold value of the alert condition without units (e.g. "75", "2.1")
                          */
-                        thresholdValue?: number;
+                        thresholdValue?: number | string;
                         /**
                          * The unit for the alert threshold (e.g. "percent", "seconds")
                          */
@@ -350,7 +354,7 @@ export declare namespace google {
                          * The percentile of the alert condition, can be 0 if percentile is not
                          * applicable to the alert condition; range: [0, 100]
                          */
-                        conditionPercentile?: number;
+                        conditionPercentile?: number | string;
                         /**
                          * The app version this alert was triggered for, can be empty if the alert is
                          * for a network request (because the alert was checked against data from all
@@ -360,7 +364,7 @@ export declare namespace google {
                         /**
                          * The value that violated the alert condition (e.g. "76.5", "3")
                          */
-                        violationValue?: number;
+                        violationValue?: number | string;
                         /**
                          * The unit for the violation value (e.g. "percent", "seconds")
                          */
@@ -611,7 +615,7 @@ export declare namespace google {
                         /**
                          * The time (in microseconds) at which the user first opened the app.
                          */
-                        firstOpenTimestampMicros?: number;
+                        firstOpenTimestampMicros?: number | string;
                         /**
                          * A repeated record of user properties set with the setUserProperty API.
                          * https://firebase.google.com/docs/analytics/android/properties
@@ -654,11 +658,11 @@ export declare namespace google {
                         /**
                          * UTC client time when user property was last set.
                          */
-                        setTimestampUsec?: number;
+                        setTimestampUsec?: number | string;
                         /**
                          * Index for user property (one-based).
                          */
-                        index?: number;
+                        index?: number | string;
                     }
                     /**
                      * Value for Event Params and UserProperty can be of type string or int or
@@ -666,9 +670,9 @@ export declare namespace google {
                      */
                     interface AnalyticsValue {
                         stringValue?: string;
-                        intValue?: number;
-                        floatValue?: number;
-                        doubleValue?: number;
+                        intValue?: number | string;
+                        floatValue?: number | string;
+                        doubleValue?: number | string;
                     }
                     /**
                      * Message containing device informations.
@@ -724,7 +728,7 @@ export declare namespace google {
                         /**
                          * The timezone of the device when data was uploaded as seconds skew from UTC.
                          */
-                        deviceTimeZoneOffsetSeconds?: number;
+                        deviceTimeZoneOffsetSeconds?: number | string;
                         /**
                          * The device's Limit Ad Tracking setting.
                          * When true, we cannot use device_id for remarketing, demographics or
@@ -813,11 +817,11 @@ export declare namespace google {
                         /**
                          * Monotonically increasing index for each bundle set by SDK.
                          */
-                        bundleSequenceId?: number;
+                        bundleSequenceId?: number | string;
                         /**
                          * Timestamp offset between collection time and upload time.
                          */
-                        serverTimestampOffsetMicros?: number;
+                        serverTimestampOffsetMicros?: number | string;
                     }
                     /**
                      * Lifetime Value information about this user.
@@ -826,7 +830,7 @@ export declare namespace google {
                         /**
                          * The Lifetime Value revenue of this user.
                          */
-                        revenue?: number;
+                        revenue?: number | string;
                         /**
                          * The currency corresponding to the revenue.
                          */
@@ -852,15 +856,15 @@ export declare namespace google {
                         /**
                          * UTC client time when the event happened.
                          */
-                        timestampMicros?: number;
+                        timestampMicros?: number | string;
                         /**
                          * UTC client time when the previous event happened.
                          */
-                        previousTimestampMicros?: number;
+                        previousTimestampMicros?: number | string;
                         /**
                          * Value param in USD.
                          */
-                        valueInUsd?: number;
+                        valueInUsd?: number | string;
                     }
                 }
             }
@@ -923,7 +927,7 @@ export declare namespace google {
                          * number is only meaningful in the context of a particular generation of a
                          * particular object.
                          */
-                        metageneration?: number;
+                        metageneration?: number | string;
                         /**
                          * The deletion time of the object. Will be returned if and only if this
                          * version of the object has been deleted.
@@ -940,7 +944,7 @@ export declare namespace google {
                          * Content-Length of the object data in bytes, matching
                          * [https://tools.ietf.org/html/rfc7230#section-3.3.2][RFC 7230 §3.3.2].
                          */
-                        size?: number;
+                        size?: number | string;
                         /**
                          * The creation time of the object.
                          * Attempting to set this field will result in an error.
@@ -958,7 +962,7 @@ export declare namespace google {
                          * accumulated by compose operations.
                          * Attempting to set this field will result in an error.
                          */
-                        componentCount?: number;
+                        componentCount?: number | string;
                         /**
                          * MD5 hash of the data; encoded using base64 as per
                          * [https://tools.ietf.org/html/rfc4648#section-4][RFC 4648 §4]. For more
@@ -1023,7 +1027,7 @@ export declare namespace google {
                          * The content generation of this object. Used for object versioning.
                          * Attempting to set this field will result in an error.
                          */
-                        generation?: number;
+                        generation?: number | string;
                         /**
                          * Metadata of customer-supplied encryption key, if the object is encrypted by
                          * such a key.
@@ -1392,11 +1396,12 @@ export declare namespace google {
                      * Indicates whether an MQTT connection is enabled or disabled. See the field
                      * description for details.
                      */
-                    enum MqttState {
+                    enum MqttStateEnum {
                         MQTT_STATE_UNSPECIFIED = 0,
                         MQTT_ENABLED = 1,
                         MQTT_DISABLED = 2
                     }
+                    type MqttState = "MQTT_STATE_UNSPECIFIED" | "MQTT_ENABLED" | "MQTT_DISABLED" | MqttStateEnum;
                     /**
                      * The configuration of the HTTP bridge for a device registry.
                      */
@@ -1411,11 +1416,12 @@ export declare namespace google {
                      * Indicates whether DeviceService (HTTP) is enabled or disabled for the
                      * registry. See the field description for details.
                      */
-                    enum HttpState {
+                    enum HttpStateEnum {
                         HTTP_STATE_UNSPECIFIED = 0,
                         HTTP_ENABLED = 1,
                         HTTP_DISABLED = 2
                     }
+                    type HttpState = "HTTP_STATE_UNSPECIFIED" | "HTTP_ENABLED" | "HTTP_DISABLED" | HttpStateEnum;
                     /**
                      * *Beta Feature**
                      *
@@ -1424,31 +1430,34 @@ export declare namespace google {
                      * terminate in errors will be logged. LogLevel is inclusive; enabling INFO
                      * logging will also enable ERROR logging.
                      */
-                    enum LogLevel {
+                    enum LogLevelEnum {
                         LOG_LEVEL_UNSPECIFIED = 0,
                         NONE = 10,
                         ERROR = 20,
                         INFO = 30,
                         DEBUG = 40
                     }
+                    type LogLevel = "LOG_LEVEL_UNSPECIFIED" | "NONE" | "ERROR" | "INFO" | "DEBUG" | LogLevelEnum;
                     /**
                      * Gateway type.
                      */
-                    enum GatewayType {
+                    enum GatewayTypeEnum {
                         GATEWAY_TYPE_UNSPECIFIED = 0,
                         GATEWAY = 1,
                         NON_GATEWAY = 2
                     }
+                    type GatewayType = "GATEWAY_TYPE_UNSPECIFIED" | "GATEWAY" | "NON_GATEWAY" | GatewayTypeEnum;
                     /**
                      * The gateway authorization/authentication method. This setting determines how
                      * Cloud IoT Core authorizes/authenticate devices to access the gateway.
                      */
-                    enum GatewayAuthMethod {
+                    enum GatewayAuthMethodEnum {
                         GATEWAY_AUTH_METHOD_UNSPECIFIED = 0,
                         ASSOCIATION_ONLY = 1,
                         DEVICE_AUTH_TOKEN_ONLY = 2,
                         ASSOCIATION_AND_DEVICE_AUTH_TOKEN = 3
                     }
+                    type GatewayAuthMethod = "GATEWAY_AUTH_METHOD_UNSPECIFIED" | "ASSOCIATION_ONLY" | "DEVICE_AUTH_TOKEN_ONLY" | "ASSOCIATION_AND_DEVICE_AUTH_TOKEN" | GatewayAuthMethodEnum;
                     /**
                      * The configuration for forwarding telemetry events.
                      */
@@ -1534,10 +1543,11 @@ export declare namespace google {
                     /**
                      * The supported formats for the public key.
                      */
-                    enum PublicKeyCertificateFormat {
+                    enum PublicKeyCertificateFormatEnum {
                         UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT = 0,
                         X509_CERTIFICATE_PEM = 1
                     }
+                    type PublicKeyCertificateFormat = "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT" | "X509_CERTIFICATE_PEM" | PublicKeyCertificateFormatEnum;
                     /**
                      * A server-stored device credential used for authentication.
                      */
@@ -1579,13 +1589,14 @@ export declare namespace google {
                     /**
                      * The supported formats for the public key.
                      */
-                    enum PublicKeyFormat {
+                    enum PublicKeyFormatEnum {
                         UNSPECIFIED_PUBLIC_KEY_FORMAT = 0,
                         RSA_PEM = 3,
                         RSA_X509_PEM = 1,
                         ES256_PEM = 2,
                         ES256_X509_PEM = 4
                     }
+                    type PublicKeyFormat = "UNSPECIFIED_PUBLIC_KEY_FORMAT" | "RSA_PEM" | "RSA_X509_PEM" | "ES256_PEM" | "ES256_X509_PEM" | PublicKeyFormatEnum;
                     /**
                      * The device configuration. Eventually delivered to devices.
                      */
@@ -1596,7 +1607,7 @@ export declare namespace google {
                          * version must be 0 on the `CreateDevice` request if a `config` is
                          * specified; the response of `CreateDevice` will always have a value of 1.
                          */
-                        version?: number;
+                        version?: number | string;
                         /**
                          * [Output only] The time at which this configuration version was updated in
                          * Cloud IoT Core. This timestamp is set by the server.
@@ -1779,11 +1790,11 @@ export declare namespace google {
                         /**
                          * An integer value.
                          */
-                        integerValue?: number;
+                        integerValue?: number | string;
                         /**
                          * A double value.
                          */
-                        doubleValue?: number;
+                        doubleValue?: number | string;
                         /**
                          * A timestamp value.
                          *
@@ -1992,7 +2003,7 @@ export declare namespace google {
                         /**
                          * Possible status of a build or build step.
                          */
-                        enum Status {
+                        enum StatusEnum {
                             STATUS_UNKNOWN = 0,
                             QUEUED = 1,
                             WORKING = 2,
@@ -2003,6 +2014,7 @@ export declare namespace google {
                             CANCELLED = 7,
                             EXPIRED = 9
                         }
+                        type Status = "STATUS_UNKNOWN" | "QUEUED" | "WORKING" | "SUCCESS" | "FAILURE" | "INTERNAL_ERROR" | "TIMEOUT" | "CANCELLED" | "EXPIRED" | StatusEnum;
                     }
                     interface Source {
                         /**
@@ -2033,7 +2045,7 @@ export declare namespace google {
                          * Google Cloud Storage generation for the object. If the generation is
                          * omitted, the latest generation will be used.
                          */
-                        generation?: number;
+                        generation?: number | string;
                     }
                     /**
                      * Location of the source in a Google Cloud Source Repository.
@@ -2233,7 +2245,7 @@ export declare namespace google {
                         /**
                          * Number of artifacts uploaded. Only populated when artifacts are uploaded.
                          */
-                        numArtifacts?: number;
+                        numArtifacts?: number | string;
                         /**
                          * List of build step outputs, produced by builder images, in the order
                          * corresponding to build step indices.
@@ -2392,11 +2404,12 @@ export declare namespace google {
                         /**
                          * Specifies the hash algorithm, if any.
                          */
-                        enum HashType {
+                        enum HashTypeEnum {
                             NONE = 0,
                             SHA256 = 1,
                             MD5 = 2
                         }
+                        type HashType = "NONE" | "SHA256" | "MD5" | HashTypeEnum;
                     }
                     /**
                      * Pairs a set of secret environment variables containing encrypted
@@ -2441,7 +2454,7 @@ export declare namespace google {
                          * requested. At present, the maximum disk size is 1000GB; builds that request
                          * more than the maximum are rejected with an error.
                          */
-                        diskSizeGb?: number;
+                        diskSizeGb?: number | string;
                         /**
                          * Option to specify behavior when there is an error in the substitution
                          * checks.
@@ -2495,41 +2508,46 @@ export declare namespace google {
                         /**
                          * Specifies the manner in which the build should be verified, if at all.
                          */
-                        enum VerifyOption {
+                        enum VerifyOptionEnum {
                             NOT_VERIFIED = 0,
                             VERIFIED = 1
                         }
+                        type VerifyOption = "NOT_VERIFIED" | "VERIFIED" | VerifyOptionEnum;
                         /**
                          * Supported VM sizes.
                          */
-                        enum MachineType {
+                        enum MachineTypeEnum {
                             UNSPECIFIED = 0,
                             N1_HIGHCPU_8 = 1,
                             N1_HIGHCPU_32 = 2
                         }
+                        type MachineType = "UNSPECIFIED" | "N1_HIGHCPU_8" | "N1_HIGHCPU_32" | MachineTypeEnum;
                         /**
                          * Specifies the behavior when there is an error in the substitution checks.
                          */
-                        enum SubstitutionOption {
+                        enum SubstitutionOptionEnum {
                             MUST_MATCH = 0,
                             ALLOW_LOOSE = 1
                         }
+                        type SubstitutionOption = "MUST_MATCH" | "ALLOW_LOOSE" | SubstitutionOptionEnum;
                         /**
                          * Specifies the behavior when writing build logs to Google Cloud Storage.
                          */
-                        enum LogStreamingOption {
+                        enum LogStreamingOptionEnum {
                             STREAM_DEFAULT = 0,
                             STREAM_ON = 1,
                             STREAM_OFF = 2
                         }
+                        type LogStreamingOption = "STREAM_DEFAULT" | "STREAM_ON" | "STREAM_OFF" | LogStreamingOptionEnum;
                         /**
                          * Specifies the logging mode.
                          */
-                        enum LoggingMode {
+                        enum LoggingModeEnum {
                             LOGGING_UNSPECIFIED = 0,
                             LEGACY = 1,
                             GCS_ONLY = 2
                         }
+                        type LoggingMode = "LOGGING_UNSPECIFIED" | "LEGACY" | "GCS_ONLY" | LoggingModeEnum;
                     }
                 }
             }
@@ -2642,7 +2660,7 @@ export declare namespace google {
                      * Copied from
                      * https://github.com/googleapis/googleapis/blob/master/google/logging/type/log_severity.proto
                      */
-                    enum LogSeverity {
+                    enum LogSeverityEnum {
                         DEFAULT = 0,
                         DEBUG = 100,
                         INFO = 200,
@@ -2653,6 +2671,7 @@ export declare namespace google {
                         ALERT = 700,
                         EMERGENCY = 800
                     }
+                    type LogSeverity = "DEFAULT" | "DEBUG" | "INFO" | "NOTICE" | "WARNING" | "ERROR" | "CRITICAL" | "ALERT" | "EMERGENCY" | LogSeverityEnum;
                     /**
                      * Common audit log format for Google Cloud Platform API operations.
                      * Copied from
@@ -2701,7 +2720,7 @@ export declare namespace google {
                          * The number of items returned from a List or Query API method,
                          * if applicable.
                          */
-                        numResponseItems?: number;
+                        numResponseItems?: number | string;
                         /**
                          * The status of the overall operation.
                          */
@@ -2968,11 +2987,11 @@ export declare namespace google {
                          * The index of this LogEntry in the sequence of split logs. LogEntries are
                          * given |index| values 0, 1, ..., n-1 for a sequence of n entries.
                          */
-                        index?: number;
+                        index?: number | string;
                         /**
                          * The total number of logs that the original LogEntry was split into.
                          */
-                        totalSplits?: number;
+                        totalSplits?: number | string;
                     }
                 }
             }
