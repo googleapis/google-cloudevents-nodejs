@@ -210,7 +210,7 @@ const generateInterface = (
 /**
  * Generate an AST node representing a Typescript enum.
  * @param enumNode the protojs node to generate the enum for
- * @returns an Statement AST node representing the enu
+ * @returns 2 Statements representing the Enum and a Type including Enum string values
  */
 const generateEnum = (enumNode: Enum): t.Statement[] => {
   const enumStmt = t.tsEnumDeclaration(
@@ -233,7 +233,6 @@ const generateEnum = (enumNode: Enum): t.Statement[] => {
   );
   const exportType = t.exportNamedDeclaration(typeStmt);
   const exportEnum = t.exportNamedDeclaration(enumStmt)
-  //const exportObj = t.callExpression(t.identifier('poop', enumObj);
   if (enumNode.comment) {
     addComment(exportEnum, enumNode.comment);
   }
