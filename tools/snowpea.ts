@@ -14,8 +14,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { execSync } from 'child_process';
-import { generate, generateTests } from './generator';
+import {execSync} from 'child_process';
+import {generate, generateTests} from './generator';
 
 const GOOGLE_EVENTS_DIR = '../google-cloudevents/';
 const EVENTS_PROTO_DIR = './proto/';
@@ -25,7 +25,6 @@ const PROTOC_URL =
   'https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protoc-21.5-linux-x86_64.zip';
 const TEMP_DIR = './tmp';
 
-
 /**
  * Download and extract protoc into a temp directory. The google-events
  * protos have some dependencies on types that are declared in protoc so
@@ -33,7 +32,7 @@ const TEMP_DIR = './tmp';
  * @param dir the path into which the zip should be downloaded extracted
  */
 const downloadProtoc = (dir: string) => {
-  fs.rmSync(dir, { force: true, recursive: true });
+  fs.rmSync(dir, {force: true, recursive: true});
   fs.mkdirSync(dir);
   const zipPath = path.resolve(dir, 'protobuf.zip');
   execSync(`curl -sSL ${PROTOC_URL} --output ${zipPath}`);
@@ -62,9 +61,11 @@ const findProtos = (dir: string): string[] => {
   return result;
 };
 
-const findTestData = (root_dir: string): {type: string, ext: string, obj: object}[] => {
-  const testData: {type: string, ext: string, obj: object}[] = [];
-  const reg = new RegExp('([a-zA-Z]+)(-[a-zA-Z]+\.json)')
+const findTestData = (
+  root_dir: string
+): {type: string; ext: string; obj: object}[] => {
+  const testData: {type: string; ext: string; obj: object}[] = [];
+  const reg = new RegExp('([a-zA-Z]+)(-[a-zA-Z]+.json)');
   const checkDir = (dirs: string[]) => {
     const dirPath = path.join(root_dir, dirs.join('/'));
     const dirContents = fs.readdirSync(dirPath);
@@ -74,21 +75,20 @@ const findTestData = (root_dir: string): {type: string, ext: string, obj: object
         checkDir(dirs.concat(fName));
       } else {
         const fMatch = reg.exec(fName);
-        const testObj = JSON.parse(fs.readFileSync(fullPath).toString());        
+        const testObj = JSON.parse(fs.readFileSync(fullPath).toString());
         if (fMatch) {
           testData.push({
             type: dirs.concat(fMatch[1]).join('.'),
             ext: fMatch[2],
-            obj: testObj
-          })
+            obj: testObj,
+          });
         }
       }
-    })
-  }
+    });
+  };
   checkDir(['google']);
   return testData;
-}
-
+};
 
 downloadProtoc(TEMP_DIR);
 

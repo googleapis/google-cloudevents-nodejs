@@ -56,7 +56,7 @@ const isEnum = (x: ReflectionObject): x is Enum => {
  * @returns true if the given ReflectionObject is a CloudEvent Type node.
  */
 const isCloudEventType = (x: ReflectionObject | Type): x is Type => {
-  return x.options && x.options['(google.events.cloud_event_type)']!!;
+  return x.options && x.options['(google.events.cloud_event_type)']!;
 };
 
 /**
@@ -74,7 +74,7 @@ const isMapField = (x: FieldBase): x is MapField => {
     throw 'found an invalid map type: ' + x.fullName;
   }
   return true;
-}
+};
 
 /**
  * isNamespace is a user-defined type guard to check if the given ReflectionObject
@@ -82,8 +82,10 @@ const isMapField = (x: FieldBase): x is MapField => {
  * @param x the ReflectionObject to check.
  * @returns true if the given ReflectionObject is a Namespace.
  */
-const isNamespace = (x: ReflectionObject | NamespaceBase): x is NamespaceBase => {
-  return (x as NamespaceBase).nested != null;
+const isNamespace = (
+  x: ReflectionObject | NamespaceBase
+): x is NamespaceBase => {
+  return (x as NamespaceBase).nested !== null;
 };
 
 /**
@@ -134,11 +136,18 @@ const interfacePropType = (field: Field, scope: Set<string>): t.TSType => {
     return t.tsTypeReference(t.identifier(field.type));
   }
   if (isNamespace(field.parent!) && field.parent.nested![field.type]) {
-    return t.tSTypeReference(t.tsQualifiedName(t.identifier(field.parent.name), t.identifier(field.type)));
+    return t.tSTypeReference(
+      t.tsQualifiedName(
+        t.identifier(field.parent.name),
+        t.identifier(field.type)
+      )
+    );
   }
-  console.log(`found unknown type "${field.fullName}: ${field.type}" - setting type to "any"`);
+  console.log(
+    `found unknown type "${field.fullName}: ${field.type}" - setting type to "any"`
+  );
   return t.tsAnyKeyword();
-}
+};
 
 /**
  * Generate the AST node for a Typescript interface field
@@ -174,10 +183,7 @@ const generateInterfaceProperty = (
  * @param scope a set of all identifiers that are in scope for the interfacec
  * @returns an Statement AST node representing the interface
  */
-const generateInterface = (
-  typeNode: Type,
-  scope: Set<string>
-): t.Statement => {
+const generateInterface = (typeNode: Type, scope: Set<string>): t.Statement => {
   const interfaceStmt = t.tsInterfaceDeclaration(
     t.identifier(typeNode.name),
     null,
@@ -216,23 +222,22 @@ const generateEnum = (enumNode: Enum): t.Statement[] => {
   const enumStmt = t.tsEnumDeclaration(
     t.identifier(enumNode.name + 'Enum'),
     Object.entries(enumNode.values).map(([key, value]) =>
-      t.tsEnumMember(
-        t.identifier(key),
-        t.numericLiteral(value)
-      )
+      t.tsEnumMember(t.identifier(key), t.numericLiteral(value))
     )
   );
 
   const typeStmt = t.tsTypeAliasDeclaration(
     t.identifier(enumNode.name),
     null,
-    t.tsUnionType(
-      [...Object.keys(enumNode.values).map(key => t.tsLiteralType(t.stringLiteral(key))),
-      t.tSTypeReference(t.identifier(enumNode.name + 'Enum'))]
-    )
+    t.tsUnionType([
+      ...Object.keys(enumNode.values).map(key =>
+        t.tsLiteralType(t.stringLiteral(key))
+      ),
+      t.tSTypeReference(t.identifier(enumNode.name + 'Enum')),
+    ])
   );
   const exportType = t.exportNamedDeclaration(typeStmt);
-  const exportEnum = t.exportNamedDeclaration(enumStmt)
+  const exportEnum = t.exportNamedDeclaration(enumStmt);
   if (enumNode.comment) {
     addComment(exportEnum, enumNode.comment);
   }
@@ -246,14 +251,14 @@ const generateEnum = (enumNode: Enum): t.Statement[] => {
  * CloudEvent.
  */
 const cloudEventDataType = (x: Type): string => {
-  const { data } = x.fields;
+  const {data} = x.fields;
   if (!data) {
     throw `Invalid CloudEvent type ${x.fullName}: missing data type`;
   }
   data.resolve();
-  t.tsAnyKeyword()
+  t.tsAnyKeyword();
   return data.resolvedType!.fullName.substring(1);
-}
+};
 
 /**
  * Generate the babel AST of all the types in the given protojs namespace
@@ -267,12 +272,12 @@ const cloudEventDataType = (x: Type): string => {
 const generateNamespaceAST = (
   namespace: Namespace,
   cloudEvents: Map<string, string>,
-  seenTypes: Set<string>,
+  seenTypes: Set<string>
 ): t.Statement[] => {
   console.log(`generating ${namespace.fullName}`);
   const scope = new Set(namespace.nestedArray.map(x => x.name));
   const statements: t.Statement[] = [];
-  for (let x of namespace.nestedArray) {
+  for (const x of namespace.nestedArray) {
     if (seenTypes.has(x.fullName)) {
       // this type has already been generated
       continue;
@@ -281,9 +286,13 @@ const generateNamespaceAST = (
     seenTypes.add(x.fullName);
     if (isCloudEventType(x)) {
       const ceType = x.options!['(google.events.cloud_event_type)'];
-      const ceDataType = cloudEventDataType(x)
+      const ceDataType = cloudEventDataType(x);
       cloudEvents.set(ceType, ceDataType);
-      const stmt = templates.CloudEventInterfaceStatement(x.name, ceType, ceDataType);
+      const stmt = templates.CloudEventInterfaceStatement(
+        x.name,
+        ceType,
+        ceDataType
+      );
       if (x.comment) {
         addComment(stmt, x.comment);
       }
@@ -299,7 +308,11 @@ const generateNamespaceAST = (
     // nested types:
     if (isNamespace(x)) {
       const children = generateNamespaceAST(x, cloudEvents, seenTypes);
-      statements.push(t.exportNamedDeclaration(t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children))))
+      statements.push(
+        t.exportNamedDeclaration(
+          t.tsModuleDeclaration(t.identifier(x.name), t.tsModuleBlock(children))
+        )
+      );
     }
   }
   return statements;
@@ -320,7 +333,7 @@ const generateNamespaceAST = (
 const doGenerate = (
   root: ReflectionObject,
   cloudEvents: Map<string, string>,
-  seenTypes: Set<string> = new Set<string>(),
+  seenTypes: Set<string> = new Set<string>()
 ): t.Statement[] => {
   if (isCloudEventType(root)) {
     return generateNamespaceAST(root.parent!, cloudEvents, seenTypes);
@@ -335,7 +348,9 @@ const doGenerate = (
     return [];
   }
   return [
-    t.exportNamedDeclaration(t.tsModuleDeclaration(t.identifier(root.name), t.tsModuleBlock(children))),
+    t.exportNamedDeclaration(
+      t.tsModuleDeclaration(t.identifier(root.name), t.tsModuleBlock(children))
+    ),
   ];
 };
 
@@ -346,31 +361,34 @@ const doGenerate = (
  * @returns a string of gerenated code
  */
 export const generate = (protos: string[]): string => {
-  let root = new Root();
-  root.loadSync(protos, { alternateCommentMode: true });
+  const root = new Root();
+  root.loadSync(protos, {alternateCommentMode: true});
   const cloudEvents = new Map<string, string>();
   const statements = doGenerate(root.nestedArray[0], cloudEvents);
-  statements.push(
-    ...templates.KnownEventsStatements(cloudEvents)
-  );
+  statements.push(...templates.KnownEventsStatements(cloudEvents));
   statements.unshift(templates.CloudEventImportStatement());
   const {code} = babelGenerate(t.program(statements));
   return templates.FileHeader + code;
 };
 
-
 /**
  * Strips out any @type fields from subobjects within obj
  */
 function stripExtras(obj: object): object {
-  return Object.fromEntries(Object.entries(obj).map(([k1, v1]) => {
-    if (v1 instanceof Object && !(v1 instanceof Array)) {
-      return [k1, Object.fromEntries(Object.entries(v1).filter(([k2, v2]) => k2 !== '@type'))]
-    } else {
-      return [k1, v1]
-    }
-  }))
-  
+  return Object.fromEntries(
+    Object.entries(obj).map(([k1, v1]) => {
+      if (v1 instanceof Object && !(v1 instanceof Array)) {
+        return [
+          k1,
+          Object.fromEntries(
+            Object.entries(v1).filter(([k2]) => k2 !== '@type')
+          ),
+        ];
+      } else {
+        return [k1, v1];
+      }
+    })
+  );
 }
 
 /**
@@ -378,11 +396,15 @@ function stripExtras(obj: object): object {
  * @param testData testData sourced from google-cloudevents/testdata
  * @returns code to be written into tests/testEvents.ts
  */
-export const generateTests = (testData: { type: string, ext: string, obj: object }[]): string => {
+export const generateTests = (
+  testData: {type: string; ext: string; obj: object}[]
+): string => {
   const statements: t.Statement[] = [
     templates.GoogleSrcImportStatement(),
-    ...testData.map((t, i) => templates.TestAssignStatement(t.type, stripExtras(t.obj), i))
+    ...testData.map((t, i) =>
+      templates.TestAssignStatement(t.type, stripExtras(t.obj), i)
+    ),
   ];
   const {code} = babelGenerate(t.program(statements));
   return code;
-}
+};

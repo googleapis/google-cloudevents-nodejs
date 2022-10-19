@@ -12,7 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { google, GoogleCloudEvent, GoogleCloudEventsUnion, GoogleCloudEventTypes, GoogleCloudEventTypesToDataType } from '../events/events';
+import {
+  google,
+  GoogleCloudEvent,
+  GoogleCloudEventsUnion,
+  GoogleCloudEventTypes,
+  GoogleCloudEventTypesToDataType,
+} from '../events/events';
 
 /**
  * Check if a given a CloudEvent is a known GoogleCloudEvent.
@@ -20,9 +26,7 @@ import { google, GoogleCloudEvent, GoogleCloudEventsUnion, GoogleCloudEventTypes
  * @param event the CloudEvent to check the type of
  * @returns true if this event is a GoogleCloudEvent of the provided type, false otherwise
  */
-export function isGoogleEvent(
-  event: any,
-): event is GoogleCloudEventsUnion;
+export function isGoogleEvent(event: any): event is GoogleCloudEventsUnion;
 /**
  * Check if a given a CloudEvent is a known Google CloudEvent of a given type.
  *
@@ -48,5 +52,5 @@ export function isGoogleEvent(
   return GoogleCloudEventTypes.has(event.type);
 }
 
-export { CloudEvent } from './cloudevent';
-export { GoogleCloudEvent, GoogleCloudEventsUnion, google };
+export {CloudEvent} from './cloudevent';
+export {GoogleCloudEvent, GoogleCloudEventsUnion, google};

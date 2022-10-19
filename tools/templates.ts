@@ -16,30 +16,55 @@ import template from '@babel/template';
 import * as t from '@babel/types';
 
 export const RecordType = (valType: t.TSType): t.TSTypeReference => {
-  return t.tsTypeReference(t.identifier('Record'), t.tsTypeParameterInstantiation([t.tsStringKeyword(), valType]));
-}
+  return t.tsTypeReference(
+    t.identifier('Record'),
+    t.tsTypeParameterInstantiation([t.tsStringKeyword(), valType])
+  );
+};
 
 export const CloudEventImportStatement = template.statement(`
 import {CloudEvent} from '../src/cloudevent';
 `);
 
-export const CloudEventInterfaceStatement = (name: string, ceType: string, dataType: string): t.Statement => {
-  return template.statements(`
+export const CloudEventInterfaceStatement = (
+  name: string,
+  ceType: string,
+  dataType: string
+): t.Statement => {
+  return template.statements(
+    `
     export interface ${name} extends CloudEvent<${dataType}> {
       type: '${ceType}' | string;
     };
-  `, {plugins: ['typescript'], syntacticPlaceholders: true, preserveComments: true})()[0];
+  `,
+    {
+      plugins: ['typescript'],
+      syntacticPlaceholders: true,
+      preserveComments: true,
+    }
+  )()[0];
 };
 
 export const GoogleSrcImportStatement = template.statement(`
 import {google} from '../src';
 `);
 
-export const TestAssignStatement = (type: string, obj: object, i: number): t.Statement => {
-  return template.statements(`
+export const TestAssignStatement = (
+  type: string,
+  obj: object,
+  i: number
+): t.Statement => {
+  return template.statements(
+    `
     const obj${i}: ${type} = ${JSON.stringify(obj)};
-  `, {plugins: ['typescript'], syntacticPlaceholders: true, preserveComments: true})()[0];
-}
+  `,
+    {
+      plugins: ['typescript'],
+      syntacticPlaceholders: true,
+      preserveComments: true,
+    }
+  )()[0];
+};
 
 export const KnownEventsStatements = (
   cloudEvents: Map<string, string>
@@ -57,8 +82,9 @@ export const KnownEventsStatements = (
   const knownEventTypes = Array.from(cloudEvents.keys())
     .map(t => `'${t}'`)
     .join(',\n');
-  
-    return template.statements(`
+
+  return template.statements(
+    `
     /**
      * A mapped type that defines which CloudEvent types correspond to which data 
      * payload schemas. This is an internal implementation detail of the @google/events
@@ -106,7 +132,13 @@ export const KnownEventsStatements = (
     export const GoogleCloudEventTypes = new Set([
       ${knownEventTypes},
     ]);
-    `, {plugins: ['typescript'], syntacticPlaceholders: true, preserveComments: true})();
+    `,
+    {
+      plugins: ['typescript'],
+      syntacticPlaceholders: true,
+      preserveComments: true,
+    }
+  )();
 };
 
 export const FileHeader = `// Copyright 2022 Google LLC
@@ -125,4 +157,4 @@ export const FileHeader = `// Copyright 2022 Google LLC
 
 // NOTE: This code is auto-generated and should not be edited directly.
 
-`
+`;
