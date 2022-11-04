@@ -14,7 +14,7 @@
 
 // NOTE: This code is auto-generated and should not be edited directly.
 
-import {CloudEvent} from '../src/cloudevent';
+import { CloudEvent } from '../src/cloudevent';
 export namespace google {
   export namespace events {
     export namespace firebase {
@@ -23,8 +23,7 @@ export namespace google {
           /**
            * The CloudEvent raised when a TestMatrix is completed
            */
-          export interface TestMatrixCompletedEvent
-            extends CloudEvent<google.events.firebase.testlab.v1.TestMatrixEventData> {
+          export interface TestMatrixCompletedEvent extends CloudEvent<google.events.firebase.testlab.v1.TestMatrixEventData> {
             type: 'google.firebase.testlab.testMatrix.v1.completed' | string;
           }
 
@@ -128,14 +127,7 @@ export namespace google {
             ERROR = 4,
             INVALID = 5,
           }
-          export type TestState =
-            | 'TEST_STATE_UNSPECIFIED'
-            | 'VALIDATING'
-            | 'PENDING'
-            | 'FINISHED'
-            | 'ERROR'
-            | 'INVALID'
-            | TestStateEnum;
+          export type TestState = "TEST_STATE_UNSPECIFIED" | "VALIDATING" | "PENDING" | "FINISHED" | "ERROR" | "INVALID" | TestStateEnum;
 
           /**
            * Outcome summary for a finished test matrix.
@@ -147,13 +139,7 @@ export namespace google {
             INCONCLUSIVE = 3,
             SKIPPED = 4,
           }
-          export type OutcomeSummary =
-            | 'OUTCOME_SUMMARY_UNSPECIFIED'
-            | 'SUCCESS'
-            | 'FAILURE'
-            | 'INCONCLUSIVE'
-            | 'SKIPPED'
-            | OutcomeSummaryEnum;
+          export type OutcomeSummary = "OUTCOME_SUMMARY_UNSPECIFIED" | "SUCCESS" | "FAILURE" | "INCONCLUSIVE" | "SKIPPED" | OutcomeSummaryEnum;
         }
       }
       export namespace remoteconfig {
@@ -161,11 +147,8 @@ export namespace google {
           /**
            * The CloudEvent raised when a Remote Config is updated
            */
-          export interface RemoteConfigUpdatedEvent
-            extends CloudEvent<google.events.firebase.remoteconfig.v1.RemoteConfigEventData> {
-            type:
-              | 'google.firebase.remoteconfig.remoteConfig.v1.updated'
-              | string;
+          export interface RemoteConfigUpdatedEvent extends CloudEvent<google.events.firebase.remoteconfig.v1.RemoteConfigEventData> {
+            type: 'google.firebase.remoteconfig.remoteConfig.v1.updated' | string;
           }
 
           /**
@@ -240,12 +223,7 @@ export namespace google {
             REST_API = 2,
             ADMIN_SDK_NODE = 3,
           }
-          export type RemoteConfigUpdateOrigin =
-            | 'REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED'
-            | 'CONSOLE'
-            | 'REST_API'
-            | 'ADMIN_SDK_NODE'
-            | RemoteConfigUpdateOriginEnum;
+          export type RemoteConfigUpdateOrigin = "REMOTE_CONFIG_UPDATE_ORIGIN_UNSPECIFIED" | "CONSOLE" | "REST_API" | "ADMIN_SDK_NODE" | RemoteConfigUpdateOriginEnum;
 
           /**
            * Where the Remote Config update action originated.
@@ -256,12 +234,7 @@ export namespace google {
             FORCED_UPDATE = 2,
             ROLLBACK = 3,
           }
-          export type RemoteConfigUpdateType =
-            | 'REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED'
-            | 'INCREMENTAL_UPDATE'
-            | 'FORCED_UPDATE'
-            | 'ROLLBACK'
-            | RemoteConfigUpdateTypeEnum;
+          export type RemoteConfigUpdateType = "REMOTE_CONFIG_UPDATE_TYPE_UNSPECIFIED" | "INCREMENTAL_UPDATE" | "FORCED_UPDATE" | "ROLLBACK" | RemoteConfigUpdateTypeEnum;
         }
       }
       export namespace firebasealerts {
@@ -269,8 +242,7 @@ export namespace google {
           /**
            * The CloudEvent raised when a alert has been published by Firebase Alerts.
            */
-          export interface AlertPublishedEvent
-            extends CloudEvent<google.events.firebase.firebasealerts.v1.AlertData> {
+          export interface AlertPublishedEvent extends CloudEvent<google.events.firebase.firebasealerts.v1.AlertData> {
             type: 'google.firebase.firebasealerts.alerts.v1.published' | string;
           }
 
@@ -548,8 +520,7 @@ export namespace google {
            * The CloudEvent raised when a ref is created in the Firebase Realtime
            * Database.
            */
-          export interface ReferenceCreatedEvent
-            extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+          export interface ReferenceCreatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
             type: 'google.firebase.database.ref.v1.created' | string;
           }
 
@@ -557,8 +528,7 @@ export namespace google {
            * The CloudEvent raised when a reference is updated in the Firebase Realtime
            * Database.
            */
-          export interface ReferenceUpdatedEvent
-            extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+          export interface ReferenceUpdatedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
             type: 'google.firebase.database.ref.v1.updated' | string;
           }
 
@@ -566,8 +536,7 @@ export namespace google {
            * The CloudEvent raised when a reference is deleted in the Firebase Realtime
            * Database.
            */
-          export interface ReferenceDeletedEvent
-            extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+          export interface ReferenceDeletedEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
             type: 'google.firebase.database.ref.v1.deleted' | string;
           }
 
@@ -575,8 +544,7 @@ export namespace google {
            * The CloudEvent raised when a reference is written (created, updated or
            * deleted) in the Firebase Realtime Database.
            */
-          export interface ReferenceWrittenEvent
-            extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
+          export interface ReferenceWrittenEvent extends CloudEvent<google.events.firebase.database.v1.ReferenceEventData> {
             type: 'google.firebase.database.ref.v1.written' | string;
           }
 
@@ -601,16 +569,14 @@ export namespace google {
           /**
            * The CloudEvent raised when a Firebase user is created.
            */
-          export interface UserCreatedEvent
-            extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
+          export interface UserCreatedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
             type: 'google.firebase.auth.user.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firebase user is deleted.
            */
-          export interface UserDeletedEvent
-            extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
+          export interface UserDeletedEvent extends CloudEvent<google.events.firebase.auth.v1.AuthEventData> {
             type: 'google.firebase.auth.user.v1.deleted' | string;
           }
 
@@ -721,8 +687,7 @@ export namespace google {
           /**
            * The CloudEvent raised when a Firebase Analytics log is written.
            */
-          export interface AnalyticsLogWrittenEvent
-            extends CloudEvent<google.events.firebase.analytics.v1.AnalyticsLogData> {
+          export interface AnalyticsLogWrittenEvent extends CloudEvent<google.events.firebase.analytics.v1.AnalyticsLogData> {
             type: 'google.firebase.analytics.log.v1.written' | string;
           }
 
@@ -1057,24 +1022,21 @@ export namespace google {
           /**
            * The CloudEvent raised when an object is finalized in Google Cloud Storage.
            */
-          export interface ObjectFinalizedEvent
-            extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+          export interface ObjectFinalizedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
             type: 'google.cloud.storage.object.v1.finalized' | string;
           }
 
           /**
            * The CloudEvent raised when an object is archived in Google Cloud Storage.
            */
-          export interface ObjectArchivedEvent
-            extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+          export interface ObjectArchivedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
             type: 'google.cloud.storage.object.v1.archived' | string;
           }
 
           /**
            * The CloudEvent raised when an object is deleted  in Google Cloud Storage.
            */
-          export interface ObjectDeletedEvent
-            extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+          export interface ObjectDeletedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
             type: 'google.cloud.storage.object.v1.deleted' | string;
           }
 
@@ -1082,8 +1044,7 @@ export namespace google {
            * The CloudEvent raised when an object's metadata is updated  in Google Cloud
            * Storage.
            */
-          export interface ObjectMetadataUpdatedEvent
-            extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
+          export interface ObjectMetadataUpdatedEvent extends CloudEvent<google.events.cloud.storage.v1.StorageObjectData> {
             type: 'google.cloud.storage.object.v1.metadataUpdated' | string;
           }
 
@@ -1287,8 +1248,7 @@ export namespace google {
           /**
            * The CloudEvent raised when a Scheduler job is executed.
            */
-          export interface JobExecutedEvent
-            extends CloudEvent<google.events.cloud.scheduler.v1.SchedulerJobData> {
+          export interface JobExecutedEvent extends CloudEvent<google.events.cloud.scheduler.v1.SchedulerJobData> {
             type: 'google.cloud.scheduler.job.v1.executed' | string;
           }
 
@@ -1308,8 +1268,7 @@ export namespace google {
           /**
            * The CloudEvent raised when a PubSub message is published for a topic.
            */
-          export interface MessagePublishedEvent
-            extends CloudEvent<google.events.cloud.pubsub.v1.MessagePublishedData> {
+          export interface MessagePublishedEvent extends CloudEvent<google.events.cloud.pubsub.v1.MessagePublishedData> {
             type: 'google.cloud.pubsub.topic.v1.messagePublished' | string;
           }
 
@@ -1369,55 +1328,43 @@ export namespace google {
           /**
            * CreateDevice event.
            */
-          export interface CreateDeviceEvent
-            extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
+          export interface CreateDeviceEvent extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
             type: 'google.cloud.iot.v1.DeviceManager.CreateDevice' | string;
           }
 
           /**
            * UpdateDevice event.
            */
-          export interface UpdateDeviceEvent
-            extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
+          export interface UpdateDeviceEvent extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
             type: 'google.cloud.iot.v1.DeviceManager.UpdateDevice' | string;
           }
 
           /**
            * DeleteDevice event.
            */
-          export interface DeleteDeviceEvent
-            extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
+          export interface DeleteDeviceEvent extends CloudEvent<google.events.cloud.iot.v1.DeviceEventData> {
             type: 'google.cloud.iot.v1.DeviceManager.DeleteDevice' | string;
           }
 
           /**
            * CreateDeviceRegistry event.
            */
-          export interface CreateDeviceRegistryEvent
-            extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
-            type:
-              | 'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry'
-              | string;
+          export interface CreateDeviceRegistryEvent extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
+            type: 'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry' | string;
           }
 
           /**
            * UpdateDeviceRegistry event.
            */
-          export interface UpdateDeviceRegistryEvent
-            extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
-            type:
-              | 'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry'
-              | string;
+          export interface UpdateDeviceRegistryEvent extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
+            type: 'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry' | string;
           }
 
           /**
            * DeleteDeviceRegistry event.
            */
-          export interface DeleteDeviceRegistryEvent
-            extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
-            type:
-              | 'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry'
-              | string;
+          export interface DeleteDeviceRegistryEvent extends CloudEvent<google.events.cloud.iot.v1.RegistryEventData> {
+            type: 'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry' | string;
           }
 
           /**
@@ -1531,7 +1478,7 @@ export namespace google {
 
             /**
              * *Beta Feature**
-             *
+             * 
              * The logging verbosity for device activity. If unspecified,
              * DeviceRegistry.log_level will be used.
              */
@@ -1541,13 +1488,13 @@ export namespace google {
              * The metadata key-value pairs assigned to the device. This metadata is not
              * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
              * information for the device.
-             *
+             * 
              * Keys must conform to the regular expression [a-zA-Z][a-zA-Z0-9-_.+~%]+ and
              * be less than 128 bytes in length.
-             *
+             * 
              * Values are free-form strings. Each value must be less than or equal to 32
              * KB in size.
-             *
+             * 
              * The total size of all keys and values must be less than 256 KB, and the
              * maximum number of key-value pairs is 500.
              */
@@ -1636,7 +1583,7 @@ export namespace google {
 
             /**
              * *Beta Feature**
-             *
+             * 
              * The default logging verbosity for activity from devices in this registry.
              * The verbosity level can be overridden by Device.log_level.
              */
@@ -1649,7 +1596,7 @@ export namespace google {
              * empty, no verification is performed. Otherwise, the credentials of a newly
              * created device or added credentials of an updated device should be signed
              * with one of these registry credentials.
-             *
+             * 
              * Note, however, that existing devices will never be affected by
              * modifications to this list of credentials: after a device has been
              * successfully created in a registry, it should be able to connect even if
@@ -1678,11 +1625,7 @@ export namespace google {
             MQTT_ENABLED = 1,
             MQTT_DISABLED = 2,
           }
-          export type MqttState =
-            | 'MQTT_STATE_UNSPECIFIED'
-            | 'MQTT_ENABLED'
-            | 'MQTT_DISABLED'
-            | MqttStateEnum;
+          export type MqttState = "MQTT_STATE_UNSPECIFIED" | "MQTT_ENABLED" | "MQTT_DISABLED" | MqttStateEnum;
 
           /**
            * The configuration of the HTTP bridge for a device registry.
@@ -1704,15 +1647,11 @@ export namespace google {
             HTTP_ENABLED = 1,
             HTTP_DISABLED = 2,
           }
-          export type HttpState =
-            | 'HTTP_STATE_UNSPECIFIED'
-            | 'HTTP_ENABLED'
-            | 'HTTP_DISABLED'
-            | HttpStateEnum;
+          export type HttpState = "HTTP_STATE_UNSPECIFIED" | "HTTP_ENABLED" | "HTTP_DISABLED" | HttpStateEnum;
 
           /**
            * *Beta Feature**
-           *
+           * 
            * The logging verbosity for device activity. Specifies which events should be
            * written to logs. For example, if the LogLevel is ERROR, only events that
            * terminate in errors will be logged. LogLevel is inclusive; enabling INFO
@@ -1725,13 +1664,7 @@ export namespace google {
             INFO = 30,
             DEBUG = 40,
           }
-          export type LogLevel =
-            | 'LOG_LEVEL_UNSPECIFIED'
-            | 'NONE'
-            | 'ERROR'
-            | 'INFO'
-            | 'DEBUG'
-            | LogLevelEnum;
+          export type LogLevel = "LOG_LEVEL_UNSPECIFIED" | "NONE" | "ERROR" | "INFO" | "DEBUG" | LogLevelEnum;
 
           /**
            * Gateway type.
@@ -1741,11 +1674,7 @@ export namespace google {
             GATEWAY = 1,
             NON_GATEWAY = 2,
           }
-          export type GatewayType =
-            | 'GATEWAY_TYPE_UNSPECIFIED'
-            | 'GATEWAY'
-            | 'NON_GATEWAY'
-            | GatewayTypeEnum;
+          export type GatewayType = "GATEWAY_TYPE_UNSPECIFIED" | "GATEWAY" | "NON_GATEWAY" | GatewayTypeEnum;
 
           /**
            * The gateway authorization/authentication method. This setting determines how
@@ -1757,12 +1686,7 @@ export namespace google {
             DEVICE_AUTH_TOKEN_ONLY = 2,
             ASSOCIATION_AND_DEVICE_AUTH_TOKEN = 3,
           }
-          export type GatewayAuthMethod =
-            | 'GATEWAY_AUTH_METHOD_UNSPECIFIED'
-            | 'ASSOCIATION_ONLY'
-            | 'DEVICE_AUTH_TOKEN_ONLY'
-            | 'ASSOCIATION_AND_DEVICE_AUTH_TOKEN'
-            | GatewayAuthMethodEnum;
+          export type GatewayAuthMethod = "GATEWAY_AUTH_METHOD_UNSPECIFIED" | "ASSOCIATION_ONLY" | "DEVICE_AUTH_TOKEN_ONLY" | "ASSOCIATION_AND_DEVICE_AUTH_TOKEN" | GatewayAuthMethodEnum;
 
           /**
            * The configuration for forwarding telemetry events.
@@ -1866,10 +1790,7 @@ export namespace google {
             UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT = 0,
             X509_CERTIFICATE_PEM = 1,
           }
-          export type PublicKeyCertificateFormat =
-            | 'UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT'
-            | 'X509_CERTIFICATE_PEM'
-            | PublicKeyCertificateFormatEnum;
+          export type PublicKeyCertificateFormat = "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT" | "X509_CERTIFICATE_PEM" | PublicKeyCertificateFormatEnum;
 
           /**
            * A server-stored device credential used for authentication.
@@ -1923,13 +1844,7 @@ export namespace google {
             ES256_PEM = 2,
             ES256_X509_PEM = 4,
           }
-          export type PublicKeyFormat =
-            | 'UNSPECIFIED_PUBLIC_KEY_FORMAT'
-            | 'RSA_PEM'
-            | 'RSA_X509_PEM'
-            | 'ES256_PEM'
-            | 'ES256_X509_PEM'
-            | PublicKeyFormatEnum;
+          export type PublicKeyFormat = "UNSPECIFIED_PUBLIC_KEY_FORMAT" | "RSA_PEM" | "RSA_X509_PEM" | "ES256_PEM" | "ES256_X509_PEM" | PublicKeyFormatEnum;
 
           /**
            * The device configuration. Eventually delivered to devices.
@@ -2010,24 +1925,21 @@ export namespace google {
           /**
            * The CloudEvent raised when a Firestore document is created.
            */
-          export interface DocumentCreatedEvent
-            extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+          export interface DocumentCreatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
             type: 'google.cloud.firestore.document.v1.created' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is updated.
            */
-          export interface DocumentUpdatedEvent
-            extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+          export interface DocumentUpdatedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
             type: 'google.cloud.firestore.document.v1.updated' | string;
           }
 
           /**
            * The CloudEvent raised when a Firestore document is deleted.
            */
-          export interface DocumentDeletedEvent
-            extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+          export interface DocumentDeletedEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
             type: 'google.cloud.firestore.document.v1.deleted' | string;
           }
 
@@ -2035,8 +1947,7 @@ export namespace google {
            * The CloudEvent raised when a Firestore document is created, updated or
            * deleted.
            */
-          export interface DocumentWrittenEvent
-            extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
+          export interface DocumentWrittenEvent extends CloudEvent<google.events.cloud.firestore.v1.DocumentEventData> {
             type: 'google.cloud.firestore.document.v1.written' | string;
           }
 
@@ -2087,25 +1998,25 @@ export namespace google {
 
             /**
              * The document's fields.
-             *
+             * 
              * The map keys represent field names.
-             *
+             * 
              * A simple field name contains only characters `a` to `z`, `A` to `Z`,
              * `0` to `9`, or `_`, and must not start with `0` to `9`. For example,
              * `foo_bar_17`.
-             *
+             * 
              * Field names matching the regular expression `__.*__` are reserved. Reserved
              * field names are forbidden except in certain documented contexts. The map
              * keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be
              * empty.
-             *
+             * 
              * Field paths may be used in other contexts to refer to structured fields
              * defined here. For `map_value`, the field path is represented by the simple
              * or quoted field names of the containing fields, delimited by `.`. For
              * example, the structured field
              * `"foo" : { map_value: { "x&y" : { string_value: "hello" }}}` would be
              * represented by the field path `foo.x&y`.
-             *
+             * 
              * Within a field path, a quoted field name starts and ends with `` ` `` and
              * may contain any character. Some characters, including `` ` ``, must be
              * escaped using a `\`. For example, `` `x&y` `` represents `x&y` and
@@ -2115,7 +2026,7 @@ export namespace google {
 
             /**
              * The time at which the document was created.
-             *
+             * 
              * This value increases monotonically when a document is deleted then
              * recreated. It can also be compared to values from other documents and
              * the `read_time` of a query.
@@ -2124,7 +2035,7 @@ export namespace google {
 
             /**
              * The time at which the document was last changed.
-             *
+             * 
              * This value is initially set to the `create_time` then increases
              * monotonically with each change to the document. It can also be
              * compared to values from other documents and the `read_time` of a query.
@@ -2158,7 +2069,7 @@ export namespace google {
 
             /**
              * A timestamp value.
-             *
+             * 
              * Precise only to microseconds. When stored, any additional precision is
              * rounded down.
              */
@@ -2166,7 +2077,7 @@ export namespace google {
 
             /**
              * A string value.
-             *
+             * 
              * The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes.
              * Only the first 1,500 bytes of the UTF-8 representation are considered by
              * queries.
@@ -2175,7 +2086,7 @@ export namespace google {
 
             /**
              * A bytes value.
-             *
+             * 
              * Must not exceed 1 MiB - 89 bytes.
              * Only the first 1,500 bytes are considered by queries.
              */
@@ -2194,7 +2105,7 @@ export namespace google {
 
             /**
              * An array value.
-             *
+             * 
              * Cannot directly contain another array value, though can contain an
              * map which contains another array.
              */
@@ -2222,7 +2133,7 @@ export namespace google {
           export interface MapValue {
             /**
              * The map's fields.
-             *
+             * 
              * The map keys represent field names. Field names matching the regular
              * expression `__.*__` are reserved. Reserved field names are forbidden except
              * in certain documented contexts. The map keys, represented as UTF-8, must
@@ -2237,8 +2148,7 @@ export namespace google {
           /**
            * The CloudEvent raised when your build's state changes.
            */
-          export interface CloudBuildEvent
-            extends CloudEvent<google.events.cloud.cloudbuild.v1.BuildEventData> {
+          export interface CloudBuildEvent extends CloudEvent<google.events.cloud.cloudbuild.v1.BuildEventData> {
             type: 'google.cloud.cloudbuild.build.v1.statusChanged' | string;
           }
 
@@ -2293,7 +2203,7 @@ export namespace google {
 
             /**
              * Time at which execution of the build was finished.
-             *
+             * 
              * The difference between finish_time and start_time is the duration of the
              * build's execution.
              */
@@ -2309,12 +2219,12 @@ export namespace google {
             /**
              * A list of images to be pushed upon the successful completion of all build
              * steps.
-             *
+             * 
              * The images are pushed using the builder service account's credentials.
-             *
+             * 
              * The digests of the pushed images will be stored in the `Build` resource's
              * results field.
-             *
+             * 
              * If any of the images fail to be pushed, the build status is marked
              * `FAILURE`.
              */
@@ -2324,7 +2234,7 @@ export namespace google {
              * TTL in queue for this build. If provided and the build is enqueued longer
              * than this value, the build will expire and the build status will be
              * `EXPIRED`.
-             *
+             * 
              * The TTL starts ticking from create_time.
              */
             queueTtl?: string;
@@ -2382,11 +2292,11 @@ export namespace google {
             /**
              * Stores timing information for phases of the build. Valid keys
              * are:
-             *
+             * 
              * * BUILD: time to execute all build steps
              * * PUSH: time to push all specified images.
              * * FETCHSOURCE: time to fetch source.
-             *
+             * 
              * If the build does not specify source or images,
              * these keys will not be included.
              */
@@ -2407,17 +2317,7 @@ export namespace google {
               CANCELLED = 7,
               EXPIRED = 9,
             }
-            export type Status =
-              | 'STATUS_UNKNOWN'
-              | 'QUEUED'
-              | 'WORKING'
-              | 'SUCCESS'
-              | 'FAILURE'
-              | 'INTERNAL_ERROR'
-              | 'TIMEOUT'
-              | 'CANCELLED'
-              | 'EXPIRED'
-              | StatusEnum;
+            export type Status = "STATUS_UNKNOWN" | "QUEUED" | "WORKING" | "SUCCESS" | "FAILURE" | "INTERNAL_ERROR" | "TIMEOUT" | "CANCELLED" | "EXPIRED" | StatusEnum;
           }
           export interface Source {
             /**
@@ -2471,7 +2371,7 @@ export namespace google {
 
             /**
              * Regex matching branches to build.
-             *
+             * 
              * The syntax of the regular expressions accepted is the syntax accepted by
              * RE2 and described at https://github.com/google/re2/wiki/Syntax
              */
@@ -2479,7 +2379,7 @@ export namespace google {
 
             /**
              * Regex matching tags to build.
-             *
+             * 
              * The syntax of the regular expressions accepted is the syntax accepted by
              * RE2 and described at https://github.com/google/re2/wiki/Syntax
              */
@@ -2492,7 +2392,7 @@ export namespace google {
 
             /**
              * Directory, relative to the source root, in which to run the build.
-             *
+             * 
              * This must be a relative path. If a step's `dir` is specified and is an
              * absolute path, this value is ignored for that step's execution.
              */
@@ -2518,18 +2418,18 @@ export namespace google {
             /**
              * The name of the container image that will run this particular
              * build step.
-             *
+             * 
              * If the image is available in the host's Docker daemon's cache, it
              * will be run directly. If not, the host will attempt to pull the image
              * first, using the builder service account's credentials if necessary.
-             *
+             * 
              * The Docker daemon's cache will already have the latest versions of all of
              * the officially supported build steps
              * ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)).
              * The Docker daemon will also have cached many of the layers for some popular
              * images, like "ubuntu", "debian", but they will be refreshed at the time you
              * attempt to use them.
-             *
+             * 
              * If you built an image in a previous build step, it will be stored in the
              * host's Docker daemon's cache and is available to use as the name for a
              * later build step.
@@ -2538,7 +2438,7 @@ export namespace google {
 
             /**
              * A list of environment variable definitions to be used when running a step.
-             *
+             * 
              * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
              * being given the value "VALUE".
              */
@@ -2546,7 +2446,7 @@ export namespace google {
 
             /**
              * A list of arguments that will be presented to the step when it is started.
-             *
+             * 
              * If the image used to run the step's container has an entrypoint, the `args`
              * are used as arguments to that entrypoint. If the image does not define
              * an entrypoint, the first element in args is used as the entrypoint,
@@ -2556,12 +2456,12 @@ export namespace google {
 
             /**
              * Working directory to use when running this step's container.
-             *
+             * 
              * If this value is a relative path, it is relative to the build's working
              * directory. If this value is absolute, it may be outside the build's working
              * directory, in which case the contents of the path may not be persisted
              * across build step executions, unless a `volume` for that path is specified.
-             *
+             * 
              * If the build specifies a `RepoSource` with `dir` and a step with a `dir`,
              * which specifies an absolute path, the `RepoSource` `dir` is ignored for
              * the step's execution.
@@ -2598,11 +2498,11 @@ export namespace google {
 
             /**
              * List of volumes to mount into the build step.
-             *
+             * 
              * Each volume is created as an empty volume prior to execution of the
              * build step. Upon completion of the build, volumes and their contents are
              * discarded.
-             *
+             * 
              * Using a named volume in only one step is not valid as it is indicative
              * of a build request with an incorrect configuration.
              */
@@ -2641,7 +2541,7 @@ export namespace google {
           export interface Volume {
             /**
              * Name of the volume to mount.
-             *
+             * 
              * Volume names must be unique per build step and must be valid names for
              * Docker volumes. Each named volume must be used by at least two build steps.
              */
@@ -2649,7 +2549,7 @@ export namespace google {
 
             /**
              * Path at which to mount the volume.
-             *
+             * 
              * Paths must be absolute and cannot conflict with other volume paths on the
              * same build step or with certain reserved volume paths.
              */
@@ -2684,7 +2584,7 @@ export namespace google {
             /**
              * List of build step outputs, produced by builder images, in the order
              * corresponding to build step indices.
-             *
+             * 
              * [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders)
              * can produce this output by writing to `$BUILDER_OUTPUT/output`.
              * Only the first 4KB of data is stored.
@@ -2726,12 +2626,12 @@ export namespace google {
             /**
              * A list of images to be pushed upon the successful completion of all build
              * steps.
-             *
+             * 
              * The images will be pushed using the builder service account's credentials.
-             *
+             * 
              * The digests of the pushed images will be stored in the Build resource's
              * results field.
-             *
+             * 
              * If any of the images fail to be pushed, the build is marked FAILURE.
              */
             images?: string[];
@@ -2739,14 +2639,14 @@ export namespace google {
             /**
              * A list of objects to be uploaded to Cloud Storage upon successful
              * completion of all build steps.
-             *
+             * 
              * Files in the workspace matching specified paths globs will be uploaded to
              * the specified Cloud Storage location using the builder service account's
              * credentials.
-             *
+             * 
              * The location and generation of the uploaded objects will be stored in the
              * Build resource's results field.
-             *
+             * 
              * If any objects fail to be pushed, the build is marked FAILURE.
              */
             objects?: Artifacts.ArtifactObjects;
@@ -2761,7 +2661,7 @@ export namespace google {
                * Cloud Storage bucket and optional object path, in the form
                * "gs://bucket/path/to/somewhere/". (see [Bucket Name
                * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
-               *
+               * 
                * Files in the workspace matching any path pattern will be uploaded to
                * Cloud Storage with this location as a prefix.
                */
@@ -2816,10 +2716,10 @@ export namespace google {
              * the original source integrity was maintained in the build. Note that
              * `FileHashes` will only be populated if `BuildOptions` has requested a
              * `SourceProvenanceHash`.
-             *
+             * 
              * The keys to this map are file paths used as build source and the values
              * contain the hash values for those files.
-             *
+             * 
              * If the build source came in a single package such as a gzipped tarfile
              * (`.tar.gz`), the `FileHash` will be for the single path to that file.
              */
@@ -2860,7 +2760,7 @@ export namespace google {
               SHA256 = 1,
               MD5 = 2,
             }
-            export type HashType = 'NONE' | 'SHA256' | 'MD5' | HashTypeEnum;
+            export type HashType = "NONE" | "SHA256" | "MD5" | HashTypeEnum;
           }
 
           /**
@@ -2875,7 +2775,7 @@ export namespace google {
 
             /**
              * Map of environment variable name to its encrypted value.
-             *
+             * 
              * Secret environment variables must be unique across all of a build's
              * secrets, and must be used by at least one build step. Values can be at most
              * 64 KB in size. There can be at most 100 secret values across all of a
@@ -2941,7 +2841,7 @@ export namespace google {
              * A list of global environment variable definitions that will exist for all
              * build steps in this build. If a variable is defined in both globally and in
              * a build step, the variable will use the build step value.
-             *
+             * 
              * The elements are of the form "KEY=VALUE" for the environment variable "KEY"
              * being given the value "VALUE".
              */
@@ -2957,12 +2857,12 @@ export namespace google {
 
             /**
              * Global list of volumes to mount for ALL build steps
-             *
+             * 
              * Each volume is created as an empty volume prior to starting the build
              * process. Upon completion of the build, volumes and their contents are
              * discarded. Global volume names and paths cannot conflict with the volumes
              * defined a build step.
-             *
+             * 
              * Using a global volume in a build with only one step is not valid as
              * it is indicative of a build request with an incorrect configuration.
              */
@@ -2976,10 +2876,7 @@ export namespace google {
               NOT_VERIFIED = 0,
               VERIFIED = 1,
             }
-            export type VerifyOption =
-              | 'NOT_VERIFIED'
-              | 'VERIFIED'
-              | VerifyOptionEnum;
+            export type VerifyOption = "NOT_VERIFIED" | "VERIFIED" | VerifyOptionEnum;
 
             /**
              * Supported VM sizes.
@@ -2989,11 +2886,7 @@ export namespace google {
               N1_HIGHCPU_8 = 1,
               N1_HIGHCPU_32 = 2,
             }
-            export type MachineType =
-              | 'UNSPECIFIED'
-              | 'N1_HIGHCPU_8'
-              | 'N1_HIGHCPU_32'
-              | MachineTypeEnum;
+            export type MachineType = "UNSPECIFIED" | "N1_HIGHCPU_8" | "N1_HIGHCPU_32" | MachineTypeEnum;
 
             /**
              * Specifies the behavior when there is an error in the substitution checks.
@@ -3002,10 +2895,7 @@ export namespace google {
               MUST_MATCH = 0,
               ALLOW_LOOSE = 1,
             }
-            export type SubstitutionOption =
-              | 'MUST_MATCH'
-              | 'ALLOW_LOOSE'
-              | SubstitutionOptionEnum;
+            export type SubstitutionOption = "MUST_MATCH" | "ALLOW_LOOSE" | SubstitutionOptionEnum;
 
             /**
              * Specifies the behavior when writing build logs to Google Cloud Storage.
@@ -3015,11 +2905,7 @@ export namespace google {
               STREAM_ON = 1,
               STREAM_OFF = 2,
             }
-            export type LogStreamingOption =
-              | 'STREAM_DEFAULT'
-              | 'STREAM_ON'
-              | 'STREAM_OFF'
-              | LogStreamingOptionEnum;
+            export type LogStreamingOption = "STREAM_DEFAULT" | "STREAM_ON" | "STREAM_OFF" | LogStreamingOptionEnum;
 
             /**
              * Specifies the logging mode.
@@ -3029,11 +2915,7 @@ export namespace google {
               LEGACY = 1,
               GCS_ONLY = 2,
             }
-            export type LoggingMode =
-              | 'LOGGING_UNSPECIFIED'
-              | 'LEGACY'
-              | 'GCS_ONLY'
-              | LoggingModeEnum;
+            export type LoggingMode = "LOGGING_UNSPECIFIED" | "LEGACY" | "GCS_ONLY" | LoggingModeEnum;
           }
         }
       }
@@ -3042,8 +2924,7 @@ export namespace google {
           /**
            * The CloudEvent raised when an audit log entry is written.
            */
-          export interface AuditLogWrittenEvent
-            extends CloudEvent<google.events.cloud.audit.v1.LogEntryData> {
+          export interface AuditLogWrittenEvent extends CloudEvent<google.events.cloud.audit.v1.LogEntryData> {
             type: 'google.cloud.audit.log.v1.written' | string;
           }
 
@@ -3058,7 +2939,7 @@ export namespace google {
 
             /**
              * The monitored resource that produced this log entry.
-             *
+             * 
              * Example: a log entry that reports a database error would be associated with
              * the monitored resource designating the particular database that reported
              * the error.
@@ -3113,7 +2994,7 @@ export namespace google {
 
             /**
              * The span ID within the trace associated with the log entry, if any.
-             *
+             * 
              * For Trace spans, this is the same format that the Trace API v2 uses: a
              * 16-character hexadecimal encoding of an 8-byte array, such as
              * `000000000000004a`.
@@ -3175,17 +3056,7 @@ export namespace google {
             ALERT = 700,
             EMERGENCY = 800,
           }
-          export type LogSeverity =
-            | 'DEFAULT'
-            | 'DEBUG'
-            | 'INFO'
-            | 'NOTICE'
-            | 'WARNING'
-            | 'ERROR'
-            | 'CRITICAL'
-            | 'ALERT'
-            | 'EMERGENCY'
-            | LogSeverityEnum;
+          export type LogSeverity = "DEFAULT" | "DEBUG" | "INFO" | "NOTICE" | "WARNING" | "ERROR" | "CRITICAL" | "ALERT" | "EMERGENCY" | LogSeverityEnum;
 
           /**
            * Common audit log format for Google Cloud Platform API operations.
@@ -3204,7 +3075,7 @@ export namespace google {
              * The name of the service method or operation.
              * For API calls, this should be the name of the API method.
              * For example,
-             *
+             * 
              * "google.datastore.v1.Datastore.RunQuery"
              * "google.logging.v1.LoggingService.DeleteLog"
              */
@@ -3214,7 +3085,7 @@ export namespace google {
              * The resource or collection that is the target of the operation.
              * The name is a scheme-less URI, not including the API service name.
              * For example:
-             *
+             * 
              * "shelves/SHELF_ID/books"
              * "shelves/SHELF_ID/books/BOOK_ID"
              */
@@ -3332,7 +3203,7 @@ export namespace google {
              * The name of the service account key used to create or exchange
              * credentials for authenticating the service account making the request.
              * This is a scheme-less URI full resource name. For example:
-             *
+             * 
              * "//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}"
              */
             serviceAccountKeyName?: string;
@@ -3359,7 +3230,7 @@ export namespace google {
           export interface AuthorizationInfo {
             /**
              * The resource being accessed, as a REST-style string. For example:
-             *
+             * 
              * bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
              */
             resource?: string;
@@ -3378,7 +3249,7 @@ export namespace google {
             /**
              * Resource attributes used in IAM condition evaluation. This field contains
              * resource attributes like resource type and resource name.
-             *
+             * 
              * To get the whole view of the attributes used in IAM
              * condition evaluation, the user must also look into
              * `AuditLogData.request_metadata.request_attributes`.
@@ -3407,7 +3278,7 @@ export namespace google {
              * The user agent of the caller.
              * This information is not authenticated and should be treated accordingly.
              * For example:
-             *
+             * 
              * +   `google-api-python-client/1.4.0`:
              * The request was made by the Google API client for Python.
              * +   `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`:
@@ -3424,7 +3295,7 @@ export namespace google {
              * (or project) as the accessed resource.
              * See https://cloud.google.com/compute/docs/vpc/ for more information.
              * This is a scheme-less URI full resource name. For example:
-             *
+             * 
              * "//compute.googleapis.com/projects/PROJECT_ID/global/networks/NETWORK_ID"
              */
             callerNetwork?: string;
@@ -3433,8 +3304,8 @@ export namespace google {
              * Request attributes used in IAM condition evaluation. This field contains
              * request attributes like request time and access levels associated with
              * the request.
-             *
-             *
+             * 
+             * 
              * To get the whole view of the attributes used in IAM
              * condition evaluation, the user must also look into
              * `AuditLog.authentication_info.resource_attributes`.
@@ -3460,7 +3331,7 @@ export namespace google {
              * Requests to create or delete a location based resource must populate
              * the 'current_locations' field and not the 'original_locations' field.
              * For example:
-             *
+             * 
              * "europe-west1-a"
              * "us-east1"
              * "nam3"
@@ -3472,7 +3343,7 @@ export namespace google {
              * Requests that mutate the resource's location must populate both the
              * 'original_locations' as well as the 'current_locations' fields.
              * For example:
-             *
+             * 
              * "europe-west1-a"
              * "us-east1"
              * "nam3"
@@ -3552,7 +3423,7 @@ export namespace google {
 }
 
 /**
- * A mapped type that defines which CloudEvent types correspond to which data
+ * A mapped type that defines which CloudEvent types correspond to which data 
  * payload schemas. This is an internal implementation detail of the @google/events
  * library, it is not exposed in the public API.
  *
@@ -3592,8 +3463,8 @@ export type GoogleCloudEventTypesToDataType = {
  * A GoogleCloudEvent is known CloudEvent type which a well defined data payload schema.
  */
 
-export type GoogleCloudEvent<T extends keyof GoogleCloudEventTypesToDataType> =
-  CloudEvent<GoogleCloudEventTypesToDataType[T]>;
+export interface GoogleCloudEvent<T extends keyof GoogleCloudEventTypesToDataType> extends CloudEvent<GoogleCloudEventTypesToDataType[T]> {}
+;
 /**
  * This interface is used to create the GoogleCloudEventsUnion type. Is it more rigid than
  * the GoogleCloudEvent above because it constrains the 'type' field a one of the known
@@ -3602,12 +3473,10 @@ export type GoogleCloudEvent<T extends keyof GoogleCloudEventTypesToDataType> =
  * in Typescript.
  */
 
-export interface GoogleCloudEventUnionType<
-  T extends keyof GoogleCloudEventTypesToDataType
-> extends GoogleCloudEvent<T> {
+export interface GoogleCloudEventUnionType<T extends keyof GoogleCloudEventTypesToDataType> extends GoogleCloudEvent<T> {
   type: T;
 }
-
+;
 /**
  * A union type of all known Google CloudEvents.
  *
@@ -3615,67 +3484,10 @@ export interface GoogleCloudEventUnionType<
  * and https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions
  */
 
-export type GoogleCloudEventsUnion =
-  | GoogleCloudEventUnionType<'google.firebase.testlab.testMatrix.v1.completed'>
-  | GoogleCloudEventUnionType<'google.firebase.remoteconfig.remoteConfig.v1.updated'>
-  | GoogleCloudEventUnionType<'google.firebase.firebasealerts.alerts.v1.published'>
-  | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.created'>
-  | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.updated'>
-  | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.deleted'>
-  | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.written'>
-  | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.created'>
-  | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.deleted'>
-  | GoogleCloudEventUnionType<'google.firebase.analytics.log.v1.written'>
-  | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.finalized'>
-  | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.archived'>
-  | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.deleted'>
-  | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.metadataUpdated'>
-  | GoogleCloudEventUnionType<'google.cloud.scheduler.job.v1.executed'>
-  | GoogleCloudEventUnionType<'google.cloud.pubsub.topic.v1.messagePublished'>
-  | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.CreateDevice'>
-  | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.UpdateDevice'>
-  | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.DeleteDevice'>
-  | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry'>
-  | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry'>
-  | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry'>
-  | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.created'>
-  | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.updated'>
-  | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.deleted'>
-  | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.written'>
-  | GoogleCloudEventUnionType<'google.cloud.cloudbuild.build.v1.statusChanged'>
-  | GoogleCloudEventUnionType<'google.cloud.audit.log.v1.written'>;
+export type GoogleCloudEventsUnion = GoogleCloudEventUnionType<'google.firebase.testlab.testMatrix.v1.completed'> | GoogleCloudEventUnionType<'google.firebase.remoteconfig.remoteConfig.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.firebasealerts.alerts.v1.published'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.created'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.updated'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.database.ref.v1.written'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.created'> | GoogleCloudEventUnionType<'google.firebase.auth.user.v1.deleted'> | GoogleCloudEventUnionType<'google.firebase.analytics.log.v1.written'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.finalized'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.archived'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.storage.object.v1.metadataUpdated'> | GoogleCloudEventUnionType<'google.cloud.scheduler.job.v1.executed'> | GoogleCloudEventUnionType<'google.cloud.pubsub.topic.v1.messagePublished'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.CreateDevice'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.UpdateDevice'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.DeleteDevice'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry'> | GoogleCloudEventUnionType<'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.created'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.updated'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.deleted'> | GoogleCloudEventUnionType<'google.cloud.firestore.document.v1.written'> | GoogleCloudEventUnionType<'google.cloud.cloudbuild.build.v1.statusChanged'> | GoogleCloudEventUnionType<'google.cloud.audit.log.v1.written'>;
 /**
- * Keep a set of of all known GoogleCloudEvent types to be used in the type predicates
+ * Keep a set of of all known GoogleCloudEvent types to be used in the type predicates 
  * provided by this library.
  */
 
-export const GoogleCloudEventTypes = new Set([
-  'google.firebase.testlab.testMatrix.v1.completed',
-  'google.firebase.remoteconfig.remoteConfig.v1.updated',
-  'google.firebase.firebasealerts.alerts.v1.published',
-  'google.firebase.database.ref.v1.created',
-  'google.firebase.database.ref.v1.updated',
-  'google.firebase.database.ref.v1.deleted',
-  'google.firebase.database.ref.v1.written',
-  'google.firebase.auth.user.v1.created',
-  'google.firebase.auth.user.v1.deleted',
-  'google.firebase.analytics.log.v1.written',
-  'google.cloud.storage.object.v1.finalized',
-  'google.cloud.storage.object.v1.archived',
-  'google.cloud.storage.object.v1.deleted',
-  'google.cloud.storage.object.v1.metadataUpdated',
-  'google.cloud.scheduler.job.v1.executed',
-  'google.cloud.pubsub.topic.v1.messagePublished',
-  'google.cloud.iot.v1.DeviceManager.CreateDevice',
-  'google.cloud.iot.v1.DeviceManager.UpdateDevice',
-  'google.cloud.iot.v1.DeviceManager.DeleteDevice',
-  'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry',
-  'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry',
-  'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry',
-  'google.cloud.firestore.document.v1.created',
-  'google.cloud.firestore.document.v1.updated',
-  'google.cloud.firestore.document.v1.deleted',
-  'google.cloud.firestore.document.v1.written',
-  'google.cloud.cloudbuild.build.v1.statusChanged',
-  'google.cloud.audit.log.v1.written',
-]);
+export const GoogleCloudEventTypes = new Set(['google.firebase.testlab.testMatrix.v1.completed', 'google.firebase.remoteconfig.remoteConfig.v1.updated', 'google.firebase.firebasealerts.alerts.v1.published', 'google.firebase.database.ref.v1.created', 'google.firebase.database.ref.v1.updated', 'google.firebase.database.ref.v1.deleted', 'google.firebase.database.ref.v1.written', 'google.firebase.auth.user.v1.created', 'google.firebase.auth.user.v1.deleted', 'google.firebase.analytics.log.v1.written', 'google.cloud.storage.object.v1.finalized', 'google.cloud.storage.object.v1.archived', 'google.cloud.storage.object.v1.deleted', 'google.cloud.storage.object.v1.metadataUpdated', 'google.cloud.scheduler.job.v1.executed', 'google.cloud.pubsub.topic.v1.messagePublished', 'google.cloud.iot.v1.DeviceManager.CreateDevice', 'google.cloud.iot.v1.DeviceManager.UpdateDevice', 'google.cloud.iot.v1.DeviceManager.DeleteDevice', 'google.cloud.iot.v1.DeviceManager.CreateDeviceRegistry', 'google.cloud.iot.v1.DeviceManager.UpdateDeviceRegistry', 'google.cloud.iot.v1.DeviceManager.DeleteDeviceRegistry', 'google.cloud.firestore.document.v1.created', 'google.cloud.firestore.document.v1.updated', 'google.cloud.firestore.document.v1.deleted', 'google.cloud.firestore.document.v1.written', 'google.cloud.cloudbuild.build.v1.statusChanged', 'google.cloud.audit.log.v1.written']);

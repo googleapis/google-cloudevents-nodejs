@@ -210,7 +210,7 @@ const ANALYTICS_DATA: google.events.firebase.analytics.v1.AnalyticsLogData = {
         firebase_event_origin: {stringValue: 'auto'},
         firebase_screen: {stringValue: 'app_menu'},
         firebase_screen_class: {stringValue: 'AppActivity'},
-        firebase_screen_id: {intValue: -2415111648950109400},
+        firebase_screen_id: {intValue: -2415111648950100},
         ga_session_id: {intValue: 1606965190},
         ga_session_number: {intValue: 7},
         session_engaged: {intValue: 1},

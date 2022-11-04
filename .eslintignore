@@ -5,5 +5,8 @@ build/
 docs/
 protos/
 
+events/events.ts
+tests/testEvents.ts
+
 *.js
 *.d.ts

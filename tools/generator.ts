@@ -85,7 +85,7 @@ const isMapField = (x: FieldBase): x is MapField => {
 const isNamespace = (
   x: ReflectionObject | NamespaceBase
 ): x is NamespaceBase => {
-  return (x as NamespaceBase).nested !== null;
+  return (x as NamespaceBase).nested !== undefined;
 };
 
 /**
