@@ -1,3 +1,5 @@
+**_THIS REPOSITORY AND PACKAGE WILL BE DEPRECATED IN JULY 2024.__**
+
 # Google CloudEvents – Node.js [![npm version](https://badge.fury.io/js/%40google%2Fevents.svg)](https://www.npmjs.com/package/@google/events) [![github ci](https://github.com/googleapis/google-cloudevents-nodejs/workflows/ci/badge.svg)](https://github.com/googleapis/google-cloudevents-nodejs/actions?query=workflow%3Aci)
 
 This repository contains types for CloudEvents issued by Google,
