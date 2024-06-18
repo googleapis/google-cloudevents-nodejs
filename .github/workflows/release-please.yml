@@ -18,7 +18,7 @@ jobs:
           command: release-pr
       - id: label
         if: ${{ steps.release-pr.outputs.pr }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
             github-token: ${{secrets.GITHUB_TOKEN}}
             script: |
@@ -58,7 +58,7 @@ jobs:
           npm install
           npm run build
           npm publish
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         if: ${{ steps.release.outputs.release_created }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
